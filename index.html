@@ -1,0 +1,548 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Script OS</title>
+    <link href="css/default.css" rel="stylesheet" />
+    <script>
+    function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+    }
+    </script>
+</head>
+<body onload="startTime()" scroll="no" style="overflow: hidden">
+    <style>
+        body {
+            background-image: url(https://images2.alphacoders.com/799/799736.jpg);
+            image-rendering: optimizeQuality;
+            -webkit-user-select: none;
+            -moz-user-select: -moz-none;
+            -ms-user-select: none;
+            user-select: none;
+            width: auto;
+            height: auto;
+        }
+
+        button {
+            border-style: solid;
+            font-family: Arial;
+        }
+
+        #bottom-button {
+            border-style: solid;
+            font-family: Arial;
+            height: 50px;
+        }
+
+        #mydiv {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            box-shadow: 5px;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5);
+            color:white;
+            filter: drop-shadow(8px 8px 10px gray);
+        }
+
+        #mydivheader {
+            margin: auto;
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        #mydivheader2 {
+            padding: 5px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            filter: drop-shadow(8px 8px 10px gray);
+        }
+
+            .navbar a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .navbar a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .navbar a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+        .topnav {
+            color:white;
+            background-color: #333;
+            overflow: hidden;
+            bottom: 0;
+            width: 100%;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            filter: drop-shadow(8px 8px 10px gray);
+        }
+
+            /* Style the links inside the navigation bar */
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                /* Change the color of links on hover */
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                /* Add a color to the active/current link */
+                .topnav a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+        #apps {
+            position: center;
+            align-content:center;
+            align-items:center;
+            z-index: 9;
+            background-color: black;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(8px 8px 10px gray);
+        }
+
+        #appsheader {
+            padding: 10px;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        #text {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            resize: both;
+            overflow: auto;
+        }
+
+        #textheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        #text-box {
+            resize: both;
+        }
+
+        #settings {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            resize: both;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5)
+        }
+
+        #settingsheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        #backgroundsettings {
+            color:white;
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            resize: both;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5)
+        }
+
+        #backgroundsettingsheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        #browser {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+        }
+
+        #browserheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        #usersettings {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            color:white;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            resize: both;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5)
+        }
+
+        #usersettingsheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+        #filesapp {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            resize: both;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5)
+        }
+
+        #filesappheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+        #filesbox {
+            background-color: dimgrey;
+            background: rgba(0, 0, 0, 0.5);
+            width:100%;
+            height:75%;
+        }
+
+        #htmlview {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            overflow: auto;
+        }
+
+        #htmlviewheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+        #zecassistant {
+            position: center;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            resize: both;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.5)
+        }
+
+        #zecheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(8px 8px 10px gray);
+        }
+
+        #output {
+            display: block;
+        }
+        .zecbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            filter: drop-shadow(8px 8px 10px gray);
+        }
+
+            .zecbar a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .zecbar a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .zecbar a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+    </style>
+    <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
+        <ui style="height:100%" draggable="false" id="">BETA</ui>
+        <ui>|</ui>
+        <ui>Script OS</ui>
+        <ui>|</ui>
+        <ui style="height:100%" draggable="false" id="txt"></ui>
+        <ui>|</ui>
+        <ui title="Lock" onclick="window.location.href='start.html'">🔒</ui>
+    </div>
+    <div style="align-content:center; align-items:center; align-self:center; text-align:center" id="mydiv">
+        <div id="mydivheader">
+            Welcome
+            <button class="" onclick="document.getElementById('mydiv').style.display='none'">X</button>
+        </div>
+        <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
+        <img style="position:center" src="images/Script OS Logo 88x88.png"/>
+        <p>Script OS was developed by TX EditZ</p>
+        <p>Script OS is a web OS concept that is</p>
+        <p>still in development.</p>
+        <p>(C)TX EditZ</p>
+        <p>(C)TenZe Inc.</p>
+        <script>
+            document.getElementById('mydiv').style.position = 'center'
+        </script>
+    </div>
+    <div class="navbar" style="transform-style:flat">
+        <input title="Apps" type="image" src="images/Script OS Logo 44x44.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display='inline'" />
+        <input title="Zec Assistant" type="image" src="file:///C:/Users/Its%20Tyler/source/repos/Zec%20Smart%20Assitant(PROTOTYPE)/Zec%20Smart%20Assitant(PROTOTYPE)/images/Zec%20logo.png" style="width:50px; height:100%" onclick="document.getElementById('zecassistant').style.display = 'inline' " />
+        <input title="Join Our Discord For Updates/Support" type="image" src="https://png.icons8.com/color/1600/discord-new-logo.png" style="width:50px; height:100%" onclick="document.getElementById('discord').style.display = 'inline'"/>
+        <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
+        <input title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
+        <input title="Files" type="image" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'"/>
+    </div>
+    <div id="apps">
+        <script>
+            document.getElementById('apps').style.display = 'none'
+        </script>
+        <div id="appsheader">
+            Apps
+            <button class="" onclick="document.getElementById('apps').style.display='none'">X</button>
+        </div>
+        <input type="image" disabled title="Text/HTML5 Editor" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('').style.display = 'inline'" />
+        <input type="image" title="Files" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
+        <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'" />
+        <input title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display='inline'" />
+        <p style="font-family:'Segoe UI Emoji'">The Script OS App Store is not currently available.</p>
+        <p style="font-family:'Segoe UI Emoji'">We are still working on it, but functionality is our priority!</p>
+    </div>
+    <div id="settings">
+        <script>
+            document.getElementById('settings').style.display = 'none'
+            document.getElementById('settings').style.width = '250px'; document.getElementById('settings').style.height = '250px'
+        </script>
+        <div id="settingsheader">
+            Settings
+            <button class="" onclick="document.getElementById('settings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('settings').style.width = '1000px'; document.getElementById('settings').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('settings').style.width = '250px'; document.getElementById('settings').style.height = '250px'">=</button>
+        </div>
+        <button class="" onclick="document.getElementById('backgroundsettings').style.display='inline'">Background</button>
+        <button class="" onclick="document.getElementById('usersettings').style.display = 'inline'">User</button>
+        <button class="" onclick="document.getElementById('mydiv').style.display='inline'">About Script OS</button>
+        <button class="" onclick="document.getElementById('experiencesettings').style.display='inline'">User Experience</button>
+        <button>Help</button>
+    </div>
+    <div id="backgroundsettings">
+        <script>
+            document.getElementById('backgroundsettings').style.display = 'none'
+            document.getElementById('backgroundsettings').style.width = '1000px'; document.getElementById('backgroundsettings').style.height = '600px'
+        </script>
+        <div id="backgroundsettingsheader">
+            Background settings
+            <button class="" onclick="document.getElementById('backgroundsettings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('backgroundsettings').style.width = '1000px'; document.getElementById('backgroundsettings').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('backgroundsettings').style.width = '250px'; document.getElementById('backgroundsettings').style.height = '250px'">=</button>
+        </div>
+        <p>Color</p>
+        <button type="button" onclick="colorFunction()">Green</button>
+        <button type="button" onclick="colorFunction2()">Red</button>
+        <button type="button" onclick="colorFunction6()">Orange</button>
+        <button type="button" onclick="colorFunction3()">Blue</button>
+        <button type="button" onclick="colorFunction4()">White</button>
+        <button type="button" onclick="colorFunction5()">Grey</button>
+        <p>Image</p>
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/SpaceMystic.jpg)'" style="width:200px; height:100px" src="images/SpaceMystic.jpg" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)'" style="width:200px; height:100px" src="images/imac-pro-wallpaper.jpg" />
+        <input type="button" onclick="document.body.style.backgroundImage = 'url(images/Script OS Logo.png)'" style="width:200px; height:100px" src="images/Script-OS-Transparent-big.png" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg"/>
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1"/>
+        <script>
+            function colorFunction() {
+                document.body.style.backgroundColor = "green";
+            }
+            function colorFunction2() {
+                document.body.style.backgroundColor = "red";
+            }
+            function colorFunction3() {
+                document.body.style.backgroundColor = "teal";
+            }
+            function colorFunction4() {
+                document.body.style.backgroundColor = "white";
+            }
+            function colorFunction5() {
+                document.body.style.backgroundColor = "grey";
+            }
+            function colorFunction6() {
+                document.body.style.backgroundColor = "orange";
+            }
+        </script>
+    </div>
+    <div id="usersettings">
+        <script>
+            document.getElementById('usersettings').style.display = 'none'
+        </script>
+        <div id="usersettingsheader">
+            User Settings
+            <button class="" onclick="document.getElementById('usersettings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('usersettings').style.width = '1000px'; document.getElementById('usersettings').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('usersettings').style.width = '250px'; document.getElementById('usersettings').style.height = '250px'">=</button>
+        </div>
+        <p>User Name[DEMO]</p>
+        <input disabled value="EVE Alpha" />
+        <p>User Rights</p>
+        <input disabled value="DEMO" />
+    </div>
+    <div id="browser">
+        <script>
+            document.getElementById('browser').style.display = 'none'
+        </script>
+        <div id="browserheader">
+            Browser
+            <button class="" onclick="document.getElementById('browser').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '1280px'; document.getElementById('browser').style.height = '720px';document.getElementById('browser-view').style.width = '1280px'; document.getElementById('browser-view').style.height = '720px'">[]</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px'; document.getElementById('browser-view').style.width = '250px'; document.getElementById('browser-view').style.height = '250px'">=</button>
+        </div>
+			<iframe id="browser-view" src="http://www.bing.com"></iframe>
+    </div>
+    <div id="filesapp">
+        <script>
+            document.getElementById('filesapp').style.display = 'none';
+            document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px';
+        </script>
+        <div id="filesappheader">
+            Files
+            <button class="" onclick="document.getElementById('filesapp').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('filesapp').style.width = '250px'; document.getElementById('filesapp').style.height = '250px'">=</button>
+        </div>
+        <div id="filesbox">
+            <input type="image" src="http://icons.iconarchive.com/icons/pelfusion/flat-file-type/512/html-icon.png" style="width:50px; height:50px" onclick="document.getElementById('htmlview').style.display = 'inline'; document.getElementById('htmlviewer').src = 'testing.html'" title="Testing.html"/>
+            <input type="image" src="http://icons.iconarchive.com/icons/pelfusion/flat-file-type/512/html-icon.png" style="width:50px; height:50px" onclick="document.getElementById('htmlview').style.display = 'inline'; document.getElementById('htmlviewer').src = 'chicken.html'" title="Chicken.html"/>
+        </div>
+        <input type="text" placeholder="Search Files" style="width:75%"/>
+    </div>
+    <div id="htmlview">
+        <script>
+            document.getElementById('htmlview').style.display = 'none'
+        </script>
+        <div id="htmlviewheader">HTML Viewer
+            <button class="" onclick="document.getElementById('htmlview').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('htmlview').style.width = '1000px'; document.getElementById('htmlview').style.height = '600px'; document.getElementById('htmlviewer').style.width = '1000px'; document.getElementById('htmlviewer').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('htmlview').style.width = '250px'; document.getElementById('htmlview').style.height = '250px'; document.getElementById('htmlviewer').style.width = '250px'; document.getElementById('htmlviewer').style.height = '250px'">=</button>
+        </div>
+        <iframe id="htmlviewer"></iframe>
+    </div>
+    <div id="zecassistant" style="height:100%; width:100%">
+        <script>
+            document.getElementById('zecassistant').style.display = 'none'
+        </script>
+        <div id="zecheader">
+            Zec Assistant
+            <button onclick="document.getElementById('zecassistant').style.display = 'none'; document.getElementById('output').style.display = 'inline'">X</button>
+
+        </div>
+        <div id="output" style="height:100%; width:100%" spellcheck="true">
+
+        </div>
+        <div class="zecbar" style="width:100%; height:50px">
+            <form style="width:75%" id="commands">
+                <input id="input" type="text" style="display:block">
+            </form>
+        </div>
+    </div>
+    <div style="align-content:center; align-items:center; align-self:center; text-align:center;" id="discord">
+        <button onclick="document.getElementById('discord').style.display = 'none'">X</button>
+        <script>
+            document.getElementById('discord').style.display = 'none';
+        </script>
+        <iframe src="https://discordapp.com/widget?id=453719154223087631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
