@@ -352,6 +352,27 @@
                     background-color: #4CAF50;
                     color: white;
                 }
+
+        #scriptstore {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            overflow: auto;
+        }
+
+        #scriptstoreheader{
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        .mySlides {
+            display: none;
+        }
     </style>
     <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
         <ui style="height:100%" draggable="false" id="">BETA</ui>
@@ -486,10 +507,12 @@
         <div id="browserheader">
             Browser
             <button class="" onclick="document.getElementById('browser').style.display='none'">X</button>
-            <button class="" onclick="document.getElementById('browser').style.width = '1280px'; document.getElementById('browser').style.height = '720px';document.getElementById('browser-view').style.width = '1280px'; document.getElementById('browser-view').style.height = '720px'">[]</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';document.getElementById('browser-view').style.width = '100%'; document.getElementById('browser-view').style.height = '100%'">[]</button>
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px'; document.getElementById('browser-view').style.width = '250px'; document.getElementById('browser-view').style.height = '250px'">=</button>
         </div>
-			<iframe id="browser-view" src="http://www.bing.com"></iframe>
+        <input type="text" placeholder="URL" id="srch" style="width:70%"/>
+		<input type="button" value=">" onclick="document.getElementById('browser-view').src = 'https://' + srch.value "/>
+        <iframe id="browser-view" src="http://www.bing.com"></iframe>
     </div>
     <div id="filesapp">
         <script>
@@ -543,6 +566,59 @@
             document.getElementById('discord').style.display = 'none';
         </script>
         <iframe src="https://discordapp.com/widget?id=453719154223087631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+    </div>
+    <div id="scriptstore">
+        <div id="scriptstoreheader">
+            Script OS App Store
+            <input type="button" value="X" onclick="document.getElementById('scriptstore').style.display = 'none'"/>
+        </div>
+        <div id="slideshow">
+            <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <img class="mySlides" width="840" height="480" src="images/script os beta.png">
+            <img class="mySlides" width="840" height="480" src="img_lights.jpg">
+            <img class="mySlides" width="840" height="480" src="images/Tron-Lamborghini-Aventador-4.jpg">
+            <img class="mySlides" width="840" height="480" src="img_forest.jpg">
+            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+            <input value="?" type="button" title="Support" onclick="document.getElementById('browser').style.display = 'inline'; document.getElementById('browser-view').src = 'scriptstoresupport.html'"/>
+            <script>
+                var slideIndex = 1;
+                showDivs(slideIndex);
+
+                function plusDivs(n) {
+                    showDivs(slideIndex += n);
+                }
+
+                function showDivs(n) {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    if (n > x.length) { slideIndex = 1 }
+                    if (n < 1) { slideIndex = x.length };
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    x[slideIndex - 1].style.display = "block";
+                }
+
+                function addTextEditor() {
+                    var dummy = '<input type="image" disabled title="Text/HTML5 Editor" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" id="texticon" onclick="open()" />';
+                    document.getElementById('apps').innerHTML += dummy;      
+                }
+
+                function addVideoPlayer() {
+                    var dummy = '<input type="image" disabled title="Video Player" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f9.png" style="width:100px; height:100px" id="videoicon"/>';
+                    document.getElementById('apps').innerHTML += dummy;
+                }
+
+
+
+                function open() {
+                    document.getElementById('').style.display = 'inline'
+                }
+            </script>
+        </div>
+        <p>Sorry, the Script OS App Store is currently being worked on. See you in October! We currently have some beta apps available!</p>
+        <input type="image" onclick="addTextEditor()" height="100" width="100" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png"/>
+        <input type="image" onclick="addVideoPlayer()" height="100" width="100" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f9.png"/>
     </div>
     <script src="js/main.js"></script>
 </body>
