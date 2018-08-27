@@ -161,7 +161,7 @@
             background: rgba(0, 0, 0, 0.7);
         }
 
-        #text {
+        #textapp {
             position: absolute;
             z-index: 9;
             background-color: #f1f1f1;
@@ -171,7 +171,7 @@
             overflow: auto;
         }
 
-        #textheader {
+        #textappheader {
             padding: 10px;
             cursor: move;
             z-index: 10;
@@ -181,6 +181,8 @@
 
         #text-box {
             resize: both;
+            height: 98%;
+            width: 98%;
         }
 
         #settings {
@@ -228,6 +230,8 @@
             background-color: #f1f1f1;
             border: 1px solid #d3d3d3;
             text-align: center;
+            resize:both;
+            overflow:auto;
         }
 
         #browserheader {
@@ -415,7 +419,7 @@
             Apps
             <button class="" onclick="document.getElementById('apps').style.display='none'">X</button>
         </div>
-        <input type="image" disabled title="Text/HTML5 Editor" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('').style.display = 'inline'" />
+        <input type="image" title="Text/HTML5 Editor[BETA]" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
         <input type="image" title="Files" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
         <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'" />
         <input title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display='inline'" />
@@ -496,9 +500,19 @@
             <button class="" onclick="document.getElementById('usersettings').style.width = '250px'; document.getElementById('usersettings').style.height = '250px'">=</button>
         </div>
         <p>User Name[DEMO]</p>
-        <input disabled value="EVE Alpha" />
+        <input disabled value="Alpha" />
         <p>User Rights</p>
-        <input disabled value="DEMO" />
+        <input disabled value="Development" />
+    </div>
+    <div id="userexperience">
+        <script>
+            document.getElementById('userexperience').style.display = 'none';
+        </script>
+        <div id="userexperienceheader">
+            <input type="button" onclick="document.getElementById('userexperience').style.display = 'none'"/>
+        </div>
+        <input type="button" value="Dark Mode[In the Works]" onclick="darkMode()"/>
+        <input type="button" value="Light Mode" onclick="lightMode()"/>
     </div>
     <div id="browser">
         <script>
@@ -507,12 +521,11 @@
         <div id="browserheader">
             Browser
             <button class="" onclick="document.getElementById('browser').style.display='none'">X</button>
-            <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';document.getElementById('browser-view').style.width = '100%'; document.getElementById('browser-view').style.height = '100%'">[]</button>
-            <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px'; document.getElementById('browser-view').style.width = '250px'; document.getElementById('browser-view').style.height = '250px'">=</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';">[]</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
-        <input type="text" placeholder="URL" id="srch" style="width:70%"/>
-		<input type="button" value=">" onclick="document.getElementById('browser-view').src = 'https://' + srch.value "/>
-        <iframe id="browser-view" src="http://www.bing.com"></iframe>
+        <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value"/>
+        <iframe id="browser-view" src="http://www.bing.com" style="width:100%; height:100%"></iframe>
     </div>
     <div id="filesapp">
         <script>
@@ -558,6 +571,7 @@
             <form style="width:75%" id="commands">
                 <input id="input" type="text" style="display:block">
             </form>
+            <input type="button" onclick="startDictation()" />
         </div>
     </div>
     <div style="align-content:center; align-items:center; align-self:center; text-align:center;" id="discord">
@@ -609,16 +623,41 @@
                     document.getElementById('apps').innerHTML += dummy;
                 }
 
-
+                document.getElementById('scriptstore').style.display = 'none';
+                
 
                 function open() {
                     document.getElementById('').style.display = 'inline'
                 }
+                document.getElementById('saveas').style.display = 'none'
             </script>
         </div>
         <p>Sorry, the Script OS App Store is currently being worked on. See you in October! We currently have some beta apps available!</p>
         <input type="image" onclick="addTextEditor()" height="100" width="100" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png"/>
         <input type="image" onclick="addVideoPlayer()" height="100" width="100" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f9.png"/>
+    </div>
+    <div id="textapp">
+        <script>
+            document.getElementById('textapp').style.display = 'none';
+        </script>
+        <div id="textappheader">
+            Text Editor
+            <button class="" onclick="document.getElementById('textapp').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('textapp').style.width = '1000px'; document.getElementById('textapp').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('textapp').style.width = '250px'; document.getElementById('textapp').style.height = '250px'">=</button>
+        </div>
+        <input type="button" onclick="document.getElementById('saveas').style.display = 'inline'" value="Save As"/>
+        <textarea id="text-box"></textarea>
+    </div>
+    <div id="saveas">
+        <script>
+            document.getElementById('saveas').style.display = 'none';
+        </script>
+        <div id="saveasheader">
+
+        </div>
+        Save As <input id="filenameinput"/>
+        <input type="button" disabled onclick="save()"/>
     </div>
     <script src="js/main.js"></script>
 </body>
