@@ -355,30 +355,33 @@ var out = function (outtext) {
 
 function start(invar, outvar) {
     if (invar == "") {
-        outvar("Sorry I didn't get that")
+        outvar("Sorry I didn't get that");
     }
     if (invar == "hi") {
-        outvar("Hello")
+        outvar("Hello");
     }
     if (invar == "how are you") {
-        outvar("I'm doing pretty good, you?")
+        outvar("I'm doing pretty good, you?");
     }
     if (invar == "what time is it") {
-        outvar("I'm sorry, I cannot currently tell time. That will be coming in a future update.")
+        outvar("I'm sorry, I cannot currently tell time. That will be coming in a future update.");
     }
     if (invar == "do you have voice controll") {
-        outvar("Yes!")
+        outvar("Yes!");
     }
     if (invar == "whats your name") {
-        outvar("My name is Zec. I am your digital assistant.")
+        outvar("My name is Zec. I am your digital assistant.");
     }
     if (invar == "order a pizza") {
         outvar("Here are some pizza places:");
-        outvar("1. https://www.dominos.com")
-        outvar("2. https://www.mariospizzaonline.com")
+        outvar("1. https://www.dominos.com");
+        outvar("2. https://www.mariospizzaonline.com");
     }
     if (invar == "who is Cortana") {
-        outvar("Cortana is a virtual assistant created by Microsoft Inc.")
+        outvar("Cortana is a virtual assistant created by Microsoft Inc.");
+    }
+    if (invar == "fuck you") {
+        outvar("That's not very nice!");
     }
 }
 
@@ -437,4 +440,15 @@ function startDictation() {
         }
 
     }
+}
+if (document.addEventListener) { // IE >= 9; other browsers
+    document.addEventListener('contextmenu', function (e) {
+        alert("That feature is not yet available"); //here you draw your own menu
+        e.preventDefault();
+    }, false);
+} else { // IE < 9
+    document.attachEvent('oncontextmenu', function () {
+        alert("That feature is not yet available!");
+        window.event.returnValue = false;
+    });
 }
