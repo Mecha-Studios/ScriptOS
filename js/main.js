@@ -353,12 +353,16 @@ var out = function (outtext) {
 
 }
 
+
 function start(invar, outvar) {
     if (invar == "") {
         outvar("Sorry I didn't get that");
     }
     if (invar == "hi") {
-        outvar("Hello");
+        outvar("Hey!");
+    }
+    if (invar == "hello") {
+        outvar("Hi there!")
     }
     if (invar == "how are you") {
         outvar("I'm doing pretty good, you?");
@@ -383,7 +387,27 @@ function start(invar, outvar) {
     if (invar == "fuck you") {
         outvar("That's not very nice!");
     }
+    if (invar == "launch settings") {
+        outvar("Sure thing!");
+        document.getElementById('settings').style.display = 'inline';
+    }
+    if (invar == "launch browser") {
+        outvar("Okay!")
+        document.getElementById('browser').style.display = 'inline';
+    }
+    if (invar == "go to youtube") {
+        outvar("Redirecting to YouTube!");
+        document.getElementById('browser').style.display = 'inline';
+        document.getElementById('browser-view').src = 'https://www.bing.com/videos';
+    }
+    if (invar == "launch text editor") {
+        outvar("Launching Text Editor!");
+        document.getElementById('textapp').style.display = 'inline';
+    }
+       
 }
+
+var website = string + ".com";
 
 function darkMode() {
     document.getElementById('mydivheader').style.backgroundColor = 'black';
