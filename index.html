@@ -530,6 +530,7 @@
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
         <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value" />
+        <input placeholder="Bing Search" id="bingsearch" type="text" onchange="document.getElementById('browser-view').src = 'https://bing.com/search?q=' + bingsearch.value" />
         <iframe id="browser-view" src="newtab.html" style="width:100%; height:100%"></iframe>
     </div>
     <div id="filesapp">
@@ -575,9 +576,9 @@
         </div>
         <div class="zecbar" style="width:100%; height:50px">
             <form style="width:100%; position:center" id="commands">
-                <input id="input" type="text" style="display:block; width:100%">
+                <input id="input" onkeypress="if (e.keyCode === 13) { this.value = '' }" type="text" style="display:block; width:100%">
             </form>
-            <input type="button" onclick="startDictation()" value="🎤" style="position:absolute" />
+            <input type="button" onclick="startDictation();" value="🎤" style="position:absolute" />
         </div>
     </div>
     <div style="align-content:center; align-items:center; align-self:center; text-align:center;" id="discord">

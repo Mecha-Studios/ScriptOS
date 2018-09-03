@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Script OS - Loading</title>
+</head>
+<body onload="setTimeout(shutdownScreen, 10000)">
+    <style>
+        #loadinggif {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
+    <div>
+        <h1 style="font-family:'Segoe UI Emoji'; text-align:center">Starting Up</h1>
+        <img id="loadinggif"src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif" />
+    </div>
+    <script>
+        function shutdownScreen() {
+            window.location.replace('none')
+        }
+    </script>
+</body>
+</html>
