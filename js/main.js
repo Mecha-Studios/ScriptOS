@@ -323,6 +323,23 @@ function dragElement(elmnt) {
 
 }
 
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+        h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+}
+
 var input = document.getElementById('input');
 var form = document.getElementById('commands');
 
@@ -376,11 +393,6 @@ function start(invar, outvar) {
     if (invar == "whats your name") {
         outvar("My name is Zec. I am your digital assistant.");
     }
-    if (invar == "order a pizza") {
-        outvar("Here are some pizza places:");
-        outvar("1. https://www.dominos.com");
-        outvar("2. https://www.mariospizzaonline.com");
-    }
     if (invar == "who is Cortana") {
         outvar("Cortana is a virtual assistant created by Microsoft Inc.");
     }
@@ -403,6 +415,9 @@ function start(invar, outvar) {
     if (invar == "launch text editor") {
         outvar("Launching Text Editor!");
         document.getElementById('textapp').style.display = 'inline';
+    }
+    if (invar == "clear") {
+        document.getElementById('output').innerHTML = '';
     }
        
 }
@@ -464,15 +479,4 @@ function startDictation() {
         }
 
     }
-}
-if (document.addEventListener) { // IE >= 9; other browsers
-    document.addEventListener('contextmenu', function (e) {
-        alert("That feature is not yet available"); //here you draw your own menu
-        e.preventDefault();
-    }, false);
-} else { // IE < 9
-    document.attachEvent('oncontextmenu', function () {
-        alert("That feature is not yet available!");
-        window.event.returnValue = false;
-    });
 }
