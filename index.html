@@ -379,6 +379,43 @@
         .mySlides {
             display: none;
         }
+        #userexperience {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.3);
+            resize: both;
+        }
+
+        #userexperienceheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
+
+        #clockapp {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.3);
+            resize: both;
+        }
+
+        #clockappheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: orangered;
+            color: #fff;
+        }
     </style>
     <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
         <ui style="height:100%" draggable="false" id="">BETA</ui>
@@ -511,8 +548,10 @@
             document.getElementById('userexperience').style.display = 'none';
         </script>
         <div id="userexperienceheader">
-            <input type="button" onclick="document.getElementById('userexperience').style.display = 'none'" />
+            User Experience
+            <input type="button" value="X" onclick="document.getElementById('userexperience').style.display = 'none'" />
         </div>
+        Dark Mode
         <input type="button" value="Dark Mode[In the Works]" onclick="darkMode()" />
         <input type="button" value="Light Mode" onclick="lightMode()" />
     </div>
@@ -663,7 +702,6 @@
         Save As <input id="filenameinput" />
         <input type="button" disabled onclick="save()" />
     </div>
-
     <script src="js/main.js"></script>
 </body>
 </html>

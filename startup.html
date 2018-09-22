@@ -3,7 +3,7 @@
 <head>
     <title>Script OS - Loading</title>
 </head>
-<body onload="setTimeout(loadScreen, 10000)">
+<body onload="setTimeout(loadScreen, 10000); startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden" oncontextmenu="return false">
     <style>
         #loadinggif {
             display: block;

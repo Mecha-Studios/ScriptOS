@@ -22,7 +22,7 @@
         }
     </script>
 </head>
-<body onload="startTime()" scroll="no" style="overflow: hidden">
+<body onload="startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden" oncontextmenu="return false;" scroll="no" style="overflow: hidden">
     <style>
         body {
             background-image: url(https://images2.alphacoders.com/799/799736.jpg);
@@ -69,7 +69,6 @@
 
     </style>
     <ui style="height:100%; font-size:100px; font-family:'Segoe UI Emoji'" draggable="false" id="txt"></ui>
-    <p style="font-family:Arial; color:aliceblue;">DEVELOPER BUILD</p>
     <div onclick="location.href = 'index.html'" class="navbar">
         <p style="text-align:center; font-family:'Segoe UI Emoji'; color:aliceblue;">Click to Unlock</p>
     </div>
