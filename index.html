@@ -6,418 +6,23 @@
     <link href="css/default.css" rel="stylesheet" />
     <script>
     function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-    h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        m = checkTime(m);
+        document.getElementById('txt').innerHTML = h + ":" + m;
+        var t = setTimeout(startTime, 500);
     }
     function checkTime(i) {
-    if (i < 10) {i = "0" + i};
-    return i;
+        if (i < 10) {i = "0" + i};
+        return i;
     }
     </script>
 </head>
 <body onload="startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
-    <style>
-        body {
-            background-image: url(https://images2.alphacoders.com/799/799736.jpg);
-            image-rendering: optimizeQuality;
-            -webkit-user-select: none;
-            -moz-user-select: -moz-none;
-            -ms-user-select: none;
-            user-select: none;
-            width: auto;
-            height: auto;
-        }
-
-        button {
-            border-style: solid;
-            font-family: Arial;
-        }
-
-        #bottom-button {
-            border-style: solid;
-            font-family: Arial;
-            height: 50px;
-        }
-
-        #mydiv {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            box-shadow: 5px;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            filter: drop-shadow(8px 8px 10px gray);
-        }
-
-        #mydivheader {
-            margin: auto;
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #mydivheader2 {
-            padding: 5px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 50px;
-            background: rgba(0, 0, 0, 0.5);
-            filter: drop-shadow(8px 8px 10px gray);
-        }
-
-            .navbar a {
-                float: left;
-                display: block;
-                color: #f2f2f2;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
-
-                .navbar a:hover {
-                    background-color: #ddd;
-                    color: black;
-                }
-
-                .navbar a.active {
-                    background-color: #4CAF50;
-                    color: white;
-                }
-
-        .topnav {
-            color: white;
-            background-color: #333;
-            overflow: hidden;
-            bottom: 0;
-            width: 100%;
-            height: 25px;
-            background: rgba(0, 0, 0, 0.5);
-            filter: drop-shadow(8px 8px 10px gray);
-        }
-
-            /* Style the links inside the navigation bar */
-            .topnav a {
-                float: left;
-                color: #f2f2f2;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
-
-                .topnav a:hover {
-                    background-color: #ddd;
-                    color: black;
-                }
-
-                .topnav a.active {
-                    background-color: #4CAF50;
-                    color: white;
-                }
-
-        #apps {
-            position: center;
-            align-content: center;
-            align-items: center;
-            z-index: 9;
-            background-color: black;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.3);
-            filter: drop-shadow(8px 8px 10px gray);
-        }
-
-        #appsheader {
-            padding: 10px;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        #textapp {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-        }
-
-        #textappheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #text-box {
-            resize: both;
-            height: 98%;
-            width: 98%;
-        }
-
-        #settings {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.5)
-        }
-
-        #settingsheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #backgroundsettings {
-            color: white;
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.5)
-        }
-
-        #backgroundsettingsheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #browser {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-        }
-
-        #browserheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #usersettings {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            color: white;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.5)
-        }
-
-        #usersettingsheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #filesapp {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.5)
-        }
-
-        #filesappheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #filesbox {
-            background-color: dimgrey;
-            background: rgba(0, 0, 0, 0.5);
-            width: 100%;
-            height: 75%;
-        }
-
-        #htmlview {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            overflow: auto;
-        }
-
-        #htmlviewheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #zecassistant {
-            position: center;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            resize: both;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.5)
-        }
-
-        #zecheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.3);
-            filter: drop-shadow(8px 8px 10px gray);
-        }
-
-        #output {
-            display: block;
-        }
-
-        .zecbar {
-            background-color: #333;
-            overflow: hidden;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 50px;
-            background: rgba(0, 0, 0, 0.5);
-            filter: drop-shadow(8px 8px 10px gray);
-        }
-
-            .zecbar a {
-                float: left;
-                display: block;
-                color: #f2f2f2;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
-
-                .zecbar a:hover {
-                    background-color: #ddd;
-                    color: black;
-                }
-
-                .zecbar a.active {
-                    background-color: #4CAF50;
-                    color: white;
-                }
-
-        #scriptstore {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            overflow: auto;
-        }
-
-        #scriptstoreheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        .mySlides {
-            display: none;
-        }
-        #userexperience {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.3);
-            resize: both;
-        }
-
-        #userexperienceheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-
-        #clockapp {
-            position: absolute;
-            z-index: 9;
-            background-color: #f1f1f1;
-            border: 1px solid #d3d3d3;
-            text-align: center;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.3);
-            resize: both;
-        }
-
-        #clockappheader {
-            padding: 10px;
-            cursor: move;
-            z-index: 10;
-            background-color: orangered;
-            color: #fff;
-        }
-    </style>
     <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
+        <ui id="userloginname" onclick="document.getElementById('login').style.display = 'inline'">Login</ui>
+        <ui>|</ui>
         <ui style="height:100%" draggable="false" id="">BETA</ui>
         <ui>|</ui>
         <ui>Script OS</ui>
@@ -425,6 +30,20 @@
         <ui style="height:100%" draggable="false" id="txt"></ui>
         <ui>|</ui>
         <ui title="Lock" onclick="window.location.href='start.html'">🔒</ui>
+    </div>
+    <div id="login">
+        <script>
+            document.getElementById('login').style.display = 'none'
+        </script>
+        <div id="loginheader">
+            Login To Script OS
+        </div>
+            Name:<br>
+            <input type="text" id="username" placeholder="username" name="username"><br>
+            Password:<br>
+            <input type="text" id="password" placeholder="password" name="password"><br><br>
+            <input id="loginbutton" type="submit" onclick="login(); document.getElementById('login').style.display = 'none';" value="Login" />
+            <input type="button" value="Cancel" onclick="document.getElementById('login').style.display = 'none'" />
     </div>
     <div style="align-content:center; align-items:center; align-self:center; text-align:center" id="mydiv">
         <div id="mydivheader">
@@ -443,12 +62,12 @@
         </script>
     </div>
     <div class="navbar" style="transform-style:flat">
-        <input title="Apps" type="image" src="images/Script OS Logo 44x44.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display='inline'" />
-        <input title="Zec Assistant" type="image" src="file:///C:/Users/Its%20Tyler/source/repos/Zec%20Smart%20Assitant(PROTOTYPE)/Zec%20Smart%20Assitant(PROTOTYPE)/images/Zec%20logo.png" style="width:50px; height:100%" onclick="document.getElementById('zecassistant').style.display = 'inline' " />
-        <input title="Join Our Discord For Updates/Support" type="image" src="https://png.icons8.com/color/1600/discord-new-logo.png" style="width:50px; height:100%" onclick="document.getElementById('discord').style.display = 'inline'" />
-        <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
-        <input title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
-        <input title="Files" type="image" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
+        <input id="icon" title="Apps" type="image" src="images/Script OS Logo 44x44.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display='inline'" />
+        <input id="icon2" title="Zec Assistant" type="image" src="images/Zec logo.png" style="width:50px; height:100%" onclick="document.getElementById('zecassistant').style.display = 'inline' " />
+        <input id="icon3" title="Join Our Discord For Updates/Support" type="image" src="https://png.icons8.com/color/1600/discord-new-logo.png" style="width:50px; height:100%" onclick="document.getElementById('discord').style.display = 'inline'" />
+        <input title="Settings" type="image" id="icon4" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
+        <input id="icon5" title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
+        <input id="icon6" title="Files" type="image" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
     </div>
     <div id="apps">
         <script>
@@ -616,13 +235,6 @@
             </form>
             <input type="button" onclick="startDictation();" value="🎤" style="position:absolute" />
         </div>
-    </div>
-    <div style="align-content:center; align-items:center; align-self:center; text-align:center;" id="discord">
-        <button onclick="document.getElementById('discord').style.display = 'none'">X</button>
-        <script>
-            document.getElementById('discord').style.display = 'none';
-        </script>
-        <iframe src="https://discordapp.com/widget?id=453719154223087631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
     </div>
     <div id="scriptstore">
         <div id="scriptstoreheader">

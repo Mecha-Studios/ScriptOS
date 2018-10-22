@@ -1,4 +1,14 @@
-﻿
+﻿body {
+    background-image: url(https://images2.alphacoders.com/799/799736.jpg);
+    image-rendering: optimizeQuality;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    width: auto;
+    height: auto;
+}
+
 button {
     border-style: solid;
     font-family: Arial;
@@ -92,13 +102,11 @@ button {
         font-size: 17px;
     }
 
-        /* Change the color of links on hover */
         .topnav a:hover {
             background-color: #ddd;
             color: black;
         }
 
-        /* Add a color to the active/current link */
         .topnav a.active {
             background-color: #4CAF50;
             color: white;
@@ -113,7 +121,7 @@ button {
     border: 1px solid #d3d3d3;
     text-align: center;
     overflow: auto;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 0, 0, 0.3);
     filter: drop-shadow(8px 8px 10px gray);
 }
 
@@ -346,31 +354,94 @@ button {
     display: none;
 }
 
-.show {
-    z-index: 1000;
+#userexperience {
     position: absolute;
-    background-color: #C0C0C0;
-    border: 1px solid blue;
-    padding: 2px;
-    display: block;
-    margin: 0;
-    list-style-type: none;
-    list-style: none;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    resize: both;
 }
 
-.hide {
-    display: none;
+#userexperienceheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
 }
 
-.show li {
-    list-style: none;
+#clockapp {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    resize: both;
 }
 
-.show a {
-    border: 0 !important;
-    text-decoration: none;
+#clockappheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
 }
 
-    .show a:hover {
-        text-decoration: underline !important;
-    }
+#videoeditorapp {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    resize: both;
+}
+
+#videoeditorappheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
+}
+
+#videotrack {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    resize: both;
+}
+
+#login {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    resize: both;
+    position: fixed;
+    bottom: 50%;
+    right: 45%;
+    width: 10%;
+    height: 20%;
+}
+
+#loginheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
+}
