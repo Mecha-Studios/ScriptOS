@@ -445,6 +445,7 @@ function darkMode() {
     document.getElementById('filesappheader').style.backgroundColor = 'black';
     document.getElementById('backgroundsettingsheader').style.backgroundColor = 'black';
     document.getElementById('userexperienceheader').style.backgroundColor = 'black';
+    document.getElementById('notificationcenterheader').style.backgroundColor = 'black';
 }
 
 function lightMode() {
@@ -457,6 +458,7 @@ function lightMode() {
     document.getElementById('filesappheader').style.backgroundColor = 'orangered';
     document.getElementById('backgroundsettingsheader').style.backgroundColor = 'orangered';
     document.getElementById('userexperienceheader').style.backgroundColor = 'orangered';
+    document.getElementById('notificationcenterheader').style.backgroundColor = 'orangered';
 }
 
 function redTheme() {
