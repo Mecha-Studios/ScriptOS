@@ -19,7 +19,7 @@
     }
     </script>
 </head>
-<body onload="startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
+<body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
     <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
         <ui id="userloginname" onclick="document.getElementById('login').style.display = 'inline'">Login</ui>
         <ui>|</ui>
@@ -38,12 +38,14 @@
         <div id="loginheader">
             Login To Script OS
         </div>
+        <form>
             Name:<br>
-            <input type="text" id="username" placeholder="username" name="username"><br>
+            <input type="text" id="username" placeholder="username" name="username" required><br>
             Password:<br>
-            <input type="text" id="password" placeholder="password" name="password"><br><br>
-            <input id="loginbutton" type="submit" onclick="login(); document.getElementById('login').style.display = 'none';" value="Login" />
+            <input type="password" id="password" placeholder="password" name="password" required><br><br>
+            <input id="loginbutton" type="button" onclick="login(); document.getElementById('login').style.display = 'none';" value="Login" />
             <input type="button" value="Cancel" onclick="document.getElementById('login').style.display = 'none'" />
+        </form>
     </div>
     <div style="align-content:center; align-items:center; align-self:center; text-align:center" id="mydiv">
         <div id="mydivheader">
@@ -68,6 +70,7 @@
         <input title="Settings" type="image" id="icon4" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
         <input id="icon5" title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
         <input id="icon6" title="Files" type="image" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
+        <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;"/>
     </div>
     <div id="apps">
         <script>
@@ -313,6 +316,13 @@
         </div>
         Save As <input id="filenameinput" />
         <input type="button" disabled onclick="save()" />
+    </div>
+    <div id="notificationcenter" >
+        <div id="notificationcenterheader">
+            Notifications
+            <input type="button" value="\/" onclick="document.getElementById('notificationcenter').style.display = 'none'"/>
+        </div>
+        <p style="color:white;">No Notifications Here...</p>
     </div>
     <script src="js/main.js"></script>
 </body>
