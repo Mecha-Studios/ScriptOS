@@ -445,3 +445,25 @@ button {
     background-color: orangered;
     color: #fff;
 }
+
+#notificationcenter {
+    position: absolute;
+    z-index: 100;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom:5%;
+    right: 0;
+    width: 20%;
+    height: 20%;
+}
+
+#notificationcenterheader {
+    padding: 10px;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
+}
