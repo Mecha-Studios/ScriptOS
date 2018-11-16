@@ -182,12 +182,12 @@
             document.getElementById('browser').style.display = 'none'
         </script>
         <div id="browserheader">
-            <input class="" type="button" onclick="document.getElementByID('browser-view').iframe.contentWindow.history.go(-1);" value="<"/>
             Browser
             <button class="" onclick="document.getElementById('browser').style.display='none'">X</button>
             <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';">[]</button>
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
+        <input class="" type="button" onclick="iframe.contentWindow.history.go(-1);" value="<"/>
         <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value" />
         <input placeholder="Bing Search" id="bingsearch" type="text" onchange="document.getElementById('browser-view').src = 'https://bing.com/search?q=' + bingsearch.value" />
         <iframe id="browser-view" src="newtab.html" style="width:100%; height:100%"></iframe>
