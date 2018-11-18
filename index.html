@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -20,6 +20,11 @@
     </script>
 </head>
 <body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
+    <style>
+        body{
+            background-image: url(https://images2.alphacoders.com/799/799736.jpg);
+        }
+    </style>
     <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
         <ui id="userloginname" onclick="document.getElementById('login').style.display = 'inline'">Login</ui>
         <ui>|</ui>
@@ -84,8 +89,7 @@
         <input type="image" title="Files" src="http://clipground.com/images/file-manager-clipart-14.jpg" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
         <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'" />
         <input title="Bing" type="image" src="https://cdn.iconscout.com/public/images/icon/free/png-512/bing-logo-3a36d2aade720b17-512x512.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display='inline'" />
-        <p style="font-family:'Segoe UI Emoji'">The Script OS App Store is not currently available.</p>
-        <p style="font-family:'Segoe UI Emoji'">We are still working on it, but functionality is our priority!</p>
+        <input title="Images" type="image" src="images/photosappicon.png" style="width:100px;height:100px" onclick="document.getElementById('imagesapp').style.display = 'inline'">
     </div>
     <div id="settings">
         <script>
@@ -161,7 +165,7 @@
             <button class="" onclick="document.getElementById('usersettings').style.width = '250px'; document.getElementById('usersettings').style.height = '250px'">=</button>
         </div>
         <p>User Name[DEMO]</p>
-        <input disabled value="Alpha" />
+        <input id="usernameuser" disabled value="Alpha" />
         <p>User Rights</p>
         <input disabled value="Development" />
     </div>
@@ -187,10 +191,12 @@
             <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';">[]</button>
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
-        <input class="" type="button" onclick="iframe.contentWindow.history.go(-1);" value="<"/>
+        <input type="button" value="<" onclick="window.history.back()"/>
+        <input type="button" value=">" onclick="window.history.forward()"/>
         <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value" />
         <input placeholder="Bing Search" id="bingsearch" type="text" onchange="document.getElementById('browser-view').src = 'https://bing.com/search?q=' + bingsearch.value" />
-        <iframe id="browser-view" src="newtab.html" style="width:100%; height:100%"></iframe>
+        <input type="button" value="⚙️" onclick="document.getElementById('browser-view').src = 'settings.html'" title="This feature is not yet finished" disabled/>
+        <iframe id="browser-view" src="http://bing.com" style="width:100%; height:100%"></iframe>
     </div>
     <div id="filesapp">
         <script>
@@ -203,11 +209,14 @@
             <button class="" onclick="document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('filesapp').style.width = '250px'; document.getElementById('filesapp').style.height = '250px'">=</button>
         </div>
+        <input type="text" placeholder="Search Files" style="width:75%; text-align:center" />
         <div id="filesbox">
-            <input type="image" src="http://icons.iconarchive.com/icons/pelfusion/flat-file-type/512/html-icon.png" style="width:50px; height:50px" onclick="document.getElementById('htmlview').style.display = 'inline'; document.getElementById('htmlviewer').src = 'testing.html'" title="Testing.html" />
-            <input type="image" src="http://icons.iconarchive.com/icons/pelfusion/flat-file-type/512/html-icon.png" style="width:50px; height:50px" onclick="document.getElementById('htmlview').style.display = 'inline'; document.getElementById('htmlviewer').src = 'chicken.html'" title="Chicken.html" />
+
         </div>
-        <input type="text" placeholder="Search Files" style="width:75%" />
+        <div id="filescenter">
+            <input id="folder" type="image" title="Script OS.folder" name="script os folder" onclick="openScriptOSFolder()" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/folder-blue-512.png" />
+            <input id="folder" type="image" title="Example.folder" name="example folder" onclick="openExampleFolder()" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/folder-blue-512.png" />
+        </div>
     </div>
     <div id="htmlview">
         <script>
@@ -219,7 +228,7 @@
             <button class="" onclick="document.getElementById('htmlview').style.width = '1000px'; document.getElementById('htmlview').style.height = '600px'; document.getElementById('htmlviewer').style.width = '1000px'; document.getElementById('htmlviewer').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('htmlview').style.width = '250px'; document.getElementById('htmlview').style.height = '250px'; document.getElementById('htmlviewer').style.width = '250px'; document.getElementById('htmlviewer').style.height = '250px'">=</button>
         </div>
-        <iframe id="htmlviewer"></iframe>
+        <iframe id="htmlviewer" style="width:99%; height:99%"></iframe>
     </div>
     <div id="zecassistant" style="height:100%; width:100%">
         <script>
@@ -228,7 +237,6 @@
         <div id="zecheader">
             Zec Assistant
             <button onclick="document.getElementById('zecassistant').style.display = 'none'; document.getElementById('output').style.display = 'inline'">X</button>
-
         </div>
         <div id="output" style="height:100%; width:100%" spellcheck="true">
 
@@ -239,6 +247,13 @@
             </form>
             <input type="button" onclick="startDictation();" value="🎤" style="position:absolute" />
         </div>
+    </div>
+    <div id="discord">
+        <div id="discordheader">
+            Discord Server
+            <button onclick="document.getElementById('discord').style.display = 'none'">X</button>
+        </div>
+        <iframe src="https://discordapp.com/widget?id=453719154223087631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
     </div>
     <div id="scriptstore">
         <div id="scriptstoreheader">
@@ -324,6 +339,14 @@
             <input type="button" value="\/" onclick="document.getElementById('notificationcenter').style.display = 'none'"/>
         </div>
         <p style="color:white;">No Notifications Here...</p>
+    </div>
+    <div id="imagesapp">
+        <div id="imagesappheader">
+            Image Viewer
+            <input value="X" type="button" onclick="document.getElementById('imagesapp').style.display = 'none'"/>
+        </div>
+        <button onclick="document.getElementById('filesapp').style.display = 'inline'">Open File</button>
+        <img id="imageviewer" style="width:90%;height:90%"/>
     </div>
     <script src="js/main.js"></script>
 </body>

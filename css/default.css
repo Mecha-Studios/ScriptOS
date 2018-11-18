@@ -1,5 +1,4 @@
 ﻿body {
-    background-image: url(https://images2.alphacoders.com/799/799736.jpg);
     image-rendering: optimizeQuality;
     -webkit-user-select: none;
     -moz-user-select: -moz-none;
@@ -18,6 +17,42 @@ button {
     border-style: solid;
     font-family: Arial;
     height: 50px;
+}
+
+#discordheader{
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
+}
+
+#searchscriptos {
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    bottom:5%;
+    left: 0;
+}
+
+#scriptossearch {
+    font-size: 50px;
+    height: 90%;
+    width: 100%;
+}
+
+#discord{
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    box-shadow: 5px;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    filter: drop-shadow(8px 8px 10px gray);
 }
 
 #mydiv {
@@ -257,7 +292,14 @@ button {
     background-color: dimgrey;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
-    height: 75%;
+    height: 70%;
+}
+
+#filescenter {
+    background-color: dimgrey;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 23%;
 }
 
 #htmlview {
@@ -267,6 +309,7 @@ button {
     border: 1px solid #d3d3d3;
     text-align: center;
     overflow: auto;
+    resize: both;
 }
 
 #htmlviewheader {
@@ -463,6 +506,30 @@ button {
 
 #notificationcenterheader {
     padding: 10px;
+    z-index: 10;
+    background-color: orangered;
+    color: #fff;
+}
+
+#folder {
+    width: 75px;
+    height: 75px;
+}
+
+#imagesapp {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+    resize: both;
+}
+
+#imagesappheader {
+    padding: 10px;
+    cursor: move;
     z-index: 10;
     background-color: orangered;
     color: #fff;

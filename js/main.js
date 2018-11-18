@@ -359,6 +359,78 @@ function dragElement(elmnt) {
 
 }
 
+dragElement(document.getElementById(("discord")));
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+
+}
+
+dragElement(document.getElementById(("imagesapp")));
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+
+}
+
 var input = document.getElementById('input');
 var form = document.getElementById('commands');
 
@@ -423,9 +495,15 @@ function start(invar, outvar) {
         document.getElementById('settings').style.display = 'inline';
     }
     if (invar == "launch browser") {
-        outvar("Okay!")
+        outvar("Okay!");
         document.getElementById('browser').style.display = 'inline';
     }
+
+    var searchWeb = document.getElementById('input').value;
+    if (invar == "search for"){
+        outvar("Okay, searching the web for " + searchWeb);
+    }
+
     if (invar == "launch text editor") {
         outvar("Launching Text Editor!");
         document.getElementById('textapp').style.display = 'inline';
@@ -459,11 +537,6 @@ function lightMode() {
     document.getElementById('backgroundsettingsheader').style.backgroundColor = 'orangered';
     document.getElementById('userexperienceheader').style.backgroundColor = 'orangered';
     document.getElementById('notificationcenterheader').style.backgroundColor = 'orangered';
-}
-
-function redTheme() {
-    document.getElementById('navbar').style.backgroundColor = 'red';
-    document.getElementById('topbar').style.backgroundColor = 'red';
 }
 
 function save() {
@@ -506,4 +579,27 @@ function login() {
     var username = document.getElementById('username').value;
 
     document.getElementById('userloginname').innerHTML = username;
+    document.getElementById('usernameuser').value = username;
 }
+
+function openExampleFolder() {
+    document.getElementById('filesbox').innerHTML = '<input type="image" title="Chicken.html" src="http://icons.iconarchive.com/icons/pelfusion/flat-file-type/256/html-icon.png" onclick="openChickenHtml()" style="width: 50px; height: 50px;"/>'
+}
+
+function openChickenHtml() {
+    document.getElementById('htmlview').style.display = 'inline'
+    document.getElementById('htmlviewer').src = 'Chicken.html'
+}
+
+function openScriptOSFolder() {
+    document.getElementById('filesbox').innerHTML = '<input type="image" name="images/Script OS Logo.png" title="Script OS Logo.png" src="images/Script OS Logo.png" onclick="openScriptOSImage()" style="width: 50px; height: 50px;"/>'
+}
+
+function openScriptOSImage(){
+    document.getElementById('imagesapp').style.display = 'inline';
+    document.getElementById('imageviewer').src = 'images/Script OS Logo.png';
+}
+
+document.getElementById('imagesapp').style.display = 'none';
+document.getElementById('imagesapp').style.width = '250px';
+document.getElementById('imagesapp').style.height = '250px';
