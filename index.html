@@ -191,12 +191,13 @@
             <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';">[]</button>
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
+        <input type="button" value="🏠" onclick="document.getElementById('browser-view').src = 'newtab.html'" />
         <input type="button" value="<" onclick="window.history.back()"/>
         <input type="button" value=">" onclick="window.history.forward()"/>
         <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value" />
         <input placeholder="Bing Search" id="bingsearch" type="text" onchange="document.getElementById('browser-view').src = 'https://bing.com/search?q=' + bingsearch.value" />
-        <input type="button" value="⚙️" onclick="document.getElementById('browser-view').src = 'settings.html'" title="This feature is not yet finished" disabled/>
-        <iframe id="browser-view" src="http://bing.com" style="width:100%; height:100%"></iframe>
+        <input type="button" value="⚙️" onclick="document.getElementById('browsersettings').style.display = 'inline'" title="This feature is not yet finished" />
+        <iframe id="browser-view" src="newtab.html" style="width:100%; height:100%"></iframe>
     </div>
     <div id="filesapp">
         <script>
