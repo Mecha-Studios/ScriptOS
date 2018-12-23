@@ -4,20 +4,6 @@
     <meta charset="utf-8" />
     <title>Script OS</title>
     <link href="css/default.css" rel="stylesheet" />
-    <script>
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        m = checkTime(m);
-        document.getElementById('txt').innerHTML = h + ":" + m;
-        var t = setTimeout(startTime, 500);
-    }
-    function checkTime(i) {
-        if (i < 10) {i = "0" + i};
-        return i;
-    }
-    </script>
 </head>
 <body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
     <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
@@ -33,7 +19,7 @@
     </div>
     <style>
         body {
-            background: url('images/2 wallpaper.png') no-repeat center center fixed;
+            background: url('images/2-wallpaper.png') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -132,7 +118,7 @@
         <input type="image" onclick="document.body.style.backgroundImage = 'url(images/Tron-Lamborghini-Aventador-4.jpg)'" style="width:200px; height:100px" src="images/Tron-Lamborghini-Aventador-4.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(images/SpaceMystic.jpg)'" style="width:200px; height:100px" src="images/SpaceMystic.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)'" style="width:200px; height:100px" src="images/imac-pro-wallpaper.jpg" />
-        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/Script OS Logo.png)'" style="width:200px; height:100px" src="images/Script-OS-Transparent-big.png" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/2-wallpaper.png)'" style="width:200px; height:100px" src="images/2-wallpaper.png" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
         <script>

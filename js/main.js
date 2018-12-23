@@ -425,6 +425,18 @@ var out = function (outtext) {
 
 }
 
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    m = checkTime(m);
+    document.getElementById('txt').innerHTML = h + ":" + m;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+}
 
 function start(invar, outvar) {
     if (invar == "") {
@@ -433,14 +445,14 @@ function start(invar, outvar) {
     if (invar == "hi") {
         outvar("Hey!");
     }
+    if (invar == "hey") {
+        outvar("Hi!");
+    }
     if (invar == "hello") {
         outvar("Hi there!")
     }
     if (invar == "how are you") {
         outvar("I'm doing pretty good, you?");
-    }
-    if (invar == "what time is it") {
-        outvar("I'm sorry, I cannot currently tell time. That will be coming in a future update.");
     }
     if (invar == "do you have voice controll") {
         outvar("Yes!");
@@ -462,19 +474,12 @@ function start(invar, outvar) {
         outvar("Okay!");
         document.getElementById('browser').style.display = 'inline';
     }
-
-    var searchWeb = document.getElementById('input').value;
-    if (invar == "search for"){
-        outvar("Okay, searching the web for " + searchWeb);
-    }
-
-    if (invar == "launch text editor") {
-        outvar("Launching Text Editor!");
-        document.getElementById('textapp').style.display = 'inline';
-    }
     if (invar == "clear") {
         document.getElementById('output').innerHTML = '';
-    }      
+    }
+    if (invar == "goodbye") {
+        outvar("Goodbye!");
+    }
 }
 
 function darkMode() {
