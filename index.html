@@ -6,16 +6,10 @@
     <link href="css/default.css" rel="stylesheet" />
 </head>
 <body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
-    <div class="topnav" style="text-align:center;font-family:'Segoe UI Emoji'">
-        <ui id="userloginname" onclick="document.getElementById('login').style.display = 'inline'">Login</ui>
-        <ui>|</ui>
-        <ui style="height:100%" draggable="false" id="">BETA</ui>
-        <ui>|</ui>
-        <ui>Script OS</ui>
-        <ui>|</ui>
-        <ui style="height:100%" draggable="false" id="txt"></ui>
-        <ui>|</ui>
-        <ui title="Lock" onclick="window.location.href='developer.html'">🔒</ui>
+    <div class="topnav" style="width: 100%;font-family:'Segoe UI Emoji'">
+        <ui >Script OS</ui>
+        <ui title="Lock" style="text-align:center" onclick="window.location.href='developer.html'">🔒</ui>
+        <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
     </div>
     <style>
         body {
@@ -25,23 +19,6 @@
             -o-background-size: cover;
         }
     </style>
-    <p>Happy Holidays</p>
-    <div id="login">
-        <script>
-            document.getElementById('login').style.display = 'none'
-        </script>
-        <div id="loginheader">
-            Login To Script OS
-        </div>
-        <form>
-            Name:<br>
-            <input type="text" id="username" placeholder="username" name="username" required><br>
-            Password:<br>
-            <input type="password" id="password" placeholder="password" name="password" required><br><br>
-            <input id="loginbutton" type="button" onclick="login(); document.getElementById('login').style.display = 'none';" value="Login" />
-            <input type="button" value="Cancel" onclick="document.getElementById('login').style.display = 'none'" />
-        </form>
-    </div>
     <div style="align-content:center; align-items:center; align-self:center; text-align:center" id="mydiv">
         <div id="mydivheader">
             Welcome
@@ -77,7 +54,7 @@
         <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'" />
         <input title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display='inline'" />
         <input title="Images" type="image" src="images/photosappicon.png" style="width:100px;height:100px" onclick="document.getElementById('imagesapp').style.display = 'inline'">
-        <input title="App Store" type="image" src="images/script store.png" style="width:100px; height:100px" onclick="document.getElementById('scriptstore').style.display = 'inline'"/>
+        <input title="App Store[DISABLED]" type="image" src="images/script store.png" style="width:100px; height:100px" onclick="document.getElementById('scriptstore').style.display = 'inline'"/>
     </div>
     <div id="settings">
         <script>
@@ -122,6 +99,19 @@
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
         <script>
+            document.getElementById('getval').addEventListener('change', readURL, true);
+            function readURL() {
+                var file = document.getElementById("getval").files[0];
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    document.getElementById.body.style.backgroundImage = "url(" + reader.result + ")";
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                }
+            }
+
             function colorFunction() {
                 document.body.style.backgroundColor = "green";
             }
@@ -157,7 +147,6 @@
         <p>User Rights</p>
         <input disabled value="Development" />
     </div>
-
     <div id="browser">
         <script>
             document.getElementById('browser').style.display = 'none'
@@ -208,11 +197,11 @@
         </div>
         <iframe id="htmlviewer" style="width:99%; height:99%"></iframe>
     </div>
-    <div id="zecassistant" style="height:100%; width:100%">
+    <div id="zecassistant">
         <script>
             document.getElementById('zecassistant').style.display = 'none'
         </script>
-        <div id="zecheader">
+        <div id="zecassistantheader">
             Zec Assistant
             <button onclick="document.getElementById('zecassistant').style.display = 'none'; document.getElementById('output').style.display = 'inline'">X</button>
         </div>
@@ -225,68 +214,6 @@
             </form>
             <input type="image" src="https://png.pngtree.com/svg/20170705/mic_icon_525560.png" onclick="startDictation();" value=">" style="width:75px; height:75px; position:absolute; right:0; top:0;" />
         </div>
-    </div>
-    <div id="discord">
-        <div id="discordheader">
-            Discord Server
-            <button onclick="document.getElementById('discord').style.display = 'none'">X</button>
-        </div>
-        <iframe src="https://discordapp.com/widget?id=453719154223087631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
-    </div>
-    <div id="scriptstore">
-        <div id="scriptstoreheader">
-            Script OS App Store
-            <input type="button" value="X" onclick="document.getElementById('scriptstore').style.display = 'none'" />
-        </div>
-        <div id="slideshow">
-            <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-            <img class="mySlides" width="840" height="480" src="images/script os beta.png">
-            <img class="mySlides" width="840" height="480" src="img_lights.jpg">
-            <img class="mySlides" width="840" height="480" src="images/Tron-Lamborghini-Aventador-4.jpg">
-            <img class="mySlides" width="840" height="480" src="img_forest.jpg">
-            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-            <input value="?" type="button" title="Support" onclick="document.getElementById('browser').style.display = 'inline'; document.getElementById('browser-view').src = 'scriptstoresupport.html'" />
-            <script>
-                var slideIndex = 1;
-                showDivs(slideIndex);
-
-                function plusDivs(n) {
-                    showDivs(slideIndex += n);
-                }
-
-                function showDivs(n) {
-                    var i;
-                    var x = document.getElementsByClassName("mySlides");
-                    if (n > x.length) { slideIndex = 1 }
-                    if (n < 1) { slideIndex = x.length };
-                    for (i = 0; i < x.length; i++) {
-                        x[i].style.display = "none";
-                    }
-                    x[slideIndex - 1].style.display = "block";
-                }
-
-                function addTextEditor() {
-                    var dummy = '<input type="image" disabled title="Text/HTML5 Editor" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" id="texticon" onclick="open()" />';
-                    document.getElementById('apps').innerHTML += dummy;
-                }
-
-                function addVideoPlayer() {
-                    var dummy = '<input type="image" disabled title="Video Player" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f9.png" style="width:100px; height:100px" id="videoicon"/>';
-                    document.getElementById('apps').innerHTML += dummy;
-                }
-
-                document.getElementById('scriptstore').style.display = 'none';
-
-
-                function open() {
-                    document.getElementById('').style.display = 'inline'
-                }
-                document.getElementById('saveas').style.display = 'none'
-            </script>
-        </div>
-        <p>Sorry, the Script OS App Store is currently being worked on. See you in October! We currently have some beta apps available!</p>
-        <input type="image" onclick="addTextEditor()" height="100" width="100" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" />
-        <input type="image" onclick="addVideoPlayer()" height="100" width="100" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f9.png" />
     </div>
     <div id="textapp">
         <script>
@@ -319,14 +246,6 @@
             <input type="image" style="width:20%" src="images/script os dark mode icon.png"  title="Dark Mode" onclick="darkMode()" />
             <input type="image" style="width:20%" src="images/script os light mode icon.png" title="Light Mode" onclick="lightMode()" />
         </div>
-    </div>
-    <div id="imagesapp">
-        <div id="imagesappheader">
-            Image Viewer
-            <input value="X" type="button" onclick="document.getElementById('imagesapp').style.display = 'none'"/>
-        </div>
-        <button onclick="document.getElementById('filesapp').style.display = 'inline'">Open File</button>
-        <img id="imageviewer" style="width:90%;height:90%"/>
     </div>
     <script src="js/main.js"></script>
 </body>
