@@ -34,7 +34,7 @@ function dragElement(elmnt) {
 
 }
 
-dragElement(document.getElementById(("usersettings")));
+dragElement(document.getElementById(("settings")));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -106,7 +106,7 @@ function dragElement(elmnt) {
 
 }
 
-dragElement(document.getElementById(("settings")));
+dragElement(document.getElementById(("usersettings")));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -141,7 +141,6 @@ function dragElement(elmnt) {
 
 
 }
-
 
 dragElement(document.getElementById(("browser")));
 
@@ -215,7 +214,7 @@ function dragElement(elmnt) {
 
 }
 
-dragElement(document.getElementById(("htmlview")));
+dragElement(document.getElementById(("zecassistant")));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -251,149 +250,6 @@ function dragElement(elmnt) {
 
 }
 
-dragElement(document.getElementById(("scriptstore")));
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-
-}
-
-dragElement(document.getElementById(("textapp")));
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-
-}
-
-dragElement(document.getElementById(("discord")));
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-
-}
-
-dragElement(document.getElementById(("imagesapp")));
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-
-}
 
 var input = document.getElementById('input');
 var form = document.getElementById('commands');
@@ -487,7 +343,6 @@ function darkMode() {
     document.getElementById('usersettingsheader').style.backgroundColor = 'black';
     document.getElementById('browserheader').style.backgroundColor = 'black';
     document.getElementById('textappheader').style.backgroundColor = 'black';
-    document.getElementById('scriptstoreheader').style.backgroundColor = 'black';
     document.getElementById('settingsheader').style.backgroundColor = 'black';
     document.getElementById('filesappheader').style.backgroundColor = 'black';
     document.getElementById('backgroundsettingsheader').style.backgroundColor = 'black';
@@ -500,7 +355,6 @@ function lightMode() {
     document.getElementById('usersettingsheader').style.backgroundColor = 'orangered';
     document.getElementById('browserheader').style.backgroundColor = 'orangered';
     document.getElementById('textappheader').style.backgroundColor = 'orangered';
-    document.getElementById('scriptstoreheader').style.backgroundColor = 'orangered';
     document.getElementById('settingsheader').style.backgroundColor = 'orangered';
     document.getElementById('filesappheader').style.backgroundColor = 'orangered';
     document.getElementById('backgroundsettingsheader').style.backgroundColor = 'orangered';
@@ -544,34 +398,16 @@ function startDictation() {
     }
 }
 
-function login() {
-    var username = document.getElementById('username').value;
-
-    document.getElementById('userloginname').innerHTML = username;
-    document.getElementById('usernameuser').value = username;
-}
 
 function openExampleFolder() {
     document.getElementById('filesbox').innerHTML = '<input type="image" title="Chicken.html" src="http://icons.iconarchive.com/icons/pelfusion/flat-file-type/256/html-icon.png" onclick="openChickenHtml()" style="width: 50px; height: 50px;"/>'
 }
 
 function openChickenHtml() {
-    document.getElementById('htmlview').style.display = 'inline'
-    document.getElementById('htmlviewer').src = 'Chicken.html'
+    document.getElementById('htmlview').style.display = 'inline';
+    document.getElementById('htmlviewer').src = 'Chicken.html';
 }
 
 function openScriptOSFolder() {
     document.getElementById('filesbox').innerHTML = '<input type="image" name="images/Script OS Logo.png" title="Script OS Logo.png" src="images/Script OS Logo.png" onclick="openScriptOSImage()" style="width: 50px; height: 50px;"/>'
 }
-
-function openScriptOSImage(){
-    document.getElementById('imagesapp').style.display = 'inline';
-    document.getElementById('imageviewer').src = 'images/Script OS Logo.png';
-}
-
-document.getElementById('imagesapp').style.display = 'none';
-document.getElementById('imagesapp').style.width = '250px';
-document.getElementById('imagesapp').style.height = '250px';
-
-document.getElementById('discord').style.display = 'none';
-document.getElementById('notificationcenter').style.display = 'none';
