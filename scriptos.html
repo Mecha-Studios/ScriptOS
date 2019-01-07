@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Script OS</title>
+    <link href="css/default.css" rel="stylesheet" />
+</head>
+<body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
+    <div class="topnav" style="width: 100%;font-family:'Segoe UI Emoji'">
+        <ui >Script OS</ui>
+        <ui title="Lock" style="text-align:center" onclick="window.location.href='lockscreen.html'">🔒</ui>
+        <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
+    </div>
+    <style>
+        body {
+            background: url('images/2-wallpaper.png') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
+    </style>
+    <div style="align-content:center; align-items:center; align-self:center; text-align:center" id="mydiv">
+        <div id="mydivheader">
+            Welcome
+            <button class="" onclick="document.getElementById('mydiv').style.display='none'">X</button>
+        </div>
+        <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
+        <img style="position:center; width:20%" src="images/Script OS 2 logo.png" />
+        <p>Script OS was developed by TX EditZ</p>
+        <p>Script OS is a web OS concept that is</p>
+        <p>still in development.</p>
+        <p>(C)TX EditZ</p>
+        <p>(C)TenZe Inc.</p>
+    </div>
+    <div class="navbar" style="transform-style:flat">
+        <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display='inline'" />
+        <input id="icon2" title="Zec Assistant" type="image" src="images/zec assitant icon.png" style="width:50px; height:100%" onclick="document.getElementById('zecassistant').style.display = 'inline' " />
+        <input id="icon3" title="Join Our Discord For Updates/Support" type="image" src="https://png.icons8.com/color/1600/discord-new-logo.png" style="width:50px; height:100%" onclick="document.getElementById('discord').style.display = 'inline'" />
+        <input title="Settings" type="image" id="icon4" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
+        <input id="icon5" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
+        <input id="icon6" title="Files" type="image" src="images/script os files icon.png" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
+        <input id="notificationbell" title="Notifications(1)" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;"/>
+    </div>
+    <div id="apps">
+        <script>
+            document.getElementById('apps').style.display = 'none'
+        </script>
+        <div id="appsheader">
+            Apps
+            <button class="" onclick="document.getElementById('apps').style.display='none'">X</button>
+        </div>
+        <input type="image" title="Text/HTML5 Editor[BETA]" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
+        <input type="image" title="Files" src="images/script os files icon.png" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
+        <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'" />
+        <input title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display='inline'" />
+    </div>
+    <div id="settings">
+        <script>
+            document.getElementById('settings').style.display = 'none'
+            document.getElementById('settings').style.width = '250px'; document.getElementById('settings').style.height = '250px'
+        </script>
+        <div id="settingsheader">
+            Settings
+            <button class="" onclick="document.getElementById('settings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('settings').style.width = '1000px'; document.getElementById('settings').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('settings').style.width = '250px'; document.getElementById('settings').style.height = '250px'">=</button>
+        </div>
+        <input class="" type="image" style="width:10%;" src="http://www.clker.com/cliparts/k/p/z/N/Y/g/paint.svg" title="Background"  onclick="document.getElementById('backgroundsettings').style.display='inline'"/>
+        <input class="" type="image" style="width:10%;" title="User Settings" src="images/script os user icon.png" onclick="document.getElementById('usersettings').style.display = 'inline'"/>
+        <input class="" type="image" src="images/Script OS 2 logo.png" style="width:10%;" onclick="document.getElementById('mydiv').style.display='inline'"/>
+        <input type="image" src="images/script os shortcuts logo.png"  style="width:10%;" onclick="document.getElementById('shortcutsapp').style.display='inline'" title="Shortcuts[COMING SOON]"/>
+        <input type="image" style="width:10%;" src="images/script os 2 help icon.png" title="Help" />
+    </div>
+    <div id="backgroundsettings">
+        <script>
+            document.getElementById('backgroundsettings').style.display = 'none'
+            document.getElementById('backgroundsettings').style.width = '1000px'; document.getElementById('backgroundsettings').style.height = '600px'
+        </script>
+        <div id="backgroundsettingsheader">
+            Background settings
+            <button class="" onclick="document.getElementById('backgroundsettings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('backgroundsettings').style.width = '1000px'; document.getElementById('backgroundsettings').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('backgroundsettings').style.width = '250px'; document.getElementById('backgroundsettings').style.height = '250px'">=</button>
+        </div>
+        <p>Color</p>
+        <button type="button" onclick="colorFunction()">Green</button>
+        <button type="button" onclick="colorFunction2()">Red</button>
+        <button type="button" onclick="colorFunction6()">Orange</button>
+        <button type="button" onclick="colorFunction3()">Blue</button>
+        <button type="button" onclick="colorFunction4()">White</button>
+        <button type="button" onclick="colorFunction5()">Grey</button>
+        <p>Image</p>
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/Tron-Lamborghini-Aventador-4.jpg)'" style="width:200px; height:100px" src="images/Tron-Lamborghini-Aventador-4.jpg" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/SpaceMystic.jpg)'" style="width:200px; height:100px" src="images/SpaceMystic.jpg" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)'" style="width:200px; height:100px" src="images/imac-pro-wallpaper.jpg" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/2-wallpaper.png)'" style="width:200px; height:100px" src="images/2-wallpaper.png" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
+        <script>
+            document.getElementById('getval').addEventListener('change', readURL, true);
+            function readURL() {
+                var file = document.getElementById("getval").files[0];
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    document.getElementById.body.style.backgroundImage = "url(" + reader.result + ")";
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                }
+            }
+
+            function colorFunction() {
+                document.body.style.backgroundColor = "green";
+            }
+            function colorFunction2() {
+                document.body.style.backgroundColor = "red";
+            }
+            function colorFunction3() {
+                document.body.style.backgroundColor = "teal";
+            }
+            function colorFunction4() {
+                document.body.style.backgroundColor = "white";
+            }
+            function colorFunction5() {
+                document.body.style.backgroundColor = "grey";
+            }
+            function colorFunction6() {
+                document.body.style.backgroundColor = "orange";
+            }
+        </script>
+    </div>
+    <div id="usersettings">
+        <script>
+            document.getElementById('usersettings').style.display = 'none'
+        </script>
+        <div id="usersettingsheader">
+            User Settings
+            <button class="" onclick="document.getElementById('usersettings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('usersettings').style.width = '1000px'; document.getElementById('usersettings').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('usersettings').style.width = '250px'; document.getElementById('usersettings').style.height = '250px'">=</button>
+        </div>
+        <p>User Name[DEMO]</p>
+        <input id="usernameuser" disabled value="Alpha" />
+        <p>User Rights</p>
+        <input disabled value="Development" />
+    </div>
+    <div id="browser">
+        <script>
+            document.getElementById('browser').style.display = 'none'
+        </script>
+        <div id="browserheader">
+            S Browser
+            <button class="" onclick="document.getElementById('browser').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';">[]</button>
+            <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
+        </div>
+        <input type="button" value="🏠" onclick="document.getElementById('browser-view').src = 'newtab.html'" />
+        <input type="button" value="<" onclick="window.history.back()"/>
+        <input type="button" value=">" onclick="window.history.forward()"/>
+        <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value" />
+        <input placeholder="Bing Search" id="bingsearch" type="text" onchange="document.getElementById('browser-view').src = 'https://bing.com/search?q=' + bingsearch.value" />
+        <input type="button" value="⚙️" onclick="document.getElementById('browsersettings').style.display = 'inline'" title="This feature is not yet finished" />
+        <iframe id="browser-view" src="newtab.html" style="width:100%; height:100%"></iframe>
+    </div>
+    <div id="filesapp">
+        <script>
+            document.getElementById('filesapp').style.display = 'none';
+            document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px';
+        </script>
+        <div id="filesappheader">
+            Files
+            <button class="" onclick="document.getElementById('filesapp').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('filesapp').style.width = '250px'; document.getElementById('filesapp').style.height = '250px'">=</button>
+        </div>
+        <input type="text" placeholder="Search Files" style="width:75%; text-align:center" />
+        <div id="filesbox">
+
+        </div>
+        <div id="filescenter">
+            <input id="folder" type="image" title="Script OS.folder" name="script os folder" onclick="openScriptOSFolder()" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/folder-blue-512.png" />
+            <input id="folder" type="image" title="Example.folder" name="example folder" onclick="openExampleFolder()" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/folder-blue-512.png" />
+        </div>
+    </div>
+    <div id="htmlview">
+        <script>
+            document.getElementById('htmlview').style.display = 'none'
+        </script>
+        <div id="htmlviewheader">
+            HTML Viewer
+            <button class="" onclick="document.getElementById('htmlview').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('htmlview').style.width = '1000px'; document.getElementById('htmlview').style.height = '600px'; document.getElementById('htmlviewer').style.width = '1000px'; document.getElementById('htmlviewer').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('htmlview').style.width = '250px'; document.getElementById('htmlview').style.height = '250px'; document.getElementById('htmlviewer').style.width = '250px'; document.getElementById('htmlviewer').style.height = '250px'">=</button>
+        </div>
+        <iframe id="htmlviewer" style="width:99%; height:99%"></iframe>
+    </div>
+    <div id="zecassistant">
+        <script>
+            document.getElementById('zecassistant').style.display = 'none'
+        </script>
+        <div id="zecassistantheader">
+            Zec Assistant
+            <button onclick="document.getElementById('zecassistant').style.display = 'none'; document.getElementById('output').style.display = 'inline'">X</button>
+        </div>
+        <div id="output" style="height:90%; width:100%" spellcheck="true">
+
+        </div>
+        <div class="zecbar" style="width:100%; height: 75px">
+            <form style="width:50%; height:50px" id="commands">
+                <input id="input" onkeypress="if (e.keyCode === 13) { this.value = '' }" type="text">
+            </form>
+            <input type="image" src="https://png.pngtree.com/svg/20170705/mic_icon_525560.png" onclick="startDictation();" value=">" style="width:75px; height:75px; position:absolute; right:0; top:0;" />
+        </div>
+    </div>
+    <div id="textapp">
+        <script>
+            document.getElementById('textapp').style.display = 'none';
+        </script>
+        <div id="textappheader">
+            Text Editor
+            <button class="" onclick="document.getElementById('textapp').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('textapp').style.width = '1000px'; document.getElementById('textapp').style.height = '600px'">[]</button>
+            <button class="" onclick="document.getElementById('textapp').style.width = '250px'; document.getElementById('textapp').style.height = '250px'">=</button>
+        </div>
+        <input type="button" onclick="document.getElementById('saveas').style.display = 'inline'" value="Save As" />
+        <textarea id="text-box"></textarea>
+    </div>
+    <div id="notificationcenter" >
+        <div id="notificationcenterheader">
+            Notifications
+            <input type="button" value="X" onclick="document.getElementById('notificationcenter').style.display = 'none'" />
+            <input type="button" value="\/" onclick="document.getElementById('notificationcenter').style.height = '30%'" />
+            <input type="button" value="/\" onclick="document.getElementById('notificationcenter').style.height = '50%'" />
+        </div>
+        <div id="notifications">
+            <h1 style="font-family:'Bauhaus 93'; text-align:center">Nothng to see here...</h1>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
