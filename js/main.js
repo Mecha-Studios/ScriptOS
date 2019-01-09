@@ -214,42 +214,6 @@ function dragElement(elmnt) {
 
 }
 
-dragElement(document.getElementById(("zecassistant")));
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-
-}
-
 dragElement(document.getElementById(("apps")));
 
 function dragElement(elmnt) {
@@ -331,9 +295,6 @@ function checkTime(i) {
 }
 
 function start(invar, outvar) {
-    if (invar == "") {
-        outvar("Sorry I didn't get that");
-    }
     if (invar == "hi") {
         outvar("Hey!");
     }
@@ -372,30 +333,9 @@ function start(invar, outvar) {
     if (invar == "goodbye") {
         outvar("Goodbye!");
     }
-}
-
-function darkMode() {
-    document.getElementById('mydivheader').style.backgroundColor = 'black';
-    document.getElementById('usersettingsheader').style.backgroundColor = 'black';
-    document.getElementById('browserheader').style.backgroundColor = 'black';
-    document.getElementById('textappheader').style.backgroundColor = 'black';
-    document.getElementById('settingsheader').style.backgroundColor = 'black';
-    document.getElementById('filesappheader').style.backgroundColor = 'black';
-    document.getElementById('backgroundsettingsheader').style.backgroundColor = 'black';
-    document.getElementById('notificationcenterheader').style.backgroundColor = 'black';
-    document.getElementById('discordheader').style.backgroundColor = 'black';
-}
-
-function lightMode() {
-    document.getElementById('mydivheader').style.backgroundColor = 'orangered';
-    document.getElementById('usersettingsheader').style.backgroundColor = 'orangered';
-    document.getElementById('browserheader').style.backgroundColor = 'orangered';
-    document.getElementById('textappheader').style.backgroundColor = 'orangered';
-    document.getElementById('settingsheader').style.backgroundColor = 'orangered';
-    document.getElementById('filesappheader').style.backgroundColor = 'orangered';
-    document.getElementById('backgroundsettingsheader').style.backgroundColor = 'orangered';
-    document.getElementById('notificationcenterheader').style.backgroundColor = 'orangered';
-    document.getElementById('discordheader').style.backgroundColor = 'orangered';
+    if (invar == false) {
+        outvar("Sorry, I don't understand");
+    }
 }
 
 function save() {
