@@ -5,7 +5,7 @@
     <title>Script OS</title>
     <link href="css/default.css" rel="stylesheet" />
 </head>
-<body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden" oncontextmenu="return false;">
+<body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden; align-content:center" oncontextmenu="return false;">
     <div class="topnav" style="width: 100%;font-family:'Segoe UI Emoji'">
         <ui >Script OS</ui>
         <ui title="Lock" style="text-align:center" onclick="window.location.href='lockscreen.html'">🔒</ui>
@@ -13,7 +13,7 @@
     </div>
     <style>
         body {
-            background: url('images/2-wallpaper.png') no-repeat center center fixed;
+            background: url('images/2-wallpaper.png') no-repeat center  fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -25,9 +25,9 @@
             <button class="" onclick="document.getElementById('mydiv').style.display='none'">X</button>
         </div>
         <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
-        <img style="position:center; width:20%" src="images/Script OS 2 logo.png" />
+        <img style="position:center; width: 75%" src="images/Script OS 2 logo.png" />
         <p>Script OS was developed by TX EditZ</p>
-        <p>Script OS is a web OS concept that is</p>
+        <p>Script OS is a concept that is</p>
         <p>still in development.</p>
         <p>(C)TX EditZ</p>
         <p>(C)TenZe Inc.</p>
@@ -35,11 +35,10 @@
     <div class="navbar" style="transform-style:flat">
         <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display='inline'" />
         <input id="icon2" title="Zec Assistant" type="image" src="images/zec assitant icon.png" style="width:50px; height:100%" onclick="document.getElementById('zecassistant').style.display = 'inline' " />
-        <input id="icon3" title="Join Our Discord For Updates/Support" type="image" src="https://png.icons8.com/color/1600/discord-new-logo.png" style="width:50px; height:100%" onclick="document.getElementById('discord').style.display = 'inline'" />
         <input title="Settings" type="image" id="icon4" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
         <input id="icon5" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
         <input id="icon6" title="Files" type="image" src="images/script os files icon.png" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
-        <input id="notificationbell" title="Notifications(1)" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;"/>
+        <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;"/>
     </div>
     <div id="apps">
         <script>
@@ -234,7 +233,10 @@
             <input type="button" value="/\" onclick="document.getElementById('notificationcenter').style.height = '50%'" />
         </div>
         <div id="notifications">
-            <h1 style="font-family:'Bauhaus 93'; text-align:center">Nothng to see here...</h1>
+            <div id="notification">
+                <h1>Script OS</h1>
+                <p>Dark mode has been temporarily removed due to issues with design of Script OS.</p>
+            </div>
         </div>
     </div>
     <script src="js/main.js"></script>
