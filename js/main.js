@@ -250,6 +250,41 @@ function dragElement(elmnt) {
 
 }
 
+dragElement(document.getElementById(("clockapp")));
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+
+}
 
 var input = document.getElementById('input');
 var form = document.getElementById('commands');
@@ -281,18 +316,6 @@ var out = function (outtext) {
 
 }
 
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    m = checkTime(m);
-    document.getElementById('txt').innerHTML = h + ":" + m;
-    var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-    if (i < 10) { i = "0" + i };
-    return i;
-}
 
 function start(invar, outvar) {
     if (invar == "hi") {
@@ -387,3 +410,18 @@ function openChickenHtml() {
 function openScriptOSFolder() {
     document.getElementById('filesbox').innerHTML = '<input type="image" name="images/Script OS Logo.png" title="Script OS Logo.png" src="images/Script OS Logo.png" onclick="openScriptOSImage()" style="width: 50px; height: 50px;"/>'
 }
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    m = checkTime(m);
+    document.getElementById('txt').innerHTML = h + ":" + m;
+    var t = setTimeout(startTime, 500);
+}
+
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+}
+

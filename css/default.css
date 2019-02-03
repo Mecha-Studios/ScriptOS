@@ -26,6 +26,8 @@ button {
     border: 1px solid #d3d3d3;
     text-align: center;
     box-shadow: 5px;
+    width:25%;
+    height:75%;
     overflow: auto;
     background: rgba(0, 0, 0, 0.5);
     color: white;
@@ -214,6 +216,7 @@ button {
     background-color: #f1f1f1;
     border: 1px solid #d3d3d3;
     text-align: center;
+    font-family: 'Bauhaus 93';
     resize: both;
     overflow: auto;
     display: none;
@@ -224,6 +227,7 @@ button {
 #browserheader {
     padding: 10px;
     cursor: move;
+    font-family: 'Bauhaus 93';
     z-index: 10;
     background-color: orangered;
     color: #fff;
@@ -236,6 +240,7 @@ button {
     z-index: 9;
     background-color: #f1f1f1;
     color: white;
+    font-family: 'Bauhaus 93';
     border: 1px solid #d3d3d3;
     text-align: center;
     resize: both;
@@ -259,6 +264,7 @@ button {
     position: absolute;
     z-index: 9;
     background-color: #f1f1f1;
+    font-family: 'Bauhaus 93';
     border: 1px solid #d3d3d3;
     text-align: center;
     resize: both;
@@ -294,6 +300,7 @@ button {
 
 #htmlview {
     position: absolute;
+    font-family: 'Bauhaus 93';
     z-index: 9;
     background-color: #f1f1f1;
     border: 1px solid #d3d3d3;
@@ -314,6 +321,7 @@ button {
 }
 
 #zecassistant {
+    font-family: 'Bauhaus 93';
     position: fixed;
     z-index: 9;
     background-color: #f1f1f1;
@@ -358,6 +366,7 @@ button {
     border: 1px solid #d3d3d3;
     text-align: center;
     overflow: auto;
+    font-family: 'Bauhaus 93';
     background: rgba(0, 0, 0, 0.3);
 }
 
@@ -375,6 +384,7 @@ button {
     width: 20%;
     height: 30%;
     display: none;
+    font-family:'Bauhaus 93';
     backdrop-filter: blur(15px);
 }
 
