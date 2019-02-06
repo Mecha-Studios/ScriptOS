@@ -225,6 +225,20 @@
         <input type="button" onclick="document.getElementById('saveas').style.display = 'inline'" value="Save As" />
         <textarea id="text-box"></textarea>
     </div>
+    <div id="bugreport">
+        <div id="bugreportheader">
+            Report Problems
+            <button onclick="document.getElementById('bugreport').style.display = 'none'">X</button>
+        </div>
+        <form action="mailto:scriptossup@gmail.com" method="post" enctype="text/plain">
+            Name:<br>
+            <input type="text" name="name"><br>
+            Problem:<br>
+            <input type="text" name="comment" size="50"><br><br>
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
     <div id="notificationcenter" >
         <div id="notificationcenterheader">
             Notifications
