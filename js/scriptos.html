@@ -96,7 +96,7 @@
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
         <script>
-            // document.getElementById('getval').addEventListener('change', readURL, true);
+            document.getElementById('getval').addEventListener('change', readURL, true);
             function readURL() {
                 var file = document.getElementById("getval").files[0];
                 var reader = new FileReader();
