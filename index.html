@@ -2,20 +2,10 @@
 <html>
 <head>
     <title>Script OS - Loading</title>
+    <link href="css/default.css" rel="stylesheet" />
 </head>
-<body onload="setTimeout(loadScreen, 10000); startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden" oncontextmenu="return false">
-    <style>
-        #loadinggif {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
-    </style>
-    <div>
-        <h1 style="font-family:'Segoe UI Emoji'; text-align:center">Starting Up</h1>
-        <img id="loadinggif"src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif" />
-    </div>
+<body onload="setTimeout(loadScreen, 10000); startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden; animation-name: rgb; animation-duration: 10s" oncontextmenu="return false">
+    <h1 style="font-family:'Bauhaus 93'; text-align:center; color: white;">Starting Script OS</h1>
     <script>
         function loadScreen() {
             window.location.replace("lockscreen.html")

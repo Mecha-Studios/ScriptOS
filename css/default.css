@@ -26,13 +26,15 @@ button {
     border: 1px solid #d3d3d3;
     text-align: center;
     box-shadow: 5px;
-    width:25%;
-    height:75%;
+    width: 25%;
+    height: 75%;
     overflow: auto;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #mydivheader {
@@ -62,6 +64,8 @@ button {
     height: 50px;
     background: rgba(255, 255, 255, 0.5);
     filter: drop-shadow(8px 8px 10px gray);
+    animation-name: rgb;
+    animation-duration: 4s;
 }
 
     .navbar a {
@@ -93,6 +97,8 @@ button {
     height: 25px;
     background: rgba(255, 255, 255, 0.5);
     filter: drop-shadow(8px 8px 10px gray);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
     /* Style the links inside the navigation bar */
@@ -129,6 +135,8 @@ button {
     height: 50%;
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #appsheader {
@@ -148,6 +156,8 @@ button {
     text-align: center;
     resize: both;
     overflow: auto;
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #textappheader {
@@ -174,6 +184,8 @@ button {
     overflow: auto;
     background: rgba(0, 0, 0, 0.5);
     -webkit-backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
     backdrop-filter: blur(15px);
 }
 
@@ -199,6 +211,8 @@ button {
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     display: none;
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #backgroundsettingsheader {
@@ -222,6 +236,8 @@ button {
     display: none;
     backdrop-filter: blur(15px);
     background: rgba(0,0,0,0.5);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #browserheader {
@@ -273,6 +289,8 @@ button {
     display: none;
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #filesappheader {
@@ -309,6 +327,8 @@ button {
     resize: both;
     display: none;
     backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #htmlviewheader {
@@ -332,6 +352,8 @@ button {
     backdrop-filter: blur(15px);
     height: 100%;
     width: 50%;
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #zecassistantheader {
@@ -384,8 +406,10 @@ button {
     width: 20%;
     height: 30%;
     display: none;
-    font-family:'Bauhaus 93';
+    font-family: 'Bauhaus 93';
     backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
 }
 
 #notificationcenterheader {
@@ -437,28 +461,54 @@ button {
     backdrop-filter: blur(15px);
 }
 
-#bugreport {
-    position: absolute;
-    z-index: 9;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    text-align: center;
-    box-shadow: 5px;
-    width: 25%;
-    height: 25%;
-    overflow: auto;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+@keyframes rgb {
+    0% {
+        background-color: red;
+    }
+
+    15% {
+        background-color: orange;
+    }
+
+    30% {
+        background-color: yellow;
+    }
+
+    45%{
+        background-color: green;
+    }
+
+    60% {
+        background-color: blue;
+    }
+
+    75% {
+        background-color: indigo;
+    }
+
+    100% {
+        background-color: darkviolet;
+    }
 }
 
-#bugreportheader {
-    margin: auto;
-    padding: 10px;
-    cursor: move;
-    z-index: 10;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(15px);
+@keyframes fadeIn{
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 25;
+    }
+
+    50% {
+        opacity: 50;
+    }
+
+    75% {
+        opacity: 75;
+    }
+
+    100% {
+        opacity: 100;
+    }
 }

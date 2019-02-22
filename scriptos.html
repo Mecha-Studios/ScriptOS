@@ -7,13 +7,13 @@
 </head>
 <body onload="startTime(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden; align-content:center" oncontextmenu="return false;">
     <div class="topnav" style="width: 100%;font-family:'Segoe UI Emoji'">
-        <ui >Script OS</ui>
+        <ui>Script OS</ui>
         <ui title="Lock" style="text-align:center" onclick="window.location.href='lockscreen.html'">🔒</ui>
         <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
     </div>
     <style>
         body {
-            background: url('images/2-wallpaper.png') no-repeat center  fixed;
+            background: url('images/2-wallpaper.png') no-repeat center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -38,7 +38,7 @@
         <input title="Settings" type="image" id="icon4" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
         <input id="icon5" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
         <input id="icon6" title="Files" type="image" src="images/script os files icon.png" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
-        <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;"/>
+        <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
     </div>
     <div id="apps">
         <script>
@@ -64,10 +64,10 @@
             <button class="" onclick="document.getElementById('settings').style.width = '1000px'; document.getElementById('settings').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('settings').style.width = '250px'; document.getElementById('settings').style.height = '250px'">=</button>
         </div>
-        <input class="" type="image" style="width:10%;" src="http://www.clker.com/cliparts/k/p/z/N/Y/g/paint.svg" title="Background"  onclick="document.getElementById('backgroundsettings').style.display='inline'"/>
-        <input class="" type="image" style="width:10%;" title="User Settings" src="images/script os user icon.png" onclick="document.getElementById('usersettings').style.display = 'inline'"/>
-        <input class="" type="image" src="images/Script OS 2 logo.png" style="width:10%;" onclick="document.getElementById('mydiv').style.display='inline'"/>
-        <input type="image" src="images/script os shortcuts logo.png"  style="width:10%;" onclick="document.getElementById('shortcutsapp').style.display='inline'" title="Shortcuts[COMING SOON]"/>
+        <input class="" type="image" style="width:10%;" src="http://www.clker.com/cliparts/k/p/z/N/Y/g/paint.svg" title="Background" onclick="document.getElementById('backgroundsettings').style.display='inline'" />
+        <input class="" type="image" style="width:10%;" title="User Settings" src="images/script os user icon.png" onclick="document.getElementById('usersettings').style.display = 'inline'" />
+        <input class="" type="image" src="images/Script OS 2 logo.png" style="width:10%;" onclick="document.getElementById('mydiv').style.display='inline'" />
+        <input type="image" src="images/script os shortcuts logo.png" style="width:10%;" onclick="document.getElementById('shortcutsapp').style.display='inline'" title="Shortcuts[COMING SOON]" />
         <input type="image" style="width:10%;" src="images/script os 2 help icon.png" title="Help" />
     </div>
     <div id="backgroundsettings">
@@ -96,7 +96,7 @@
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
         <script>
-            // document.getElementById('getval').addEventListener('change', readURL, true);
+            document.getElementById('getval').addEventListener('change', readURL, true);
             function readURL() {
                 var file = document.getElementById("getval").files[0];
                 var reader = new FileReader();
@@ -108,7 +108,6 @@
                 } else {
                 }
             }
-
             function colorFunction() {
                 document.body.style.backgroundColor = "green";
             }
@@ -155,8 +154,8 @@
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
         <input type="button" value="🏠" onclick="document.getElementById('browser-view').src = 'newtab.html'" />
-        <input type="button" value="<" onclick="window.history.back()"/>
-        <input type="button" value=">" onclick="window.history.forward()"/>
+        <input type="button" value="<" onclick="window.history.back()" />
+        <input type="button" value=">" onclick="window.history.forward()" />
         <input type="text" placeholder="URL" id="srch" style="width:70%" onchange="document.getElementById('browser-view').src = 'https://' + srch.value" />
         <input placeholder="Bing Search" id="bingsearch" type="text" onchange="document.getElementById('browser-view').src = 'https://bing.com/search?q=' + bingsearch.value" />
         <input type="button" value="⚙️" onclick="document.getElementById('browsersettings').style.display = 'inline'" title="This feature is not yet finished" />
@@ -173,14 +172,9 @@
             <button class="" onclick="document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('filesapp').style.width = '250px'; document.getElementById('filesapp').style.height = '250px'">=</button>
         </div>
-        <input type="text" placeholder="Search Files" style="width:75%; text-align:center" />
-        <div id="filesbox">
-
-        </div>
-        <div id="filescenter">
-            <input id="folder" type="image" title="Script OS.folder" name="script os folder" onclick="openScriptOSFolder()" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/folder-blue-512.png" />
-            <input id="folder" type="image" title="Example.folder" name="example folder" onclick="openExampleFolder()" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/folder-blue-512.png" />
-        </div>
+        <h1>Unavailable</h1>
+        <p>The Script OS file system is currently under maintenance.</p>
+        <p>It will be available once it is fully functional!</p>
     </div>
     <div id="htmlview">
         <script>
@@ -193,24 +187,6 @@
             <button class="" onclick="document.getElementById('htmlview').style.width = '250px'; document.getElementById('htmlview').style.height = '250px'; document.getElementById('htmlviewer').style.width = '250px'; document.getElementById('htmlviewer').style.height = '250px'">=</button>
         </div>
         <iframe id="htmlviewer" style="width:99%; height:99%"></iframe>
-    </div>
-    <div id="zecassistant">
-        <script>
-            document.getElementById('zecassistant').style.display = 'none'
-        </script>
-        <div id="zecassistantheader">
-            Zec Assistant
-            <button onclick="document.getElementById('zecassistant').style.display = 'none'; document.getElementById('output').style.display = 'inline'">X</button>
-        </div>
-        <div id="output" style="height:90%; width:100%" spellcheck="true">
-
-        </div>
-        <div class="zecbar">
-            <form style="width:50%; height:50px" id="commands">
-                <input id="input" onkeypress="if (e.keyCode === 13) { this.value = '' }" type="text">
-            </form>
-            <input type="image" src="https://png.pngtree.com/svg/20170705/mic_icon_525560.png" onclick="startDictation();" value=">" style="width:75px; height:75px; position:absolute; right:0; top:0;" />
-        </div>
     </div>
     <div id="textapp">
         <script>
@@ -225,21 +201,7 @@
         <input type="button" onclick="document.getElementById('saveas').style.display = 'inline'" value="Save As" />
         <textarea id="text-box"></textarea>
     </div>
-    <div id="bugreport">
-        <div id="bugreportheader">
-            Report Problems
-            <button onclick="document.getElementById('bugreport').style.display = 'none'">X</button>
-        </div>
-        <form action="mailto:scriptossup@gmail.com" method="post" enctype="text/plain">
-            Name:<br>
-            <input type="text" name="name"><br>
-            Problem:<br>
-            <input type="text" name="comment" size="50"><br><br>
-            <input type="submit" value="Send">
-            <input type="reset" value="Reset">
-        </form>
-    </div>
-    <div id="notificationcenter" >
+    <div id="notificationcenter">
         <div id="notificationcenterheader">
             Notifications
             <input type="button" value="X" onclick="document.getElementById('notificationcenter').style.display = 'none'" />
@@ -249,7 +211,7 @@
         <div id="notifications">
             <div id="notification">
                 <h1>Script OS</h1>
-                <p>Dark mode has been temporarily removed due to issues with design of Script OS.</p>
+                <p>Zec Assistant has been permanently removed from Script OS</p>
             </div>
         </div>
     </div>
