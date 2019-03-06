@@ -33,11 +33,10 @@
         <p>(C)TenZe Inc.</p>
     </div>
     <div class="navbar" style="transform-style:flat">
-        <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display='inline'" />
-        <input id="icon2" title="Zec Assistant" type="image" src="images/zec assitant icon.png" style="width:50px; height:100%" onclick="document.getElementById('zecassistant').style.display = 'inline' " />
-        <input title="Settings" type="image" id="icon4" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'" />
-        <input id="icon5" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display='inline'" />
-        <input id="icon6" title="Files" type="image" src="images/script os files icon.png" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
+        <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" style="width:50px; height:100%" class="" onclick="document.getElementById('apps').style.display = 'inline'; document.getElementById('icon').style.backgroundColor = 'red'" />
+        <input title="Settings" type="image" id="icon3" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:50px; height:100%" onclick="document.getElementById('settings').style.display = 'inline'; document.getElementById('icon3').style.backgroundColor = 'red'" />
+        <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:50px; height:50px" class="" onclick="document.getElementById('browser').style.display = 'inline'; document.getElementById('icon4').style.backgroundColor = 'red'" />
+        <input id="icon5" title="Files" type="image" src="images/script os files icon.png" style="width:50px; height:50px" onclick="document.getElementById('filesapp').style.display = 'inline'; document.getElementById('icon5').style.backgroundColor = 'red'" />
         <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="https://image.flaticon.com/icons/svg/61/61073.svg" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
     </div>
     <div id="apps">
@@ -46,7 +45,7 @@
         </script>
         <div id="appsheader">
             Apps
-            <button class="" onclick="document.getElementById('apps').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('apps').style.display = 'none'; document.getElementById('icon').style.backgroundColor = ''">X</button>
         </div>
         <input type="image" title="Text/HTML5 Editor[BETA]" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
         <input type="image" title="Files" src="images/script os files icon.png" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
@@ -60,7 +59,7 @@
         </script>
         <div id="settingsheader">
             Settings
-            <button class="" onclick="document.getElementById('settings').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('settings').style.display='none'; document.getElementById('icon3').style.backgroundColor = ''">X</button>
             <button class="" onclick="document.getElementById('settings').style.width = '1000px'; document.getElementById('settings').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('settings').style.width = '250px'; document.getElementById('settings').style.height = '250px'">=</button>
         </div>
@@ -95,6 +94,7 @@
         <input type="image" onclick="document.body.style.backgroundImage = 'url(images/2-wallpaper.png)'" style="width:200px; height:100px" src="images/2-wallpaper.png" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="http://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/mojave.png)'" style="width:200px; height:100px" src="images/mojave.png"/>
         <script>
             document.getElementById('getval').addEventListener('change', readURL, true);
             function readURL() {
@@ -149,7 +149,7 @@
         </script>
         <div id="browserheader">
             S Browser
-            <button class="" onclick="document.getElementById('browser').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('browser').style.display='none'; document.getElementById('icon4').style.backgroundColor = ''">X</button>
             <button class="" onclick="document.getElementById('browser').style.width = '90%'; document.getElementById('browser').style.height = '90%';">[]</button>
             <button class="" onclick="document.getElementById('browser').style.width = '250px'; document.getElementById('browser').style.height = '250px';">=</button>
         </div>
@@ -168,7 +168,7 @@
         </script>
         <div id="filesappheader">
             Files
-            <button class="" onclick="document.getElementById('filesapp').style.display='none'">X</button>
+            <button class="" onclick="document.getElementById('filesapp').style.display='none'; document.getElementById('icon5').style.backgroundColor = ''">X</button>
             <button class="" onclick="document.getElementById('filesapp').style.width = '1000px'; document.getElementById('filesapp').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('filesapp').style.width = '250px'; document.getElementById('filesapp').style.height = '250px'">=</button>
         </div>
@@ -198,7 +198,7 @@
             <button class="" onclick="document.getElementById('textapp').style.width = '1000px'; document.getElementById('textapp').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('textapp').style.width = '250px'; document.getElementById('textapp').style.height = '250px'">=</button>
         </div>
-        <input type="button" onclick="document.getElementById('saveas').style.display = 'inline'" value="Save As" />
+        <input id="SaveAs" type="button" onclick="saveFile()"/>
         <textarea id="text-box"></textarea>
     </div>
     <div id="notificationcenter">
