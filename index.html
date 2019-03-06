@@ -4,12 +4,22 @@
     <title>Script OS - Loading</title>
     <link href="css/default.css" rel="stylesheet" />
 </head>
-<body onload="setTimeout(loadScreen, 10000); startTime(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden; animation-name: rgb; animation-duration: 10s" oncontextmenu="return false">
-    <h1 style="font-family:'Bauhaus 93'; text-align:center; color: white;">Starting Script OS</h1>
+<body onload="deviceDetection(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden; background-color:white" oncontextmenu="return false">
     <script>
-        function loadScreen() {
-            window.location.replace("lockscreen.html")
+        function deviceDetection() {
+            if (navigator.userAgent.match(/mobile/i)) {
+                console.log('Mobile');
+                document.writeln('Mobile: DEVICE NOT SUPPORTED');
+            } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
+                console.log('Tablet');
+                document.writeln('Tablet: DEVICE NOT SUPPORTED');
+            } else {
+                console.log('Desktop');
+                document.writeln('Desktop');
+                location.replace('lockscreen.html', 15000);
+            }
         }
     </script>
+
 </body>
 </html>
