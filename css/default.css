@@ -31,7 +31,6 @@ button {
     overflow: auto;
     background: rgba(0, 0, 0, 0.5);
     color: white;
-    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     animation-name: fadeIn;
     animation-duration: 6s;
@@ -398,7 +397,7 @@ button {
     background-color: #f1f1f1;
     border: 1px solid #d3d3d3;
     text-align: center;
-    overflow: auto;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.3);
     position: absolute;
     bottom: 5%;
