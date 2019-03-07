@@ -3,6 +3,7 @@
 <head>
     <title>Script OS - Loading</title>
     <link href="css/default.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
 </head>
 <body onload="deviceDetection(); document.addEventListener('contextmenu', event => event.preventDefault());" scroll="no" style="overflow: hidden; background-color:black; color:white" oncontextmenu="return false">
     <script>
@@ -14,8 +15,8 @@
                 console.log('Tablet');
                 document.writeln('Tablet: DEVICE NOT SUPPORTED');
             } else {
-                console.log('Desktop');
                 document.writeln('Desktop');
+                console.log('Desktop');
                 location.replace('lockscreen.html', 15000);
             }
         }
