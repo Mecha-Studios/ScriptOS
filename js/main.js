@@ -64,5 +64,5 @@ function newWindow(){
     var windowHeader = document.createElement('div');
     window.appendChild(windowHeader);
     window.id = 'testWindow';
-    windowHeader.innerHTML = 'TESTING';
+    window.style.display = 'inline';
 }
