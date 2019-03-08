@@ -57,12 +57,3 @@ function checkTime(i) {
     if (i < 10) { i = "0" + i };
     return i;
 }
-
-function newWindow(){
-    var window = document.createElement('div');
-    document.body.appendChild(window);
-    var windowHeader = document.createElement('div');
-    window.appendChild(windowHeader);
-    window.id = 'testWindow';
-    window.style.display = 'inline';
-}
