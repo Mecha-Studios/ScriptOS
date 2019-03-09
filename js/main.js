@@ -41,6 +41,7 @@ dragWindow(document.getElementById("filesapp"));
 dragWindow(document.getElementById("apps"));
 dragWindow(document.getElementById("textapp"));
 dragWindow(document.getElementById("htmlview"));
+dragWindow(document.getElementById("savearea"));
 
 function startTime() {
     var today = new Date();
@@ -66,12 +67,45 @@ input.addEventListener("change", function () {
         var reader = new FileReader();
 
         reader.addEventListener('load', function (e) {
-            output.textContent = e.target.result;
+            output.value = e.target.result;
         });
 
         reader.readAsBinaryString(myFile);
     }
 });
 
-var htmlinput = document.getElementById("openhtml").value;
-document.getElementById('htmlviewer').src = htmlinput;
+function saveAs(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+function closeText() {
+    var save = confirm("Do you want to save?");
+    if (save === true) {
+        document.getElementById('savearea').style.display = 'inline';
+    } else {
+        document.getElementById('textapp').style.display = 'none';
+        document.getElementById('text-box').value = "";
+        input.value = "";
+    }
+}
+
+function newTextFile() {
+    var save = confirm("Do you want to save?");
+    if (save === true) {
+        document.getElementById('savearea').style.display = 'inline';
+    } else {
+        document.getElementById('text-box').value = "";
+        input.value = "";
+    }
+}

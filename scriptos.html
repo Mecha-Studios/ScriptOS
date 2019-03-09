@@ -40,7 +40,7 @@
         </div>
         <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
         <img style="position:center; width: 75%" src="images/Script OS Logo.png" />
-        <p>Script OS 2.4</p>
+        <p>Script OS 2.5</p>
         <p>Script OS is a concept that is</p>
         <p>still in development.</p>
         <p>©Tyler Ruotolo</p>
@@ -197,10 +197,47 @@
         </script>
         <div id="textappheader">
             Text Editor
-            <button onclick="document.getElementById('textapp').style.display = 'none'">X</button>
+            <button onclick="closeText()">X</button>
         </div>
+        <button id="newtextbutton" onclick="newTextFile()">New</button>
+        <button id="saveasbutton" onclick="document.getElementById('savearea').style.display = 'inline'">Save As</button>
         <input id="fileopen" type="file" />
+        <select name="Font" onchange="changeFont (this)">
+            <option style="font-family:Arial" value="Arial">Arial</option>
+            <option style="font-family:Impact" value="Impact">Impact</option>
+            <option style="font-family:'Segoe UI'" value="Segoe UI">Segoe UI</option>
+            <option>[not added]</option>
+            <option>[not added]</option>
+        </select>
+        <select name="Font Size" onchange="changeFontSize(this)">
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="24px">24px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+        </select>
+        <script>
+            function changeFont(font) {
+                document.getElementById("text-box").style.fontFamily = font.value;
+            }
+            function changeFontSize(size) {
+                document.getElementById("text-box").style.fontSize = size.value;
+            }
+        </script>
         <textarea id="text-box"></textarea>
+    </div>
+    <div id="savearea">
+        <script>
+            document.getElementById('savearea').style.display = 'none';
+        </script>
+        <div id="saveareaheader">
+            Save/Download
+            <button onclick="document.getElementById('savearea').style.display = 'none'">X</button>
+        </div>
+        <input type="text" id="filename"/>
+        <button onclick="saveAs(document.getElementById('filename').value, document.getElementById('text-box').value); document.getElementById('savearea').style.display = 'none'">Save/Download</button>
     </div>
     <div id="notificationcenter">
         <div id="notificationcenterheader">
@@ -212,7 +249,7 @@
         <div id="notifications">
             <div id="notification">
                 <h1>Script OS</h1>
-                <p>Zec Assistant has been permanently removed from Script OS</p>
+                <p>Try the new Text Editor!</p>
             </div>
         </div>
     </div>
