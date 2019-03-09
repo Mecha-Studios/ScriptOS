@@ -154,23 +154,28 @@ button {
     border: 1px solid #d3d3d3;
     text-align: center;
     resize: both;
-    overflow: auto;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(15px);
     animation-name: fadeIn;
     animation-duration: 6s;
+    backdrop-filter: blur(15px);
 }
 
 #textappheader {
     padding: 10px;
     cursor: move;
     z-index: 10;
-    background-color: orangered;
     color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
 }
 
 #text-box {
-    resize: both;
-    height: 98%;
+    height: 90%;
     width: 98%;
+    overflow:auto;
+    resize:none;
 }
 
 #settings {
@@ -322,10 +327,11 @@ button {
     background-color: #f1f1f1;
     border: 1px solid #d3d3d3;
     text-align: center;
-    overflow: auto;
+    overflow: hidden;
     resize: both;
     display: none;
     backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.5);
     animation-name: fadeIn;
     animation-duration: 6s;
 }

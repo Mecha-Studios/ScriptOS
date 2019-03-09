@@ -40,7 +40,7 @@
         </div>
         <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
         <img style="position:center; width: 75%" src="images/Script OS Logo.png" />
-        <p>Script OS 2.3</p>
+        <p>Script OS 2.4</p>
         <p>Script OS is a concept that is</p>
         <p>still in development.</p>
         <p>©Tyler Ruotolo</p>
@@ -61,10 +61,11 @@
             Apps
             <button class="" onclick="document.getElementById('apps').style.display = 'none'; document.getElementById('icon').style.backgroundColor = ''">X</button>
         </div>
-        <input type="image" title="Text/HTML5 Editor[UNAVAILABLE]" disabled src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
-        <input type="image" title="Files" src="images/script os files icon.png" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'" />
-        <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'" />
-        <input title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display='inline'" />
+        <input type="image" title="Text/HTML5 Editor[BETA]"  src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
+        <input type="image" title="Files" src="images/script os files icon.png" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'; document.getElementById('icon5').style.backgroundColor = 'red'" />
+        <input title="Settings" type="image" id="" src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'; document.getElementById('icon3').style.backgroundColor = 'red'" />
+        <input title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display = 'inline'; document.getElementById('icon4').style.backgroundColor = 'red'" />
+        <input title="HTML Viewer[UNAVAILABLE]" disabled style="width:100px; height:100px" type="image" src="http://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Other-html-5-icon.png" onclick="document.getElementById('htmlview').style.display = 'inline'"/>
     </div>
     <div id="settings">
         <script>
@@ -175,8 +176,7 @@
             <button class="" onclick="document.getElementById('filesapp').style.width = '250px'; document.getElementById('filesapp').style.height = '250px'">=</button>
         </div>
         <h1>Unavailable</h1>
-        <p>The Script OS file system is currently under maintenance.</p>
-        <p>It will be available once it is fully functional!</p>
+        <h2>This will be finished in a future update!</h2>
     </div>
     <div id="htmlview">
         <script>
@@ -188,7 +188,19 @@
             <button class="" onclick="document.getElementById('htmlview').style.width = '1000px'; document.getElementById('htmlview').style.height = '600px'; document.getElementById('htmlviewer').style.width = '1000px'; document.getElementById('htmlviewer').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('htmlview').style.width = '250px'; document.getElementById('htmlview').style.height = '250px'; document.getElementById('htmlviewer').style.width = '250px'; document.getElementById('htmlviewer').style.height = '250px'">=</button>
         </div>
+        <input type="file" id="openhtml"/>
         <iframe id="htmlviewer" style="width:99%; height:99%"></iframe>
+    </div>
+    <div id="textapp">
+        <script>
+            document.getElementById('textapp').style.display = 'none'
+        </script>
+        <div id="textappheader">
+            Text Editor
+            <button onclick="document.getElementById('textapp').style.display = 'none'">X</button>
+        </div>
+        <input id="fileopen" type="file" />
+        <textarea id="text-box"></textarea>
     </div>
     <div id="notificationcenter">
         <div id="notificationcenterheader">
