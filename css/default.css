@@ -85,6 +85,8 @@ button {
     filter: drop-shadow(8px 8px 10px gray);
     animation-name: rgb;
     animation-duration: 4s;
+    animation:fadeIn;
+    animation-duration: 5s;
 }
 
     .navbar a {
@@ -116,8 +118,8 @@ button {
     height: 25px;
     background: rgba(255, 255, 255, 0.5);
     filter: drop-shadow(8px 8px 10px gray);
-    animation-name: fadeIn;
-    animation-duration: 6s;
+    animation: fadeIn;
+    animation-duration: 5s;
 }
 
     /* Style the links inside the navigation bar */
