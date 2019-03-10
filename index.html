@@ -6,7 +6,7 @@
     <link href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
 </head>
-<body onload="startTime(); deviceDetection(); window.addEventListener('contextmenu', e => { e.preventDefault(); });" scroll="no" style="overflow: hidden; align-content:center" oncontextmenu="return false;">
+<body onload="startTime(); deviceDetection()" scroll="no" style="overflow: hidden; align-content:center">
     <script>
         function deviceDetection() {
             if (navigator.userAgent.match(/mobile/i)) {
@@ -39,7 +39,7 @@
         </div>
         <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
         <img style="position:center; width: 75%" src="images/Script OS Logo.png" />
-        <p>Script OS 2.5.1</p>
+        <p>Script OS 2.5.2</p>
         <p>Script OS is a concept that is</p>
         <p>still in development.</p>
         <p>©Tyler Ruotolo</p>
@@ -60,11 +60,11 @@
             Apps
             <button class="" onclick="document.getElementById('apps').style.display = 'none'; document.getElementById('icon').style.backgroundColor = ''">X</button>
         </div>
-        <input id="textlogo" type="image" title="Text/HTML5 Editor[BETA]"  src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
+        <input id="textlogo" type="image" title="Text/HTML5 Editor[BETA]" src="https://img14.androidappsapk.co/300/2/2/7/com.JellyBeanUser.apk.app.editor.png" style="width:100px; height:100px" onclick="document.getElementById('textapp').style.display = 'inline'" />
         <input id="fileslogo" type="image" title="Files" src="images/script os files icon.png" style="width:100px; height:100px" onclick="document.getElementById('filesapp').style.display = 'inline'; document.getElementById('icon5').style.backgroundColor = 'red'" />
         <input id="settingslogo" title="Settings" type="image" id="" src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'; document.getElementById('icon3').style.backgroundColor = 'red'" />
         <input id="sbrowserlogo" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display = 'inline'; document.getElementById('icon4').style.backgroundColor = 'red'" />
-        <input id="htmlviewerlogo" title="HTML Viewer[UNAVAILABLE]" disabled style="width:100px; height:100px" type="image" src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Other-html-5-icon.png" onclick="document.getElementById('htmlview').style.display = 'inline'"/>
+        <input id="htmlviewerlogo" title="HTML Viewer[UNAVAILABLE]" disabled style="width:100px; height:100px" type="image" src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Other-html-5-icon.png" onclick="document.getElementById('htmlview').style.display = 'inline'" />
     </div>
     <div id="settings">
         <script>
@@ -108,7 +108,7 @@
         <input type="image" onclick="document.body.style.backgroundImage = 'url(images/2-wallpaper.png)'" style="width:200px; height:100px" src="images/2-wallpaper.png" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://images2.alphacoders.com/799/799736.jpg)'" style="width:200px; height:100px" src="https://images2.alphacoders.com/799/799736.jpg" />
         <input type="image" onclick="document.body.style.backgroundImage = 'url(https://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1)'" style="width:200px; height:100px" src="https://iliketowastemytime.com/system/files/distant-nebula-wallpaper-hd.jpg?download=1" />
-        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/mojave.png)'" style="width:200px; height:100px" src="images/mojave.png"/>
+        <input type="image" onclick="document.body.style.backgroundImage = 'url(images/mojave.png)'" style="width:200px; height:100px" src="images/mojave.png" />
         <script>
             function colorFunction() {
                 document.body.style.backgroundColor = "green";
@@ -186,7 +186,7 @@
             <button class="" onclick="document.getElementById('htmlview').style.width = '1000px'; document.getElementById('htmlview').style.height = '600px'; document.getElementById('htmlviewer').style.width = '1000px'; document.getElementById('htmlviewer').style.height = '600px'">[]</button>
             <button class="" onclick="document.getElementById('htmlview').style.width = '250px'; document.getElementById('htmlview').style.height = '250px'; document.getElementById('htmlviewer').style.width = '250px'; document.getElementById('htmlviewer').style.height = '250px'">=</button>
         </div>
-        <input type="file" id="openhtml"/>
+        <input type="file" id="openhtml" />
         <iframe id="htmlviewer" style="width:99%; height:99%"></iframe>
     </div>
     <div id="textapp">
@@ -234,7 +234,7 @@
             Save/Download
             <button onclick="document.getElementById('savearea').style.display = 'none'">X</button>
         </div>
-        <input type="text" id="filename"/>
+        <input type="text" id="filename" />
         <button onclick="saveAs(document.getElementById('filename').value, document.getElementById('text-box').value); document.getElementById('savearea').style.display = 'none'">Save/Download</button>
     </div>
     <div id="notificationcenter">
@@ -250,6 +250,15 @@
                 <p>Try the new Text Editor!</p>
             </div>
         </div>
+    </div>
+    <div class="menu" style="color:white">
+        <ul class="menu-options">
+            <li class="menu-option" onclick="document.getElementById('backgroundsettings').style.display = 'inline'">Personalize</li>
+            <li class="menu-option" onclick="document.getElementById('settings').style.display = 'inline'">Settings</li>
+            <li class="menu-option" onclick="location.href = 'https://www.twitter.com/TylerRuotolo'">Help</li>
+            <li class="menu-option">[NOT ADDED]</li>
+            <li class="menu-option">[NOT ADDED]</li>
+        </ul>
     </div>
     <script src="js/main.js"></script>
 </body>
