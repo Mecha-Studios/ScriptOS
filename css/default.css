@@ -22,11 +22,11 @@ button {
 
 .menu {
     width: 120px;
-    z-index: 100;
+    z-index: 10;
     position: fixed;
     box-shadow: 5px;
     display: none;
-    transition: 0.2s display ease-in;
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
     .menu-options{
         list-style: none;
@@ -48,25 +48,6 @@ button {
         }
     }
 }
-
-
-
-
-@keyframes move {
-    from {
-        transform: translate(0%);
-    }
-
-    50% {
-        transform: translate(-40%);
-    }
-
-    to {
-        transform: transform(0%);
-    }
-}
-
-
 
 #mydiv {
     position: absolute;
@@ -126,7 +107,7 @@ button {
     overflow: hidden;
     position: fixed;
     bottom: 0;
-    z-index: 99;
+    z-index: 10;
     width: 100%;
     height: 50px;
     background: rgba(0, 0, 0, 0.5);
@@ -158,13 +139,12 @@ button {
 .topnav {
     color: white;
     background-color: #333;
-    z-index: 99;
+    z-index: 10;
     overflow: hidden;
     bottom: 0;
     width: 100%;
     height: 25px;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
     animation: fadeIn;
     animation-duration: 5s;
 }
