@@ -18,6 +18,8 @@
                 mobileTabletMode('browser');
                 mobileTabletMode('htmlview');
                 mobileTabletMode('filesapp');
+                document.getElementById('topnav').style.height = '100px';
+                document.getElementById('navbar').style.height = '100px';
             } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
                 console.log('Tablet');
                 mobileTabletMode('apps');
@@ -29,6 +31,8 @@
                 mobileTabletMode('filesapp');
             } else {
                 console.log('Desktop');
+                document.getElementById('topnav').style.height = '25px';
+                document.getElementById('navbar').style.height = '100px';
             }
         }
 
@@ -37,7 +41,7 @@
             document.getElementById(elmnt).style.width = '100%';
         }
     </script>
-    <div class="topnav" style="width: 100%;font-family:'Segoe UI Emoji'">
+    <div class="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
     </div>

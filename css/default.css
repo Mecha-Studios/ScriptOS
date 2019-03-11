@@ -143,7 +143,6 @@ button {
     overflow: hidden;
     bottom: 0;
     width: 100%;
-    height: 25px;
     background: rgba(0, 0, 0, 0.5);
     animation: fadeIn;
     animation-duration: 5s;
