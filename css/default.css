@@ -285,7 +285,7 @@ button {
     text-align: center;
     font-family: 'Bauhaus 93';
     resize: both;
-    overflow: auto;
+    overflow: hidden;
     display: none;
     backdrop-filter: blur(15px);
     background: rgba(0,0,0,0.5);
