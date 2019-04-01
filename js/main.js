@@ -1,1 +1,140 @@
-var _0x62b4=['settings','backgroundsettings','usersettings','apps','textapp','savearea','about','getMinutes','txt','innerHTML','fileopen','text-box','addEventListener','files','load','value','target','result','readAsBinaryString','createElement','data:text/plain;charset=utf-8,','setAttribute','createEvent','MouseEvents','initEvent','click','dispatchEvent','Do\x20you\x20want\x20to\x20save?','inline','display','none','.menu','block','left','show','hide','contextmenu','pageX','pageY','getElementById','header','onmousedown','preventDefault','clientX','clientY','onmouseup','onmousemove','style','top','offsetTop'];(function(_0x10e568,_0x5d5d79){var _0x5a67ea=function(_0x1d2f5b){while(--_0x1d2f5b){_0x10e568['push'](_0x10e568['shift']());}};_0x5a67ea(++_0x5d5d79);}(_0x62b4,0x185));var _0x55d5=function(_0x3cc463,_0x19a2ef){_0x3cc463=_0x3cc463-0x0;var _0x1886dc=_0x62b4[_0x3cc463];return _0x1886dc;};function dragWindow(_0x9f0d16){var _0x4f28aa=0x0,_0x57d1dd=0x0,_0x3f06cb=0x0,_0x5bdc46=0x0;if(document[_0x55d5('0x0')](_0x9f0d16['id']+_0x55d5('0x1'))){document[_0x55d5('0x0')](_0x9f0d16['id']+_0x55d5('0x1'))['onmousedown']=_0x1a3268;}else{_0x9f0d16[_0x55d5('0x2')]=_0x1a3268;}function _0x1a3268(_0x4d2a0d){_0x4d2a0d=_0x4d2a0d||window['event'];_0x4d2a0d[_0x55d5('0x3')]();_0x3f06cb=_0x4d2a0d[_0x55d5('0x4')];_0x5bdc46=_0x4d2a0d[_0x55d5('0x5')];document[_0x55d5('0x6')]=_0x2366e8;document[_0x55d5('0x7')]=_0x23c459;}function _0x23c459(_0x2f6f9d){_0x2f6f9d=_0x2f6f9d||window['event'];_0x2f6f9d['preventDefault']();_0x4f28aa=_0x3f06cb-_0x2f6f9d[_0x55d5('0x4')];_0x57d1dd=_0x5bdc46-_0x2f6f9d[_0x55d5('0x5')];_0x3f06cb=_0x2f6f9d[_0x55d5('0x4')];_0x5bdc46=_0x2f6f9d[_0x55d5('0x5')];_0x9f0d16[_0x55d5('0x8')][_0x55d5('0x9')]=_0x9f0d16[_0x55d5('0xa')]-_0x57d1dd+'px';_0x9f0d16[_0x55d5('0x8')]['left']=_0x9f0d16['offsetLeft']-_0x4f28aa+'px';}function _0x2366e8(){document[_0x55d5('0x6')]=null;document[_0x55d5('0x7')]=null;}}dragWindow(document['getElementById']('welcome'));dragWindow(document[_0x55d5('0x0')](_0x55d5('0xb')));dragWindow(document['getElementById'](_0x55d5('0xc')));dragWindow(document[_0x55d5('0x0')](_0x55d5('0xd')));dragWindow(document['getElementById']('browser'));dragWindow(document[_0x55d5('0x0')]('filesapp'));dragWindow(document[_0x55d5('0x0')](_0x55d5('0xe')));dragWindow(document[_0x55d5('0x0')](_0x55d5('0xf')));dragWindow(document[_0x55d5('0x0')]('htmlview'));dragWindow(document[_0x55d5('0x0')](_0x55d5('0x10')));dragWindow(document[_0x55d5('0x0')](_0x55d5('0x11')));function startTime(){var _0x216224=new Date();var _0xda1c34=_0x216224['getHours']();var _0x143133=_0x216224[_0x55d5('0x12')]();_0x143133=checkTime(_0x143133);document[_0x55d5('0x0')](_0x55d5('0x13'))[_0x55d5('0x14')]=_0xda1c34+':'+_0x143133;var _0x57b170=setTimeout(startTime,0x1f4);}function checkTime(_0x1602f3){if(_0x1602f3<0xa){_0x1602f3='0'+_0x1602f3;};return _0x1602f3;}var input=document[_0x55d5('0x0')](_0x55d5('0x15'));var output=document[_0x55d5('0x0')](_0x55d5('0x16'));input[_0x55d5('0x17')]('change',function(){if(this[_0x55d5('0x18')]&&this[_0x55d5('0x18')][0x0]){var _0x112b70=this[_0x55d5('0x18')][0x0];var _0x217342=new FileReader();_0x217342['addEventListener'](_0x55d5('0x19'),function(_0x9ff826){output[_0x55d5('0x1a')]=_0x9ff826[_0x55d5('0x1b')][_0x55d5('0x1c')];});_0x217342[_0x55d5('0x1d')](_0x112b70);}});function saveAs(_0x531b5c,_0x4f6a38){var _0x10bc47=document[_0x55d5('0x1e')]('a');_0x10bc47['setAttribute']('href',_0x55d5('0x1f')+encodeURIComponent(_0x4f6a38));_0x10bc47[_0x55d5('0x20')]('download',_0x531b5c);if(document[_0x55d5('0x21')]){var _0x10fdc5=document[_0x55d5('0x21')](_0x55d5('0x22'));_0x10fdc5[_0x55d5('0x23')](_0x55d5('0x24'),!![],!![]);_0x10bc47[_0x55d5('0x25')](_0x10fdc5);}else{_0x10bc47[_0x55d5('0x24')]();}}function closeText(){var _0xefd5df=confirm(_0x55d5('0x26'));if(_0xefd5df===!![]){document[_0x55d5('0x0')]('savearea')[_0x55d5('0x8')]['display']=_0x55d5('0x27');}else{document[_0x55d5('0x0')](_0x55d5('0xf'))[_0x55d5('0x8')][_0x55d5('0x28')]=_0x55d5('0x29');document['getElementById'](_0x55d5('0x16'))['value']='';input[_0x55d5('0x1a')]='';}}function newTextFile(){var _0x2e2b03=confirm(_0x55d5('0x26'));if(_0x2e2b03===!![]){document[_0x55d5('0x0')]('savearea')[_0x55d5('0x8')][_0x55d5('0x28')]='inline';}else{document[_0x55d5('0x0')](_0x55d5('0x16'))[_0x55d5('0x1a')]='';input[_0x55d5('0x1a')]='';}}const menu=document['querySelector'](_0x55d5('0x2a'));let menuVisible=![];const toggleMenu=_0xf4a38d=>{menu[_0x55d5('0x8')][_0x55d5('0x28')]=_0xf4a38d==='show'?_0x55d5('0x2b'):_0x55d5('0x29');menuVisible=!menuVisible;};const setPosition=({top,left})=>{menu[_0x55d5('0x8')][_0x55d5('0x2c')]=left+'px';menu[_0x55d5('0x8')][_0x55d5('0x9')]=top+'px';toggleMenu(_0x55d5('0x2d'));};window[_0x55d5('0x17')](_0x55d5('0x24'),_0x192852=>{if(menuVisible)toggleMenu(_0x55d5('0x2e'));});window[_0x55d5('0x17')](_0x55d5('0x2f'),_0x4fabc6=>{_0x4fabc6[_0x55d5('0x3')]();const _0x4083da={'left':_0x4fabc6[_0x55d5('0x30')],'top':_0x4fabc6[_0x55d5('0x31')]};setPosition(_0x4083da);return![];});
+﻿function dragWindow(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+dragWindow(document.getElementById("welcome"));
+dragWindow(document.getElementById("settings"));
+dragWindow(document.getElementById("backgroundsettings"));
+dragWindow(document.getElementById("usersettings"));
+dragWindow(document.getElementById("browser"));
+dragWindow(document.getElementById("filesapp"));
+dragWindow(document.getElementById("apps"));
+dragWindow(document.getElementById("textapp"));
+dragWindow(document.getElementById("htmlview"));
+dragWindow(document.getElementById("savearea"));
+dragWindow(document.getElementById("about"));
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    m = checkTime(m);
+    document.getElementById('txt').innerHTML = h + ":" + m;
+    var t = setTimeout(startTime, 500);
+}
+
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+}
+
+var input = document.getElementById("fileopen");
+var output = document.getElementById("text-box");
+
+
+input.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+        var myFile = this.files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener('load', function (e) {
+            output.value = e.target.result;
+        });
+
+        reader.readAsBinaryString(myFile);
+    }
+});
+
+function saveAs(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+function closeText() {
+    var save = confirm("Do you want to save?");
+    if (save === true) {
+        document.getElementById('savearea').style.display = 'inline';
+    } else {
+        document.getElementById('textapp').style.display = 'none';
+        document.getElementById('text-box').value = "";
+        input.value = "";
+    }
+}
+
+function newTextFile() {
+    var save = confirm("Do you want to save?");
+    if (save === true) {
+        document.getElementById('savearea').style.display = 'inline';
+    } else {
+        document.getElementById('text-box').value = "";
+        input.value = "";
+    }
+}
+
+const menu = document.querySelector(".menu");
+let menuVisible = false;
+
+const toggleMenu = command => {
+    menu.style.display = command === "show" ? "block" : "none";
+    menuVisible = !menuVisible;
+};
+
+const setPosition = ({ top, left }) => {
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+    toggleMenu("show");
+};
+
+window.addEventListener("click", e => {
+    if (menuVisible) toggleMenu("hide");
+});
+
+window.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    const origin = {
+        left: e.pageX,
+        top: e.pageY
+    };
+    setPosition(origin);
+    return false;
+});
