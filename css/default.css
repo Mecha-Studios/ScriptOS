@@ -7,7 +7,10 @@
     width: auto;
     height: auto;
     margin: 0;
+    cursor:wait;
 }
+
+
 
 button {
     border-style: solid;
@@ -49,7 +52,7 @@ button {
     }
 }
 
-#mydiv {
+#welcome {
     position: absolute;
     z-index: 9;
     background-color: #f1f1f1;
@@ -66,7 +69,34 @@ button {
     animation-duration: 6s;
 }
 
-#mydivheader {
+#welcomeheader {
+    margin: auto;
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+}
+
+#about {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    box-shadow: 5px;
+    width: 25%;
+    height: 75%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    backdrop-filter: blur(15px);
+    animation-name: fadeIn;
+    animation-duration: 6s;
+}
+
+#aboutheader {
     margin: auto;
     padding: 10px;
     cursor: move;
