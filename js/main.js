@@ -43,6 +43,8 @@ dragWindow(document.getElementById("textapp"));
 dragWindow(document.getElementById("htmlview"));
 dragWindow(document.getElementById("savearea"));
 dragWindow(document.getElementById("about"));
+dragWindow(document.getElementById("scriptstore"));
+
 
 function startTime() {
     var today = new Date();
@@ -138,3 +140,31 @@ window.addEventListener("contextmenu", e => {
     setPosition(origin);
     return false;
 });
+
+function openApp(appname, url) {
+    var newdiv = document.createElement('div');
+    var newdivhead = document.createElement('div');
+    var headtext = document.createTextNode(appname);
+    var newiframe = document.createElement('iframe');
+    var closebutton = document.createElement('button');
+    var appbutton = document.createElement('input');
+    var apps = document.getElementById('apps');
+    appbutton.type = 'button';
+    appbutton.value = appname;
+    appbutton.onclick = function () { document.getElementById(appname).style.display = 'inline'; };
+    apps.appendChild(appbutton);
+    closebutton.innerHTML = "X";
+    closebutton.onclick = function () { document.getElementById(appname).style.display = 'none'; };
+    document.body.appendChild(newdiv);
+    newdiv.appendChild(newdivhead);
+    newdivhead.appendChild(headtext);
+    newdivhead.appendChild(closebutton);
+    newdiv.appendChild(newiframe);
+    newiframe.src = url;
+    newdiv.className = 'app';
+    newdivhead.className = 'appheader';
+    newdivhead.id = appname + "header";
+    newdiv.id = appname;
+    dragWindow(document.getElementById(appname));
+
+}

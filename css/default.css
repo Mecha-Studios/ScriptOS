@@ -7,7 +7,6 @@
     width: auto;
     height: auto;
     margin: 0;
-    cursor:wait;
 }
 
 
@@ -594,4 +593,54 @@ button {
     100% {
         opacity: 100;
     }
+}
+
+#scriptstore {
+    width: 50%;
+    height: 50%;
+    resize: both;
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Bauhaus 93';
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+#scriptstoreheader {
+    padding: 10px;
+    z-index: 10;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+}
+
+.app {
+    width: 50%;
+    height: 50%;
+    resize: both;
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Bauhaus 93';
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+.appheader {
+    padding: 10px;
+    z-index: 10;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+}
+iframe{
+    width: 98%;
+    height: 98%;
 }

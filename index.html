@@ -8,6 +8,13 @@
 </head>
 <body onload="startTime(); browserDetect(); deviceDetection()" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0">
     <script>
+        function newPara(text) {
+            var newpara = document.createElement('h1');
+            var innertext = document.createTextNode(text);
+            newpara.appendChild(innertext);
+            document.getElementById('about').appendChild(newpara);
+        }
+
         function deviceDetection() {
             if (navigator.userAgent.match(/mobile/i)) {
                 console.log('Mobile');
@@ -33,14 +40,8 @@
                 console.log('Desktop');
                 document.getElementById('topnav').style.height = '25px';
                 document.getElementById('navbar').style.height = '100px';
+                newPara('Platform: Desktop');
             }
-        }
-
-        function newPara(text) {
-            var newpara = document.createElement('h1');
-            var innertext = document.createTextNode(text);
-            newpara.appendChild(innertext);
-            document.getElementById('about').appendChild(newpara);
         }
 
         function browserDetect() {
@@ -53,16 +54,12 @@
             }
         }
 
-        function mobileTabletMode(elmnt) {
-            document.getElementById(elmnt).style.height = '92%';
-            document.getElementById(elmnt).style.width = '100%';
-        }
+
     </script>
     <div class="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui>|</ui>
-        <ui>Version 2.7</ui>
-        <ui type="text" disabled id="programname"></ui>
+        <ui>Version 2.8</ui>
         <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
     </div>
     <style>
@@ -84,7 +81,7 @@
         <div style="align-content:center; align-items:center; align-self:center; text-align:center" id="welcome">
             <div id="welcomeheader">
                 Welcome
-                <button class="" onclick="document.getElementById('welcome').style.display = 'none'; topBar('')">X</button>
+                <button class="" onclick="document.getElementById('welcome').style.display = 'none'">X</button>
             </div>
             <h1 style="font-family:'Segoe UI Emoji'">Welcome to Script OS</h1>
             <img style="position:center; width: 75%" src="images/Script OS Logo.png" />
@@ -96,10 +93,14 @@
             <button onclick="document.getElementById('about').style.display = 'inline'">About</button>
         </div>
         <div id="about">
+            <script>
+                document.getElementById('about').style.display = 'none';
+            </script>
             <div id="aboutheader">
+                About
                 <button onclick="document.getElementById('about').style.display = 'none'">X</button>
             </div>
-
+            <h1>Script OS 2.7</h1>
         </div>
         <div id="apps">
             <script>
@@ -114,6 +115,7 @@
             <input id="settingslogo" title="Settings" type="image" id="" src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/256/Settings-icon.png" style="width:100px; height:100px" onclick="document.getElementById('settings').style.display = 'inline'; document.getElementById('icon3').style.backgroundColor = 'red'" />
             <input id="sbrowserlogo" title="S Browser" type="image" src="images/script os S Browser icon.png" style="width:100px; height:100px" class="" onclick="document.getElementById('browser').style.display = 'inline'; document.getElementById('icon4').style.backgroundColor = 'red'" />
             <input id="htmlviewerlogo" title="HTML Viewer[UNAVAILABLE]" disabled style="width:100px; height:100px" type="image" src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Other-html-5-icon.png" onclick="document.getElementById('htmlview').style.display = 'inline'" />
+            <input id="scriptstorelogo" title="App Store[EARLY BETA]" style="width: 100px; height:100px" type="image" src="images/appstore logo.png" onclick="document.getElementById('scriptstore').style.display = 'inline'"/>
         </div>
         <div id="settings">
             <script>
@@ -285,6 +287,22 @@
             </div>
             <input type="text" id="filename" />
             <button onclick="saveAs(document.getElementById('filename').value, document.getElementById('text-box').value); document.getElementById('savearea').style.display = 'none'">Save/Download</button>
+        </div>
+    </div>
+    <div id="scriptstore">
+        <script>
+            document.getElementById('scriptstore').style.display = 'none';
+        </script>
+        <div id="scriptstoreheader">
+            App Store
+            <button onclick="document.getElementById('scriptstore').style.display = 'none';">X</button>
+        </div>
+        <div id="contentheader" style="font-size: 30px">
+            Apps
+        </div>
+        <div id="content" style="overflow:auto">
+            <input type="image" src="images/holeio.png" style="width:300px; height:300px" onclick="openApp('holeio', 'https://hole-io.com');" />
+            <input type="image" src="images/wings.png" style="width:300px; height:300px" onclick="openApp('wingsio', 'http://wings.io/');"/>
         </div>
     </div>
     <div id="notificationcenter">
