@@ -32,20 +32,6 @@
     }
 }
 
-dragWindow(document.getElementById("welcome"));
-dragWindow(document.getElementById("settings"));
-dragWindow(document.getElementById("backgroundsettings"));
-dragWindow(document.getElementById("usersettings"));
-dragWindow(document.getElementById("browser"));
-dragWindow(document.getElementById("filesapp"));
-dragWindow(document.getElementById("apps"));
-dragWindow(document.getElementById("textapp"));
-dragWindow(document.getElementById("htmlview"));
-dragWindow(document.getElementById("savearea"));
-dragWindow(document.getElementById("about"));
-dragWindow(document.getElementById("scriptstore"));
-
-
 function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -59,23 +45,6 @@ function checkTime(i) {
     if (i < 10) { i = "0" + i };
     return i;
 }
-
-var input = document.getElementById("fileopen");
-var output = document.getElementById("text-box");
-
-
-input.addEventListener("change", function () {
-    if (this.files && this.files[0]) {
-        var myFile = this.files[0];
-        var reader = new FileReader();
-
-        reader.addEventListener('load', function (e) {
-            output.value = e.target.result;
-        });
-
-        reader.readAsBinaryString(myFile);
-    }
-});
 
 function saveAs(filename, text) {
     var pom = document.createElement('a');
@@ -168,3 +137,100 @@ function openApp(appname, url) {
     dragWindow(document.getElementById(appname));
 
 }
+
+function scriptApp(appsname){
+    var app = document.createElement('div');
+    var apphead = document.createElement('div');
+    var appheadtext = document.createTextNode(appsname);
+    var close = document.createElement('button');
+    var fullscreen = document.createElement('button');
+    var desktopbody = document.getElementById('desktopbody');
+    var appnumber = Math.floor((Math.random() * 100) + 1);
+    var appicon = document.getElementsByClassName('appicon');
+    var appchoice = document.getElementsByClassName('appchoice');
+    appicon.title = appsname;
+    appicon.title = appsname;
+    app.className = 'app';
+    apphead.className = 'appheader';
+    close.innerHTML = 'X';
+    fullscreen.innerHTML = '[]';
+    apphead.appendChild(appheadtext);
+    apphead.appendChild(close);
+    apphead.appendChild(fullscreen);
+    app.appendChild(apphead);
+    desktopbody.appendChild(app);
+    app.id = appsname + appnumber;
+    apphead.id = app.id + "header";
+    dragWindow(document.getElementById(app.id));
+    close.onclick = function () { desktopbody.removeChild(app); };
+    fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; };
+    if (appsname === "Browser") {
+        var inputbar = document.createElement("input");
+        var browserview = document.createElement('iframe');
+        var backbutton = document.createElement('button');
+        var forwardbutton = document.createElement('button');
+        backbutton.innerHTML = '<';
+        backbutton.onclick = function () { window.history.back(); };
+        forwardbutton.innerHTML = '>';
+        forwardbutton.onclick = function () { window.history.forward(); };
+        app.appendChild(backbutton);
+        app.appendChild(forwardbutton);
+        inputbar.type = 'text';
+        inputbar.placeholder = 'Website';
+        inputbar.style.width = '75%';
+        inputbar.onchange = function () { browserview.src = inputbar.value; };
+        app.appendChild(inputbar);
+        browserview.src = 'newtab.html';
+        app.appendChild(browserview);
+    } else if (appsname === "Files") {
+        var uh1 = document.createElement('h1');
+        var unavailable = document.createElement('p');
+        uh1.innerHTML = "Currently Unavailable";
+        uh1.style.color = 'white';
+        app.appendChild(uh1);
+        unavailable.innerHTML = "The Script OS file system is currently being worked on";
+        unavailable.style.color = 'white';
+        app.appendChild(unavailable);
+    } else if (appsname === "TextEdit") {
+        var savebutton = document.createElement('button');
+        var openbutton = document.createElement('input');
+        var filenameinput = document.createElement('input');
+        var textarea = document.createElement('textarea');
+        filenameinput.type = 'text';
+        openbutton.type = 'file';
+        openbutton.id = 'fileopen';
+        savebutton.innerHTML = 'Save';
+        savebutton.onclick = function () { saveAs(filenameinput.value, textarea.value); };
+        app.appendChild(openbutton);
+        app.appendChild(filenameinput);
+        app.appendChild(savebutton);
+        app.appendChild(textarea);
+        textarea.id = 'text-box';
+        textarea.style.width = '99%';
+        textarea.style.height = '90%';
+        var input = document.getElementById("fileopen");
+        var output = document.getElementById("text-box");
+        input.addEventListener("change", function () {
+            if (this.files && this.files[0]) {
+                var myFile = this.files[0];
+                var reader = new FileReader();
+
+                reader.addEventListener('load', function (e) {
+                    output.value = e.target.result;
+                });
+
+                reader.readAsBinaryString(myFile);
+            }
+        });
+
+    } else if (appsname === "Settings") {
+        var uh12 = document.createElement('h1');
+        var unavailable2 = document.createElement('p');
+        uh12.innerHTML = "Currently Disabled";
+        unavailable2.innerHTML = "The Settings app is currently not available";
+        app.appendChild(uh1);
+        app.appendChild(unavailable);
+    }
+}
+
+dragWindow(document.getElementById('AppCenter'));
