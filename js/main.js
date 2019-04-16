@@ -183,13 +183,13 @@ function scriptApp(appsname){
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
     } else if (appsname === "Files") {
-        var uh1 = document.createElement('h1');
-        var unavailable = document.createElement('p');
-        uh1.innerHTML = "Currently Unavailable";
-        uh1.style.color = 'white';
-        app.appendChild(uh1);
-        unavailable.innerHTML = "The Script OS file system is currently being worked on";
-        unavailable.style.color = 'white';
+        var fs = fileSytemObject.getFolder('./Script OS FS');
+	var listfiles = [fs];
+	for(var i = 0; i < listfiles.length; i++){
+		var p = document.createElement('p');
+		p.innerHTML = listfiles[i];
+		app.appendChild(p);
+	}
         app.appendChild(unavailable);
     } else if (appsname === "TextEdit") {
         var savebutton = document.createElement('button');
@@ -230,7 +230,17 @@ function scriptApp(appsname){
         unavailable2.innerHTML = "The Settings app is currently not available";
         app.appendChild(uh1);
         app.appendChild(unavailable);
+    } else if(appsname === "Terminal"){
+	var inputcom = document.createElement('textarea');
+	inputcom.innerHTML = "Welcome to the Script OS Terminal. It is currently unavailable at this time!";
+	inputcom.style.background = "black";
+	inputcom.style.color = "white";
+	inputcom.style.width = "98%";
+	inputcom.style.height = "98%";
+	inputcom.disabled = true;
+	app.appendChild(inputcom);
     }
 }
 
 dragWindow(document.getElementById('AppCenter'));
+
