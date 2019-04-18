@@ -148,6 +148,7 @@ function scriptApp(appsname){
     var appnumber = Math.floor((Math.random() * 100) + 1);
     var appicon = document.getElementsByClassName('appicon');
     var appchoice = document.getElementsByClassName('appchoice');
+    app.tagName = appsname;
     appicon.title = appsname;
     appicon.title = appsname;
     app.className = 'app';
@@ -275,11 +276,25 @@ function scriptApp(appsname){
         app.appendChild(choice4);
         var choice5 = document.createElement('input');
         choice5.type = 'image';
+        choice5.src = 'images/pewds pattern.jpg';
+        choice5.className = 'backgroundoption';
+        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds pattern.jpg)'; };
+        app.appendChild(choice5);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
         app.appendChild(unavailableapp);
     }
+}
+
+function darkMode(){
+    document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
+    document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
+}
+
+function lightMode(){
+    document.getElementById('navbar').style.background = 'rgba(255,255,255,0.5)';
+    document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
 }
 
 dragWindow(document.getElementById('AppCenter'));

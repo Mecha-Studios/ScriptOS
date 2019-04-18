@@ -58,10 +58,16 @@
 
 
     </script>
-    <div class="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
+    <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui>|</ui>
         <ui>Version 2.9[BETA]</ui>
+        <ui>|</ui>
+        <ui onclick="darkMode()">DarkMode</ui>
+        <ui>|</ui>
+        <ui onclick="lightMode()">LightMode</ui>
+        <ui>|</ui>
+        <ui onclick="location.href = 'https://www.youtube.com/pewdiepie'">Subscribe to PewDiePie</ui>
         <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
     </div>
     <style>
@@ -72,7 +78,7 @@
             -o-background-size: cover;
         }
     </style>
-    <div class="navbar" style="transform-style:flat">
+    <div class="navbar" id="navbar" style="transform-style:flat">
         <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('AppCenter').style.display = 'inline'" />
         <input title="Settings" type="image" id="icon3" class="appicon" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
         <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
