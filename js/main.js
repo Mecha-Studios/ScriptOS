@@ -183,13 +183,13 @@ function scriptApp(appsname){
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
     } else if (appsname === "Files") {
-        var fs = fileSytemObject.getFolder('./Script OS FS');
-	var listfiles = [fs];
-	for(var i = 0; i < listfiles.length; i++){
-		var p = document.createElement('p');
-		p.innerHTML = listfiles[i];
-		app.appendChild(p);
-	}
+        var uh1 = document.createElement('h1');
+        var unavailable = document.createElement('p');
+        uh1.innerHTML = "Currently Unavailable";
+        uh1.style.color = 'white';
+        app.appendChild(uh1);
+        unavailable.innerHTML = "The Script OS file system is currently being worked on";
+        unavailable.style.color = 'white';
         app.appendChild(unavailable);
     } else if (appsname === "TextEdit") {
         var savebutton = document.createElement('button');
@@ -224,23 +224,62 @@ function scriptApp(appsname){
         });
 
     } else if (appsname === "Settings") {
-        var uh12 = document.createElement('h1');
-        var unavailable2 = document.createElement('p');
-        uh12.innerHTML = "Currently Disabled";
-        unavailable2.innerHTML = "The Settings app is currently not available";
-        app.appendChild(uh1);
-        app.appendChild(unavailable);
-    } else if(appsname === "Terminal"){
-	var inputcom = document.createElement('textarea');
-	inputcom.innerHTML = "Welcome to the Script OS Terminal. It is currently unavailable at this time!";
-	inputcom.style.background = "black";
-	inputcom.style.color = "white";
-	inputcom.style.width = "98%";
-	inputcom.style.height = "98%";
-	inputcom.disabled = true;
-	app.appendChild(inputcom);
+        var backgroundsettings = document.createElement('input');
+        var about = document.createElement('input');
+        backgroundsettings.type = 'image';
+        about.type = 'image';
+        backgroundsettings.src = 'images/background icon.png';
+        about.src = 'images/Script OS Logo.png';
+        about.style.width = '20%';
+        backgroundsettings.style.width = '20%';
+        about.title = 'About';
+        backgroundsettings.title = 'Background Settings';
+        about.onclick = function () { scriptApp("About"); };
+        backgroundsettings.onclick = function () {scriptApp("Background"); };
+        app.appendChild(backgroundsettings);
+        app.appendChild(about);
+    } else if (appsname === "Terminal") {
+        var terminput = document.createElement('textarea');
+        terminput.style.width = '98%';
+        terminput.style.height = '98%';
+        terminput.style.backgroundColor = 'black';
+        terminput.style.color = 'white';
+        terminput.append("Currently disabled...");
+        terminput.append("Terminal will be activated this fall.");
+        terminput.disabled;
+        app.appendChild(terminput);
+    } else if (appsname === "Background"){
+        var choice1 = document.createElement('input');
+        choice1.type = 'image';
+        choice1.src = 'images/landscape.jpg';
+        choice1.className = 'backgroundoption';
+        choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; };
+        app.appendChild(choice1);
+        var choice2 = document.createElement('input');
+        choice2.type = 'image';
+        choice2.src = 'images/imac-pro-wallpaper.jpg';
+        choice2.className = 'backgroundoption';
+        choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)'; };
+        app.appendChild(choice2);
+        var choice3 = document.createElement('input');
+        choice3.type = 'image';
+        choice3.src = 'images/Tron-Lamborghini-Aventador-4.jpg';
+        choice3.className = 'backgroundoption';
+        choice3.onclick = function () { document.body.style.backgroundImage = 'url(images/Tron-Lamborghini-Aventador-4.jpg)'; };
+        app.appendChild(choice3);
+        var choice4 = document.createElement('input');
+        choice4.type = 'image';
+        choice4.src = 'images/2-wallpaper.png';
+        choice4.className = 'backgroundoption';
+        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)'; };
+        app.appendChild(choice4);
+        var choice5 = document.createElement('input');
+        choice5.type = 'image';
+    } else {
+        var unavailableapp = document.createElement('h1');
+        unavailableapp.innerHTML = "Currently Unavailable";
+        app.appendChild(unavailableapp);
     }
 }
 
 dragWindow(document.getElementById('AppCenter'));
-
