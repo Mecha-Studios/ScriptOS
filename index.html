@@ -8,56 +8,7 @@
     <link href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
 </head>
-<body onload="startTime(); browserDetect(); deviceDetection()" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0">
-    <script>
-        function newPara(text) {
-            var newpara = document.createElement('h1');
-            var innertext = document.createTextNode(text);
-            newpara.appendChild(innertext);
-            document.getElementById('about').appendChild(newpara);
-        }
-
-        function deviceDetection() {
-            if (navigator.userAgent.match(/mobile/i)) {
-                console.log('Mobile');
-                mobileTabletMode('apps');
-                mobileTabletMode('settings');
-                mobileTabletMode('backgroundsettings');
-                mobileTabletMode('textapp');
-                mobileTabletMode('browser');
-                mobileTabletMode('htmlview');
-                mobileTabletMode('filesapp');
-                document.getElementById('topnav').style.height = '100px';
-                document.getElementById('navbar').style.height = '100px';
-            } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
-                console.log('Tablet');
-                mobileTabletMode('apps');
-                mobileTabletMode('settings');
-                mobileTabletMode('backgroundsettings');
-                mobileTabletMode('textapp');
-                mobileTabletMode('browser');
-                mobileTabletMode('htmlview');
-                mobileTabletMode('filesapp');
-            } else {
-                console.log('Desktop');
-                document.getElementById('topnav').style.height = '25px';
-                document.getElementById('navbar').style.height = '100px';
-                newPara('Platform: Desktop');
-            }
-        }
-
-        function browserDetect() {
-            if (navigator.userAgent.indexOf('Chrome') != -1) {
-                newPara('Browser: Chrome');
-            } else if (navigator.userAgent.indexOf('Safari') != -1) {
-                newPara('Browser: Safari');
-            } else if (navigator.userAgent.indexOf('MSIE') != -1) {
-                newPara('Browser: IE');
-            }
-        }
-
-
-    </script>
+<body onload="startTime()" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0">
     <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui>|</ui>
@@ -99,6 +50,7 @@
             <input id="icon5" title="Files" type="image" src="images/script os files icon.png" class="appchoice" onclick="scriptApp('Files')" />
             <input class="appchoice" title="TextEdit" type="image" src="images/com.JellyBeanUser.apk.app.editor.png" onclick="scriptApp('TextEdit')"/>
             <input class="appchoice" title="Terminal" type="image" src="images/terminal icon.png" onclick="scriptApp('Terminal')" />
+            <input class="appchoice" title="Discord[BETA]" type="image" src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" onclick="scriptApp('Discord')"/>
         </div>
     </div>
     <div id="notificationcenter">

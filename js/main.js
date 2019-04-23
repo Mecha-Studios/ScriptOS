@@ -171,15 +171,18 @@ function scriptApp(appsname){
         var backbutton = document.createElement('button');
         var forwardbutton = document.createElement('button');
         backbutton.innerHTML = '<';
+        backbutton.style.borderRadius = '15px';
         backbutton.onclick = function () { window.history.back(); };
         forwardbutton.innerHTML = '>';
+        forwardbutton.style.borderRadius = '15px';
         forwardbutton.onclick = function () { window.history.forward(); };
         app.appendChild(backbutton);
         app.appendChild(forwardbutton);
         inputbar.type = 'text';
         inputbar.placeholder = 'Website';
         inputbar.style.width = '75%';
-        inputbar.onchange = function () { browserview.src = inputbar.value; };
+        inputbar.style.borderRadius = '15px';
+        inputbar.onchange = function () { browserview.src = "https://" + inputbar.value; };
         app.appendChild(inputbar);
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
@@ -193,18 +196,19 @@ function scriptApp(appsname){
         unavailable.style.color = 'white';
         app.appendChild(unavailable);
     } else if (appsname === "TextEdit") {
+        var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
         var openbutton = document.createElement('input');
-        var filenameinput = document.createElement('input');
         var textarea = document.createElement('textarea');
-        filenameinput.type = 'text';
+        newbutton.innerHTML = 'New';
+        newbutton.onclick = function () { scriptApp("NewFile"); };
         openbutton.type = 'file';
         openbutton.id = 'fileopen';
         savebutton.innerHTML = 'Save';
-        savebutton.onclick = function () { saveAs(filenameinput.value, textarea.value); };
-        app.appendChild(openbutton);
-        app.appendChild(filenameinput);
+        savebutton.onclick = function () { scriptApp("SaveAs") };
+        app.appendChild(newbutton);
         app.appendChild(savebutton);
+        app.appendChild(openbutton);
         app.appendChild(textarea);
         textarea.id = 'text-box';
         textarea.style.width = '99%';
@@ -247,7 +251,7 @@ function scriptApp(appsname){
         terminput.style.color = 'white';
         terminput.append("Currently disabled...");
         terminput.append("Terminal will be activated this fall.");
-        terminput.disabled;
+        terminput.disabled = true;
         app.appendChild(terminput);
     } else if (appsname === "Background"){
         var choice1 = document.createElement('input');
@@ -276,10 +280,45 @@ function scriptApp(appsname){
         app.appendChild(choice4);
         var choice5 = document.createElement('input');
         choice5.type = 'image';
-        choice5.src = 'images/pewds pattern.jpg';
+        choice5.src = 'images/pewds-pattern.jpg';
         choice5.className = 'backgroundoption';
-        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds pattern.jpg)'; };
+        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)'; };
         app.appendChild(choice5);
+    } else if(appsname === "Discord"){
+        var disframe = document.createElement('iframe');
+        disframe.src = 'https://discordapp.com/widget?id=499007727696084993&theme=dark';
+        app.appendChild(disframe);
+    } else if(appsname === "NewFile"){
+        var savetext = document.createElement('h1');
+        var yesbutton = document.createElement('button');
+        var nobutton = document.createElement('button');
+        var cancelbutton = document.createElement('button');
+        savetext.innerHTML = "Do you want to save?";
+        yesbutton.innerHTML = "Yes";
+        yesbutton.onclick = function () { scriptApp("SaveAs"); };
+        nobutton.innerHTML = "No";
+        nobutton.onclick = function() { document.getElementById('text-box').value = null; };
+        cancelbutton.innerHTML = "Cancel";
+        cancelbutton.onclick = function() { desktopbody.removeChild(app); };
+        app.appendChild(savetext);
+        app.appendChild(yesbutton);
+        app.appendChild(nobutton);
+        app.appendChild(cancelbutton);
+    } else if(appsname === "SaveAs"){
+        var textsave = document.createElement('h1');
+        var namefile = document.createElement('input');
+        var save = document.createElement('button');
+        var cancel = document.createElement('button');
+        textsave.innerHTML = "Save your file!";
+        namefile.placeholder = "File Name";
+        save.innerHTML = "Save";
+        save.onclick = function () { saveAs(namefile.value, document.getElementById('text-box').value); };
+        cancel.innerHTML = "Cancel";
+        cancel.onclick = function () { desktopbody.removeChild(app); };
+        app.appendChild(textsave);
+        app.appendChild(namefile);
+        app.appendChild(save);
+        app.appendChild(cancel);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
