@@ -30,20 +30,20 @@
         }
     </style>
     <div class="navbar" id="navbar" style="transform-style:flat">
-        <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('AppCenter').style.display = 'inline'" />
+        <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
         <input title="Settings" type="image" id="icon3" class="appicon" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
         <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
         <input id="icon5" title="Files" type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
         <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="images/notification icon.png" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
     </div>
     <div id="desktopbody">
-        <div class="app" id="AppCenter">
+        <div id="ActionMenu">
             <script>
-                document.getElementById('AppCenter').style.display = 'none';
+                document.getElementById('ActionMenu').style.display = 'none';
             </script>
-            <div id="AppCenterheader">
-                AppCenter
-                <button onclick="document.getElementById('AppCenter').style.display = 'none';">X</button>
+            <div id="ActionMenuheader">
+                ActionMenu
+                <button onclick="document.getElementById('ActionMenu').style.display = 'none';">X</button>
             </div>
             <input title="Settings" type="image" id="icon3" class="appchoice" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
             <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appchoice" onclick="scriptApp('Browser')" />
@@ -51,6 +51,11 @@
             <input class="appchoice" title="TextEdit" type="image" src="images/com.JellyBeanUser.apk.app.editor.png" onclick="scriptApp('TextEdit')"/>
             <input class="appchoice" title="Terminal" type="image" src="images/terminal icon.png" onclick="scriptApp('Terminal')" />
             <input class="appchoice" title="Discord[BETA]" type="image" src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" onclick="scriptApp('Discord')"/>
+            <div id="actionarea">
+                <input type="button" title="Reload" value="Reload" onclick="window.location.reload()"/>
+                <input type="button" title="Sign Out" value="Sign Out" disabled/>
+                <input type="button" title="Shutdown" value="Shudown" onclick="shutdownScriptOS()" />
+            </div>
         </div>
     </div>
     <div id="notificationcenter">
@@ -61,10 +66,7 @@
             <input type="button" value="/\" onclick="document.getElementById('notificationcenter').style.height = '50%'" />
         </div>
         <div id="notifications">
-            <div id="notification">
-                <h1>Script OS</h1>
-                <p>Redesigned!</p>
-            </div>
+            Nothing to see here...
         </div>
     </div>
     <div class="menu" style="color:white">

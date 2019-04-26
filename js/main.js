@@ -61,27 +61,6 @@ function saveAs(filename, text) {
     }
 }
 
-function closeText() {
-    var save = confirm("Do you want to save?");
-    if (save === true) {
-        document.getElementById('savearea').style.display = 'inline';
-    } else {
-        document.getElementById('textapp').style.display = 'none';
-        document.getElementById('text-box').value = "";
-        input.value = "";
-    }
-}
-
-function newTextFile() {
-    var save = confirm("Do you want to save?");
-    if (save === true) {
-        document.getElementById('savearea').style.display = 'inline';
-    } else {
-        document.getElementById('text-box').value = "";
-        input.value = "";
-    }
-}
-
 const menu = document.querySelector(".menu");
 let menuVisible = false;
 
@@ -148,6 +127,11 @@ function scriptApp(appsname){
     var appnumber = Math.floor((Math.random() * 100) + 1);
     var appicon = document.getElementsByClassName('appicon');
     var appchoice = document.getElementsByClassName('appchoice');
+    var appfooter = document.createElement('footer');
+    appfooter.width = '100%';
+    appfooter.height = '50px';
+    app.appendChild(appfooter);
+    app.onresize = 
     app.tagName = appsname;
     appicon.title = appsname;
     appicon.title = appsname;
@@ -187,14 +171,14 @@ function scriptApp(appsname){
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
     } else if (appsname === "Files") {
-        var uh1 = document.createElement('h1');
-        var unavailable = document.createElement('p');
-        uh1.innerHTML = "Currently Unavailable";
-        uh1.style.color = 'white';
-        app.appendChild(uh1);
-        unavailable.innerHTML = "The Script OS file system is currently being worked on";
-        unavailable.style.color = 'white';
-        app.appendChild(unavailable);
+        var fileicon = document.createElement('input');
+        var txt = document.createElement('h1');
+        var txt2 = document.createElement('p');
+        txt2.innerHTML = "The Script OS files app will be available when the offline version of Script OS is released later this year."
+        txt.innerHTML = "Unavailable";
+        fileicon.type = 'image';
+        app.appendChild(txt);
+        app.appendChild(txt2);
     } else if (appsname === "TextEdit") {
         var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
@@ -326,6 +310,21 @@ function scriptApp(appsname){
     }
 }
 
+function shutdownScriptOS(){
+    document.getElementById('navbar').style.display = 'none';
+    document.getElementById('topnav').style.display = 'none';
+    document.getElementById('ActionMenu').style.display = 'none';
+    var powerbutton = document.createElement('button');
+    powerbutton.innerHTML = "Power On";
+    document.appendChild(powerbutton);
+    powerbutton.onclick = function () {
+        document.getElementById('navbar').style.display = 'inline';
+        document.getElementById('topnav').style.display = 'inline';
+        document.getElementById('ActionMenu').style.display = 'inline';
+        
+    }
+}
+
 function darkMode(){
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
@@ -336,4 +335,7 @@ function lightMode(){
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
 }
 
-dragWindow(document.getElementById('AppCenter'));
+function closeHandler() {
+    Enabler.reportManualClose(); 
+    Enabler.close();
+}
