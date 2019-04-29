@@ -8,17 +8,13 @@
     <link href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
 </head>
-<body onload="startTime()" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0">
+<body onload="startTime()" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
     <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
-        <ui>|</ui>
-        <ui>Version 2.9[BETA]</ui>
         <ui>|</ui>
         <ui onclick="darkMode()">DarkMode</ui>
         <ui>|</ui>
         <ui onclick="lightMode()">LightMode</ui>
-        <ui>|</ui>
-        <ui onclick="location.href = 'https://www.youtube.com/pewdiepie'">Subscribe to PewDiePie</ui>
         <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
     </div>
     <style>
@@ -54,7 +50,6 @@
             <div id="actionarea">
                 <input type="button" title="Reload" value="Reload" onclick="window.location.reload()"/>
                 <input type="button" title="Sign Out" value="Sign Out" disabled/>
-                <input type="button" title="Shutdown" value="Shudown" onclick="shutdownScriptOS()" />
             </div>
         </div>
     </div>
@@ -71,11 +66,9 @@
     </div>
     <div class="menu" style="color:white">
         <ul class="menu-options">
-            <li class="menu-option" onclick="document.getElementById('backgroundsettings').style.display = 'inline'">Personalize</li>
-            <li class="menu-option" onclick="document.getElementById('settings').style.display = 'inline'">Settings</li>
+            <li class="menu-option" onclick="scriptApp('Background')">Personalize</li>
+            <li class="menu-option" onclick="scriptApp('Settings')">Settings</li>
             <li class="menu-option" onclick="location.href = 'https://www.twitter.com/TylerRuotolo'">Help</li>
-            <li class="menu-option">-------</li>
-            <li class="menu-option" id="searchWeb" onload="searchWeb()" onclick="">Search the web for </li>
         </ul>
     </div>
     <script src="js/main.js"></script>

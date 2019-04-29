@@ -1,4 +1,6 @@
-﻿function dragWindow(elmnt) {
+﻿
+
+function dragWindow(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "header")) {
         document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
@@ -42,7 +44,7 @@ function startTime() {
 }
 
 function checkTime(i) {
-    if (i < 10) { i = "0" + i };
+    if (i < 10) { i = "0" + i; }
     return i;
 }
 
@@ -50,6 +52,9 @@ function saveAs(filename, text) {
     var pom = document.createElement('a');
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     pom.setAttribute('download', filename);
+    files.push(filename);
+    window.localStorage.setItem(filename, text);
+    
 
     if (document.createEvent) {
         var event = document.createEvent('MouseEvents');
@@ -117,31 +122,31 @@ function openApp(appname, url) {
 
 }
 
+var files = ['none'];
+
 function scriptApp(appsname){
     var app = document.createElement('div');
     var apphead = document.createElement('div');
     var appheadtext = document.createTextNode(appsname);
     var close = document.createElement('button');
     var fullscreen = document.createElement('button');
+    var smallscreen = document.createElement('button');
     var desktopbody = document.getElementById('desktopbody');
     var appnumber = Math.floor((Math.random() * 100) + 1);
     var appicon = document.getElementsByClassName('appicon');
     var appchoice = document.getElementsByClassName('appchoice');
-    var appfooter = document.createElement('footer');
-    appfooter.width = '100%';
-    appfooter.height = '50px';
-    app.appendChild(appfooter);
-    app.onresize = 
     app.tagName = appsname;
     appicon.title = appsname;
     appicon.title = appsname;
     app.className = 'app';
     apphead.className = 'appheader';
     close.innerHTML = 'X';
-    fullscreen.innerHTML = '[]';
+    fullscreen.innerHTML = '<>';
+    smallscreen.innerHTML = '><';
     apphead.appendChild(appheadtext);
     apphead.appendChild(close);
     apphead.appendChild(fullscreen);
+    apphead.appendChild(smallscreen);
     app.appendChild(apphead);
     desktopbody.appendChild(app);
     app.id = appsname + appnumber;
@@ -149,6 +154,7 @@ function scriptApp(appsname){
     dragWindow(document.getElementById(app.id));
     close.onclick = function () { desktopbody.removeChild(app); };
     fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; };
+    smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; };
     if (appsname === "Browser") {
         var inputbar = document.createElement("input");
         var browserview = document.createElement('iframe');
@@ -170,15 +176,6 @@ function scriptApp(appsname){
         app.appendChild(inputbar);
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
-    } else if (appsname === "Files") {
-        var fileicon = document.createElement('input');
-        var txt = document.createElement('h1');
-        var txt2 = document.createElement('p');
-        txt2.innerHTML = "The Script OS files app will be available when the offline version of Script OS is released later this year."
-        txt.innerHTML = "Unavailable";
-        fileicon.type = 'image';
-        app.appendChild(txt);
-        app.appendChild(txt2);
     } else if (appsname === "TextEdit") {
         var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
@@ -189,7 +186,7 @@ function scriptApp(appsname){
         openbutton.type = 'file';
         openbutton.id = 'fileopen';
         savebutton.innerHTML = 'Save';
-        savebutton.onclick = function () { scriptApp("SaveAs") };
+        savebutton.onclick = function () { scriptApp("SaveAs"); };
         app.appendChild(newbutton);
         app.appendChild(savebutton);
         app.appendChild(openbutton);
@@ -203,7 +200,6 @@ function scriptApp(appsname){
             if (this.files && this.files[0]) {
                 var myFile = this.files[0];
                 var reader = new FileReader();
-
                 reader.addEventListener('load', function (e) {
                     output.value = e.target.result;
                 });
@@ -214,28 +210,42 @@ function scriptApp(appsname){
 
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
+        var themesettings = document.createElement('input');
         var about = document.createElement('input');
+        themesettings.type = 'image';
         backgroundsettings.type = 'image';
         about.type = 'image';
+        themesettings.src = 'images/photosappicon.png'
         backgroundsettings.src = 'images/background icon.png';
         about.src = 'images/Script OS Logo.png';
         about.style.width = '20%';
+        themesettings.style.width = '20%';
         backgroundsettings.style.width = '20%';
         about.title = 'About';
+        themesettings.title = "Theme Settings";
         backgroundsettings.title = 'Background Settings';
         about.onclick = function () { scriptApp("About"); };
+        themesettings.onclick = function () { scriptApp("Themes"); };
         backgroundsettings.onclick = function () {scriptApp("Background"); };
         app.appendChild(backgroundsettings);
+        app.appendChild(themesettings);
         app.appendChild(about);
     } else if (appsname === "Terminal") {
-        var terminput = document.createElement('textarea');
-        terminput.style.width = '98%';
-        terminput.style.height = '98%';
+        var terminput = document.createElement('input');
+        var termoutput = document.createElement('textarea');
+        terminput.style.width = '75%';
         terminput.style.backgroundColor = 'black';
         terminput.style.color = 'white';
-        terminput.append("Currently disabled...");
-        terminput.append("Terminal will be activated this fall.");
-        terminput.disabled = true;
+        terminput.placeholder = 'Terminal Input';
+        termoutput.style.width = '98%';
+        termoutput.style.height = '85%';
+        termoutput.style.resize = 'none';
+        termoutput.style.backgroundColor = 'black';
+        termoutput.style.color = 'white';
+        termoutput.append("Currently disabled...");
+        termoutput.append("Terminal will be activated this fall.");
+        termoutput.disabled = true;
+        app.appendChild(termoutput);
         app.appendChild(terminput);
     } else if (appsname === "Background"){
         var choice1 = document.createElement('input');
@@ -260,14 +270,18 @@ function scriptApp(appsname){
         choice4.type = 'image';
         choice4.src = 'images/2-wallpaper.png';
         choice4.className = 'backgroundoption';
-        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)'; };
+        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)';};
         app.appendChild(choice4);
         var choice5 = document.createElement('input');
         choice5.type = 'image';
         choice5.src = 'images/pewds-pattern.jpg';
         choice5.className = 'backgroundoption';
-        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)'; };
+        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';};
         app.appendChild(choice5);
+        var backgroundinput = document.createElement('input');
+        backgroundinput.placeholder = "Background URL";
+        backgroundinput.onchange = function () {document.body.style.backgroundImage = "url('" +  backgroundinput.value; + "')"; };
+        app.appendChild(backgroundinput);
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
         disframe.src = 'https://discordapp.com/widget?id=499007727696084993&theme=dark';
@@ -303,6 +317,34 @@ function scriptApp(appsname){
         app.appendChild(namefile);
         app.appendChild(save);
         app.appendChild(cancel);
+    } else if(appsname === "About"){
+        var scriptosversion = document.createElement('h1');
+        var browserversion = document.createElement('h1');
+        var copyright = document.createElement('h1');
+        app.style.color = 'white';
+        scriptosversion.innerHTML = "Script OS 2.9.1";
+        copyright.innerHTML = "© Tyler Ruotolo 2018-2019";
+        app.appendChild(scriptosversion);
+        app.appendChild(copyright);
+    }else if(appsname === "Themes"){
+        var theme1 = document.createElement("button");
+        var theme2 = document.createElement("button");
+        var theme3 = document.createElement("button");
+        var theme4 = document.createElement("button");
+        var theme5 = document.createElement("button");
+        var theme6 = document.createElement("button");
+        theme1.innerHTML = "Red";
+        theme1.style.backgroundColor = "red";
+        theme1.onclick = function () {document.getElementById('navbar').style.background = 'rgba(255,0,0,0.5)'; document.getElementById('topnav').style.background = 'rgba(255,0,0,0.5)'; };
+        theme2.innerHTML = "Orange";
+        theme2.style.backgroundColor = 'orange';
+        theme2.onclick = function () {document.getElementById('navbar').style.background = 'rgba(255,165,0,0.5)'; document.getElementById('topnav').style.background = 'rgba(255,165,0,0.5)'; };
+        theme3.innerHTML = "Yellow";
+        theme3.style.backgroundColor = 'yellow';
+        theme3.onclick = function () {document.getElementById('navbar').style.background = 'rgba(255,255,0,0.5)'; document.getElementById('navbar').style.background = 'rgba(255,255,0,0.5)';};
+        app.appendChild(theme1);
+        app.appendChild(theme2);
+        app.appendChild(theme3);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
@@ -310,19 +352,14 @@ function scriptApp(appsname){
     }
 }
 
-function shutdownScriptOS(){
-    document.getElementById('navbar').style.display = 'none';
-    document.getElementById('topnav').style.display = 'none';
-    document.getElementById('ActionMenu').style.display = 'none';
-    var powerbutton = document.createElement('button');
-    powerbutton.innerHTML = "Power On";
-    document.appendChild(powerbutton);
-    powerbutton.onclick = function () {
-        document.getElementById('navbar').style.display = 'inline';
-        document.getElementById('topnav').style.display = 'inline';
-        document.getElementById('ActionMenu').style.display = 'inline';
-        
-    }
+function populatePre(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        scriptApp("TextEdit")
+        document.getElementById('text-box').value = this.responseText;
+    };
+    xhr.open('GET', url);
+    xhr.send();
 }
 
 function darkMode(){
