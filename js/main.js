@@ -1,4 +1,4 @@
-﻿
+﻿var codehsGraphics = require("codehs-graphics");
 
 function dragWindow(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -39,7 +39,7 @@ function startTime() {
     var h = today.getHours();
     var m = today.getMinutes();
     m = checkTime(m);
-    document.getElementById('txt').innerHTML = h + ":" + m;
+    document.getElementById('datetime').innerHTML = h + ":" + m + " " + (("0"+(today.getMonth()+1)).slice(-2)) +"/"+ (("0"+today.getDate()).slice(-2)) +"/"+ (today.getFullYear());
     var t = setTimeout(startTime, 500);
 }
 
@@ -322,7 +322,7 @@ function scriptApp(appsname){
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
         app.style.color = 'white';
-        scriptosversion.innerHTML = "Script OS 2.9.1";
+        scriptosversion.innerHTML = "Script OS 2.9.2";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2019";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
@@ -335,16 +335,79 @@ function scriptApp(appsname){
         var theme6 = document.createElement("button");
         theme1.innerHTML = "Red";
         theme1.style.backgroundColor = "red";
-        theme1.onclick = function () {document.getElementById('navbar').style.background = 'rgba(255,0,0,0.5)'; document.getElementById('topnav').style.background = 'rgba(255,0,0,0.5)'; };
+        theme1.onclick = function () {
+            document.getElementById('navbar').style.background = 'rgba(255,0,0,0.9)'; 
+            document.getElementById('topnav').style.background = 'rgba(255,0,0,0.9)'; 
+        };
         theme2.innerHTML = "Orange";
         theme2.style.backgroundColor = 'orange';
-        theme2.onclick = function () {document.getElementById('navbar').style.background = 'rgba(255,165,0,0.5)'; document.getElementById('topnav').style.background = 'rgba(255,165,0,0.5)'; };
+        theme2.onclick = function () {
+            document.getElementById('navbar').style.background = 'rgba(255,165,0,0.9)'; 
+            document.getElementById('topnav').style.background = 'rgba(255,165,0,0.9)'; 
+        };
         theme3.innerHTML = "Yellow";
         theme3.style.backgroundColor = 'yellow';
-        theme3.onclick = function () {document.getElementById('navbar').style.background = 'rgba(255,255,0,0.5)'; document.getElementById('navbar').style.background = 'rgba(255,255,0,0.5)';};
+        theme3.onclick = function () {
+            document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)'; 
+            document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)';
+        };
         app.appendChild(theme1);
         app.appendChild(theme2);
         app.appendChild(theme3);
+    }else if("VisualCode"){
+        var codearea = document.createElement("textarea");
+        var codeviewer = document.createElement("iframe");
+        var openbutton = document.createElement("input");
+        openbutton.type = 'file';
+        const defaultText = `
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <title>Document</title>
+            </head>
+            <body>
+                <h1>Hello, World</h1>
+            </body>
+        </html>`;
+        codearea.value = defaultText;
+        openbutton.addEventListener("change", function () {
+            if (this.files && this.files[0]) {
+                var myFile = this.files[0];
+                var reader = new FileReader();
+                reader.addEventListener('load', function (e) {
+                    codearea.value = e.target.result;
+                });
+
+                reader.readAsBinaryString(myFile);
+            }
+        });
+        codearea.addEventListener('input', () => {
+            codeviewer.srcdoc = codearea.value;
+        });
+        codeviewer.srcdoc = codearea.value;
+        codearea.onkeydown = function () {
+            if(event.keyCode === 9){
+                var v = this.value, s = this.selectionStart,e = this.selectionEnd;
+                this.value = v.substring(0, s) + '\t' + v.substring(e);
+                this.selectionStart = this.selectionEnd = s + 1;
+                return false;
+            }
+        };
+        codearea.style.resize = 'none';
+        codeviewer.style.resize = 'none';
+        codeviewer.style.backgroundColor = 'white';
+        codearea.style.height = '48%';
+        codearea.style.width = '100%';
+        codearea.style.display = 'block';
+        codeviewer.style.height = '48%';
+        codeviewer.style.width = '100%';
+        codeviewer.style.display = 'block';
+        apphead.appendChild(openbutton);
+        app.appendChild(codearea);
+        app.appendChild(codeviewer);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
@@ -352,15 +415,7 @@ function scriptApp(appsname){
     }
 }
 
-function populatePre(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        scriptApp("TextEdit")
-        document.getElementById('text-box').value = this.responseText;
-    };
-    xhr.open('GET', url);
-    xhr.send();
-}
+
 
 function darkMode(){
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';

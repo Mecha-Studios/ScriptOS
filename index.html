@@ -8,18 +8,18 @@
     <link href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
 </head>
-<body onload="startTime()" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
+<body onload="startTime();" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
     <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui>|</ui>
         <ui onclick="darkMode()">DarkMode</ui>
         <ui>|</ui>
         <ui onclick="lightMode()">LightMode</ui>
-        <ui style="height:100%; right:0; position:absolute" draggable="false" id="txt"></ui>
+        <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
     </div>
     <style>
         body {
-            background: url('images/2-wallpaper.png') no-repeat center fixed;
+            background-image: url("images/animals_hero_giraffe_1_0.jpg");
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -29,10 +29,13 @@
         <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
         <input title="Settings" type="image" id="icon3" class="appicon" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
         <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
-        <input id="icon5" title="Files" type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
+        <input id="icon5" title="Files" disabled type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
         <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="images/notification icon.png" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
     </div>
     <div id="desktopbody">
+        <h1 style="color:white; text-align: center;">HAPPY MOTHERSDAY!!!</h1>
+        <p style="color:white; text-align: center;">If you're using Script OS right now instead of spending time with you're mom, get up and go spend time with her.</p>
+        <p style="color:white; text-align: center;">Mom, if you see this, happy mothersday! Have a great day. I'm bad at thinking of things to write so... yeah!</p>
         <div id="ActionMenu">
             <script>
                 document.getElementById('ActionMenu').style.display = 'none';
@@ -43,10 +46,11 @@
             </div>
             <input title="Settings" type="image" id="icon3" class="appchoice" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
             <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appchoice" onclick="scriptApp('Browser')" />
-            <input id="icon5" title="Files" type="image" src="images/script os files icon.png" class="appchoice" onclick="scriptApp('Files')" />
+            <input id="icon5" disabled title="Files" type="image" src="images/script os files icon.png" class="appchoice" onclick="scriptApp('Files')" />
             <input class="appchoice" title="TextEdit" type="image" src="images/com.JellyBeanUser.apk.app.editor.png" onclick="scriptApp('TextEdit')"/>
             <input class="appchoice" title="Terminal" type="image" src="images/terminal icon.png" onclick="scriptApp('Terminal')" />
             <input class="appchoice" title="Discord[BETA]" type="image" src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" onclick="scriptApp('Discord')"/>
+            <input class="appchoice" title="VisualCode" type="image" src="images/VisualCode logo.png" onclick="scriptApp('VisualCode')"/>
             <div id="actionarea">
                 <input type="button" title="Reload" value="Reload" onclick="window.location.reload()"/>
                 <input type="button" title="Sign Out" value="Sign Out" disabled/>
