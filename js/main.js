@@ -1,4 +1,11 @@
-﻿var codehsGraphics = require("codehs-graphics");
+﻿document.body.style.backgroundImage = "url('images/hbd-script-os.png')";
+
+var filesyee = {
+    //["testing.txt"] : "hi there",
+    //["yee yee.txt"] : "YEE YEE",
+    //["Hi there.txt"] : "dahsdjashd",
+    ["changelog.txt"] : "Script OS Change Log: #Script OS 2.9.3 -Files app working in demo mode -Happy 1 Year of Script OS #Script OS 2.9.2   -HTML Editor added   -Themes color opacity increased   -Mothers Day #Script OS 2.9.1   -Themes added   -Subscribe to PewDiePie button removed   -About app added   -App center redesigned #Script OS 2.9   -DarkMode added  -Script OS Redesigned   -App system improved   -Multi app window support   -All apps redesigned"
+};
 
 function dragWindow(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -34,25 +41,10 @@ function dragWindow(elmnt) {
     }
 }
 
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    m = checkTime(m);
-    document.getElementById('datetime').innerHTML = h + ":" + m + " " + (("0"+(today.getMonth()+1)).slice(-2)) +"/"+ (("0"+today.getDate()).slice(-2)) +"/"+ (today.getFullYear());
-    var t = setTimeout(startTime, 500);
-}
-
-function checkTime(i) {
-    if (i < 10) { i = "0" + i; }
-    return i;
-}
-
 function saveAs(filename, text) {
     var pom = document.createElement('a');
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     pom.setAttribute('download', filename);
-    files.push(filename);
     window.localStorage.setItem(filename, text);
     
 
@@ -100,10 +92,9 @@ function openApp(appname, url) {
     var headtext = document.createTextNode(appname);
     var newiframe = document.createElement('iframe');
     var closebutton = document.createElement('button');
-    var appbutton = document.createElement('input');
-    var apps = document.getElementById('apps');
-    appbutton.type = 'button';
-    appbutton.value = appname;
+    var appbutton = document.createElement('button');
+    var apps = document.getElementById('ActionMenu');
+    appbutton.innerHTML = appname;
     appbutton.onclick = function () { document.getElementById(appname).style.display = 'inline'; };
     apps.appendChild(appbutton);
     closebutton.innerHTML = "X";
@@ -114,6 +105,7 @@ function openApp(appname, url) {
     newdivhead.appendChild(closebutton);
     newdiv.appendChild(newiframe);
     newiframe.src = url;
+    newiframe.style.height = "90%";
     newdiv.className = 'app';
     newdivhead.className = 'appheader';
     newdivhead.id = appname + "header";
@@ -122,7 +114,7 @@ function openApp(appname, url) {
 
 }
 
-var files = ['none'];
+var textarea;
 
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -132,12 +124,13 @@ function scriptApp(appsname){
     var fullscreen = document.createElement('button');
     var smallscreen = document.createElement('button');
     var desktopbody = document.getElementById('desktopbody');
-    var appnumber = Math.floor((Math.random() * 100) + 1);
+    var appnumber = 0;
     var appicon = document.getElementsByClassName('appicon');
     var appchoice = document.getElementsByClassName('appchoice');
+    appnumber++;
     app.tagName = appsname;
     appicon.title = appsname;
-    appicon.title = appsname;
+    appchoice.title = appsname;
     app.className = 'app';
     apphead.className = 'appheader';
     close.innerHTML = 'X';
@@ -180,7 +173,7 @@ function scriptApp(appsname){
         var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
         var openbutton = document.createElement('input');
-        var textarea = document.createElement('textarea');
+        textarea = document.createElement('textarea');
         newbutton.innerHTML = 'New';
         newbutton.onclick = function () { scriptApp("NewFile"); };
         openbutton.type = 'file';
@@ -191,11 +184,11 @@ function scriptApp(appsname){
         app.appendChild(savebutton);
         app.appendChild(openbutton);
         app.appendChild(textarea);
-        textarea.id = 'text-box';
+        textarea.id = 'textarea' + appnumber;
         textarea.style.width = '99%';
         textarea.style.height = '90%';
         var input = document.getElementById("fileopen");
-        var output = document.getElementById("text-box");
+        var output = document.getElementById("textarea");
         input.addEventListener("change", function () {
             if (this.files && this.files[0]) {
                 var myFile = this.files[0];
@@ -212,21 +205,28 @@ function scriptApp(appsname){
         var backgroundsettings = document.createElement('input');
         var themesettings = document.createElement('input');
         var about = document.createElement('input');
+        var shortcuts = document.createElement('input');
+        shortcuts.type = 'image';
         themesettings.type = 'image';
         backgroundsettings.type = 'image';
         about.type = 'image';
-        themesettings.src = 'images/photosappicon.png'
+        shortcuts.src = 'images/script os shortcuts logo.png';
+        themesettings.src = 'images/photosappicon.png';
         backgroundsettings.src = 'images/background icon.png';
         about.src = 'images/Script OS Logo.png';
+        shortcuts.style.width = '20%';
         about.style.width = '20%';
         themesettings.style.width = '20%';
         backgroundsettings.style.width = '20%';
         about.title = 'About';
+        shortcuts.title = 'Shortcuts';
         themesettings.title = "Theme Settings";
         backgroundsettings.title = 'Background Settings';
         about.onclick = function () { scriptApp("About"); };
+        shortcuts.onclick = function () { scriptApp("Shortcuts"); };
         themesettings.onclick = function () { scriptApp("Themes"); };
         backgroundsettings.onclick = function () {scriptApp("Background"); };
+        app.appendChild(shortcuts);
         app.appendChild(backgroundsettings);
         app.appendChild(themesettings);
         app.appendChild(about);
@@ -278,6 +278,12 @@ function scriptApp(appsname){
         choice5.className = 'backgroundoption';
         choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';};
         app.appendChild(choice5);
+        var choice6 = document.createElement('input');
+        choice6.type = 'image';
+        choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
+        choice6.className = 'backgroundoption';
+        choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';};
+        app.appendChild(choice6);
         var backgroundinput = document.createElement('input');
         backgroundinput.placeholder = "Background URL";
         backgroundinput.onchange = function () {document.body.style.backgroundImage = "url('" +  backgroundinput.value; + "')"; };
@@ -310,7 +316,10 @@ function scriptApp(appsname){
         textsave.innerHTML = "Save your file!";
         namefile.placeholder = "File Name";
         save.innerHTML = "Save";
-        save.onclick = function () { saveAs(namefile.value, document.getElementById('text-box').value); };
+        save.onclick = function () { 
+            saveAs(namefile.value, document.getElementById('textarea').value);
+            filesyee[namefile.value] = document.getElementById('textarea').value;
+        };
         cancel.innerHTML = "Cancel";
         cancel.onclick = function () { desktopbody.removeChild(app); };
         app.appendChild(textsave);
@@ -349,29 +358,28 @@ function scriptApp(appsname){
         theme3.style.backgroundColor = 'yellow';
         theme3.onclick = function () {
             document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)'; 
-            document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)';
+            document.getElementById('topnav').style.background = 'rgba(255,255,0,0.9)';
         };
         app.appendChild(theme1);
         app.appendChild(theme2);
         app.appendChild(theme3);
-    }else if("VisualCode"){
+    } else if(appsname === "VisualCode"){
         var codearea = document.createElement("textarea");
         var codeviewer = document.createElement("iframe");
         var openbutton = document.createElement("input");
         openbutton.type = 'file';
-        const defaultText = `
-        <!DOCTYPE html>
-        <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                <title>Document</title>
-            </head>
-            <body>
-                <h1>Hello, World</h1>
-            </body>
-        </html>`;
+        const defaultText = `<!DOCTYPE html> 
+            <html lang="en"> 
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                    <title>Document</title>
+                </head>
+                <body>
+                    <h1>Hello, World</h1>
+                </body>
+            </html>`;
         codearea.value = defaultText;
         openbutton.addEventListener("change", function () {
             if (this.files && this.files[0]) {
@@ -408,6 +416,13 @@ function scriptApp(appsname){
         apphead.appendChild(openbutton);
         app.appendChild(codearea);
         app.appendChild(codeviewer);
+    } else if(appsname === "Files"){
+        for (var name in filesyee) {
+            var fbutt = document.createElement("button");
+            fbutt.innerHTML = name;
+            fbutt.onclick = function () { openSFile(filesyee, name); };
+            app.appendChild(fbutt);
+        }
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
@@ -415,7 +430,11 @@ function scriptApp(appsname){
     }
 }
 
-
+function openSFile(storage,filename){
+    var innercontents = storage[filename];
+    scriptApp("TextEdit");
+    textarea.value = innercontents;
+}
 
 function darkMode(){
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
@@ -425,9 +444,4 @@ function darkMode(){
 function lightMode(){
     document.getElementById('navbar').style.background = 'rgba(255,255,255,0.5)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
-}
-
-function closeHandler() {
-    Enabler.reportManualClose(); 
-    Enabler.close();
 }

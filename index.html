@@ -16,6 +16,21 @@
         <ui>|</ui>
         <ui onclick="lightMode()">LightMode</ui>
         <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
+        <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                m = checkTime(m);
+                document.getElementById('datetime').innerHTML = h + ":" + m + " | " + (("0"+(today.getMonth()+1)).slice(-2)) +"/"+ (("0"+today.getDate()).slice(-2)) +"/"+ (today.getFullYear());
+                var t = setTimeout(startTime, 500);
+            }
+
+            function checkTime(i) {
+                if (i < 10) { i = "0" + i; }
+                return i;
+            }
+        </script>
     </div>
     <style>
         body {
@@ -26,10 +41,10 @@
         }
     </style>
     <div class="navbar" id="navbar" style="transform-style:flat">
-        <input id="icon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
+        <input id="AppsIcon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
         <input title="Settings" type="image" id="icon3" class="appicon" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
-        <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
-        <input id="icon5" title="Files" disabled type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
+        <input id="BrowserIcon" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
+        <input id="FilesIcon" title="Files" type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
         <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="images/notification icon.png" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
     </div>
     <div id="desktopbody">
@@ -43,7 +58,7 @@
             </div>
             <input title="Settings" type="image" id="icon3" class="appchoice" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
             <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appchoice" onclick="scriptApp('Browser')" />
-            <input id="icon5" disabled title="Files" type="image" src="images/script os files icon.png" class="appchoice" onclick="scriptApp('Files')" />
+            <input id="FilesIcon" title="Files" type="image" src="images/script os files icon.png" class="appchoice" onclick="scriptApp('Files')" />
             <input class="appchoice" title="TextEdit" type="image" src="images/com.JellyBeanUser.apk.app.editor.png" onclick="scriptApp('TextEdit')"/>
             <input class="appchoice" title="Terminal" type="image" src="images/terminal icon.png" onclick="scriptApp('Terminal')" />
             <input class="appchoice" title="Discord[BETA]" type="image" src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" onclick="scriptApp('Discord')"/>
@@ -62,7 +77,10 @@
             <input type="button" value="/\" onclick="document.getElementById('notificationcenter').style.height = '50%'" />
         </div>
         <div id="notifications">
-            Nothing to see here...
+            <div id="notification">
+                <h1>Happy Birthday Script OS</h1>
+                <p>May 28th marks one year of Script OS</p>
+            </div>>
         </div>
     </div>
     <div class="menu" style="color:white">
