@@ -41,12 +41,13 @@
         }
     </style>
     <div class="navbar" id="navbar" style="transform-style:flat">
-        <input id="AppsIcon" title="Apps" type="image" src="images/Script OS 2 logo.png" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
+        <input id="AppsIcon" title="Apps" type="image" src="images/Script OS logo.png" style="width:50px; height:50px; z-index: 100; position:absolute; left:0;" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
         <input title="Settings" type="image" id="icon3" class="appicon" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
         <input id="BrowserIcon" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
         <input id="FilesIcon" title="Files" type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
         <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="images/notification icon.png" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
     </div>
+        
     <div id="desktopbody">
         <div id="ActionMenu">
             <script>
@@ -63,6 +64,7 @@
             <input class="appchoice" title="Terminal" type="image" src="images/terminal icon.png" onclick="scriptApp('Terminal')" />
             <input class="appchoice" title="Discord[BETA]" type="image" src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" onclick="scriptApp('Discord')"/>
             <input class="appchoice" title="VisualCode" type="image" src="images/VisualCode logo.png" onclick="scriptApp('VisualCode')"/>
+            <input class="appchoice" title="Shortcuts[BETA]" type="image" src="images/script os shortcuts logo.png" onclick="scriptApp('Shortcuts')" >
             <div id="actionarea">
                 <input type="button" title="Reload" value="Reload" onclick="window.location.reload()"/>
                 <input type="button" title="Sign Out" value="Sign Out" disabled/>

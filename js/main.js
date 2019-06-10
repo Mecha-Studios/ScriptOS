@@ -1,10 +1,14 @@
-﻿document.body.style.backgroundImage = "url('images/hbd-script-os.png')";
+﻿document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
 
-var filesyee = {
-    //["testing.txt"] : "hi there",
-    //["yee yee.txt"] : "YEE YEE",
-    //["Hi there.txt"] : "dahsdjashd",
+var txtfiles = {
+    ["testing.txt"] : "hi there",
+    ["yee yee.txt"] : "YEE YEE",
+    ["Hi there.txt"] : "dahsdjashd",
     ["changelog.txt"] : "Script OS Change Log: #Script OS 2.9.3 -Files app working in demo mode -Happy 1 Year of Script OS #Script OS 2.9.2   -HTML Editor added   -Themes color opacity increased   -Mothers Day #Script OS 2.9.1   -Themes added   -Subscribe to PewDiePie button removed   -About app added   -App center redesigned #Script OS 2.9   -DarkMode added  -Script OS Redesigned   -App system improved   -Multi app window support   -All apps redesigned"
+};
+
+var htmlfiles = {
+    ["hello world.html"] : "<!DOCTYPE html> <html lang='en'> <head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Document</title></head><body><h1>Hello, World</h1></body></html>",
 };
 
 function dragWindow(elmnt) {
@@ -115,6 +119,7 @@ function openApp(appname, url) {
 }
 
 var textarea;
+var codeviewer = document.createElement("iframe");
 
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -124,13 +129,9 @@ function scriptApp(appsname){
     var fullscreen = document.createElement('button');
     var smallscreen = document.createElement('button');
     var desktopbody = document.getElementById('desktopbody');
-    var appnumber = 0;
-    var appicon = document.getElementsByClassName('appicon');
-    var appchoice = document.getElementsByClassName('appchoice');
+    var iconimage;
+    var appnumber = Math.random();;
     appnumber++;
-    app.tagName = appsname;
-    appicon.title = appsname;
-    appchoice.title = appsname;
     app.className = 'app';
     apphead.className = 'appheader';
     close.innerHTML = 'X';
@@ -144,29 +145,35 @@ function scriptApp(appsname){
     desktopbody.appendChild(app);
     app.id = appsname + appnumber;
     apphead.id = app.id + "header";
-    dragWindow(document.getElementById(app.id));
+    dragWindow(document.getElementById(appsname + appnumber));
     close.onclick = function () { desktopbody.removeChild(app); };
     fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; };
     smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; };
     if (appsname === "Browser") {
+        iconimage = 'script os S Browser icon.png';
         var inputbar = document.createElement("input");
         var browserview = document.createElement('iframe');
         var backbutton = document.createElement('button');
         var forwardbutton = document.createElement('button');
+        backbutton.id = "backbutt" + appnumber;
         backbutton.innerHTML = '<';
         backbutton.style.borderRadius = '15px';
         backbutton.onclick = function () { window.history.back(); };
+        forwardbutton.id = "forwardbutt" + appnumber;
         forwardbutton.innerHTML = '>';
         forwardbutton.style.borderRadius = '15px';
         forwardbutton.onclick = function () { window.history.forward(); };
         app.appendChild(backbutton);
         app.appendChild(forwardbutton);
+        inputbar.id = "inputbar" + appnumber;
         inputbar.type = 'text';
         inputbar.placeholder = 'Website';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
+        inputbar.value = browserview.src;
         inputbar.onchange = function () { browserview.src = "https://" + inputbar.value; };
         app.appendChild(inputbar);
+        browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
     } else if (appsname === "TextEdit") {
@@ -184,7 +191,7 @@ function scriptApp(appsname){
         app.appendChild(savebutton);
         app.appendChild(openbutton);
         app.appendChild(textarea);
-        textarea.id = 'textarea' + appnumber;
+        textarea.id = 'textarea' + app.id;
         textarea.style.width = '99%';
         textarea.style.height = '90%';
         var input = document.getElementById("fileopen");
@@ -284,6 +291,12 @@ function scriptApp(appsname){
         choice6.className = 'backgroundoption';
         choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';};
         app.appendChild(choice6);
+        var choice7 = document.createElement('input');
+        choice7.type = 'image';
+        choice7.src = 'images/hbd-script-os.png';
+        choice7.className = 'backgroundoption';
+        choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';};
+        app.appendChild(choice7);
         var backgroundinput = document.createElement('input');
         backgroundinput.placeholder = "Background URL";
         backgroundinput.onchange = function () {document.body.style.backgroundImage = "url('" +  backgroundinput.value; + "')"; };
@@ -313,17 +326,40 @@ function scriptApp(appsname){
         var namefile = document.createElement('input');
         var save = document.createElement('button');
         var cancel = document.createElement('button');
+        var typeselect = document.createElement('select');
+        var selectitem1 = document.createElement('option');
+        var selectitem2 = document.createElement('option');
+        var selectitem3 = document.createElement('option');
+        typeselect.placeholder = 'File Type';
+        selectitem1.innerHTML = 'txt';
+        selectitem2.innerHTML = 'html';
+        selectitem3.innerHTML = 'jsapp';
+        var fileextention;
+        selectitem1.onselect = function () {
+            fileextention = '.txt';
+            txtfiles[namefile.value + fileextention] = document.getElementById('textarea').value;
+        };
+        selectitem2.onselect = function () {
+            fileextention = '.html';
+            htmlfiles[namefile.value + fileextention] = document.getElementById('textarea').value;
+        };
+        selectitem3.onselect = function () {
+            jsApp(namefile.value, document.getElementById('textarea').value);
+        };
+        typeselect.appendChild(selectitem1);
+        typeselect.appendChild(selectitem2);
+        typeselect.appendChild(selectitem3);
         textsave.innerHTML = "Save your file!";
         namefile.placeholder = "File Name";
         save.innerHTML = "Save";
         save.onclick = function () { 
             saveAs(namefile.value, document.getElementById('textarea').value);
-            filesyee[namefile.value] = document.getElementById('textarea').value;
         };
         cancel.innerHTML = "Cancel";
         cancel.onclick = function () { desktopbody.removeChild(app); };
         app.appendChild(textsave);
         app.appendChild(namefile);
+        app.appendChild(typeselect);
         app.appendChild(save);
         app.appendChild(cancel);
     } else if(appsname === "About"){
@@ -365,9 +401,8 @@ function scriptApp(appsname){
         app.appendChild(theme3);
     } else if(appsname === "VisualCode"){
         var codearea = document.createElement("textarea");
-        var codeviewer = document.createElement("iframe");
-        var openbutton = document.createElement("input");
-        openbutton.type = 'file';
+        var openvbutton = document.createElement("input");
+        openvbutton.type = 'file';
         const defaultText = `<!DOCTYPE html> 
             <html lang="en"> 
                 <head>
@@ -381,7 +416,7 @@ function scriptApp(appsname){
                 </body>
             </html>`;
         codearea.value = defaultText;
-        openbutton.addEventListener("change", function () {
+        openvbutton.addEventListener("change", function () {
             if (this.files && this.files[0]) {
                 var myFile = this.files[0];
                 var reader = new FileReader();
@@ -413,16 +448,44 @@ function scriptApp(appsname){
         codeviewer.style.height = '48%';
         codeviewer.style.width = '100%';
         codeviewer.style.display = 'block';
-        apphead.appendChild(openbutton);
+        apphead.appendChild(openvbutton);
         app.appendChild(codearea);
         app.appendChild(codeviewer);
     } else if(appsname === "Files"){
-        for (var name in filesyee) {
+        for (var name in txtfiles) {
             var fbutt = document.createElement("button");
             fbutt.innerHTML = name;
-            fbutt.onclick = function () { openSFile(filesyee, name); };
+            fbutt.onclick = function () { openSFile(txtfiles, name); };
             app.appendChild(fbutt);
         }
+        for (var named in htmlfiles) {
+            var fbutt2 = document.createElement("button");
+            fbutt2.innerHTML = named;
+            fbutt2.onclick = function () { openSFile(htmlfiles, named); };
+            app.appendChild(fbutt2);
+        }
+    } else if(appsname === "Shortcuts"){
+        var appnameshort = document.createElement('input');
+        var shortadd = document.createElement('button');
+        var newshortcut = document.createElement('input');
+        var navbar = document.getElementById("navbar");
+        newshortcut.type = 'image';
+        newshortcut.src = 'images/script os shortcuts logo.png';
+        newshortcut.style.width = '50px';
+        newshortcut.style.height = '50px';
+        newshortcut.style.textAlign = 'center';
+        appnameshort.type = 'text';
+        shortadd.innerHTML = 'Add';
+        app.appendChild(appnameshort);
+        app.appendChild(shortadd);
+        shortadd.onclick = function () {
+            newshortcut.title = appnameshort.value;
+            newshortcut.innerHTML = appnameshort.value;
+            newshortcut.onclick = function () {
+                scriptApp(appnameshort.value);
+            };
+            navbar.appendChild(newshortcut);
+        };
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
@@ -432,8 +495,13 @@ function scriptApp(appsname){
 
 function openSFile(storage,filename){
     var innercontents = storage[filename];
-    scriptApp("TextEdit");
-    textarea.value = innercontents;
+    if(innercontents = txtfiles[filename]){
+        scriptApp("TextEdit");
+        textarea.value = innercontents;
+    } else if(innercontents = htmlfiles[filename]){
+        scriptApp("VisualCode");
+        codeviewer.value = innercontents;
+    }
 }
 
 function darkMode(){
