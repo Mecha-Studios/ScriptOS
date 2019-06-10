@@ -4,7 +4,7 @@ var txtfiles = {
     ["testing.txt"] : "hi there",
     ["yee yee.txt"] : "YEE YEE",
     ["Hi there.txt"] : "dahsdjashd",
-    ["changelog.txt"] : "Script OS Change Log: #Script OS 2.9.3 -Files app working in demo mode -Happy 1 Year of Script OS #Script OS 2.9.2   -HTML Editor added   -Themes color opacity increased   -Mothers Day #Script OS 2.9.1   -Themes added   -Subscribe to PewDiePie button removed   -About app added   -App center redesigned #Script OS 2.9   -DarkMode added  -Script OS Redesigned   -App system improved   -Multi app window support   -All apps redesigned"
+    ["changelog.txt"] : "Script OS Change Log:#Script OS 2.9.4 -Shortcuts added -Bug Fixes -HTML Support added #Script OS 2.9.3 -Files app working in demo mode -Happy 1 Year of Script OS #Script OS 2.9.2   -HTML Editor added   -Themes color opacity increased   -Mothers Day #Script OS 2.9.1   -Themes added   -Subscribe to PewDiePie button removed   -About app added   -App center redesigned #Script OS 2.9   -DarkMode added  -Script OS Redesigned   -App system improved   -Multi app window support   -All apps redesigned"
 };
 
 var htmlfiles = {
@@ -367,7 +367,7 @@ function scriptApp(appsname){
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
         app.style.color = 'white';
-        scriptosversion.innerHTML = "Script OS 2.9.3";
+        scriptosversion.innerHTML = "Script OS 2.9.4";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2019";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
