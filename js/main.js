@@ -45,13 +45,13 @@ function dragWindow(elmnt) {
     }
 }
 
-function saveAs(filename, text) {
+function saveAsTxt(filename) {
     var pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    var filecontent = textarea.value;
+    txtfiles[filename + '.txt'] = filecontent;
+    txtfiles[filename + '.' + typeselect.value, textarea.value];
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textarea.value));
     pom.setAttribute('download', filename);
-    window.localStorage.setItem(filename, text);
-    
-
     if (document.createEvent) {
         var event = document.createEvent('MouseEvents');
         event.initEvent('click', true, true);
@@ -59,6 +59,23 @@ function saveAs(filename, text) {
     }
     else {
         pom.click();
+    }
+}
+
+function saveAsHtml(filename) {
+    var pom = document.createElement('a');
+    var filecontents = codearea.value;
+    htmlfiles[filename + '.html'] = filecontents;
+
+    pom.setAttribute('href', 'data:html;charset=utf-8,' + encodeURIComponent(codearea.value));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    } else {
+            pom.click();
     }
 }
 
@@ -118,8 +135,8 @@ function openApp(appname, url) {
 
 }
 
-var textarea;
-var codeviewer = document.createElement("iframe");
+var textarea = document.createElement("textarea");
+var codearea = document.createElement("textarea");
 
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -180,13 +197,12 @@ function scriptApp(appsname){
         var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
         var openbutton = document.createElement('input');
-        textarea = document.createElement('textarea');
         newbutton.innerHTML = 'New';
         newbutton.onclick = function () { scriptApp("NewFile"); };
         openbutton.type = 'file';
         openbutton.id = 'fileopen';
         savebutton.innerHTML = 'Save';
-        savebutton.onclick = function () { scriptApp("SaveAs"); };
+        savebutton.onclick = function () { scriptApp("SaveAsTxt"); };
         app.appendChild(newbutton);
         app.appendChild(savebutton);
         app.appendChild(openbutton);
@@ -321,45 +337,21 @@ function scriptApp(appsname){
         app.appendChild(yesbutton);
         app.appendChild(nobutton);
         app.appendChild(cancelbutton);
-    } else if(appsname === "SaveAs"){
+    } else if(appsname === "SaveTxt"){
         var textsave = document.createElement('h1');
         var namefile = document.createElement('input');
         var save = document.createElement('button');
         var cancel = document.createElement('button');
-        var typeselect = document.createElement('select');
-        var selectitem1 = document.createElement('option');
-        var selectitem2 = document.createElement('option');
-        var selectitem3 = document.createElement('option');
-        typeselect.placeholder = 'File Type';
-        selectitem1.innerHTML = 'txt';
-        selectitem2.innerHTML = 'html';
-        selectitem3.innerHTML = 'jsapp';
-        var fileextention;
-        selectitem1.onselect = function () {
-            fileextention = '.txt';
-            txtfiles[namefile.value + fileextention] = document.getElementById('textarea').value;
-        };
-        selectitem2.onselect = function () {
-            fileextention = '.html';
-            htmlfiles[namefile.value + fileextention] = document.getElementById('textarea').value;
-        };
-        selectitem3.onselect = function () {
-            jsApp(namefile.value, document.getElementById('textarea').value);
-        };
-        typeselect.appendChild(selectitem1);
-        typeselect.appendChild(selectitem2);
-        typeselect.appendChild(selectitem3);
         textsave.innerHTML = "Save your file!";
         namefile.placeholder = "File Name";
         save.innerHTML = "Save";
-        save.onclick = function () { 
-            saveAs(namefile.value, document.getElementById('textarea').value);
+        save.onclick = function () {
+            saveAsTxt(namefile.value);
         };
         cancel.innerHTML = "Cancel";
         cancel.onclick = function () { desktopbody.removeChild(app); };
         app.appendChild(textsave);
         app.appendChild(namefile);
-        app.appendChild(typeselect);
         app.appendChild(save);
         app.appendChild(cancel);
     } else if(appsname === "About"){
@@ -367,7 +359,7 @@ function scriptApp(appsname){
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
         app.style.color = 'white';
-        scriptosversion.innerHTML = "Script OS 2.9.4";
+        scriptosversion.innerHTML = "Script OS 2.9.5";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2019";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
@@ -400,8 +392,9 @@ function scriptApp(appsname){
         app.appendChild(theme2);
         app.appendChild(theme3);
     } else if(appsname === "VisualCode"){
-        var codearea = document.createElement("textarea");
+        var codeviewer = document.createElement("iframe");
         var openvbutton = document.createElement("input");
+        var savecode = document.createElement('button');
         openvbutton.type = 'file';
         const defaultText = `<!DOCTYPE html> 
             <html lang="en"> 
@@ -416,6 +409,10 @@ function scriptApp(appsname){
                 </body>
             </html>`;
         codearea.value = defaultText;
+        savecode.innerHTML = 'Save';
+        savecode.onclick = function () {
+            scriptApp('SaveHTML');
+        };
         openvbutton.addEventListener("change", function () {
             if (this.files && this.files[0]) {
                 var myFile = this.files[0];
@@ -448,19 +445,44 @@ function scriptApp(appsname){
         codeviewer.style.height = '48%';
         codeviewer.style.width = '100%';
         codeviewer.style.display = 'block';
+        app.appendChild(savecode);
         apphead.appendChild(openvbutton);
         app.appendChild(codearea);
         app.appendChild(codeviewer);
+    } else if(appsname === "SaveHTML"){
+        var textsave = document.createElement('h1');
+        var namefile = document.createElement('input');
+        var save = document.createElement('button');
+        var cancel = document.createElement('button');
+        namefile.placeholder = "File Name";
+        save.innerHTML = "Save";
+        save.onclick = function () {
+            saveAsHtml(namefile.value);
+        };
+        cancel.innerHTML = "Cancel";
+        cancel.onclick = function () { desktopbody.removeChild(app); };
+        app.appendChild(textsave);
+        app.appendChild(namefile);
+        app.appendChild(save);
+        app.appendChild(cancel);
     } else if(appsname === "Files"){
         for (var name in txtfiles) {
-            var fbutt = document.createElement("button");
-            fbutt.innerHTML = name;
+            var fbutt = document.createElement("input");
+            fbutt.type = 'image';
+            fbutt.src = 'images/txt file icon.png';
+            fbutt.style.width = '100px';
+            fbutt.style.height = '100px';
+            fbutt.title = name;
             fbutt.onclick = function () { openSFile(txtfiles, name); };
             app.appendChild(fbutt);
         }
         for (var named in htmlfiles) {
-            var fbutt2 = document.createElement("button");
-            fbutt2.innerHTML = named;
+            var fbutt2 = document.createElement("input");
+            fbutt2.type = 'image';
+            fbutt2.src = 'images/html file icon.png';
+            fbutt2.style.width = '100px';
+            fbutt2.style.height = '100px';
+            fbutt2.title = named;
             fbutt2.onclick = function () { openSFile(htmlfiles, named); };
             app.appendChild(fbutt2);
         }
@@ -500,7 +522,7 @@ function openSFile(storage,filename){
         textarea.value = innercontents;
     } else if(innercontents = htmlfiles[filename]){
         scriptApp("VisualCode");
-        codeviewer.value = innercontents;
+        codearea.value = innercontents;
     }
 }
 
