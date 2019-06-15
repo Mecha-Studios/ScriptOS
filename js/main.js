@@ -137,6 +137,96 @@ function openApp(appname, url) {
 
 var textarea = document.createElement("textarea");
 var codearea = document.createElement("textarea");
+var navbar = document.createElement('div');
+var desktopbody = document.getElementById('desktopbody');
+
+function startUp(){
+    navbar.className = 'navbar';
+    navbar.id = 'navbar';
+    desktopbody.appendChild(navbar);
+    
+    var actionmenuicon = document.createElement('input');
+    actionmenuicon.type = 'image';
+    actionmenuicon.src = 'images/Script OS Logo.png';
+    actionmenuicon.onclick = function () {scriptApp('ActionMenu'); };
+    actionmenuicon.title = 'ActionMenu';
+    actionmenuicon.className = 'appicon';
+    actionmenuicon.style = "width:50px; height:50px; z-index: 100; position:absolute; left:0;" ;
+    navbar.appendChild(actionmenuicon);
+
+    var appicon1 = document.createElement('input');
+    appicon1.type = 'image';
+    appicon1.src = 'images/Settings-icon.png';
+    appicon1.className = 'appicon';
+    appicon1.title = 'Settings';
+    appicon1.onclick = function () { scriptApp('Settings'); };
+    navbar.appendChild(appicon1);
+    
+    var appicon2 = document.createElement('input');
+    appicon2.type = 'image';
+    appicon2.src = 'images/script os S Browser icon.png';
+    appicon2.className = 'appicon';
+    appicon2.title = 'S Browser';
+    appicon2.onclick = function () { scriptApp('Browser')}
+    navbar.appendChild(appicon2);
+
+    var appicon3 = document.createElement('input');
+    appicon3.type = 'image';
+    appicon3.src = 'images/script os files icon.png';
+    appicon3.className = 'appicon';
+    appicon3.title = 'Files';
+    appicon3.onclick = function () { scriptApp('Files')}
+    navbar.appendChild(appicon3);
+}
+
+function signIn(){
+    desktopbody.removeChild(headertext);
+    desktopbody.removeChild(timetxt);
+    loginbar.removeChild(logintxt);
+    desktopbody.removeChild(loginbar);
+    desktopbody.appendChild(navbar);
+}
+
+var headertext = document.createElement('h2');
+var timetxt = document.createElement('h1');
+var loginbar = document.createElement('div');
+var logintxt = document.createElement('hp');
+
+function signOut(childthing){
+    headertext.innerHTML = 'Script OS';
+    headertext.style.fontSize = '100px';
+    timetxt.style.fontSize = '85px';
+    logintxt.innerHTML = 'Login';
+    loginbar.className = 'navbar';
+    logintxt.style.fontSize = '50px';
+    headertext.style.animation = 'fadeIn';
+    headertext.style.animationDuration = '6s';
+    timetxt.style.animation = 'fadeIn';
+    timetxt.style.animationDuration = '6s';
+    desktopbody.style.color = 'white';
+    desktopbody.style.textAlign = 'center';
+    loginbar.onclick = function () { signIn(); };
+    loginbar.appendChild(logintxt);
+    desktopbody.removeChild(navbar);
+    desktopbody.removeChild(childthing);
+    desktopbody.appendChild(headertext);
+    desktopbody.appendChild(timetxt);
+    desktopbody.appendChild(loginbar);
+    startLockTime();
+    function startLockTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        m = checkLockTime(m);
+        timetxt.innerHTML = h + ":" + m;
+        var t = setTimeout(startLockTime, 500);
+    }
+
+    function checkLockTime(i) {
+        if (i < 10) { i = "0" + i; }
+        return i;
+    }
+}
 
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -145,8 +235,6 @@ function scriptApp(appsname){
     var close = document.createElement('button');
     var fullscreen = document.createElement('button');
     var smallscreen = document.createElement('button');
-    var desktopbody = document.getElementById('desktopbody');
-    var iconimage;
     var appnumber = Math.random();;
     appnumber++;
     app.className = 'app';
@@ -223,6 +311,93 @@ function scriptApp(appsname){
                 reader.readAsBinaryString(myFile);
             }
         });
+    } else if(appsname === "ActionMenu"){
+        app.style.width = '100%';
+        app.style.height ='95%';
+        apphead.removeChild(fullscreen);
+        apphead.removeChild(smallscreen);
+
+        var app1 = document.createElement('input');
+        app1.type = 'image';
+        app1.src = "images/Settings-icon.png";
+        app1.title = 'Settings';
+        app1.onclick = function () {scriptApp('Settings');};
+        app1.className = 'appchoice';
+        app.appendChild(app1);
+
+        var app2 = document.createElement('input');
+        app2.type = 'image';
+        app2.src = "images/script os S Browser icon.png";
+        app2.title = 'S Browser';
+        app2.onclick = function () {scriptApp('Browser');};
+        app2.className = 'appchoice';
+        app.appendChild(app2);
+
+        var app3 = document.createElement('input');
+        app3.type = 'image';
+        app3.src = "images/script os files icon.png";
+        app3.title = 'Files';
+        app3.onclick = function () {scriptApp('Files');};
+        app3.className = 'appchoice';
+        app.appendChild(app3);
+
+        var app4 = document.createElement('input');
+        app4.type = 'image';
+        app4.src = "images/com.JellyBeanUser.apk.app.editor.png";
+        app4.title = 'TextEdit';
+        app4.onclick = function () {scriptApp('TextEdit');};
+        app4.className = 'appchoice';
+        app.appendChild(app4);
+
+        var app5 = document.createElement('input');
+        app5.type = 'image';
+        app5.src = "images/terminal icon.png";
+        app5.title = 'Terminal';
+        app5.onclick = function () {scriptApp('Terminal');};
+        app5.className = 'appchoice';
+        app.appendChild(app5);
+
+        var app6 = document.createElement('input');
+        app6.type = 'image';
+        app6.src = "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png";
+        app6.title = 'Discord[BETA]';
+        app6.onclick = function () {scriptApp('Discord');};
+        app6.className = 'appchoice';
+        app.appendChild(app6);
+
+        var app7 = document.createElement('input');
+        app7.type = 'image';
+        app7.src = "images/VisualCode logo.png";
+        app7.title = 'VisualCode';
+        app7.onclick = function () {scriptApp('VisualCode');};
+        app7.className = 'appchoice';
+        app.appendChild(app7);
+
+        var app8 = document.createElement('input');
+        app8.type = 'image';
+        app8.src = "images/script os shortcuts logo.png";
+        app8.title = 'Shortcuts';
+        app8.onclick = function () {scriptApp('Shortcuts');};
+        app8.className = 'appchoice';
+        app.appendChild(app8);
+
+        var actioncenter = document.createElement('div');
+        actioncenter.id = 'actionarea';
+        app.appendChild(actioncenter);
+
+        var reloadbutt = document.createElement('button');
+        reloadbutt.innerHTML = 'Reload';
+        reloadbutt.onclick = function () { location.reload(); };
+        actioncenter.appendChild(reloadbutt);
+
+        var signoutbutt = document.createElement('button');
+        signoutbutt.innerHTML = 'Sign Out';
+        signoutbutt.onclick = function () { signOut(app); };
+        actioncenter.appendChild(signoutbutt);
+
+        var shutdownbutt = document.createElement('button');
+        shutdownbutt.innerHTML = 'Shutdown';
+        actioncenter.appendChild(shutdownbutt);
 
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
@@ -359,7 +534,7 @@ function scriptApp(appsname){
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
         app.style.color = 'white';
-        scriptosversion.innerHTML = "Script OS 2.9.5";
+        scriptosversion.innerHTML = "Script OS 2.9.6";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2019";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
@@ -527,11 +702,11 @@ function openSFile(storage,filename){
 }
 
 function darkMode(){
-    document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
+    navbar.style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
 }
 
 function lightMode(){
-    document.getElementById('navbar').style.background = 'rgba(255,255,255,0.5)';
+    navbar.style.background = 'rgba(255,255,255,0.5)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
 }

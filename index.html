@@ -8,7 +8,7 @@
     <link href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
 </head>
-<body onload="startTime();" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
+<body onload="startTime(); startUp();" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
     <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui>|</ui>
@@ -34,56 +34,14 @@
     </div>
     <style>
         body {
-            background-image: url("images/animals_hero_giraffe_1_0.jpg");
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
         }
     </style>
-    <div class="navbar" id="navbar" style="transform-style:flat">
-        <input id="AppsIcon" title="Apps" type="image" src="images/Script OS logo.png" style="width:50px; height:50px; z-index: 100; position:absolute; left:0;" class="appicon" onclick="document.getElementById('ActionMenu').style.display = 'inline'" />
-        <input title="Settings" type="image" id="icon3" class="appicon" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
-        <input id="BrowserIcon" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appicon" onclick="scriptApp('Browser')" />
-        <input id="FilesIcon" title="Files" type="image" src="images/script os files icon.png" class="appicon" onclick="scriptApp('Files')" />
-        <input id="notificationbell" title="Notifications" type="image" onclick="document.getElementById('notificationcenter').style.display = 'inline'" src="images/notification icon.png" style="width:50px; height:50px; z-index: 100; position:absolute; right:0;" />
-    </div>
         
     <div id="desktopbody">
-        <div id="ActionMenu">
-            <script>
-                document.getElementById('ActionMenu').style.display = 'none';
-            </script>
-            <div id="ActionMenuheader">
-                ActionMenu
-                <button onclick="document.getElementById('ActionMenu').style.display = 'none';">X</button>
-            </div>
-            <input title="Settings" type="image" id="icon3" class="appchoice" src="images/Settings-icon.png" onclick="scriptApp('Settings')" />
-            <input id="icon4" title="S Browser" type="image" src="images/script os S Browser icon.png" class="appchoice" onclick="scriptApp('Browser')" />
-            <input id="FilesIcon" title="Files" type="image" src="images/script os files icon.png" class="appchoice" onclick="scriptApp('Files')" />
-            <input class="appchoice" title="TextEdit" type="image" src="images/com.JellyBeanUser.apk.app.editor.png" onclick="scriptApp('TextEdit')"/>
-            <input class="appchoice" title="Terminal" type="image" src="images/terminal icon.png" onclick="scriptApp('Terminal')" />
-            <input class="appchoice" title="Discord[BETA]" type="image" src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" onclick="scriptApp('Discord')"/>
-            <input class="appchoice" title="VisualCode" type="image" src="images/VisualCode logo.png" onclick="scriptApp('VisualCode')"/>
-            <input class="appchoice" title="Shortcuts[BETA]" type="image" src="images/script os shortcuts logo.png" onclick="scriptApp('Shortcuts')" >
-            <div id="actionarea">
-                <input type="button" title="Reload" value="Reload" onclick="window.location.reload()"/>
-                <input type="button" title="Sign Out" value="Sign Out" disabled/>
-            </div>
-        </div>
-    </div>
-    <div id="notificationcenter">
-        <div id="notificationcenterheader">
-            Notifications
-            <input type="button" value="X" onclick="document.getElementById('notificationcenter').style.display = 'none'" />
-            <input type="button" value="\/" onclick="document.getElementById('notificationcenter').style.height = '30%'" />
-            <input type="button" value="/\" onclick="document.getElementById('notificationcenter').style.height = '50%'" />
-        </div>
-        <div id="notifications">
-            <div id="notification">
-                <h1>Happy Birthday Script OS</h1>
-                <p>May 28th marks one year of Script OS</p>
-            </div>>
-        </div>
+        
     </div>
     <div class="menu" style="color:white">
         <ul class="menu-options">

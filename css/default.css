@@ -7,6 +7,7 @@
     width: auto;
     height: auto;
     margin: 0;
+    font-family: 'Bauhaus 93';
 }
 
 button {
@@ -65,84 +66,40 @@ button {
     border-radius: 15px;
 }
 
-#notificationcenter {
-    position: absolute;
-    z-index: 100;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    text-align: center;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.75);
-    position: absolute;
-    bottom: 5%;
-    right: 0;
-    width: 20%;
-    height: 30%;
-    display: none;
-    font-family: 'Bauhaus 93';
-    border-radius: 15px;
-    animation-name: fadeIn;
-    animation-duration: 6s;
-}
-
-#notificationcenterheader {
-    padding: 10px;
-    z-index: 10;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.5);
-    color:white;
-}
-
-#notification {
-    z-index: 100;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    overflow: auto;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    width: 100%;
-    height: 50%;
-    color: white;
-}
-
-#notifications {
-    z-index: 100;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    overflow: auto;
-    background: rgba(0, 0, 0, 0.6);
-    width: 100%;
-    height: 100%;
-    color: white;
-}
-
 @keyframes rgb {
     0% {
         background-color: red;
+        opacity: 0%;
     }
 
     15% {
         background-color: orange;
+        opacity: 15%;
     }
 
     30% {
         background-color: yellow;
+        opacity: 30%;
     }
 
     45%{
         background-color: green;
+        opacity: 45%;
     }
 
     60% {
         background-color: blue;
+        opacity: 60%;
     }
 
     75% {
         background-color: indigo;
+        opacity: 75%;
     }
 
     100% {
         background-color: darkviolet;
+        opacity: 100%;
     }
 }
 
