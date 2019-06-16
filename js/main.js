@@ -1,6 +1,4 @@
-﻿document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
-
-var txtfiles = {
+﻿var txtfiles = {
     ["testing.txt"] : "hi there",
     ["yee yee.txt"] : "YEE YEE",
     ["Hi there.txt"] : "dahsdjashd",
@@ -49,7 +47,6 @@ function saveAsTxt(filename) {
     var pom = document.createElement('a');
     var filecontent = textarea.value;
     txtfiles[filename + '.txt'] = filecontent;
-    txtfiles[filename + '.' + typeselect.value, textarea.value];
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textarea.value));
     pom.setAttribute('download', filename);
     if (document.createEvent) {
@@ -139,12 +136,25 @@ var textarea = document.createElement("textarea");
 var codearea = document.createElement("textarea");
 var navbar = document.createElement('div');
 var desktopbody = document.getElementById('desktopbody');
+var startupscreen = document.createElement('img');
+startupscreen.style.width = '100%';
+startupscreen.style.height = '100%';
+startupscreen.src = 'images/Script-OS.gif';
 
 function startUp(){
+    document.body.style.backgroundImage = '';
+    document.body.style.backgroundColor = 'black';
+    desktopbody.appendChild(startupscreen);
+    setTimeout(loadDesktop, 2500);
+}
+
+function loadDesktop(){
+    desktopbody.removeChild(startupscreen);
+    document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
     navbar.className = 'navbar';
     navbar.id = 'navbar';
     desktopbody.appendChild(navbar);
-    
+    document.body.style.backgroundImage = 'url'
     var actionmenuicon = document.createElement('input');
     actionmenuicon.type = 'image';
     actionmenuicon.src = 'images/Script OS Logo.png';
@@ -199,9 +209,9 @@ function signOut(childthing){
     logintxt.innerHTML = 'Login';
     loginbar.className = 'navbar';
     logintxt.style.fontSize = '50px';
-    headertext.style.animation = 'fadeIn';
+    headertext.style.animation = 'rgb';
     headertext.style.animationDuration = '6s';
-    timetxt.style.animation = 'fadeIn';
+    timetxt.style.animation = 'rgb';
     timetxt.style.animationDuration = '6s';
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
@@ -290,7 +300,7 @@ function scriptApp(appsname){
         openbutton.type = 'file';
         openbutton.id = 'fileopen';
         savebutton.innerHTML = 'Save';
-        savebutton.onclick = function () { scriptApp("SaveAsTxt"); };
+        savebutton.onclick = function () { scriptApp("SaveTxt"); };
         app.appendChild(newbutton);
         app.appendChild(savebutton);
         app.appendChild(openbutton);
