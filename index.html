@@ -16,21 +16,6 @@
         <ui>|</ui>
         <ui onclick="lightMode()">LightMode</ui>
         <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
-        <script>
-            function startTime() {
-                var today = new Date();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                m = checkTime(m);
-                document.getElementById('datetime').innerHTML = h + ":" + m + " | " + (("0"+(today.getMonth()+1)).slice(-2)) +"/"+ (("0"+today.getDate()).slice(-2)) +"/"+ (today.getFullYear());
-                var t = setTimeout(startTime, 500);
-            }
-
-            function checkTime(i) {
-                if (i < 10) { i = "0" + i; }
-                return i;
-            }
-        </script>
     </div>
     <style>
         body {
@@ -43,13 +28,7 @@
     <div id="desktopbody">
         
     </div>
-    <div class="menu" style="color:white">
-        <ul class="menu-options">
-            <li class="menu-option" onclick="scriptApp('Background')">Personalize</li>
-            <li class="menu-option" onclick="scriptApp('Settings')">Settings</li>
-            <li class="menu-option" onclick="location.href = 'https://www.twitter.com/TylerRuotolo'">Help</li>
-        </ul>
-    </div>
     <script src="js/main.js"></script>
+    <script src="js/contextmenus.js"></script>
 </body>
 </html>

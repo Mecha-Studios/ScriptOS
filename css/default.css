@@ -10,6 +10,15 @@
     font-family: 'Bauhaus 93';
 }
 
+.appopt{
+    width: 25%;
+    z-index: 10;
+    position: fixed;
+    box-shadow: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+
 button {
     border-style: solid;
     font-family: Arial;
@@ -22,6 +31,15 @@ button {
 }
 
 .menu {
+    width: 120px;
+    z-index: 10;
+    position: fixed;
+    box-shadow: 5px;
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.menu2 {
     width: 120px;
     z-index: 10;
     position: fixed;
@@ -189,8 +207,9 @@ iframe{
 }
 
 #desktopbody{
-
+    
 }
+
 
 .favorite{
     width: 15%;
