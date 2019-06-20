@@ -134,7 +134,7 @@ function appInstall(appnamed, urll){
     var appbutton = document.createElement('button');
     appbutton.innerHTML = appnamed;
     appbutton.onclick = function () { openApp(appnamed, urll); };
-    actioncenter.appendChild(appbutton);
+    appcenter.appendChild(appbutton);
 }
 
 function openApp(appname, url) {
@@ -188,6 +188,7 @@ startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
 startupscreen.src = 'images/Script-OS.gif';
 var actioncenter = document.createElement('div');
+var appcenter = document.createElement('div');
 
 function startUp(){
     document.body.style.backgroundImage = '';
@@ -195,6 +196,23 @@ function startUp(){
     desktopbody.appendChild(startupscreen);
     setTimeout(loadDesktop, 2500);
 }
+
+var websearch = document.createElement('input');
+var searchbutt = document.createElement('input');
+var exitbutt = document.createElement('input');
+websearch.style = 'border-radius: 25px; width: 50%; height: 100px; font-size: 75px; top:100px; position:absolute; background: rgba(255,255,255,0.5)';
+websearch.type = 'search';
+websearch.placeholder = 'Search the web';
+searchbutt.onclick = function () {scriptApp("Browser"); browserview.src = 'https://www.bing.com/search?q=' + websearch.value};
+searchbutt.type = 'image';
+searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
+searchbutt.className = 'appicon';
+searchbutt.style = 'width:50px; height:50px; z-index: 100; position:absolute; right:0; top: 100px;';
+exitbutt.onclick = function () {desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt);};
+exitbutt.type = 'image';
+exitbutt.src = 'images/exit button.png';
+exitbutt.className = 'appicon';
+exitbutt.style = 'width:50px; height:50px; z-index: 100; position:absolute; right:55px; top: 100px;';
 
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
@@ -212,6 +230,15 @@ function loadDesktop(){
     actionmenuicon.className = 'appicon';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
+
+    var searchweb = document.createElement('input');
+    searchweb.type = 'image';
+    searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
+    searchweb.onclick = function () {desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);};
+    searchweb.title = 'Search the Web';
+    searchweb.className = 'appicon';
+    searchweb.style = "width:50px; height:50px; z-index: 100; position:absolute; right:0;";
+    navbar.appendChild(searchweb);
 
     var appicon1 = document.createElement('input');
     appicon1.type = 'image';
@@ -245,7 +272,7 @@ function loadDesktop(){
     app1.title = 'Settings';
     app1.onclick = function () {scriptApp('Settings');};
     app1.className = 'appchoice';
-    actioncenter.appendChild(app1);
+    appcenter.appendChild(app1);
 
     var app2 = document.createElement('input');
     app2.type = 'image';
@@ -253,7 +280,7 @@ function loadDesktop(){
     app2.title = 'S Browser';
     app2.onclick = function () {scriptApp('Browser');};
     app2.className = 'appchoice';
-    actioncenter.appendChild(app2);
+    appcenter.appendChild(app2);
 
     var app3 = document.createElement('input');
     app3.type = 'image';
@@ -261,7 +288,7 @@ function loadDesktop(){
     app3.title = 'Files';
     app3.onclick = function () {scriptApp('Files');};
     app3.className = 'appchoice';
-    actioncenter.appendChild(app3);
+    appcenter.appendChild(app3);
 
     var app4 = document.createElement('input');
     app4.type = 'image';
@@ -269,7 +296,7 @@ function loadDesktop(){
     app4.title = 'TextEdit';
     app4.onclick = function () {scriptApp('TextEdit');};
     app4.className = 'appchoice';
-    actioncenter.appendChild(app4);
+    appcenter.appendChild(app4);
 
     var app5 = document.createElement('input');
     app5.type = 'image';
@@ -277,7 +304,7 @@ function loadDesktop(){
     app5.title = 'Terminal';
     app5.onclick = function () {scriptApp('Terminal');};
     app5.className = 'appchoice';
-    actioncenter.appendChild(app5);
+    appcenter.appendChild(app5);
 
     var app6 = document.createElement('input');
     app6.type = 'image';
@@ -285,7 +312,7 @@ function loadDesktop(){
     app6.title = 'Discord[BETA]';
     app6.onclick = function () {scriptApp('Discord');};
     app6.className = 'appchoice';
-    actioncenter.appendChild(app6);
+    appcenter.appendChild(app6);
 
     var app7 = document.createElement('input');
     app7.type = 'image';
@@ -293,7 +320,7 @@ function loadDesktop(){
     app7.title = 'VisualCode';
     app7.onclick = function () {scriptApp('VisualCode');};
     app7.className = 'appchoice';
-    actioncenter.appendChild(app7);
+    appcenter.appendChild(app7);
 
     var app8 = document.createElement('input');
     app8.type = 'image';
@@ -301,7 +328,7 @@ function loadDesktop(){
     app8.title = 'Shortcuts';
     app8.onclick = function () {scriptApp('Shortcuts');};
     app8.className = 'appchoice';
-    actioncenter.appendChild(app8);
+    appcenter.appendChild(app8);
 
     var app9 = document.createElement('input');
     app9.type = 'image';
@@ -309,7 +336,7 @@ function loadDesktop(){
     app9.title = 'vmOS';
     app9.onclick = function () {scriptApp('vmOS');};
     app9.className = 'appchoice';
-    actioncenter.appendChild(app9);
+    appcenter.appendChild(app9);
 
     var app10 = document.createElement('input');
     app10.type = 'image';
@@ -317,10 +344,11 @@ function loadDesktop(){
     app10.title = 'AppStore';
     app10.onclick = function () {scriptApp('AppStore');};
     app10.className = 'appchoice';
-    actioncenter.appendChild(app10);
+    appcenter.appendChild(app10);
 
     var actionarea = document.createElement('div');
     actioncenter.id = 'actionarea';
+    actioncenter.appendChild(appcenter);
     actioncenter.appendChild(actionarea);
 
     var closebutt = document.createElement('button');
@@ -393,6 +421,8 @@ function signOut(childthing){
     }
 }
 
+var browserview = document.createElement('iframe');
+
 var conmenu1 = document.createElement('div');
 var conmenu1butt1 = document.createElement('li');
 var conmenu1butt2 = document.createElement('li');
@@ -445,7 +475,6 @@ function scriptApp(appsname){
     if (appsname === "Browser") {
         iconimage = 'script os S Browser icon.png';
         var inputbar = document.createElement("input");
-        var browserview = document.createElement('iframe');
         var backbutton = document.createElement('button');
         var forwardbutton = document.createElement('button');
         backbutton.id = "backbutt" + appnumber;
@@ -813,15 +842,20 @@ function scriptApp(appsname){
         var appnameinput = document.createElement('input');
         var appgitinput = document.createElement('input');
         var installbutt = document.createElement('button');
+        var appstoreapps = document.createElement('iframe');
         appstoretxt.innerHTML = 'Script OS AppStore';
+        appstoreapps.style.width = '100%';
+        appstoreapps.style.height = '75%';
+        appstoreapps.src = 'appstoreapps.html';
         appnameinput.placeholder = "App Name";
-        appgitinput.placeholder = "GitHub Pages URL";
+        appgitinput.placeholder = "App URL";
         installbutt.innerHTML = "Install";
         installbutt.onclick = function () { appInstall(appnameinput.value, appgitinput.value); };
         app.appendChild(appstoretxt);
         app.appendChild(appnameinput);
         app.appendChild(appgitinput);
         app.appendChild(installbutt);
+        app.appendChild(appstoreapps);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
