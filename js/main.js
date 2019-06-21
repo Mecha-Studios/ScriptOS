@@ -188,6 +188,7 @@ startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
 startupscreen.src = 'images/Script-OS.gif';
 var actioncenter = document.createElement('div');
+actioncenter.style = 'position: absolute; width: 100%; top: 100px; animation: slidetop; animation-duration: 2s; height: 25%;';
 var appcenter = document.createElement('div');
 
 function startUp(){
@@ -200,19 +201,19 @@ function startUp(){
 var websearch = document.createElement('input');
 var searchbutt = document.createElement('input');
 var exitbutt = document.createElement('input');
-websearch.style = 'border-radius: 25px; width: 50%; height: 100px; font-size: 75px; top:100px; position:absolute; background: rgba(255,255,255,0.5)';
-websearch.type = 'search';
+websearch.style = 'border-radius: 25px; width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; background: rgba(255,255,255,0.5)';
+websearch.type = 'text';
 websearch.placeholder = 'Search the web';
-searchbutt.onclick = function () {scriptApp("Browser"); browserview.src = 'https://www.bing.com/search?q=' + websearch.value};
+searchbutt.onclick = function () {scriptApp("Browser"); browserview.src = "https://www.bing.com/search?q=" + websearch.value;};
 searchbutt.type = 'image';
 searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
 searchbutt.className = 'appicon';
-searchbutt.style = 'width:50px; height:50px; z-index: 100; position:absolute; right:0; top: 100px;';
-exitbutt.onclick = function () {desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt);};
+searchbutt.style = 'width:50px; height:50px; animation:slidetop; z-index:10; animation-duration: 4s; position:absolute; right:0; top: 100px;';
+exitbutt.onclick = function () {websearch.value = ''; desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt);};
 exitbutt.type = 'image';
 exitbutt.src = 'images/exit button.png';
 exitbutt.className = 'appicon';
-exitbutt.style = 'width:50px; height:50px; z-index: 100; position:absolute; right:55px; top: 100px;';
+exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
 
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
@@ -347,8 +348,8 @@ function loadDesktop(){
     appcenter.appendChild(app10);
 
     var actionarea = document.createElement('div');
-    actioncenter.id = 'actionarea';
-    actioncenter.appendChild(appcenter);
+    actionarea.id = 'actionarea';
+    actionarea.appendChild(appcenter);
     actioncenter.appendChild(actionarea);
 
     var closebutt = document.createElement('button');
@@ -421,8 +422,6 @@ function signOut(childthing){
     }
 }
 
-var browserview = document.createElement('iframe');
-
 var conmenu1 = document.createElement('div');
 var conmenu1butt1 = document.createElement('li');
 var conmenu1butt2 = document.createElement('li');
@@ -469,39 +468,37 @@ function scriptApp(appsname){
     app.id = appsname + appnumber;
     apphead.id = app.id + "header";
     dragWindow(document.getElementById(appsname + appnumber));
-    close.onclick = function () { desktopbody.removeChild(app); conmenu1.removeChild(copybutton);};
+    close.onclick = function () { desktopbody.removeChild(app); };
     fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0px'; };
     smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; };
     if (appsname === "Browser") {
-        iconimage = 'script os S Browser icon.png';
         var inputbar = document.createElement("input");
+        browserview = document.createElement('iframe');
         var backbutton = document.createElement('button');
         var forwardbutton = document.createElement('button');
-        backbutton.id = "backbutt" + appnumber;
         backbutton.innerHTML = '<';
         backbutton.style.borderRadius = '15px';
         backbutton.onclick = function () { window.history.back(); };
-        forwardbutton.id = "forwardbutt" + appnumber;
         forwardbutton.innerHTML = '>';
         forwardbutton.style.borderRadius = '15px';
         forwardbutton.onclick = function () { window.history.forward(); };
         app.appendChild(backbutton);
         app.appendChild(forwardbutton);
-        inputbar.id = "inputbar" + appnumber;
         inputbar.type = 'text';
         inputbar.placeholder = 'Website';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
-        inputbar.value = browserview.src;
         inputbar.onchange = function () { browserview.src = "https://" + inputbar.value; };
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
         app.appendChild(browserview);
+        app.appendChild(browserview);
     } else if (appsname === "TextEdit") {
         var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
         var openbutton = document.createElement('input');
+        close.onclick = function () { desktopbody.removeChild(app); conmenu1.removeChild(copybutton);};
         newbutton.innerHTML = 'New';
         newbutton.onclick = function () { scriptApp("NewFile"); };
         openbutton.type = 'file';
@@ -897,9 +894,13 @@ if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) {
 function darkMode(){
     navbar.style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
+    websearch.style.background = 'rgba(0,0,0,0.5)';
+    websearch.style.color = 'white';
 }
 
 function lightMode(){
     navbar.style.background = 'rgba(255,255,255,0.5)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
+    websearch.style.background = 'rgba(255,255,255,0.5)';
+    websearch.style.color = 'black';
 }
