@@ -13,55 +13,74 @@ function checkTime(i) {
     return i;
 }
 
-var txtfiles = {
-    "testing.txt" : "hi there",
-    "yee yee.txt" : "YEE YEE",
-    "Hi there.txt" : "dahsdjashd",
-    "changelog.txt" : `Script OS Change Log:
-    #Script OS 2.9.6
-    -Startup screen added
-    #Script OS 2.9.5
-    -Files app redesigned
-    -Fixed file saving issues
-    -Lock screen added
-    #Script OS 2.9.4 
-    -Shortcuts added 
-    -Bug Fixes 
-    -HTML Support added 
-    #Script OS 2.9.3 
-    -Files app working in demo mode 
-    -Happy 1 Year of Script OS 
-    #Script OS 2.9.2
-    -HTML Editor added
-    -Themes color opacity increased 
-    -Mothers Day 
-    #Script OS 2.9.1
-    -Themes added
-    -Subscribe to PewDiePie button removed
-    -About app added
-    -App center redesigned 
-    #Script OS 2.9
-    -DarkMode added
-    -Script OS Redesigned
-    -App system improved
-    -Multi app window support
-    -All apps redesigned`,
-};
+var changelog = `Script OS Changelog:
+#Script OS 3.0[BETA]
+-Filesystem remade
+-Websearch added
+-vmOS added
+-AppStore added[COMING THIS FALL]
+-About page added to settings
+-Background images will now save to localStorage
+-Files will now save to localStorage
+-Changelog added to About page
+#Script OS 2.9.6
+-Startup screen added
+#Script OS 2.9.5
+-Files app redesigned
+-Fixed file saving issues
+-Lock screen added
+#Script OS 2.9.4 
+-Shortcuts added 
+-Bug Fixes 
+-HTML Support added 
+#Script OS 2.9.3 
+-Files app working in demo mode 
+-Happy 1 Year of Script OS 
+#Script OS 2.9.2
+-HTML Editor added
+-Themes color opacity increased 
+-Mothers Day 
+#Script OS 2.9.1
+-Themes added
+-Subscribe to PewDiePie button removed
+-App center redesigned 
+#Script OS 2.9
+-DarkMode added
+-Script OS Redesigned
+-App system improved
+-Multi app window support
+-All apps redesigned`
 
-var htmlfiles = {
-    ["hello world.html"] : `<!DOCTYPE html> 
-    <html lang="en"> 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Document</title>
-        </head>
-        <body>
-            <h1>Hello, World</h1>
-        </body>
-    </html>`,
-};
+var backgroundimage = document.body.style.backgroundImage;
+var savedbackground = localStorage.getItem('background');
+
+if(savedbackground){
+    document.body.style.backgroundImage = localStorage.getItem('background');
+}
+
+var codearea = document.createElement('textarea');
+var filecontainer = document.createElement('div');
+var filesapp = localStorage.getItem("Files");
+
+if(filesapp){
+    filecontainer.innerHTML = localStorage.getItem("Files");
+}
+
+function saveFileAs(filename, innercontents){
+    localStorage.setItem(filename, innercontents);
+    fileobj.onclick = function() {openFile(this.innerHTML);};
+    fileobj.innerHTML = filename;
+    fileobj.id = 'filebutton';
+    fileobj.className = 'filebutton';
+    fileobj.name = 'filebutton';
+    filecontainer.appendChild(fileobj);
+}
+
+function openFile(filesname){
+    scriptApp('VisualCode');
+    var filecontent = localStorage.getItem(filesname);
+    codearea.value = filecontent; 
+}
 
 function dragWindow(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -97,39 +116,6 @@ function dragWindow(elmnt) {
     }
 }
 
-function saveAsTxt(filename) {
-    var pom = document.createElement('a');
-    var filecontent = textarea.value;
-    txtfiles[filename + '.txt'] = filecontent;
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textarea.value));
-    pom.setAttribute('download', filename);
-    if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
-    }
-    else {
-        pom.click();
-    }
-}
-
-function saveAsHtml(filename) {
-    var pom = document.createElement('a');
-    var filecontents = codearea.value;
-    htmlfiles[filename + '.html'] = filecontents;
-
-    pom.setAttribute('href', 'data:html;charset=utf-8,' + encodeURIComponent(codearea.value));
-    pom.setAttribute('download', filename);
-
-    if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
-    } else {
-            pom.click();
-    }
-}
-
 function appInstall(appnamed, urll){
     var appbutton = document.createElement('button');
     appbutton.innerHTML = appnamed;
@@ -137,50 +123,7 @@ function appInstall(appnamed, urll){
     appcenter.appendChild(appbutton);
 }
 
-function openApp(appname, url) {
-    var newdiv = document.createElement('div');
-    var newdivhead = document.createElement('div');
-    var headtext = document.createTextNode(appname);
-    var newiframe = document.createElement('iframe');
-    var closebutton = document.createElement('input');
-    var fullscreenbutt = document.createElement('input');
-    var smallscreenbutt = document.createElement('input');
-    var appnum = Math.random();
-    appnum++;
-    newdiv.className = 'app';
-    newdivhead.className = 'appheader';
-    closebutton.type = 'image';
-    closebutton.style.width = '20px';
-    closebutton.src = 'images/exit button.png';
-    fullscreenbutt.type = 'image';
-    fullscreenbutt.style.width = '20px';
-    fullscreenbutt.src = 'images/fullscreen button.png';
-    smallscreenbutt.type = 'image';
-    smallscreenbutt.style.width = '20px';
-    smallscreenbutt.src = 'images/small screen button.png';
-    closebutton.innerHTML = "X";
-    closebutton.onclick = function () { desktopbody.removeChild(newdiv);};
-    fullscreenbutt.onclick = function () { newdiv.style.width = '100%'; newdiv.style.height = '92.5%'; newdiv.style.top = '20px'; newdiv.style.left = '0px'; };
-    smallscreenbutt.onclick = function () { newdiv.style.width = '50%'; newdiv.style.height = '50%'; };
-    desktopbody.appendChild(newdiv);
-    newdiv.appendChild(newdivhead);
-    newdivhead.appendChild(headtext);
-    newdivhead.appendChild(closebutton);
-    newdivhead.append(fullscreenbutt);
-    newdivhead.appendChild(smallscreenbutt);
-    newdiv.appendChild(newiframe);
-    newiframe.src = url;
-    newiframe.style.height = "92.5%";
-    newdiv.className = 'app';
-    newdivhead.className = 'appheader';
-    newdivhead.id = newdiv.id + "header";
-    newdiv.id = appname + appnum;
-    dragWindow(document.getElementById(appname + appnum));
-
-}
-
 var textarea = document.createElement("textarea");
-var codearea = document.createElement("textarea");
 var navbar = document.createElement('div');
 var desktopbody = document.getElementById('desktopbody');
 var startupscreen = document.createElement('img');
@@ -218,7 +161,11 @@ exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animat
 
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
-    document.body.style.backgroundImage = 'url("images/Script OS 3.0 .png")';
+    if(savedbackground){
+        document.body.style.backgroundImage = localStorage.getItem('background');
+    } else{
+        document.body.style.backgroundImage = 'url("images/Script OS 3.0 .png")';
+    }
     navbar.className = 'navbar';
     navbar.id = 'navbar';
     desktopbody.appendChild(navbar);
@@ -447,23 +394,37 @@ function scriptApp(appsname){
     var close = document.createElement('input');
     var fullscreen = document.createElement('input');
     var smallscreen = document.createElement('input');
+    var headbuttdiv = document.createElement('div');
+    var headtextdiv = document.createElement('div');
     var appnumber = Math.random();
+    headtextdiv.style.textAlign = 'left';
+    headtextdiv.style.width = '50%';
+    headtextdiv.style.cssFloat = 'left';
+    headbuttdiv.style.textAlign = 'right';
+    headbuttdiv.style.width = '50%';
+    headbuttdiv.style.cssFloat = 'right';
     appnumber++;
     app.className = 'app';
     apphead.className = 'appheader';
     close.type = 'image';
+    close.title = 'Close';
     close.style.width = '20px';
     close.src = 'images/exit button.png';
+    fullscreen.title = 'Fullscreen';
     fullscreen.type = 'image';
     fullscreen.style.width = '20px';
-    fullscreen.src = 'images/fullscreen button.png'
+    fullscreen.src = 'images/fullscreen button.png';
+    fullscreen.style.textAlign = 'right';
     smallscreen.type = 'image';
+    smallscreen.title = 'Small';
     smallscreen.style.width = '20px';
-    smallscreen.src = 'images/small screen button.png'
-    apphead.append(appheadtext);
-    apphead.append(close);
-    apphead.append(fullscreen);
-    apphead.append(smallscreen);
+    smallscreen.src = 'images/small screen button.png';
+    headtextdiv.append(appheadtext);
+    apphead.append(headtextdiv);
+    apphead.append(headbuttdiv);
+    headbuttdiv.append(close);
+    headbuttdiv.append(fullscreen);
+    headbuttdiv.append(smallscreen);
     app.appendChild(apphead);
     desktopbody.appendChild(app);
     app.id = appsname + appnumber;
@@ -539,7 +500,7 @@ function scriptApp(appsname){
         shortcuts.src = 'images/script os shortcuts logo.png';
         themesettings.src = 'images/photosappicon.png';
         backgroundsettings.src = 'images/background icon.png';
-        about.src = 'images/Script OS Logo.png';
+        about.src = 'images/Script OS Logo 3.png';
         shortcuts.style.width = '10%';
         about.style.width = '10%';
         themesettings.style.width = '10%';
@@ -578,48 +539,67 @@ function scriptApp(appsname){
         choice1.type = 'image';
         choice1.src = 'images/landscape.jpg';
         choice1.className = 'backgroundoption';
-        choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; };
+        choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; 
+        localStorage.setItem('background','url(images/landscape.jpg)'); };
         app.appendChild(choice1);
         var choice2 = document.createElement('input');
         choice2.type = 'image';
         choice2.src = 'images/imac-pro-wallpaper.jpg';
         choice2.className = 'backgroundoption';
-        choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)'; };
+        choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
+        localStorage.setItem('background','url(images/imac-pro-wallpaper.jpg)'); };
         app.appendChild(choice2);
         var choice3 = document.createElement('input');
         choice3.type = 'image';
-        choice3.src = 'images/Tron-Lamborghini-Aventador-4.jpg';
+        choice3.src = 'images/lamborghini ting.png';
         choice3.className = 'backgroundoption';
-        choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")'; };
+        choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")';
+        localStorage.setItem('background','url("images/lamborghini ting.png")'); };
         app.appendChild(choice3);
         var choice4 = document.createElement('input');
         choice4.type = 'image';
         choice4.src = 'images/2-wallpaper.png';
         choice4.className = 'backgroundoption';
-        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)';};
+        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)';
+        localStorage.setItem('background','url(images/2-wallpaper.png)');};
         app.appendChild(choice4);
         var choice5 = document.createElement('input');
         choice5.type = 'image';
         choice5.src = 'images/pewds-pattern.jpg';
         choice5.className = 'backgroundoption';
-        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';};
+        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
+        localStorage.setItem('background','url(images/pewds-pattern.jpg)');};
         app.appendChild(choice5);
         var choice6 = document.createElement('input');
         choice6.type = 'image';
         choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
         choice6.className = 'backgroundoption';
-        choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';};
+        choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
+        localStorage.setItem('background','url(images/animals_hero_giraffe_1_0.jpg)');};
         app.appendChild(choice6);
         var choice7 = document.createElement('input');
         choice7.type = 'image';
         choice7.src = 'images/hbd-script-os.png';
         choice7.className = 'backgroundoption';
-        choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';};
+        choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
+        localStorage.setItem('background','url(images/hbd-script-os.png)');};
         app.appendChild(choice7);
         var backgroundinput = document.createElement('input');
+        var backgroundaddbutt = document.createElement('button');
+        backgroundaddbutt.innerHTML = 'Add';
         backgroundinput.placeholder = "Background URL";
-        backgroundinput.onchange = function () {document.body.style.backgroundImage = "url('" +  backgroundinput.value; + "')"; };
+        backgroundaddbutt.onclick = function () {
+            document.body.style.backgroundImage = "url('" +  backgroundinput.value + "')"; 
+            custombackground = document.createElement('input');
+            custombackground.type = 'image';
+            custombackground.src = backgroundinput.value;
+            custombackground.className = 'backgroundoption';
+            custombackground.onclick = function () { document.body.style.backgroundImage = "url('" +  backgroundinput.value + "')";
+            localStorage.setItem('background',"url('" +  backgroundinput.value + "')");};
+            app.appendChild(custombackground);
+        };
         app.appendChild(backgroundinput);
+        app.appendChild(backgroundaddbutt);
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
         disframe.src = 'https://discordapp.com/widget?id=499007727696084993&theme=dark';
@@ -640,7 +620,7 @@ function scriptApp(appsname){
         app.appendChild(yesbutton);
         app.appendChild(nobutton);
         app.appendChild(cancelbutton);
-    } else if(appsname === "SaveTxt"){
+    } else if(appsname === "SaveAs"){
         var textsave = document.createElement('h1');
         var namefile = document.createElement('input');
         var save = document.createElement('button');
@@ -649,7 +629,7 @@ function scriptApp(appsname){
         namefile.placeholder = "File Name";
         save.innerHTML = "Save";
         save.onclick = function () {
-            saveAsTxt(namefile.value);
+            saveFileAs(namefile.value, codearea.value);
         };
         cancel.innerHTML = "Cancel";
         cancel.onclick = function () { desktopbody.removeChild(app); };
@@ -661,6 +641,9 @@ function scriptApp(appsname){
         var scriptosversion = document.createElement('h1');
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
+        var changelogbutt = document.createElement('button');
+        changelogbutt.innerHTML = 'Changelog';
+        changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
         scriptosversion.innerHTML = "Script OS 3.0[BETA]";
@@ -668,6 +651,15 @@ function scriptApp(appsname){
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
         app.appendChild(browserversion);
+        app.appendChild(changelogbutt);
+    }else if(appsname === "Changelog"){
+        var changelogtext = document.createElement('textarea');
+        changelogtext.value = changelog;
+        changelogtext.style.width = '100%';
+        changelogtext.style.height = '92.5%';
+        changelogtext.readOnly = true;
+        changelogtext.style.resize = 'none';
+        app.appendChild(changelogtext);
     }else if(appsname === "Themes"){
         var theme1 = document.createElement("button");
         var theme2 = document.createElement("button");
@@ -717,7 +709,7 @@ function scriptApp(appsname){
         savecode.innerHTML = 'Save';
         conmenu1.appendChild(copybutton);
         savecode.onclick = function () {
-            scriptApp('SaveHTML');
+            scriptApp('SaveAs');
         };
         openvbutton.addEventListener("change", function () {
             if (this.files && this.files[0]) {
@@ -755,43 +747,10 @@ function scriptApp(appsname){
         app.appendChild(openvbutton);
         app.appendChild(codearea);
         app.appendChild(codeviewer);
-    } else if(appsname === "SaveHTML"){
-        var textsave = document.createElement('h1');
-        var namefile = document.createElement('input');
-        var save = document.createElement('button');
-        var cancel = document.createElement('button');
-        namefile.placeholder = "File Name";
-        save.innerHTML = "Save";
-        save.onclick = function () {
-            saveAsHtml(namefile.value);
-        };
-        cancel.innerHTML = "Cancel";
-        cancel.onclick = function () { desktopbody.removeChild(app); };
-        app.appendChild(textsave);
-        app.appendChild(namefile);
-        app.appendChild(save);
-        app.appendChild(cancel);
     } else if(appsname === "Files"){
-        for (var name in txtfiles) {
-            var fbutt = document.createElement("input");
-            fbutt.type = 'image';
-            fbutt.src = 'images/txt file icon.png';
-            fbutt.style.width = '100px';
-            fbutt.style.height = '100px';
-            fbutt.title = name;
-            fbutt.onclick = function () { openSFile(txtfiles, name); };
-            app.appendChild(fbutt);
-        }
-        for (var named in htmlfiles) {
-            var fbutt2 = document.createElement("input");
-            fbutt2.type = 'image';
-            fbutt2.src = 'images/html file icon.png';
-            fbutt2.style.width = '100px';
-            fbutt2.style.height = '100px';
-            fbutt2.title = named;
-            fbutt2.onclick = function () { openSFile(htmlfiles, named); };
-            app.appendChild(fbutt2);
-        }
+        fileobj = document.createElement('button');
+        localStorage.setItem("Files", filecontainer.innerHTML);
+        app.appendChild(filecontainer);
     } else if(appsname === "Shortcuts"){
         var appnameshort = document.createElement('input');
         var shortadd = document.createElement('button');
@@ -822,7 +781,7 @@ function scriptApp(appsname){
         var oschoice4 = document.createElement('button');
         osview.style.width = '98%';
         osview.style.height = '92.5%';
-        oschoice1.innerHTML = 'lineOS';
+        oschoice1.innerHTML = 'lineOS[Currently Offline]';
         oschoice1.onclick = function () {osview.src = 'https://os.davecode.me';};
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
@@ -837,23 +796,8 @@ function scriptApp(appsname){
         app.appendChild(osview);
     } else if(appsname === "AppStore"){
         var appstoretxt = document.createElement('h1');
-        var appnameinput = document.createElement('input');
-        var appgitinput = document.createElement('input');
-        var installbutt = document.createElement('button');
-        var appstoreapps = document.createElement('iframe');
-        appstoretxt.innerHTML = 'Script OS AppStore';
-        appstoreapps.style.width = '100%';
-        appstoreapps.style.height = '75%';
-        appstoreapps.src = 'appstoreapps.html';
-        appnameinput.placeholder = "App Name";
-        appgitinput.placeholder = "App URL";
-        installbutt.innerHTML = "Install";
-        installbutt.onclick = function () { appInstall(appnameinput.value, appgitinput.value); };
+        appstoretxt.innerHTML = 'Coming September 2019';
         app.appendChild(appstoretxt);
-        app.appendChild(appnameinput);
-        app.appendChild(appgitinput);
-        app.appendChild(installbutt);
-        app.appendChild(appstoreapps);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
@@ -861,16 +805,6 @@ function scriptApp(appsname){
     }
 }
 
-function openSFile(storage,filename){
-    var innercontents = storage[filename];
-    if(innercontents = txtfiles[filename]){
-        scriptApp("TextEdit");
-        textarea.value = innercontents;
-    } else if(innercontents = htmlfiles[filename]){
-        scriptApp("VisualCode");
-        codearea.value = innercontents;
-    }
-}
 
 var objappVersion = navigator.appVersion;
 var objAgent = navigator.userAgent; 

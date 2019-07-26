@@ -68,6 +68,10 @@ button {
     height: 50px;
 }
 
+.appicon:hover{
+    background-color: red;
+}
+
 .topnav {
     color: white;
     background-color: #333;
@@ -210,6 +214,7 @@ button {
     z-index: 10;
     color: #fff;
     background: rgba(255, 255, 255, 0.75);
+    height: 20px;
 }
 
 iframe{
