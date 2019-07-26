@@ -13,6 +13,51 @@ function checkTime(i) {
     return i;
 }
 
+var changelog = `Script OS Changelog:
+#Script OS 3.0[BETA]
+-Filesystem remade
+-Websearch added
+-vmOS added
+-AppStore added[COMING THIS FALL]
+-About page added to settings
+-Background images will now save to localStorage
+-Files will now save to localStorage
+-Changelog added to About page
+#Script OS 2.9.6
+-Startup screen added
+#Script OS 2.9.5
+-Files app redesigned
+-Fixed file saving issues
+-Lock screen added
+#Script OS 2.9.4 
+-Shortcuts added 
+-Bug Fixes 
+-HTML Support added 
+#Script OS 2.9.3 
+-Files app working in demo mode 
+-Happy 1 Year of Script OS 
+#Script OS 2.9.2
+-HTML Editor added
+-Themes color opacity increased 
+-Mothers Day 
+#Script OS 2.9.1
+-Themes added
+-Subscribe to PewDiePie button removed
+-App center redesigned 
+#Script OS 2.9
+-DarkMode added
+-Script OS Redesigned
+-App system improved
+-Multi app window support
+-All apps redesigned`
+
+var backgroundimage = document.body.style.backgroundImage;
+var savedbackground = localStorage.getItem('background');
+
+if(savedbackground){
+    document.body.style.backgroundImage = localStorage.getItem('background');
+}
+
 var codearea = document.createElement('textarea');
 var filecontainer = document.createElement('div');
 var filesapp = localStorage.getItem("Files");
@@ -23,7 +68,11 @@ if(filesapp){
 
 function saveFileAs(filename, innercontents){
     localStorage.setItem(filename, innercontents);
+    fileobj.onclick = function() {openFile(this.innerHTML);};
     fileobj.innerHTML = filename;
+    fileobj.id = 'filebutton';
+    fileobj.className = 'filebutton';
+    fileobj.name = 'filebutton';
     filecontainer.appendChild(fileobj);
 }
 
@@ -112,7 +161,11 @@ exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animat
 
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
-    document.body.style.backgroundImage = 'url("images/Script OS 3.0 .png")';
+    if(savedbackground){
+        document.body.style.backgroundImage = localStorage.getItem('background');
+    } else{
+        document.body.style.backgroundImage = 'url("images/Script OS 3.0 .png")';
+    }
     navbar.className = 'navbar';
     navbar.id = 'navbar';
     desktopbody.appendChild(navbar);
@@ -486,43 +539,50 @@ function scriptApp(appsname){
         choice1.type = 'image';
         choice1.src = 'images/landscape.jpg';
         choice1.className = 'backgroundoption';
-        choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; };
+        choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; 
+        localStorage.setItem('background','url(images/landscape.jpg)'); };
         app.appendChild(choice1);
         var choice2 = document.createElement('input');
         choice2.type = 'image';
         choice2.src = 'images/imac-pro-wallpaper.jpg';
         choice2.className = 'backgroundoption';
-        choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)'; };
+        choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
+        localStorage.setItem('background','url(images/imac-pro-wallpaper.jpg)'); };
         app.appendChild(choice2);
         var choice3 = document.createElement('input');
         choice3.type = 'image';
-        choice3.src = 'images/Tron-Lamborghini-Aventador-4.jpg';
+        choice3.src = 'images/lamborghini ting.png';
         choice3.className = 'backgroundoption';
-        choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")'; };
+        choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")';
+        localStorage.setItem('background','url("images/lamborghini ting.png")'); };
         app.appendChild(choice3);
         var choice4 = document.createElement('input');
         choice4.type = 'image';
         choice4.src = 'images/2-wallpaper.png';
         choice4.className = 'backgroundoption';
-        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)';};
+        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)';
+        localStorage.setItem('background','url(images/2-wallpaper.png)');};
         app.appendChild(choice4);
         var choice5 = document.createElement('input');
         choice5.type = 'image';
         choice5.src = 'images/pewds-pattern.jpg';
         choice5.className = 'backgroundoption';
-        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';};
+        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
+        localStorage.setItem('background','url(images/pewds-pattern.jpg)');};
         app.appendChild(choice5);
         var choice6 = document.createElement('input');
         choice6.type = 'image';
         choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
         choice6.className = 'backgroundoption';
-        choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';};
+        choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
+        localStorage.setItem('background','url(images/animals_hero_giraffe_1_0.jpg)');};
         app.appendChild(choice6);
         var choice7 = document.createElement('input');
         choice7.type = 'image';
         choice7.src = 'images/hbd-script-os.png';
         choice7.className = 'backgroundoption';
-        choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';};
+        choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
+        localStorage.setItem('background','url(images/hbd-script-os.png)');};
         app.appendChild(choice7);
         var backgroundinput = document.createElement('input');
         var backgroundaddbutt = document.createElement('button');
@@ -534,7 +594,8 @@ function scriptApp(appsname){
             custombackground.type = 'image';
             custombackground.src = backgroundinput.value;
             custombackground.className = 'backgroundoption';
-            custombackground.onclick = function () { document.body.style.backgroundImage = "url('" +  backgroundinput.value + "')";};
+            custombackground.onclick = function () { document.body.style.backgroundImage = "url('" +  backgroundinput.value + "')";
+            localStorage.setItem('background',"url('" +  backgroundinput.value + "')");};
             app.appendChild(custombackground);
         };
         app.appendChild(backgroundinput);
@@ -580,6 +641,9 @@ function scriptApp(appsname){
         var scriptosversion = document.createElement('h1');
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
+        var changelogbutt = document.createElement('button');
+        changelogbutt.innerHTML = 'Changelog';
+        changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
         scriptosversion.innerHTML = "Script OS 3.0[BETA]";
@@ -587,6 +651,15 @@ function scriptApp(appsname){
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
         app.appendChild(browserversion);
+        app.appendChild(changelogbutt);
+    }else if(appsname === "Changelog"){
+        var changelogtext = document.createElement('textarea');
+        changelogtext.value = changelog;
+        changelogtext.style.width = '100%';
+        changelogtext.style.height = '92.5%';
+        changelogtext.readOnly = true;
+        changelogtext.style.resize = 'none';
+        app.appendChild(changelogtext);
     }else if(appsname === "Themes"){
         var theme1 = document.createElement("button");
         var theme2 = document.createElement("button");
@@ -677,7 +750,6 @@ function scriptApp(appsname){
     } else if(appsname === "Files"){
         fileobj = document.createElement('button');
         localStorage.setItem("Files", filecontainer.innerHTML);
-        fileobj.onclick = function(){ openFile(fileobj.innerHTML);};
         app.appendChild(filecontainer);
     } else if(appsname === "Shortcuts"){
         var appnameshort = document.createElement('input');
@@ -709,7 +781,7 @@ function scriptApp(appsname){
         var oschoice4 = document.createElement('button');
         osview.style.width = '98%';
         osview.style.height = '92.5%';
-        oschoice1.innerHTML = 'lineOS';
+        oschoice1.innerHTML = 'lineOS[Currently Offline]';
         oschoice1.onclick = function () {osview.src = 'https://os.davecode.me';};
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
