@@ -32,22 +32,16 @@ button {
 }
 
 .menu {
-    width: 120px;
-    z-index: 10;
+    width: 250px;
+    z-index: 20;
     position: fixed;
     box-shadow: 5px;
     display: none;
     background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
 }
 
-.menu2 {
-    width: 120px;
-    z-index: 10;
-    position: fixed;
-    box-shadow: 5px;
-    display: none;
-    background: rgba(0, 0, 0, 0.5);
-}
+
 
 .navbar {
     text-align: center;
@@ -89,11 +83,11 @@ button {
 
 @keyframes slidetop {
     0% {
-        opacity: 0;
+        opacity: 0px;
         top: 0px;
     }
     100%{
-        opacity: 100;
+        opacity: 100px;
         top: 100px;
     }
 }

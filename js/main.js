@@ -13,8 +13,10 @@ function checkTime(i) {
     return i;
 }
 
+var tasks = ['none'];
+
 var changelog = `Script OS Changelog:
-#Script OS 3.0[BETA]
+#Script OS 3.0[Currently Beta]
 -Filesystem remade
 -Websearch added
 -vmOS added
@@ -23,6 +25,8 @@ var changelog = `Script OS Changelog:
 -Background images will now save to localStorage
 -Files will now save to localStorage
 -Changelog added to About page
+-Lockscreen bugs fixed
+-TaskManager added[Currently not working]
 #Script OS 2.9.6
 -Startup screen added
 #Script OS 2.9.5
@@ -49,9 +53,8 @@ var changelog = `Script OS Changelog:
 -Script OS Redesigned
 -App system improved
 -Multi app window support
--All apps redesigned`
+-All apps redesigned`;
 
-var backgroundimage = document.body.style.backgroundImage;
 var savedbackground = localStorage.getItem('background');
 
 if(savedbackground){
@@ -327,6 +330,7 @@ function signIn(){
     loginbar.removeChild(logintxt);
     desktopbody.removeChild(loginbar);
     desktopbody.appendChild(navbar);
+    desktopbody.appendChild(conmenu1);
 }
 
 var headertext = document.createElement('h2');
@@ -334,7 +338,7 @@ var timetxt = document.createElement('h1');
 var loginbar = document.createElement('div');
 var logintxt = document.createElement('hp');
 
-function signOut(childthing){
+function signOut(){
     headertext.innerHTML = 'Script OS';
     headertext.style.fontSize = '100px';
     timetxt.style.fontSize = '85px';
@@ -349,8 +353,7 @@ function signOut(childthing){
     desktopbody.style.textAlign = 'center';
     loginbar.onclick = function () { signIn(); };
     loginbar.appendChild(logintxt);
-    desktopbody.removeChild(navbar);
-    desktopbody.removeChild(childthing);
+    desktopbody.innerHTML = '';
     desktopbody.appendChild(headertext);
     desktopbody.appendChild(timetxt);
     desktopbody.appendChild(loginbar);
@@ -374,18 +377,23 @@ var conmenu1 = document.createElement('div');
 var conmenu1butt1 = document.createElement('li');
 var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
-var copybutton = document.createElement('li');
+var conmenu1butt4 = document.createElement('li');
 conmenu1.style.color = 'white';
 conmenu1.className = 'menu';
 conmenu1butt1.innerHTML = 'Customize';
 conmenu1butt1.onclick = function () { scriptApp('Background'); };
 conmenu1butt2.innerHTML = 'Settings';
 conmenu1butt2.onclick = function () { scriptApp('Settings'); };
-copybutton.onclick = function () { document.execCommand('Copy'); };
-copybutton.innerHTML = 'Copy';
+conmenu1butt3.innerHTML = 'About';
+conmenu1butt3.onclick = function () { scriptApp('About'); };
+conmenu1butt4.innerHTML = 'TaskManager[Unavailable]';
+conmenu1butt4.disabled = true;
+conmenu1butt4.onclick = function () { scriptApp('TaskManager'); };
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
+conmenu1.appendChild(conmenu1butt3);
+conmenu1.appendChild(conmenu1butt4);
 
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -454,8 +462,21 @@ function scriptApp(appsname){
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
+        tasks.push("Browser");
         app.appendChild(browserview);
         app.appendChild(browserview);
+    } else if(appsname === "TaskManager"){
+        var task = document.createElement('div');
+        var taskname = document.createElement('h4');
+        var endtaskbutt = document.createElement('button');
+        endtaskbutt.innerHTML = 'End Task';
+        task.appendChild(taskname);
+        task.appendChild(endtaskbutt);
+        for(var i = 0; i > tasks.length; i++){
+            taskname.innerHTML = tasks[i];
+            
+            app.appendChild(task);
+        }
     } else if (appsname === "TextEdit") {
         var newbutton = document.createElement('button');
         var savebutton = document.createElement('button');
