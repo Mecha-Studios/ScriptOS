@@ -8,13 +8,15 @@
     <link href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo 3.png" />
 </head>
-<body onload="startTime(); startUp();" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
+<body onload="startTime(); startUp();" scroll="no" style="overflow: hidden;" content="width=device-width, height=device-height, initial-scale=1.0" >
     <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
         <ui>Script OS</ui>
         <ui>|</ui>
-        <ui onclick="darkMode()">DarkMode</ui>
+        <ui title="DarkMode" onclick="darkMode()">DarkMode</ui>
         <ui>|</ui>
-        <ui onclick="lightMode()">LightMode</ui>
+        <ui title="LightMode" onclick="lightMode()">LightMode</ui>
+        <ui>|</ui>
+        <ui title="Donate to the development of Script OS so that I can continue to add new features and apps to it for you to enjoy." onclick="scriptApp('Browser');browserview.src = 'https://paypal.me/tylerruotolo'">Donate</ui>
         <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
     </div>
     <style>
