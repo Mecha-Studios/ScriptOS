@@ -13,8 +13,6 @@ function checkTime(i) {
     return i;
 }
 
-var tasks = ['none'];
-
 var changelog = `Script OS Changelog:
 #Script OS 3.0[Currently Beta]
 -Filesystem remade
@@ -26,7 +24,10 @@ var changelog = `Script OS Changelog:
 -Files will now save to localStorage
 -Changelog added to About page
 -Lockscreen bugs fixed
--TaskManager added[Currently not working]
+-Music added
+-Donate button added
+-Script AI[ALPHA] added
+-Browser issues fixed(websites like google.com and youtube.com now work if you install the iFrame Allow chrome extension)
 #Script OS 2.9.6
 -Startup screen added
 #Script OS 2.9.5
@@ -147,7 +148,7 @@ function startUp(){
 var websearch = document.createElement('input');
 var searchbutt = document.createElement('input');
 var exitbutt = document.createElement('input');
-websearch.style = 'border-radius: 25px; width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; background: rgba(255,255,255,0.5)';
+websearch.style = 'border-radius: 25px; width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; background: rgba(255,255,255,0.5); color: black;';
 websearch.type = 'text';
 websearch.placeholder = 'Search the web';
 websearch.onchange = function() { scriptApp("Browser"); browserview.src = "https://www.bing.com/search?q=" + websearch.value; }
@@ -244,59 +245,67 @@ function loadDesktop(){
 
     var app4 = document.createElement('input');
     app4.type = 'image';
-    app4.src = "images/com.JellyBeanUser.apk.app.editor.png";
-    app4.title = 'TextEdit';
-    app4.onclick = function () {scriptApp('TextEdit');};
+    app4.src = "images/terminal icon.png";
+    app4.title = 'Terminal';
+    app4.onclick = function () {scriptApp('Terminal');};
     app4.className = 'appchoice';
     appcenter.appendChild(app4);
 
     var app5 = document.createElement('input');
     app5.type = 'image';
-    app5.src = "images/terminal icon.png";
-    app5.title = 'Terminal';
-    app5.onclick = function () {scriptApp('Terminal');};
+    app5.src = "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png";
+    app5.title = 'Discord[BETA]';
+    app5.onclick = function () {scriptApp('Discord');};
     app5.className = 'appchoice';
     appcenter.appendChild(app5);
 
     var app6 = document.createElement('input');
     app6.type = 'image';
-    app6.src = "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png";
-    app6.title = 'Discord[BETA]';
-    app6.onclick = function () {scriptApp('Discord');};
+    app6.src = "images/VisualCode logo.png";
+    app6.title = 'VisualCode';
+    app6.onclick = function () {scriptApp('VisualCode');};
     app6.className = 'appchoice';
     appcenter.appendChild(app6);
 
     var app7 = document.createElement('input');
     app7.type = 'image';
-    app7.src = "images/VisualCode logo.png";
-    app7.title = 'VisualCode';
-    app7.onclick = function () {scriptApp('VisualCode');};
+    app7.src = "images/script os shortcuts logo.png";
+    app7.title = 'Shortcuts';
+    app7.onclick = function () {scriptApp('Shortcuts');};
     app7.className = 'appchoice';
     appcenter.appendChild(app7);
 
     var app8 = document.createElement('input');
     app8.type = 'image';
-    app8.src = "images/script os shortcuts logo.png";
-    app8.title = 'Shortcuts';
-    app8.onclick = function () {scriptApp('Shortcuts');};
+    app8.src = "images/vmOS.png";
+    app8.title = 'vmOS';
+    app8.onclick = function () {scriptApp('vmOS');};
     app8.className = 'appchoice';
     appcenter.appendChild(app8);
 
     var app9 = document.createElement('input');
     app9.type = 'image';
-    app9.src = "images/vmOS.png";
-    app9.title = 'vmOS';
-    app9.onclick = function () {scriptApp('vmOS');};
+    app9.src = "images/appstore logo.png";
+    app9.title = 'AppStore';
+    app9.onclick = function () {scriptApp('AppStore');};
     app9.className = 'appchoice';
     appcenter.appendChild(app9);
 
     var app10 = document.createElement('input');
     app10.type = 'image';
-    app10.src = "images/appstore logo.png";
-    app10.title = 'AppStore';
-    app10.onclick = function () {scriptApp('AppStore');};
+    app10.src = "images/music logo.png";
+    app10.title = 'Music';
+    app10.onclick = function () {scriptApp('Music');};
     app10.className = 'appchoice';
     appcenter.appendChild(app10);
+
+    var app11 = document.createElement('input');
+    app11.type = 'image';
+    app11.src = "images/ScriptAI logo.png";
+    app11.title = 'ScriptAI';
+    app11.onclick = function () {scriptApp('ScriptAI');};
+    app11.className = 'appchoice';
+    appcenter.appendChild(app11);
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
@@ -315,7 +324,7 @@ function loadDesktop(){
 
     var signoutbutt = document.createElement('button');
     signoutbutt.innerHTML = 'Sign Out';
-    signoutbutt.onclick = function () { signOut(actioncenter); };
+    signoutbutt.onclick = function () { signOut(); };
     actionarea.appendChild(signoutbutt);
 
     var shutdownbutt = document.createElement('button');
@@ -458,57 +467,11 @@ function scriptApp(appsname){
         inputbar.placeholder = 'Website';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
-        inputbar.onchange = function () { browserview.src = "https://" + inputbar.value; };
+        inputbar.onchange = function () { browserview.src = "http://" + inputbar.value; };
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
-        tasks.push("Browser");
         app.appendChild(browserview);
-        app.appendChild(browserview);
-    } else if(appsname === "TaskManager"){
-        var task = document.createElement('div');
-        var taskname = document.createElement('h4');
-        var endtaskbutt = document.createElement('button');
-        endtaskbutt.innerHTML = 'End Task';
-        task.appendChild(taskname);
-        task.appendChild(endtaskbutt);
-        for(var i = 0; i > tasks.length; i++){
-            taskname.innerHTML = tasks[i];
-            
-            app.appendChild(task);
-        }
-    } else if (appsname === "TextEdit") {
-        var newbutton = document.createElement('button');
-        var savebutton = document.createElement('button');
-        var openbutton = document.createElement('input');
-        close.onclick = function () { desktopbody.removeChild(app); conmenu1.removeChild(copybutton);};
-        newbutton.innerHTML = 'New';
-        newbutton.onclick = function () { scriptApp("NewFile"); };
-        openbutton.type = 'file';
-        openbutton.id = 'fileopen';
-        savebutton.innerHTML = 'Save';
-        savebutton.onclick = function () { scriptApp("SaveTxt"); };
-        app.appendChild(newbutton);
-        app.appendChild(savebutton);
-        app.appendChild(openbutton);
-        app.appendChild(textarea);
-        conmenu1.appendChild(copybutton);
-        textarea.id = 'textarea' + app.id;
-        textarea.style.width = '99%';
-        textarea.style.height = '90%';
-        var input = document.getElementById("fileopen");
-        var output = document.getElementById("textarea");
-        input.addEventListener("change", function () {
-            if (this.files && this.files[0]) {
-                var myFile = this.files[0];
-                var reader = new FileReader();
-                reader.addEventListener('load', function (e) {
-                    output.value = e.target.result;
-                });
-
-                reader.readAsBinaryString(myFile);
-            }
-        });
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
         var themesettings = document.createElement('input');
@@ -625,6 +588,24 @@ function scriptApp(appsname){
         var disframe = document.createElement('iframe');
         disframe.src = 'https://discordapp.com/widget?id=499007727696084993&theme=dark';
         app.appendChild(disframe);
+    } else if(appsname === "Music"){
+        var audioplayer = document.createElement('audio');
+        var songchoice1 = document.createElement('button');
+        var songchoice2 = document.createElement('button');
+        var songchoice3 = document.createElement('button');
+        var songchoice4 = document.createElement('button');
+        audioplayer.controls = 'controls';
+        audioplayer.style.width = '100%';
+        songchoice2.innerHTML = "A Dream I Can't Remeber(Interlude) - Quadeca";
+        songchoice2.onclick = function () {audioplayer.src = 'Music/A Dream I Cant Remember (Interlude).mp3';};
+        songchoice3.innerHTML = "Bitch Lasagna - PewDiePie";
+        songchoice3.onclick = function () {audioplayer.src = 'Music/bitch lasagna.mp3';};
+        songchoice4.innerHTML = "Upbeat Background Music";
+        songchoice4.onclick = function () {audioplayer.src = 'Music/Upbeat and Happy Background Music For YouTube Videos and Commercials.mp3';};
+        app.appendChild(audioplayer);
+        app.appendChild(songchoice2);
+        app.appendChild(songchoice3);
+        app.appendChild(songchoice4);
     } else if(appsname === "NewFile"){
         var savetext = document.createElement('h1');
         var yesbutton = document.createElement('button');
@@ -819,13 +800,100 @@ function scriptApp(appsname){
         var appstoretxt = document.createElement('h1');
         appstoretxt.innerHTML = 'Coming September 2019';
         app.appendChild(appstoretxt);
+    } else if(appsname === "ScriptAI"){
+        var commandinput = document.createElement('input');
+        var commandoutput = document.createElement('textarea');
+        var micbutton = document.createElement('input');
+        var recognizer = new webkitSpeechRecognition();
+        recognizer.lang = "en";
+        recognizer.onresult = function(event) {
+            if (event.results.length > 0) {
+                var result = event.results[event.results.length-1];
+                if(result.isFinal) {
+                    commandinput.value = result[0].transcript;
+                }
+            }  
+        };
+        commandinput.placeholder = 'Type a message';
+        commandinput.style = 'height:15%; width:75%; font-size: 75px; border-radius: 30px';
+        commandoutput.style = 'height:75%; width:100%; font-size: 65px; color:white; background-color: black';
+        commandoutput.readOnly = true;
+        micbutton.type = 'image';
+        micbutton.disabled = true;
+        micbutton.style.backgroundColor = 'white';
+        micbutton.src = 'https://png.pngtree.com/svg/20151101/76e68d5d8b.svg';
+        commandinput.onchange = function () {
+            if(commandinput.value == "hey"){
+                commandoutput.value = "Hi there!";
+            }else if(commandinput.value == "hi"){
+                commandoutput.value = "Hey!";
+            } else if(commandinput.value == "whats up"){
+                commandoutput.value = "What's up my diggity dogs?";
+            } else if(commandinput.value == "what's up"){
+                commandoutput.value = "What's up my diggity dogs?";
+            } else if(commandinput.value == "how are you"){
+                commandoutput.value = "I'm doing pretty good.";
+            } else if(commandinput.value == "fuck you"){
+                commandoutput.value = "That isn't very nice!";
+            } else if(commandinput.value == "open youtube"){
+                commandoutput.value = "Okay, opening youtube.com";
+                scriptApp('Browser');
+                browserview.src = 'https://youtube.com';
+            } else if(commandinput.value == "what is the best meme account on instagram"){
+                commandoutput.value = "The best meme account is @manystolenmemes";
+            } else if(commandinput.value == "what is your favorite condiment"){
+                commandoutput.value = "Ketchup!";
+            } else if(commandinput.value == "who is the best rapper"){
+                commandoutput.value = "Either Eminem or Logic, tough choice.";
+            } else if(commandinput.value == "does minecraft or fortnite have more monthly players"){
+                commandoutput.value = "Fortnite(sadly)";
+            } else if(commandinput.value == "whats your favorite minecraft block"){
+                commandoutput.value = "Anvils because you can drop them on things.";
+            } else if(commandinput.value == "why does dr pepper come in a bottle"){
+                commandoutput.value = "His wife is dead";
+            } else if(commandinput.value == "what is the difference between a lamborghini and a trash can of dead babies"){
+                commandoutput.value = "I don't have a lamborghini in my garage.";
+            } else if(commandinput.value == "show me something funny"){
+                commandoutput.value = "Look in a mirror!";
+            } else if(commandinput.value == ""){
+                commandoutput.value = "";
+            } else{
+                commandoutput.value = "Sorry, I didn't get that.";
+            }
+            var available_voices = window.speechSynthesis.getVoices();
+            
+            var english_voice = '';
+
+            for(var i=0; i<available_voices.length; i++) {
+                if(available_voices[i].lang === 'en-US') {
+                    english_voice = available_voices[i];
+                    break;
+                }
+            }
+            if(english_voice === '')
+                english_voice = available_voices[0];
+
+            var utter = new SpeechSynthesisUtterance();
+            utter.rate = 1;
+            utter.pitch = 0.5;
+            utter.text = commandoutput.value;
+            utter.voice = english_voice;
+
+            window.speechSynthesis.speak(utter);
+        };
+        micbutton.className = 'appchoice';
+        micbutton.onclick = function () {
+            recognizer.start();
+        };
+        app.appendChild(commandoutput);
+        app.appendChild(commandinput);
+        app.appendChild(micbutton);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
         app.appendChild(unavailableapp);
     }
 }
-
 
 var objappVersion = navigator.appVersion;
 var objAgent = navigator.userAgent; 
