@@ -24,7 +24,6 @@ var changelog = `Script OS Changelog:
 -Files will now save to localStorage
 -Changelog added to About page
 -Lockscreen bugs fixed
--Music added
 -Donate button added
 -Script AI[ALPHA] added
 -Browser issues fixed(websites like google.com and youtube.com now work if you install the iFrame Allow chrome extension)
@@ -293,19 +292,11 @@ function loadDesktop(){
 
     var app10 = document.createElement('input');
     app10.type = 'image';
-    app10.src = "images/music logo.png";
-    app10.title = 'Music';
-    app10.onclick = function () {scriptApp('Music');};
+    app10.src = "images/ScriptAI logo.png";
+    app10.title = 'ScriptAI';
+    app10.onclick = function () {scriptApp('ScriptAI');};
     app10.className = 'appchoice';
     appcenter.appendChild(app10);
-
-    var app11 = document.createElement('input');
-    app11.type = 'image';
-    app11.src = "images/ScriptAI logo.png";
-    app11.title = 'ScriptAI';
-    app11.onclick = function () {scriptApp('ScriptAI');};
-    app11.className = 'appchoice';
-    appcenter.appendChild(app11);
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
@@ -586,26 +577,8 @@ function scriptApp(appsname){
         app.appendChild(backgroundaddbutt);
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
-        disframe.src = 'https://discordapp.com/widget?id=499007727696084993&theme=dark';
+        disframe.src = 'https://discordapp.com/';
         app.appendChild(disframe);
-    } else if(appsname === "Music"){
-        var audioplayer = document.createElement('audio');
-        var songchoice1 = document.createElement('button');
-        var songchoice2 = document.createElement('button');
-        var songchoice3 = document.createElement('button');
-        var songchoice4 = document.createElement('button');
-        audioplayer.controls = 'controls';
-        audioplayer.style.width = '100%';
-        songchoice2.innerHTML = "A Dream I Can't Remeber(Interlude) - Quadeca";
-        songchoice2.onclick = function () {audioplayer.src = 'Music/A Dream I Cant Remember (Interlude).mp3';};
-        songchoice3.innerHTML = "Bitch Lasagna - PewDiePie";
-        songchoice3.onclick = function () {audioplayer.src = 'Music/bitch lasagna.mp3';};
-        songchoice4.innerHTML = "Upbeat Background Music";
-        songchoice4.onclick = function () {audioplayer.src = 'Music/Upbeat and Happy Background Music For YouTube Videos and Commercials.mp3';};
-        app.appendChild(audioplayer);
-        app.appendChild(songchoice2);
-        app.appendChild(songchoice3);
-        app.appendChild(songchoice4);
     } else if(appsname === "NewFile"){
         var savetext = document.createElement('h1');
         var yesbutton = document.createElement('button');
