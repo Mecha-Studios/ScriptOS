@@ -294,6 +294,9 @@ function loadDesktop(){
     app10.type = 'image';
     app10.src = "images/ScriptAI logo.png";
     app10.title = 'ScriptAI';
+    if((objOffsetVersion=objAgent.indexOf("Safari"))!=-1){
+        app10.disbaled = true;
+    }
     app10.onclick = function () {scriptApp('ScriptAI');};
     app10.className = 'appchoice';
     appcenter.appendChild(app10);
@@ -377,7 +380,6 @@ var conmenu1 = document.createElement('div');
 var conmenu1butt1 = document.createElement('li');
 var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
-var conmenu1butt4 = document.createElement('li');
 conmenu1.style.color = 'white';
 conmenu1.className = 'menu';
 conmenu1butt1.innerHTML = 'Customize';
@@ -386,14 +388,10 @@ conmenu1butt2.innerHTML = 'Settings';
 conmenu1butt2.onclick = function () { scriptApp('Settings'); };
 conmenu1butt3.innerHTML = 'About';
 conmenu1butt3.onclick = function () { scriptApp('About'); };
-conmenu1butt4.innerHTML = 'TaskManager[Unavailable]';
-conmenu1butt4.disabled = true;
-conmenu1butt4.onclick = function () { scriptApp('TaskManager'); };
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
-conmenu1.appendChild(conmenu1butt4);
 
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -682,7 +680,6 @@ function scriptApp(appsname){
             </html>`;
         codearea.value = defaultText;
         savecode.innerHTML = 'Save';
-        conmenu1.appendChild(copybutton);
         savecode.onclick = function () {
             scriptApp('SaveAs');
         };
@@ -761,7 +758,7 @@ function scriptApp(appsname){
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
         oschoice3.innerHTML = 'Script OS';
-        oschoice3.onclick = function () {osview.src = 'https://scriptos.tk/';};
+        oschoice3.onclick = function () {osview.src = 'https://scriptos.cf/';};
         oschoice4.innerHTML = 'eyeOS';
         oschoice4.onclick = function () {osview.src = 'https://s2.demo.opensourcecms.com/eyeOS/';};
         app.appendChild(oschoice1);
