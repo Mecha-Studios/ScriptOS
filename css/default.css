@@ -64,6 +64,7 @@ button {
 
 .appicon:hover{
     background-color: red;
+    transform: scale(1.5);
 }
 
 .topnav {
@@ -183,6 +184,7 @@ button {
 }
 .appchoice:hover{
     background-color: red;
+    transform: scale(1.5);
 }
 
 #ActionMenu {
@@ -224,6 +226,11 @@ iframe{
     
 }
 
+#apphistory{
+    width: 100%;
+    height: 98%;
+    background: rgba(0, 0, 0, 0.5);
+}
 
 .favorite{
     width: 15%;

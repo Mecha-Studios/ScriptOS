@@ -15,6 +15,8 @@ function checkTime(i) {
 
 var changelog = `Script OS Changelog:
 #Script OS 3.0[Currently Beta]
+-DockZoom added
+-IconZoom added
 -Filesystem remade
 -Websearch added
 -vmOS added
@@ -84,6 +86,19 @@ function openFile(filesname){
     var filecontent = localStorage.getItem(filesname);
     codearea.value = filecontent; 
 }
+
+var apphistory = document.createElement('div');
+var appthing = document.createElement('h1');
+var histclosebutt = document.createElement('h1');
+apphistory.id = 'apphistory';
+appthing.innerHTML = "Nothing to see here...";
+histclosebutt.innerHTML = "Close";
+histclosebutt.onclick = function (){
+    desktopbody.removeChild(apphistory);
+}
+apphistory.appendChild(histclosebutt);
+apphistory.appendChild(appthing);
+
 
 function dragWindow(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -179,7 +194,6 @@ function loadDesktop(){
     actionmenuicon.src = 'images/Script OS logo 3.png';
     actionmenuicon.onclick = function () {desktopbody.appendChild(actioncenter); };
     actionmenuicon.title = 'ActionMenu';
-    actionmenuicon.className = 'appicon';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
 
@@ -188,7 +202,6 @@ function loadDesktop(){
     searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
     searchweb.onclick = function () {desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);};
     searchweb.title = 'Search the Web';
-    searchweb.className = 'appicon';
     searchweb.style = "width:50px; height:50px; z-index: 100; position:absolute; right:0;";
     navbar.appendChild(searchweb);
 
@@ -294,9 +307,6 @@ function loadDesktop(){
     app10.type = 'image';
     app10.src = "images/ScriptAI logo.png";
     app10.title = 'ScriptAI';
-    if((objOffsetVersion=objAgent.indexOf("Safari"))!=-1){
-        app10.disbaled = true;
-    }
     app10.onclick = function () {scriptApp('ScriptAI');};
     app10.className = 'appchoice';
     appcenter.appendChild(app10);
@@ -825,6 +835,12 @@ function scriptApp(appsname){
                 commandoutput.value = "I don't have a lamborghini in my garage.";
             } else if(commandinput.value == "show me something funny"){
                 commandoutput.value = "Look in a mirror!";
+            } else if(commandinput.value == "do you work on macs"){
+                commandoutput.value = "Yes, as long as you don't use Safari.";
+            } else if(commandinput.value == "donate"){
+                commandoutput.value = "...";
+                scriptApp("Browser");
+                browserview.src = "https://paypal.me/tylerruotolo"
             } else if(commandinput.value == ""){
                 commandoutput.value = "";
             } else{
@@ -875,12 +891,12 @@ if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) {
     objbrowserName = "Chrome"; 
     objfullVersion = objAgent.substring(objOffsetVersion+7); 
 }else if ((objOffsetVersion=objAgent.indexOf("MSIE"))!=-1) { 
-    objbrowserName = "Microsoft Internet Explorer"; 
+    objbrowserName = "Microsoft Internet Explorer(It is reccomended that you use Chrome)"; 
     objfullVersion = objAgent.substring(objOffsetVersion+5); 
 }else if ((objOffsetVersion=objAgent.indexOf("Firefox"))!=-1) { 
-    objbrowserName = "Firefox"; 
+    objbrowserName = "Firefox(It is reccomended that you use Chrome)"; 
 }else if ((objOffsetVersion=objAgent.indexOf("Safari"))!=-1) { 
-    objbrowserName = "Safari"; 
+    objbrowserName = "Safari(It is reccomended that you use Chrome)"; 
     objfullVersion = objAgent.substring(objOffsetVersion+7); 
     if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
 }
