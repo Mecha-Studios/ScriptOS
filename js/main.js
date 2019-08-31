@@ -739,7 +739,7 @@ function scriptApp(appsname){
         var newshortcut = document.createElement('input');
         var navbar = document.getElementById("navbar");
         newshortcut.type = 'image';
-        newshortcut.src = 'images/script os shortcuts logo.png';
+        newshortcut.src = "images/script os shortcuts logo.png";
         newshortcut.style.width = '50px';
         newshortcut.style.height = '50px';
         newshortcut.style.textAlign = 'center';
@@ -750,10 +750,12 @@ function scriptApp(appsname){
         shortadd.onclick = function () {
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
+            newshortcut.className = 'appicon'
             newshortcut.onclick = function () {
                 scriptApp(appnameshort.value);
             };
             navbar.appendChild(newshortcut);
+            desktopbody.removeChild(app);
         };
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
