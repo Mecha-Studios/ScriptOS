@@ -541,10 +541,10 @@ function scriptApp(appsname){
         app.appendChild(choice3);
         var choice4 = document.createElement('input');
         choice4.type = 'image';
-        choice4.src = 'images/2-wallpaper.png';
+        choice4.src = 'images/Script-OS-3.png';
         choice4.className = 'backgroundoption';
-        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/2-wallpaper.png)';
-        localStorage.setItem('background','url(images/2-wallpaper.png)');};
+        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/Script-OS-3.png)';
+        localStorage.setItem('background','url(Script-OS-3.png)');};
         app.appendChild(choice4);
         var choice5 = document.createElement('input');
         choice5.type = 'image';
