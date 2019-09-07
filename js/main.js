@@ -397,6 +397,17 @@ conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 
+//DarkMode Toggle
+function darkToggle(){
+    var darkmodeon = document.getElementById("darkmodetoggle").checked;
+    if(darkmodeon == true){
+        darkMode();
+    }else if(darkmodeon == false){
+        lightMode();
+    }
+    console.log(darkmodeon);
+}
+
 //Stock apps in Script OS
 function scriptApp(appsname){
     var app = document.createElement('div');
@@ -478,7 +489,7 @@ function scriptApp(appsname){
         shortcuts.src = 'images/script os shortcuts logo.png';
         themesettings.src = 'images/photosappicon.png';
         backgroundsettings.src = 'images/background icon.png';
-        about.src = 'images/Script OS Logo 3.png';
+        about.src = 'images/Script OS logo 3.png';
         shortcuts.style.width = '10%';
         about.style.width = '10%';
         themesettings.style.width = '10%';
@@ -486,11 +497,11 @@ function scriptApp(appsname){
         about.title = 'About';
         shortcuts.title = 'Shortcuts';
         themesettings.title = "Theme Settings";
-        backgroundsettings.title = 'Background Settings';
+        backgroundsettings.title = 'Personalization';
         about.onclick = function () { scriptApp("About"); };
         shortcuts.onclick = function () { scriptApp("Shortcuts"); };
         themesettings.onclick = function () { scriptApp("Themes"); };
-        backgroundsettings.onclick = function () {scriptApp("Background"); };
+        backgroundsettings.onclick = function () {scriptApp("Personalization"); };
         app.appendChild(shortcuts);
         app.appendChild(backgroundsettings);
         app.appendChild(themesettings);
@@ -515,7 +526,10 @@ function scriptApp(appsname){
         var test=12345;
         console.log('This is currently being tested and does not work yet...');
         app.appendChild(termoutput);
-    } else if (appsname === "Background"){
+    } else if (appsname === "Personalization"){
+        var backgroundtxt = document.createElement("h1");
+        backgroundtxt.innerHTML = "Background";
+        app.appendChild(backgroundtxt);
         var choice1 = document.createElement('input');
         choice1.type = 'image';
         choice1.src = 'images/landscape.jpg';
@@ -581,6 +595,32 @@ function scriptApp(appsname){
         };
         app.appendChild(backgroundinput);
         app.appendChild(backgroundaddbutt);
+        var apptranstext = document.createElement("h1");
+        apptranstext.innerHTML = "App Transparency";
+        var transtogglelabel = document.createElement("label");
+        var transtoggle = document.createElement("input");
+        var transtogglespan = document.createElement("span");
+        transtogglelabel.className = "switch";
+        transtoggle.type = "checkbox";
+        transtoggle.checked = true;
+        transtoggle.onchange = function (){
+            var ttoggle = transtoggle.checked;
+            var appclass = document.getElementsByClassName("app");
+            if(ttoggle == true){
+                for(var i = 0; i< appclass.length; i++){
+                    appclass[i].style.background = 'rgba(0,0,0,0.75)';
+                }
+            } else if(ttoggle == false){
+                for(var i = 0; i< appclass.length; i++){
+                    appclass[i].style.background = 'rgba(0,0,0,1)';
+                }
+            }
+        }
+        transtogglespan.className = "slider round";
+        app.appendChild(apptranstext);
+        app.appendChild(transtogglelabel);
+        transtogglelabel.appendChild(transtoggle);
+        transtogglelabel.appendChild(transtogglespan);
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
         disframe.src = 'https://discordapp.com/';
