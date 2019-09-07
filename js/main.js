@@ -134,13 +134,6 @@ function dragWindow(elmnt) {
     }
 }
 
-function appInstall(appnamed, urll){
-    var appbutton = document.createElement('button');
-    appbutton.innerHTML = appnamed;
-    appbutton.onclick = function () { openApp(appnamed, urll); };
-    appcenter.appendChild(appbutton);
-}
-
 var textarea = document.createElement("textarea");
 var navbar = document.createElement('div');
 var desktopbody = document.getElementById('desktopbody');
@@ -386,6 +379,7 @@ function signOut(){
     }
 }
 
+//Context Menu
 var conmenu1 = document.createElement('div');
 var conmenu1butt1 = document.createElement('li');
 var conmenu1butt2 = document.createElement('li');
@@ -403,6 +397,7 @@ conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 
+//Stock apps in Script OS
 function scriptApp(appsname){
     var app = document.createElement('div');
     var apphead = document.createElement('div');
@@ -501,22 +496,25 @@ function scriptApp(appsname){
         app.appendChild(themesettings);
         app.appendChild(about);
     } else if (appsname === "Terminal") {
-        var terminput = document.createElement('input');
         var termoutput = document.createElement('textarea');
-        terminput.style.width = '75%';
-        terminput.style.backgroundColor = 'black';
-        terminput.style.color = 'white';
-        terminput.placeholder = 'Terminal Input';
         termoutput.style.width = '98%';
         termoutput.style.height = '85%';
         termoutput.style.resize = 'none';
         termoutput.style.backgroundColor = 'black';
         termoutput.style.color = 'white';
-        termoutput.append("Currently disabled...");
-        termoutput.append("Terminal will be activated this fall.");
-        termoutput.disabled = true;
+        if (window.console) console = { 
+            log: function(){
+                var output='',
+                    console=termoutput;
+                for (var i=0;i<arguments.length;i++) {
+                    output+=arguments[i]+' ';
+                }
+                console.innerText+=output+"\n";
+            }
+        };
+        var test=12345;
+        console.log('This is currently being tested and does not work yet...');
         app.appendChild(termoutput);
-        app.appendChild(terminput);
     } else if (appsname === "Background"){
         var choice1 = document.createElement('input');
         choice1.type = 'image';
@@ -883,6 +881,7 @@ function scriptApp(appsname){
     }
 }
 
+//Browser Version
 var objappVersion = navigator.appVersion;
 var objAgent = navigator.userAgent; 
 var objbrowserName = navigator.appName; 
@@ -903,6 +902,7 @@ if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) {
     if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
 }
 
+//Dark and Light Mode
 function darkMode(){
     navbar.style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';

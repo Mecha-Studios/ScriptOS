@@ -70,11 +70,13 @@ button {
 .topnav {
     color: white;
     background-color: #333;
-    z-index: 10;
+    z-index: 9;
     overflow: hidden;
     bottom: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.5);
+    box-shadow: 5px 5px 2.5px black;
+    display: inline-block;
 }
 
 .backgroundoption {
@@ -169,6 +171,7 @@ button {
     font-family: 'Bauhaus 93';
     background: rgba(0, 0, 0, 0.75);
     animation-duration: 6s;
+    box-shadow: 5px 5px 2.5px black;
 }
 
 #actionarea {
