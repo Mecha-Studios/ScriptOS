@@ -461,7 +461,7 @@ function scriptApp(appsname){
         inputbar.placeholder = 'Website';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
-        inputbar.onchange = function () { browserview.src = "http://" + inputbar.value; };
+        inputbar.onchange = function () { browserview.src = "https://" + inputbar.value; };
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
