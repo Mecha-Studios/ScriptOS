@@ -252,10 +252,6 @@ iframe{
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
-  .slider:hover {
-      background-color: red;
-  }
 
   .slider:before {
     position: absolute;
@@ -267,6 +263,7 @@ iframe{
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
+    box-shadow: 2.5px 2.5px 2.5px black;
   }
   
   input:checked + .slider {
