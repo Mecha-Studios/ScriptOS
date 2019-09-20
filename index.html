@@ -6,31 +6,23 @@
     <meta name="author" content="Tyler Ruotolo"/>
     <meta name="description" content="Script OS is a simple Web Operating sytem that runs in a browser." />
     <link href="css/default.css" rel="stylesheet" />
-    <link rel="shortcut icon" type="image" href="images/Script OS Logo.png" />
+    <link rel="shortcut icon" type="image" href="images/Script OS Logo 3.png" />
 </head>
-<body onload="startTime(); startUp();" scroll="no" style="overflow: hidden; align-content:center" content="width=device-width, height=device-height, initial-scale=1.0" >
+<body onload="startTime(); startUp();" scroll="no" style="overflow: hidden;" content="width=device-width, height=device-height, initial-scale=1.0" >
     <div class="topnav" id="topnav" style="width: 100%; font-family:'Segoe UI Emoji'">
-        <ui>Script OS</ui>
+        <ui onclick="desktopbody.appendChild(apphistory)">Script OS</ui>
         <ui>|</ui>
-        <ui onclick="darkMode()">DarkMode</ui>
+        <ui>DarkMode</ui>
+        <label title="DarkMode" class="switch">
+            <input type="checkbox" id="darkmodetoggle" onchange="darkToggle();">
+            <span class="slider round"></span>
+        </label>
         <ui>|</ui>
-        <ui onclick="lightMode()">LightMode</ui>
+        <ui title="Donate to the development of Script OS so that I can continue to add new features and apps to it for you to enjoy." onclick="scriptApp('Browser');browserview.src = 'https://paypal.me/tylerruotolo'">Donate</ui>
         <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
-        <script>
-            function startTime() {
-                var today = new Date();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                m = checkTime(m);
-                document.getElementById('datetime').innerHTML = h + ":" + m + " | " + (("0"+(today.getMonth()+1)).slice(-2)) +"/"+ (("0"+today.getDate()).slice(-2)) +"/"+ (today.getFullYear());
-                var t = setTimeout(startTime, 500);
-            }
-
-            function checkTime(i) {
-                if (i < 10) { i = "0" + i; }
-                return i;
-            }
-        </script>
+    </div>
+    <div id="desktopbody">
+        
     </div>
     <style>
         body {
@@ -39,17 +31,7 @@
             -o-background-size: cover;
         }
     </style>
-        
-    <div id="desktopbody">
-        
-    </div>
-    <div class="menu" style="color:white">
-        <ul class="menu-options">
-            <li class="menu-option" onclick="scriptApp('Background')">Personalize</li>
-            <li class="menu-option" onclick="scriptApp('Settings')">Settings</li>
-            <li class="menu-option" onclick="location.href = 'https://www.twitter.com/TylerRuotolo'">Help</li>
-        </ul>
-    </div>
     <script src="js/main.js"></script>
+    <script src="js/contextmenus.js"></script>
 </body>
 </html>
