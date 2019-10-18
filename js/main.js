@@ -476,6 +476,7 @@ function scriptApp(appsname){
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
+        browserview.title = 'whitmanCTF[welcome_to_script_os_717]'
         app.appendChild(browserview);
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
