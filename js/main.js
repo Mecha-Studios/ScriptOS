@@ -248,14 +248,6 @@ function loadDesktop(){
     app3.className = 'appchoice';
     appcenter.appendChild(app3);
 
-    var app4 = document.createElement('input');
-    app4.type = 'image';
-    app4.src = "images/terminal icon.png";
-    app4.title = 'Terminal';
-    app4.onclick = function () {scriptApp('Terminal');};
-    app4.className = 'appchoice';
-    appcenter.appendChild(app4);
-
     var app5 = document.createElement('input');
     app5.type = 'image';
     app5.src = "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png";
