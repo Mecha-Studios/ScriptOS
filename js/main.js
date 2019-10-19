@@ -259,7 +259,7 @@ function loadDesktop(){
     var app5 = document.createElement('input');
     app5.type = 'image';
     app5.src = "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png";
-    app5.title = 'Discord[BETA]';
+    app5.title = 'Discord';
     app5.onclick = function () {scriptApp('Discord');};
     app5.className = 'appchoice';
     appcenter.appendChild(app5);
@@ -287,14 +287,6 @@ function loadDesktop(){
     app8.onclick = function () {scriptApp('vmOS');};
     app8.className = 'appchoice';
     appcenter.appendChild(app8);
-
-    var app9 = document.createElement('input');
-    app9.type = 'image';
-    app9.src = "images/appstore logo.png";
-    app9.title = 'AppStore';
-    app9.onclick = function () {scriptApp('AppStore');};
-    app9.className = 'appchoice';
-    appcenter.appendChild(app9);
 
     var app10 = document.createElement('input');
     app10.type = 'image';
