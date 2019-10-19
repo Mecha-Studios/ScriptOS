@@ -14,13 +14,16 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
-#Script OS 3.0[Currently Beta]
+#Script OS 3.0.1
+-Bugs fixed
+-Donate Button Removed
+-Terminal Removed
+#Script OS 3.0
 -DockZoom added
 -IconZoom added
 -Filesystem remade
 -Websearch added
 -vmOS added
--AppStore added[COMING THIS FALL]
 -About page added to settings
 -Background images will now save to localStorage
 -Files will now save to localStorage
@@ -170,6 +173,7 @@ exitbutt.src = 'images/exit button.png';
 exitbutt.className = 'appicon';
 exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
 
+//Desktop Loading Sequence
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
     if(savedbackground){
@@ -314,6 +318,7 @@ function loadDesktop(){
 
 }
 
+//Sign In
 function signIn(){
     desktopbody.removeChild(headertext);
     desktopbody.removeChild(timetxt);
@@ -326,15 +331,13 @@ function signIn(){
 var headertext = document.createElement('h2');
 var timetxt = document.createElement('h1');
 var loginbar = document.createElement('div');
-var logintxt = document.createElement('hp');
 
+//Sign Out
 function signOut(){
     headertext.innerHTML = 'Script OS';
     headertext.style.fontSize = '100px';
     timetxt.style.fontSize = '85px';
-    logintxt.innerHTML = 'Login';
-    loginbar.className = 'navbar';
-    logintxt.style.fontSize = '50px';
+    loginbar.className = 'logbar';
     headertext.style.animation = 'rgb';
     headertext.style.animationDuration = '6s';
     timetxt.style.animation = 'rgb';
@@ -342,7 +345,6 @@ function signOut(){
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
     loginbar.onclick = function () { signIn(); };
-    loginbar.appendChild(logintxt);
     desktopbody.innerHTML = '';
     desktopbody.appendChild(headertext);
     desktopbody.appendChild(timetxt);
