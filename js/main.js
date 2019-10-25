@@ -74,16 +74,6 @@ if(filesapp){
     filecontainer.innerHTML = localStorage.getItem("Files");
 }
 
-function saveFileAs(filename, innercontents){
-    localStorage.setItem(filename, innercontents);
-    fileobj.onclick = function() {openFile(this.innerHTML);};
-    fileobj.innerHTML = filename;
-    fileobj.id = 'filebutton';
-    fileobj.className = 'filebutton';
-    fileobj.name = 'filebutton';
-    filecontainer.appendChild(fileobj);
-}
-
 function openFile(filesname){
     scriptApp('VisualCode');
     var filecontent = localStorage.getItem(filesname);
@@ -220,7 +210,7 @@ function loadDesktop(){
 
     var appicon3 = document.createElement('input');
     appicon3.type = 'image';
-    appicon3.src = 'images/script os files icon.png';
+    appicon3.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png';
     appicon3.className = 'appicon';
     appicon3.title = 'Files';
     appicon3.onclick = function () { scriptApp('Files')}
@@ -246,7 +236,7 @@ function loadDesktop(){
 
     var app3 = document.createElement('input');
     app3.type = 'image';
-    app3.src = "images/script os files icon.png";
+    app3.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png";
     app3.title = 'Files';
     app3.onclick = function () {scriptApp('Files');};
     app3.className = 'appchoice';
@@ -322,7 +312,6 @@ function loadDesktop(){
 function signIn(){
     desktopbody.removeChild(headertext);
     desktopbody.removeChild(timetxt);
-    loginbar.removeChild(logintxt);
     desktopbody.removeChild(loginbar);
     desktopbody.appendChild(navbar);
     desktopbody.appendChild(conmenu1);
@@ -612,39 +601,6 @@ function scriptApp(appsname){
         var disframe = document.createElement('iframe');
         disframe.src = 'https://discordapp.com/';
         app.appendChild(disframe);
-    } else if(appsname === "NewFile"){
-        var savetext = document.createElement('h1');
-        var yesbutton = document.createElement('button');
-        var nobutton = document.createElement('button');
-        var cancelbutton = document.createElement('button');
-        savetext.innerHTML = "Do you want to save?";
-        yesbutton.innerHTML = "Yes";
-        yesbutton.onclick = function () { scriptApp("SaveAs"); };
-        nobutton.innerHTML = "No";
-        nobutton.onclick = function() { document.getElementById('text-box').value = null; };
-        cancelbutton.innerHTML = "Cancel";
-        cancelbutton.onclick = function() { desktopbody.removeChild(app); };
-        app.appendChild(savetext);
-        app.appendChild(yesbutton);
-        app.appendChild(nobutton);
-        app.appendChild(cancelbutton);
-    } else if(appsname === "SaveAs"){
-        var textsave = document.createElement('h1');
-        var namefile = document.createElement('input');
-        var save = document.createElement('button');
-        var cancel = document.createElement('button');
-        textsave.innerHTML = "Save your file!";
-        namefile.placeholder = "File Name";
-        save.innerHTML = "Save";
-        save.onclick = function () {
-            saveFileAs(namefile.value, codearea.value);
-        };
-        cancel.innerHTML = "Cancel";
-        cancel.onclick = function () { desktopbody.removeChild(app); };
-        app.appendChild(textsave);
-        app.appendChild(namefile);
-        app.appendChild(save);
-        app.appendChild(cancel);
     } else if(appsname === "About"){
         var scriptosversion = document.createElement('h1');
         var browserversion = document.createElement('h1');
@@ -698,10 +654,17 @@ function scriptApp(appsname){
         app.appendChild(theme3);
     } else if(appsname === "VisualCode"){
         var codeviewer = document.createElement("iframe");
+        var savebutton = document.createElement("button");
         var openvbutton = document.createElement("input");
-        var savecode = document.createElement('button');
+        savebutton.innerHTML = "Save in Docs";
+        savebutton.onclick = function () {
+            codearea.select();
+            document.execCommand('copy');
+            window.open("https://docs.google.com/document/u/0");
+        };
         openvbutton.type = 'file';
-        const defaultText = `<!DOCTYPE html> 
+        const defaultText = `
+        <!DOCTYPE html> 
             <html lang="en"> 
                 <head>
                     <meta charset="UTF-8">
@@ -714,10 +677,6 @@ function scriptApp(appsname){
                 </body>
             </html>`;
         codearea.value = defaultText;
-        savecode.innerHTML = 'Save';
-        savecode.onclick = function () {
-            scriptApp('SaveAs');
-        };
         openvbutton.addEventListener("change", function () {
             if (this.files && this.files[0]) {
                 var myFile = this.files[0];
@@ -750,13 +709,14 @@ function scriptApp(appsname){
         codeviewer.style.height = '48%';
         codeviewer.style.width = '100%';
         codeviewer.style.display = 'block';
-        app.appendChild(savecode);
+        app.appendChild(savebutton);
         app.appendChild(openvbutton);
         app.appendChild(codearea);
         app.appendChild(codeviewer);
     } else if(appsname === "Files"){
-        fileobj = document.createElement('button');
-        localStorage.setItem("Files", filecontainer.innerHTML);
+        var filecontainer = document.createElement("iframe");
+        filecontainer.style = 'width: 99%; height:99%;';
+        filecontainer.src = "https://google.com/drive"
         app.appendChild(filecontainer);
     } else if(appsname === "Shortcuts"){
         var appnameshort = document.createElement('input');
@@ -803,10 +763,6 @@ function scriptApp(appsname){
         app.appendChild(oschoice3);
         app.appendChild(oschoice4);
         app.appendChild(osview);
-    } else if(appsname === "AppStore"){
-        var appstoretxt = document.createElement('h1');
-        appstoretxt.innerHTML = 'Coming September 2019';
-        app.appendChild(appstoretxt);
     } else if(appsname === "ScriptAI"){
         var commandinput = document.createElement('input');
         var commandoutput = document.createElement('textarea');
