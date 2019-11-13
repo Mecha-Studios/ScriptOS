@@ -109,6 +109,15 @@ button {
     }
 }
 
+@keyframes swipeup{
+    0% {
+        bottom:0px;
+    }
+    100% {
+        top:0px;
+    }
+}
+
 @keyframes rgb {
     0% {
         color: red;

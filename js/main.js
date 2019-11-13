@@ -14,6 +14,9 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.1
+-Bugs fixed
+-New commands added to Script AI
 #Script OS 3.0.1
 -Bugs fixed
 -Donate Button Removed
@@ -451,7 +454,7 @@ function scriptApp(appsname){
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
         browserview.src = 'newtab.html';
-        browserview.title = 'whitmanCTF[welcome_to_script_os_717]'
+        browserview.title = 'whitmanCTF[welcome_to_script_os_717]';
         app.appendChild(browserview);
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
@@ -826,6 +829,19 @@ function scriptApp(appsname){
                 browserview.src = "https://paypal.me/tylerruotolo"
             } else if(commandinput.value == ""){
                 commandoutput.value = "";
+            } else if(commandinput.value == "yes"){
+                commandoutput.value = "Yes recieved!";
+            } else if(commandinput.value == "no"){
+                commandoutput.value = "Okay.";
+            } else if(commandinput.value == "lock my computer"){
+                commandoutput.value = "Locking your computer.";
+                signOut();
+            } else if(commandinput.value == "what is your name"){
+                commandoutput.value = "My name is Script AI, I'm here to help!";
+            } else if(commandinput.value == "what is the weather"){
+                commandoutput.value = "Loading weather...";
+                scriptApp("Browser");
+                browserview.src = "https://www.google.com/search?q=weather";
             } else{
                 commandoutput.value = "Sorry, I didn't get that.";
             }

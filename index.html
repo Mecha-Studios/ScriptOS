@@ -5,7 +5,7 @@
     <title>Script OS</title>
     <meta name="author" content="Tyler Ruotolo"/>
     <meta name="description" content="Script OS is a simple Web Operating sytem that runs in a browser." />
-    <link href="css/default.css" rel="stylesheet" />
+    <link id="css" href="css/default.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image" href="images/Script OS Logo 3.png" />
 </head>
 <body onload="startTime(); startUp();" scroll="no" style="overflow: hidden;" content="width=device-width, height=device-height, initial-scale=1.0" >
@@ -17,7 +17,6 @@
             <input type="checkbox" id="darkmodetoggle" onchange="darkToggle();">
             <span class="slider round"></span>
         </label>
-        <ui>|</ui>
         <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
     </div>
     <div id="desktopbody">
