@@ -484,7 +484,7 @@ function scriptApp(appsname){
         app.appendChild(shortcuts);
         app.appendChild(backgroundsettings);
         app.appendChild(themesettings);
-        app.appendChild(about);
+        app.appendChild(about);ß
     } else if (appsname === "Terminal") {
         var termoutput = document.createElement('textarea');
         termoutput.style.width = '98%';
@@ -842,6 +842,10 @@ function scriptApp(appsname){
                 commandoutput.value = "Loading weather...";
                 scriptApp("Browser");
                 browserview.src = "https://www.google.com/search?q=weather";
+            } else if(commandinput.value ==  "flag"){
+                commandoutput.value = "I will not just give you the flag, what year was Script OS created?(type the year in to ScriptAI when you have it)";
+            } else if(commandinput.value == "2018"){
+                commandoutput.value = "You got it, the flag is whitmanCTF[script_os_is_simple]";
             } else{
                 commandoutput.value = "Sorry, I didn't get that.";
             }
@@ -914,4 +918,39 @@ function lightMode(){
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
     websearch.style.background = 'rgba(255,255,255,0.5)';
     websearch.style.color = 'black';
+}
+
+var ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+
+
+
+
+function caesarDecrypt(encryptedMessage, key){
+    
+    return caesarEncrypt(encryptedMessage, -key);
+
+}
+
+function caesarEncrypt(message, key){
+    var encryptedResult = "";
+    
+    for(var i = 0; i < message.length; i++){
+        var originalCharacter = message.charAt(i);
+        
+        var alphabeticIndex = ALPHABET.indexOf(originalCharacter);
+        if(alphabeticIndex >= 0){
+            var newIndex = alphabeticIndex + key + ALPHABET.length;
+            newIndex = newIndex % ALPHABET.length;
+            
+            var newCharacter = ALPHABET.charAt(newIndex);
+            
+            encryptedResult += newCharacter
+        }
+        
+        else{
+            encryptedResult += originalCharacter;
+        }
+    }
+    
+    return encryptedResult;
 }
