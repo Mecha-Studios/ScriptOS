@@ -14,6 +14,8 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.1.1
+-Timer app added
 #Script OS 3.1
 -Bugs fixed
 -New commands added to Script AI
@@ -244,6 +246,14 @@ function loadDesktop(){
     app3.onclick = function () {scriptApp('Files');};
     app3.className = 'appchoice';
     appcenter.appendChild(app3);
+
+    var app4 = document.createElement("input");
+    app4.type = 'image';
+    app4.src = 'https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/timer-512.png';
+    app4.title = "Timer";
+    app4.onclick = function () {scriptApp('Timer');};
+    app4.className = 'appchoice';
+    appcenter.appendChild(app4);
 
     var app5 = document.createElement('input');
     app5.type = 'image';
@@ -613,7 +623,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.1";
+        scriptosversion.innerHTML = "Script OS 3.1.1";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
@@ -627,6 +637,40 @@ function scriptApp(appsname){
         changelogtext.readOnly = true;
         changelogtext.style.resize = 'none';
         app.appendChild(changelogtext);
+    }else if(appsname === "Timer"){
+        var timeleft = document.createElement('h1');
+        var timeset = document.createElement('input');
+        var setbutton = document.createElement('button');
+        var stopbutton = document.createElement('button');
+        var timesuptext = document.createElement('h1');
+        var timing;
+        var alarm = new Audio('analog-watch-alarm_daniel-simion.mp3');
+        timesuptext.innerHTML = "TIMES UP!!!";
+        timeset.placeholder = "Time(in seconds)";
+        timeset.type = "number";
+        setbutton.innerHTML = "Set & Start Timer";
+        setbutton.onclick = function () {
+            timing = timeset.value;
+            let timerint = setInterval(function(){
+                timeleft.innerHTML = "Time: " + timing--;
+                if(timing < 0){
+                    clearInterval(timerint);
+                    app.style.backgroundColor = "red";
+                    app.appendChild(timesuptext);
+                    alarm.play();
+                }
+            }, 1000);
+            stopbutton.innerHTML = "Stop";
+            stopbutton.onclick = function(){
+                clearInterval(timerint);
+                alarm.pause();
+            };
+            app.appendChild(stopbutton);
+        };
+        app.appendChild(timeleft);
+        app.appendChild(timeset);
+        app.appendChild(setbutton);
+
     }else if(appsname === "Themes"){
         var theme1 = document.createElement("button");
         var theme2 = document.createElement("button");
@@ -842,10 +886,6 @@ function scriptApp(appsname){
                 commandoutput.value = "Loading weather...";
                 scriptApp("Browser");
                 browserview.src = "https://www.google.com/search?q=weather";
-            } else if(commandinput.value ==  "flag"){
-                commandoutput.value = "I will not just give you the flag, what year was Script OS created?(type the year in to ScriptAI when you have it)";
-            } else if(commandinput.value == "2018"){
-                commandoutput.value = "You got it, the flag is whitmanCTF[script_os_is_simple]";
             } else{
                 commandoutput.value = "Sorry, I didn't get that.";
             }
@@ -918,39 +958,4 @@ function lightMode(){
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
     websearch.style.background = 'rgba(255,255,255,0.5)';
     websearch.style.color = 'black';
-}
-
-var ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-
-
-
-
-function caesarDecrypt(encryptedMessage, key){
-    
-    return caesarEncrypt(encryptedMessage, -key);
-
-}
-
-function caesarEncrypt(message, key){
-    var encryptedResult = "";
-    
-    for(var i = 0; i < message.length; i++){
-        var originalCharacter = message.charAt(i);
-        
-        var alphabeticIndex = ALPHABET.indexOf(originalCharacter);
-        if(alphabeticIndex >= 0){
-            var newIndex = alphabeticIndex + key + ALPHABET.length;
-            newIndex = newIndex % ALPHABET.length;
-            
-            var newCharacter = ALPHABET.charAt(newIndex);
-            
-            encryptedResult += newCharacter
-        }
-        
-        else{
-            encryptedResult += originalCharacter;
-        }
-    }
-    
-    return encryptedResult;
 }
