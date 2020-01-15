@@ -1,4 +1,5 @@
-﻿function startTime() {
+﻿//Time(Clock stuff)
+function startTime() {
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -14,6 +15,11 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.2
+-Shortcuts improvements
+-Shortcuts save after closing Script OS
+-Timer icon changed
+-Zoom feature added to appheader buttons
 #Script OS 3.1.1
 -Timer app added
 #Script OS 3.1
@@ -66,6 +72,7 @@ var changelog = `Script OS Changelog:
 -All apps redesigned`;
 
 var savedbackground = localStorage.getItem('background');
+
 
 if(savedbackground){
     document.body.style.backgroundImage = localStorage.getItem('background');
@@ -132,6 +139,7 @@ function dragWindow(elmnt) {
     }
 }
 
+//Start Up UI and Functionality
 var textarea = document.createElement("textarea");
 var navbar = document.createElement('div');
 var desktopbody = document.getElementById('desktopbody');
@@ -150,14 +158,15 @@ function startUp(){
     setTimeout(loadDesktop, 2500);
 }
 
+//Search UI and Functionality
 var websearch = document.createElement('input');
 var searchbutt = document.createElement('input');
 var exitbutt = document.createElement('input');
 websearch.style = 'border-radius: 25px; width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; background: rgba(255,255,255,0.5); color: black;';
 websearch.type = 'text';
 websearch.placeholder = 'Search the web';
-websearch.onchange = function() { scriptApp("Browser"); browserview.src = "https://www.bing.com/search?q=" + websearch.value; }
-searchbutt.onclick = function () {scriptApp("Browser"); browserview.src = "https://www.bing.com/search?q=" + websearch.value;};
+websearch.onchange = function() { scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = "https://www.bing.com/search?q=" + websearch.value; }
+searchbutt.onclick = function () {scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = "https://www.bing.com/search?q=" + websearch.value;};
 searchbutt.type = 'image';
 searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
 searchbutt.className = 'appicon';
@@ -199,7 +208,7 @@ function loadDesktop(){
 
     var appicon1 = document.createElement('input');
     appicon1.type = 'image';
-    appicon1.src = 'images/Settings-icon.png';
+    appicon1.src = 'images/Settings.png';
     appicon1.className = 'appicon';
     appicon1.title = 'Settings';
     appicon1.onclick = function () { scriptApp('Settings'); };
@@ -207,7 +216,7 @@ function loadDesktop(){
     
     var appicon2 = document.createElement('input');
     appicon2.type = 'image';
-    appicon2.src = 'images/script os S Browser icon.png';
+    appicon2.src = 'images/Browser.png';
     appicon2.className = 'appicon';
     appicon2.title = 'S Browser';
     appicon2.onclick = function () { scriptApp('Browser')}
@@ -225,7 +234,7 @@ function loadDesktop(){
 
     var app1 = document.createElement('input');
     app1.type = 'image';
-    app1.src = "images/Settings-icon.png";
+    app1.src = "images/Settings.png";
     app1.title = 'Settings';
     app1.onclick = function () {scriptApp('Settings');};
     app1.className = 'appchoice';
@@ -233,7 +242,7 @@ function loadDesktop(){
 
     var app2 = document.createElement('input');
     app2.type = 'image';
-    app2.src = "images/script os S Browser icon.png";
+    app2.src = "images/Browser.png";
     app2.title = 'S Browser';
     app2.onclick = function () {scriptApp('Browser');};
     app2.className = 'appchoice';
@@ -249,7 +258,7 @@ function loadDesktop(){
 
     var app4 = document.createElement("input");
     app4.type = 'image';
-    app4.src = 'https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/timer-512.png';
+    app4.src = 'images/Timer.png';
     app4.title = "Timer";
     app4.onclick = function () {scriptApp('Timer');};
     app4.className = 'appchoice';
@@ -257,7 +266,7 @@ function loadDesktop(){
 
     var app5 = document.createElement('input');
     app5.type = 'image';
-    app5.src = "https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png";
+    app5.src = "images/Discord.png";
     app5.title = 'Discord';
     app5.onclick = function () {scriptApp('Discord');};
     app5.className = 'appchoice';
@@ -265,7 +274,7 @@ function loadDesktop(){
 
     var app6 = document.createElement('input');
     app6.type = 'image';
-    app6.src = "images/VisualCode logo.png";
+    app6.src = "images/VisualCode.png";
     app6.title = 'VisualCode';
     app6.onclick = function () {scriptApp('VisualCode');};
     app6.className = 'appchoice';
@@ -273,7 +282,7 @@ function loadDesktop(){
 
     var app7 = document.createElement('input');
     app7.type = 'image';
-    app7.src = "images/script os shortcuts logo.png";
+    app7.src = "images/Shortcuts.png";
     app7.title = 'Shortcuts';
     app7.onclick = function () {scriptApp('Shortcuts');};
     app7.className = 'appchoice';
@@ -289,7 +298,7 @@ function loadDesktop(){
 
     var app10 = document.createElement('input');
     app10.type = 'image';
-    app10.src = "images/ScriptAI logo.png";
+    app10.src = "images/ScriptAI.png";
     app10.title = 'ScriptAI';
     app10.onclick = function () {scriptApp('ScriptAI');};
     app10.className = 'appchoice';
@@ -336,6 +345,7 @@ var loginbar = document.createElement('div');
 
 //Sign Out
 function signOut(){
+    var soimage = document.createElement('div');
     headertext.innerHTML = 'Script OS';
     headertext.style.fontSize = '100px';
     timetxt.style.fontSize = '85px';
@@ -347,7 +357,9 @@ function signOut(){
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
     loginbar.onclick = function () { signIn(); };
+    soimage.className = "bg-image";
     desktopbody.innerHTML = '';
+    desktopbody.appendChild(soimage);
     desktopbody.appendChild(headertext);
     desktopbody.appendChild(timetxt);
     desktopbody.appendChild(loginbar);
@@ -419,15 +431,21 @@ function scriptApp(appsname){
     close.type = 'image';
     close.title = 'Close';
     close.style.width = '20px';
+    close.style.height = '20px';
     close.src = 'images/exit button.png';
+    close.className = "appchoice";
     fullscreen.title = 'Fullscreen';
     fullscreen.type = 'image';
     fullscreen.style.width = '20px';
+    fullscreen.style.height = '20px';
     fullscreen.src = 'images/fullscreen button.png';
     fullscreen.style.textAlign = 'right';
+    fullscreen.className = "appchoice";
     smallscreen.type = 'image';
     smallscreen.title = 'Small';
     smallscreen.style.width = '20px';
+    smallscreen.style.height = '20px';
+    smallscreen.className = "appchoice";
     smallscreen.src = 'images/small screen button.png';
     headtextdiv.append(appheadtext);
     apphead.append(headtextdiv);
@@ -475,7 +493,7 @@ function scriptApp(appsname){
         themesettings.type = 'image';
         backgroundsettings.type = 'image';
         about.type = 'image';
-        shortcuts.src = 'images/script os shortcuts logo.png';
+        shortcuts.src = 'images/Shortcuts.png';
         themesettings.src = 'images/photosappicon.png';
         backgroundsettings.src = 'images/background icon.png';
         about.src = 'images/Script OS logo 3.png';
@@ -495,26 +513,6 @@ function scriptApp(appsname){
         app.appendChild(backgroundsettings);
         app.appendChild(themesettings);
         app.appendChild(about);ß
-    } else if (appsname === "Terminal") {
-        var termoutput = document.createElement('textarea');
-        termoutput.style.width = '98%';
-        termoutput.style.height = '85%';
-        termoutput.style.resize = 'none';
-        termoutput.style.backgroundColor = 'black';
-        termoutput.style.color = 'white';
-        if (window.console) console = { 
-            log: function(){
-                var output='',
-                    console=termoutput;
-                for (var i=0;i<arguments.length;i++) {
-                    output+=arguments[i]+' ';
-                }
-                console.innerText+=output+"\n";
-            }
-        };
-        var test=12345;
-        console.log('This is currently being tested and does not work yet...');
-        app.appendChild(termoutput);
     } else if (appsname === "Personalization"){
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "Background";
@@ -642,6 +640,7 @@ function scriptApp(appsname){
         var timeset = document.createElement('input');
         var setbutton = document.createElement('button');
         var stopbutton = document.createElement('button');
+        var resetbutton = document.createElement('button');
         var timesuptext = document.createElement('h1');
         var timing;
         var alarm = new Audio('analog-watch-alarm_daniel-simion.mp3');
@@ -660,12 +659,18 @@ function scriptApp(appsname){
                     alarm.play();
                 }
             }, 1000);
+            resetbutton.onclick = function(){
+                timeleft.innerHTML = "";
+                clearInterval(timerint);
+                alarm.pause();
+            };
             stopbutton.innerHTML = "Stop";
             stopbutton.onclick = function(){
                 clearInterval(timerint);
                 alarm.pause();
             };
             app.appendChild(stopbutton);
+            app.appendChild(resetbutton)
         };
         app.appendChild(timeleft);
         app.appendChild(timeset);
@@ -770,18 +775,21 @@ function scriptApp(appsname){
         var shortadd = document.createElement('button');
         var newshortcut = document.createElement('input');
         var navbar = document.getElementById("navbar");
+        var noticetxt = document.createElement("h3");
         newshortcut.type = 'image';
-        newshortcut.src = "images/script os shortcuts logo.png";
         newshortcut.style.width = '50px';
         newshortcut.style.height = '50px';
         newshortcut.style.textAlign = 'center';
         appnameshort.type = 'text';
         shortadd.innerHTML = 'Add';
+        noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
         app.appendChild(appnameshort);
         app.appendChild(shortadd);
+        app.appendChild(noticetxt);
         shortadd.onclick = function () {
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
+            newshortcut.src = "images/" + appnameshort.value + ".png";
             newshortcut.className = 'appicon'
             newshortcut.onclick = function () {
                 scriptApp(appnameshort.value);
