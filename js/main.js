@@ -621,7 +621,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.1.1";
+        scriptosversion.innerHTML = "Script OS 3.2";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
