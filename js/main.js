@@ -17,6 +17,8 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.2.1
+-Bug fixes
 #Script OS 3.2
 -Shortcuts improvements
 -Shortcuts save after closing Script OS
@@ -521,9 +523,11 @@ function scriptApp(appsname){
         app.appendChild(themesettings);
         app.appendChild(about);ß
     } else if (appsname === "Personalization"){
+        
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "Background";
         app.appendChild(backgroundtxt);
+        
         var choice1 = document.createElement('input');
         choice1.type = 'image';
         choice1.src = 'images/landscape.jpg';
@@ -531,6 +535,7 @@ function scriptApp(appsname){
         choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; 
         localStorage.setItem('background','url(images/landscape.jpg)'); };
         app.appendChild(choice1);
+        
         var choice2 = document.createElement('input');
         choice2.type = 'image';
         choice2.src = 'images/imac-pro-wallpaper.jpg';
@@ -538,6 +543,7 @@ function scriptApp(appsname){
         choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
         localStorage.setItem('background','url(images/imac-pro-wallpaper.jpg)'); };
         app.appendChild(choice2);
+        
         var choice3 = document.createElement('input');
         choice3.type = 'image';
         choice3.src = 'images/lamborghini ting.png';
@@ -545,6 +551,7 @@ function scriptApp(appsname){
         choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")';
         localStorage.setItem('background','url("images/lamborghini ting.png")'); };
         app.appendChild(choice3);
+        
         var choice4 = document.createElement('input');
         choice4.type = 'image';
         choice4.src = 'images/Script-OS-3.png';
@@ -552,6 +559,7 @@ function scriptApp(appsname){
         choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/Script-OS-3.png)';
         localStorage.setItem('background','url(Script-OS-3.png)');};
         app.appendChild(choice4);
+        
         var choice5 = document.createElement('input');
         choice5.type = 'image';
         choice5.src = 'images/pewds-pattern.jpg';
@@ -559,6 +567,7 @@ function scriptApp(appsname){
         choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
         localStorage.setItem('background','url(images/pewds-pattern.jpg)');};
         app.appendChild(choice5);
+        
         var choice6 = document.createElement('input');
         choice6.type = 'image';
         choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
@@ -566,6 +575,7 @@ function scriptApp(appsname){
         choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
         localStorage.setItem('background','url(images/animals_hero_giraffe_1_0.jpg)');};
         app.appendChild(choice6);
+        
         var choice7 = document.createElement('input');
         choice7.type = 'image';
         choice7.src = 'images/hbd-script-os.png';
@@ -573,6 +583,7 @@ function scriptApp(appsname){
         choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
         localStorage.setItem('background','url(images/hbd-script-os.png)');};
         app.appendChild(choice7);
+
         var backgroundinput = document.createElement('input');
         var backgroundaddbutt = document.createElement('button');
         backgroundaddbutt.innerHTML = 'Add';
@@ -589,8 +600,10 @@ function scriptApp(appsname){
         };
         app.appendChild(backgroundinput);
         app.appendChild(backgroundaddbutt);
+        
         var apptranstext = document.createElement("h1");
         apptranstext.innerHTML = "App Transparency";
+        
         var transtogglelabel = document.createElement("label");
         var transtoggle = document.createElement("input");
         var transtogglespan = document.createElement("span");
@@ -615,6 +628,42 @@ function scriptApp(appsname){
         app.appendChild(transtogglelabel);
         transtogglelabel.appendChild(transtoggle);
         transtogglelabel.appendChild(transtogglespan);
+
+        var themetxt = document.createElement("h1");
+        var theme1 = document.createElement("button");
+        var theme2 = document.createElement("button");
+        var theme3 = document.createElement("button");
+        var theme4 = document.createElement("button");
+        var theme5 = document.createElement("button");
+        var theme6 = document.createElement("button");
+
+        themetxt.innerHTML = "Themes";
+        
+        theme1.innerHTML = "Red";
+        theme1.style.backgroundColor = "red";
+        theme1.onclick = function () {
+            document.getElementById('navbar').style.background = 'rgba(255,0,0,0.9)'; 
+            document.getElementById('topnav').style.background = 'rgba(255,0,0,0.9)'; 
+        };
+        
+        theme2.innerHTML = "Orange";
+        theme2.style.backgroundColor = 'orange';
+        theme2.onclick = function () {
+            document.getElementById('navbar').style.background = 'rgba(255,165,0,0.9)'; 
+            document.getElementById('topnav').style.background = 'rgba(255,165,0,0.9)'; 
+        };
+        
+        theme3.innerHTML = "Yellow";
+        theme3.style.backgroundColor = 'yellow';
+        theme3.onclick = function () {
+            document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)'; 
+            document.getElementById('topnav').style.background = 'rgba(255,255,0,0.9)';
+        };
+        app.style.overflow = "scroll";
+        app.appendChild(themetxt);
+        app.appendChild(theme1);
+        app.appendChild(theme2);
+        app.appendChild(theme3);
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
         disframe.src = 'https://discordapp.com/';
@@ -628,7 +677,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.2";
+        scriptosversion.innerHTML = "Script OS 3.2.1";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
@@ -682,35 +731,7 @@ function scriptApp(appsname){
         app.appendChild(timeleft);
         app.appendChild(timeset);
         app.appendChild(setbutton);
-
-    }else if(appsname === "Themes"){
-        var theme1 = document.createElement("button");
-        var theme2 = document.createElement("button");
-        var theme3 = document.createElement("button");
-        var theme4 = document.createElement("button");
-        var theme5 = document.createElement("button");
-        var theme6 = document.createElement("button");
-        theme1.innerHTML = "Red";
-        theme1.style.backgroundColor = "red";
-        theme1.onclick = function () {
-            document.getElementById('navbar').style.background = 'rgba(255,0,0,0.9)'; 
-            document.getElementById('topnav').style.background = 'rgba(255,0,0,0.9)'; 
-        };
-        theme2.innerHTML = "Orange";
-        theme2.style.backgroundColor = 'orange';
-        theme2.onclick = function () {
-            document.getElementById('navbar').style.background = 'rgba(255,165,0,0.9)'; 
-            document.getElementById('topnav').style.background = 'rgba(255,165,0,0.9)'; 
-        };
-        theme3.innerHTML = "Yellow";
-        theme3.style.backgroundColor = 'yellow';
-        theme3.onclick = function () {
-            document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)'; 
-            document.getElementById('topnav').style.background = 'rgba(255,255,0,0.9)';
-        };
-        app.appendChild(theme1);
-        app.appendChild(theme2);
-        app.appendChild(theme3);
+        
     } else if(appsname === "VisualCode"){
         var codeviewer = document.createElement("iframe");
         var savebutton = document.createElement("button");
@@ -816,11 +837,11 @@ function scriptApp(appsname){
         var oschoice4 = document.createElement('button');
         osview.style.width = '98%';
         osview.style.height = '92.5%';
-        oschoice1.innerHTML = 'lineOS[Currently Offline]';
-        oschoice1.onclick = function () {osview.src = 'https://os.davecode.me';};
+        oschoice1.innerHTML = 'Script OS[LEGACY]';
+        oschoice1.onclick = function () {osview.src = 'https://tenzeinc.github.io/Script-OS-Dev/';};
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
-        oschoice3.innerHTML = 'Script OS';
+        oschoice3.innerHTML = 'Script OS 3.2.1';
         oschoice3.onclick = function () {osview.src = 'https://scriptos.cf/';};
         oschoice4.innerHTML = 'eyeOS';
         oschoice4.onclick = function () {osview.src = 'https://s2.demo.opensourcecms.com/eyeOS/';};
