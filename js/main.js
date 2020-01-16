@@ -1,4 +1,10 @@
-﻿//Time(Clock stuff)
+﻿/*  Copyright Tyler Ruotolo 2018-2020
+    Script OS  Copyright (C) 2020 Tyler Ruotolo
+    Resdistrubution is allowed under certain conditions,
+    See LICENSE file for details.
+*/
+
+//Time(Clock stuff)
 function startTime() {
     var today = new Date();
     var h = today.getHours();
