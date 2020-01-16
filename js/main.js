@@ -9,6 +9,8 @@ function startTime() {
     var t = setTimeout(startTime, 500);
 }
 
+var savednav = localStorage.getItem("savednav");
+
 function checkTime(i) {
     if (i < 10) { i = "0" + i; }
     return i;
@@ -185,15 +187,15 @@ function loadDesktop(){
     } else{
         document.body.style.backgroundImage = 'url("images/Script OS 3.0 .png")';
     }
+
     navbar.className = 'navbar';
     navbar.id = 'navbar';
     desktopbody.appendChild(navbar);
-    document.body.style.backgroundImage = 'url';
 
     var actionmenuicon = document.createElement('input');
     actionmenuicon.type = 'image';
     actionmenuicon.src = 'images/Script OS logo 3.png';
-    actionmenuicon.onclick = function () {desktopbody.appendChild(actioncenter); };
+    actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actionmenuicon.title = 'ActionMenu';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
@@ -201,7 +203,7 @@ function loadDesktop(){
     var searchweb = document.createElement('input');
     searchweb.type = 'image';
     searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
-    searchweb.onclick = function () {desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);};
+    searchweb.setAttribute("onclick", "desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);");
     searchweb.title = 'Search the Web';
     searchweb.style = "width:50px; height:50px; z-index: 100; position:absolute; right:0;";
     navbar.appendChild(searchweb);
@@ -211,7 +213,7 @@ function loadDesktop(){
     appicon1.src = 'images/Settings.png';
     appicon1.className = 'appicon';
     appicon1.title = 'Settings';
-    appicon1.onclick = function () { scriptApp('Settings'); };
+    appicon1.setAttribute("onclick", "scriptApp('Settings')");
     navbar.appendChild(appicon1);
     
     var appicon2 = document.createElement('input');
@@ -219,7 +221,7 @@ function loadDesktop(){
     appicon2.src = 'images/Browser.png';
     appicon2.className = 'appicon';
     appicon2.title = 'S Browser';
-    appicon2.onclick = function () { scriptApp('Browser')}
+    appicon2.setAttribute("onclick", "scriptApp('Browser')");
     navbar.appendChild(appicon2);
 
     var appicon3 = document.createElement('input');
@@ -227,8 +229,13 @@ function loadDesktop(){
     appicon3.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png';
     appicon3.className = 'appicon';
     appicon3.title = 'Files';
-    appicon3.onclick = function () { scriptApp('Files')}
+    appicon3.setAttribute("onclick", "scriptApp('Files')");
     navbar.appendChild(appicon3);
+    
+    if(savednav){
+        navbar.innerHTML = '';
+        navbar.innerHTML = localStorage.getItem("savednav");
+    }
 
     actioncenter.className = 'app';
 
@@ -236,7 +243,7 @@ function loadDesktop(){
     app1.type = 'image';
     app1.src = "images/Settings.png";
     app1.title = 'Settings';
-    app1.onclick = function () {scriptApp('Settings');};
+    app1.setAttribute("onclick", "scriptApp('Settings')");
     app1.className = 'appchoice';
     appcenter.appendChild(app1);
 
@@ -244,7 +251,7 @@ function loadDesktop(){
     app2.type = 'image';
     app2.src = "images/Browser.png";
     app2.title = 'S Browser';
-    app2.onclick = function () {scriptApp('Browser');};
+    app2.setAttribute("onclick", "scriptApp('Browser')");
     app2.className = 'appchoice';
     appcenter.appendChild(app2);
 
@@ -252,7 +259,7 @@ function loadDesktop(){
     app3.type = 'image';
     app3.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png";
     app3.title = 'Files';
-    app3.onclick = function () {scriptApp('Files');};
+    app3.setAttribute("onclick", "scriptApp('Files')");
     app3.className = 'appchoice';
     appcenter.appendChild(app3);
 
@@ -260,7 +267,7 @@ function loadDesktop(){
     app4.type = 'image';
     app4.src = 'images/Timer.png';
     app4.title = "Timer";
-    app4.onclick = function () {scriptApp('Timer');};
+    app4.setAttribute("onclick", "scriptApp('Timer')");
     app4.className = 'appchoice';
     appcenter.appendChild(app4);
 
@@ -268,7 +275,7 @@ function loadDesktop(){
     app5.type = 'image';
     app5.src = "images/Discord.png";
     app5.title = 'Discord';
-    app5.onclick = function () {scriptApp('Discord');};
+    app5.setAttribute("onclick", "scriptApp('Discord')");
     app5.className = 'appchoice';
     appcenter.appendChild(app5);
 
@@ -276,7 +283,7 @@ function loadDesktop(){
     app6.type = 'image';
     app6.src = "images/VisualCode.png";
     app6.title = 'VisualCode';
-    app6.onclick = function () {scriptApp('VisualCode');};
+    app6.setAttribute("onclick", function () {scriptApp('VisualCode')});
     app6.className = 'appchoice';
     appcenter.appendChild(app6);
 
@@ -284,7 +291,7 @@ function loadDesktop(){
     app7.type = 'image';
     app7.src = "images/Shortcuts.png";
     app7.title = 'Shortcuts';
-    app7.onclick = function () {scriptApp('Shortcuts');};
+    app7.setAttribute("onclick", "scriptApp('Shortcuts')");
     app7.className = 'appchoice';
     appcenter.appendChild(app7);
 
@@ -292,7 +299,7 @@ function loadDesktop(){
     app8.type = 'image';
     app8.src = "images/vmOS.png";
     app8.title = 'vmOS';
-    app8.onclick = function () {scriptApp('vmOS');};
+    app8.setAttribute("onclick", "scriptApp('vmOS')");
     app8.className = 'appchoice';
     appcenter.appendChild(app8);
 
@@ -300,7 +307,7 @@ function loadDesktop(){
     app10.type = 'image';
     app10.src = "images/ScriptAI.png";
     app10.title = 'ScriptAI';
-    app10.onclick = function () {scriptApp('ScriptAI');};
+    app10.setAttribute("onclick", "scriptApp('ScriptAI')");
     app10.className = 'appchoice';
     appcenter.appendChild(app10);
 
@@ -776,6 +783,7 @@ function scriptApp(appsname){
         var newshortcut = document.createElement('input');
         var navbar = document.getElementById("navbar");
         var noticetxt = document.createElement("h3");
+        var resetsc = document.createElement("button");
         newshortcut.type = 'image';
         newshortcut.style.width = '50px';
         newshortcut.style.height = '50px';
@@ -783,19 +791,22 @@ function scriptApp(appsname){
         appnameshort.type = 'text';
         shortadd.innerHTML = 'Add';
         noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
+        resetsc.innerHTML = "Reset Shortcuts";
+        resetsc.title = "This will remove all added shortcuts";
+        resetsc.onclick = function () {localStorage.removeItem("savednav"); window.location.reload();};
         app.appendChild(appnameshort);
         app.appendChild(shortadd);
+        app.appendChild(resetsc);
         app.appendChild(noticetxt);
         shortadd.onclick = function () {
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
             newshortcut.src = "images/" + appnameshort.value + ".png";
             newshortcut.className = 'appicon'
-            newshortcut.onclick = function () {
-                scriptApp(appnameshort.value);
-            };
+            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
             navbar.appendChild(newshortcut);
             desktopbody.removeChild(app);
+            localStorage.setItem("savednav", navbar.innerHTML)
         };
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
