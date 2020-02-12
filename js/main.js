@@ -1,6 +1,6 @@
 ﻿/*  Copyright Tyler Ruotolo 2018-2020
-    Script OS  Copyright (C) 2020 Tyler Ruotolo
-    Resdistrubution is allowed under certain conditions,
+    Script OS  Copyright (C) 2018-2020 Tyler Ruotolo
+    Resdistribution is allowed under certain conditions,
     See LICENSE file for details.
 */
 
@@ -23,6 +23,12 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.3
+-TopNav Customization
+-Background Image scaling fixed
+-App header buttons redesigned
+-Themes added to Personalization settings
+-OS font changed
 #Script OS 3.2.1
 -Bug fixes
 #Script OS 3.2
@@ -81,11 +87,16 @@ var changelog = `Script OS Changelog:
 -Multi app window support
 -All apps redesigned`;
 
+var topnav = document.getElementById('topnav');
 var savedbackground = localStorage.getItem('background');
-
+var savedtopnav = localStorage.getItem('topnav');
 
 if(savedbackground){
     document.body.style.backgroundImage = localStorage.getItem('background');
+}
+
+if(savedtopnav){
+    topnav.style.backgroundImage = localStorage.getItem('topnav');
 }
 
 var codearea = document.createElement('textarea');
@@ -101,18 +112,6 @@ function openFile(filesname){
     var filecontent = localStorage.getItem(filesname);
     codearea.value = filecontent; 
 }
-
-var apphistory = document.createElement('div');
-var appthing = document.createElement('h1');
-var histclosebutt = document.createElement('h1');
-apphistory.id = 'apphistory';
-appthing.innerHTML = "Nothing to see here...";
-histclosebutt.innerHTML = "Close";
-histclosebutt.onclick = function (){
-    desktopbody.removeChild(apphistory);
-}
-apphistory.appendChild(histclosebutt);
-apphistory.appendChild(appthing);
 
 
 function dragWindow(elmnt) {
@@ -343,6 +342,12 @@ function loadDesktop(){
     shutdownbutt.innerHTML = 'Shutdown';
     actionarea.appendChild(shutdownbutt);
 
+    desktopbody.onkeydown = function() {
+        if (event.keyCode == 12) {
+            alert('Esc key pressed.');
+        }
+    };
+
 }
 
 //Sign In
@@ -399,18 +404,25 @@ var conmenu1 = document.createElement('div');
 var conmenu1butt1 = document.createElement('li');
 var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
-conmenu1.style.color = 'white';
-conmenu1.className = 'menu';
+var conmenu1butt4 = document.createElement('li');
+var conmenu1butt5 = document.createElement('li');
+conmenu1.id = 'menu';
 conmenu1butt1.innerHTML = 'Customize';
 conmenu1butt1.onclick = function () { scriptApp('Personalization'); };
 conmenu1butt2.innerHTML = 'Settings';
 conmenu1butt2.onclick = function () { scriptApp('Settings'); };
 conmenu1butt3.innerHTML = 'About';
 conmenu1butt3.onclick = function () { scriptApp('About'); };
+conmenu1butt4.innerHTML = 'Add Shortcut';
+conmenu1butt4.onclick = function () { scriptApp('Shortcuts'); };
 desktopbody.appendChild(conmenu1);
+conmenu1butt5.innerHTML = 'Customize TopNav';
+conmenu1butt5.onclick = function () { scriptApp('TopNav'); };
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
+conmenu1.appendChild(conmenu1butt4);
+conmenu1.appendChild(conmenu1butt5);
 
 //DarkMode Toggle
 function darkToggle(){
@@ -428,9 +440,9 @@ function scriptApp(appsname){
     var app = document.createElement('div');
     var apphead = document.createElement('div');
     var appheadtext = document.createTextNode(appsname);
-    var close = document.createElement('input');
-    var fullscreen = document.createElement('input');
-    var smallscreen = document.createElement('input');
+    var close = document.createElement('ui');
+    var fullscreen = document.createElement('ui');
+    var smallscreen = document.createElement('ui');
     var headbuttdiv = document.createElement('div');
     var headtextdiv = document.createElement('div');
     var appnumber = Math.random();
@@ -445,23 +457,17 @@ function scriptApp(appsname){
     apphead.className = 'appheader';
     close.type = 'image';
     close.title = 'Close';
-    close.style.width = '20px';
-    close.style.height = '20px';
-    close.src = 'images/exit button.png';
+    close.innerHTML = "[X]";
     close.className = "appchoice";
     fullscreen.title = 'Fullscreen';
     fullscreen.type = 'image';
-    fullscreen.style.width = '20px';
-    fullscreen.style.height = '20px';
-    fullscreen.src = 'images/fullscreen button.png';
+    fullscreen.innerHTML = "[▓]"
     fullscreen.style.textAlign = 'right';
     fullscreen.className = "appchoice";
     smallscreen.type = 'image';
     smallscreen.title = 'Small';
-    smallscreen.style.width = '20px';
-    smallscreen.style.height = '20px';
     smallscreen.className = "appchoice";
-    smallscreen.src = 'images/small screen button.png';
+    smallscreen.innerHTML = "[_]"
     headtextdiv.append(appheadtext);
     apphead.append(headtextdiv);
     apphead.append(headbuttdiv);
@@ -501,35 +507,96 @@ function scriptApp(appsname){
         app.appendChild(browserview);
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
-        var themesettings = document.createElement('input');
         var about = document.createElement('input');
         var shortcuts = document.createElement('input');
         shortcuts.type = 'image';
-        themesettings.type = 'image';
         backgroundsettings.type = 'image';
         about.type = 'image';
         shortcuts.src = 'images/Shortcuts.png';
-        themesettings.src = 'images/photosappicon.png';
         backgroundsettings.src = 'images/background icon.png';
         about.src = 'images/Script OS logo 3.png';
         shortcuts.style.width = '10%';
         about.style.width = '10%';
-        themesettings.style.width = '10%';
         backgroundsettings.style.width = '10%';
         about.title = 'About';
         shortcuts.title = 'Shortcuts';
-        themesettings.title = "Theme Settings";
         backgroundsettings.title = 'Personalization';
         about.onclick = function () { scriptApp("About"); };
         shortcuts.onclick = function () { scriptApp("Shortcuts"); };
-        themesettings.onclick = function () { scriptApp("Themes"); };
         backgroundsettings.onclick = function () {scriptApp("Personalization"); };
         app.appendChild(shortcuts);
         app.appendChild(backgroundsettings);
-        app.appendChild(themesettings);
         app.appendChild(about);ß
-    } else if (appsname === "Personalization"){
+    } else if(appsname === "TopNav"){
+        var backgroundtxt = document.createElement("h1");
+        backgroundtxt.innerHTML = "TopNav Background";
+        app.appendChild(backgroundtxt);
         
+        var tchoice1 = document.createElement('input');
+        tchoice1.type = 'image';
+        tchoice1.src = 'images/landscape.jpg';
+        tchoice1.className = 'backgroundoption';
+        tchoice1.onclick = function () { topnav.style.backgroundImage = 'url(images/landscape.jpg)'; 
+        localStorage.setItem('topnav','url(images/landscape.jpg)'); };
+        app.appendChild(tchoice1);
+        
+        var tchoice2 = document.createElement('input');
+        tchoice2.type = 'image';
+        tchoice2.src = 'images/imac-pro-wallpaper.jpg';
+        tchoice2.className = 'backgroundoption';
+        tchoice2.onclick = function () { topnav.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
+        localStorage.setItem('topnav','url(images/imac-pro-wallpaper.jpg)'); };
+        app.appendChild(tchoice2);
+        
+        var choice3 = document.createElement('input');
+        choice3.type = 'image';
+        choice3.src = 'images/lamborghini ting.png';
+        choice3.className = 'backgroundoption';
+        choice3.onclick = function () { topnav.style.backgroundImage = 'url("images/lamborghini ting.png")';
+        localStorage.setItem('topnav','url("images/lamborghini ting.png")'); };
+        app.appendChild(choice3);
+        
+        var choice4 = document.createElement('input');
+        choice4.type = 'image';
+        choice4.src = 'images/Script-OS-3.png';
+        choice4.className = 'backgroundoption';
+        choice4.onclick = function () { topnav.style.backgroundImage = 'url(images/Script-OS-3.png)';
+        localStorage.setItem('topnav','url(Script-OS-3.png)');};
+        app.appendChild(choice4);
+        
+        var choice5 = document.createElement('input');
+        choice5.type = 'image';
+        choice5.src = 'images/pewds-pattern.jpg';
+        choice5.className = 'backgroundoption';
+        choice5.onclick = function () { topnav.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
+        localStorage.setItem('topnav','url(images/pewds-pattern.jpg)');};
+        app.appendChild(choice5);
+        
+        var choice6 = document.createElement('input');
+        choice6.type = 'image';
+        choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
+        choice6.className = 'backgroundoption';
+        choice6.onclick = function () { topnav.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
+        localStorage.setItem('topnav','url(images/animals_hero_giraffe_1_0.jpg)');};
+        app.appendChild(choice6);
+        
+        var choice7 = document.createElement('input');
+        choice7.type = 'image';
+        choice7.src = 'images/hbd-script-os.png';
+        choice7.className = 'backgroundoption';
+        choice7.onclick = function () { topnav.style.backgroundImage = 'url(images/hbd-script-os.png)';
+        localStorage.setItem('topnav','url(images/hbd-script-os.png)');};
+        app.appendChild(choice7);
+
+        var choice8 = document.createElement('input');
+        choice8.type = 'image';
+        choice8.src = 'images/Iron-Trump.png';
+        choice8.className = 'backgroundoption';
+        choice8.onclick = function () {topnav.style.backgroundImage = 'url(images/Iron-Trump.png)';
+        localStorage.setItem('topnav','url(images/Iron-Trump.png)');};
+        app.appendChild(choice8);
+
+    } else if (appsname === "Personalization"){
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "Background";
         app.appendChild(backgroundtxt);
@@ -589,6 +656,16 @@ function scriptApp(appsname){
         choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
         localStorage.setItem('background','url(images/hbd-script-os.png)');};
         app.appendChild(choice7);
+
+        var choice8 = document.createElement('input');
+        choice8.type = 'image';
+        choice8.src = 'images/Iron-Trump.png';
+        choice8.className = 'backgroundoption';
+        choice8.onclick = function () { 
+            document.body.style.backgroundImage = 'url(images/Iron-Trump.png)';
+            localStorage.setItem('background','url(images/Iron-Trump.png)');
+        };
+        app.appendChild(choice8);
 
         var backgroundinput = document.createElement('input');
         var backgroundaddbutt = document.createElement('button');
@@ -991,12 +1068,16 @@ if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) {
     if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
 }
 
+var menucon = document.getElementById("menu");
+
 //Dark and Light Mode
 function darkMode(){
     navbar.style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
     websearch.style.background = 'rgba(0,0,0,0.5)';
     websearch.style.color = 'white';
+    menucon.style.color = 'white';
+    menucon.style.background = 'rgba(0,0,0,0.5)';
 }
 
 function lightMode(){
@@ -1004,4 +1085,6 @@ function lightMode(){
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
     websearch.style.background = 'rgba(255,255,255,0.5)';
     websearch.style.color = 'black';
+    menucon.style.color = 'black';
+    menucon.style.background = 'rgba(255,255,255,0.5)';
 }
