@@ -23,6 +23,8 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.3.2
+-Notifications system being tested
 #Script OS 3.3.1
 -New animations
 -Bug fixes
