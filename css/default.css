@@ -86,7 +86,7 @@ button {
 
 .appicon:hover{
     background-color: red;
-    transform: scale(1.5);
+    transform: scale(1.3);
 }
 
 .topnav {
@@ -216,7 +216,7 @@ button {
 }
 .appchoice:hover{
     background-color: red;
-    transform: scale(1.5);
+    transform: translateY(20px);
 }
 
 #ActionMenu {

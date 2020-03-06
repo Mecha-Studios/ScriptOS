@@ -23,6 +23,9 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.3.1
+-New animations
+-Bug fixes
 #Script OS 3.3
 -TopNav Customization
 -Background Image scaling fixed
