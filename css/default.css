@@ -16,6 +16,18 @@ body {
     -o-background-size: cover;
 }
 
+#close:hover{
+    cursor: pointer;
+}
+
+#fullscreen:hover{
+    cursor: pointer;
+}
+
+#smallscreen:hover{
+    cursor: pointer;
+}
+
 .appopt{
     width: 15%;
     height: 15%;
@@ -48,6 +60,9 @@ button {
     border-radius: 15px;
     text-align: left;
     cursor: context-menu;
+}
+#menu:active{
+    cursor: pointer;
 }
 
 .navbar {

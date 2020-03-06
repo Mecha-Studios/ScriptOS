@@ -459,16 +459,19 @@ function scriptApp(appsname){
     app.className = 'app';
     apphead.className = 'appheader';
     close.type = 'image';
+    close.id = "close"
     close.title = 'Close';
     close.innerHTML = "[X]";
     close.className = "appchoice";
     fullscreen.title = 'Fullscreen';
+    fullscreen.id = "fullscreen";
     fullscreen.type = 'image';
     fullscreen.innerHTML = "[▓]"
     fullscreen.style.textAlign = 'right';
     fullscreen.className = "appchoice";
     smallscreen.type = 'image';
     smallscreen.title = 'Small';
+    smallscreen.id = "smallscreen";
     smallscreen.className = "appchoice";
     smallscreen.innerHTML = "[_]"
     headtextdiv.append(appheadtext);
@@ -763,7 +766,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.2.1";
+        scriptosversion.innerHTML = "Script OS 3.3.1";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
