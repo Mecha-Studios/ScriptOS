@@ -4,6 +4,19 @@
     See LICENSE file for details.
 */
 
+setInterval(navigator.getBattery()
+  .then(function(battery) {
+    console.log(battery.level);
+    if(battery.level >= .5){
+        topnav.style.color = "green";
+    } else if(battery.level <= .5){
+        topnav.style.color = "yellow";
+    } else if(battery.level <= .3){
+        topnav.style.color = "red";
+    }
+    topnav.innerHTML +="Battery:" + battery.level*100 + "%";
+}), 1000);
+
 //Time(Clock stuff)
 function startTime() {
     var today = new Date();
@@ -26,6 +39,8 @@ var changelog = `Script OS Changelog:
 #Script OS 3.3.3
 -Device verification on boot added
 -Boot sequence revamped
+-Battery level added
+-Battery level color indicator added
 #Script OS 3.3.2
 -Notifications system being tested
 #Script OS 3.3.1
@@ -187,21 +202,16 @@ function boot(){
         if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
     }
 
-    deviceDetection();
-    desktopbody.innerText+="\n" + objbrowserName + " ----- " + objfullVersion;
-    console.log(objbrowserName + " ----- " + objfullVersion);
-    desktopbody.innerText+="\n Script OS Version 3.4";
+    setTimeout(function(){deviceDetection}, 750);
+    setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 1500);
+    console.log(objbrowserName + objfullVersion);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.4"}, 2250);
     console.log("Script OS Version 3.4");
-    desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020";
-    desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo";
-    desktopbody.innerText+="\n Resdistribution is allowed under certain conditions";
-    desktopbody.innerText+="\n See LICENSE file for details.";
-    
-    if(devicesupported == true){
-        setTimeout(startUp, 5000);
-    } else if(devicesupported == false){
-        
-    }
+    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"}, 3000);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"}, 3750);
+    setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"}, 4500);
+    setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details."}, 5250);
+    setTimeout(startUp, 7000);
 }
 
 function startUp(){
@@ -252,6 +262,7 @@ function deviceDetection() {
 //Desktop Loading Sequence
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
+    document.getElementById("topnav").style.display = "block";
 
     if(savedbackground){
         document.body.style.backgroundImage = localStorage.getItem('background');
@@ -393,7 +404,7 @@ function loadDesktop(){
     actionarea.appendChild(closebutt);
 
     var reloadbutt = document.createElement('button');
-    reloadbutt.innerHTML = 'Reload';
+    reloadbutt.innerHTML = 'Restart';
     reloadbutt.onclick = function () { location.reload(); };
     actionarea.appendChild(reloadbutt);
 
@@ -821,7 +832,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.3.1";
+        scriptosversion.innerHTML = "Script OS 3.4";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);
