@@ -23,6 +23,9 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.3.3
+-Device verification on boot added
+-Boot sequence revamped
 #Script OS 3.3.2
 -Notifications system being tested
 #Script OS 3.3.1
@@ -165,7 +168,40 @@ var actioncenter = document.createElement('div');
 actioncenter.style = 'position: absolute; width: 100%; top: 100px; animation: slidetop; animation-duration: 2s; height: 25%;';
 var appcenter = document.createElement('div');
 
+function boot(){
+    document.body.style.backgroundImage = '';
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color = 'white';
+
+    if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) { 
+        objbrowserName = "Chrome"; 
+        objfullVersion = objAgent.substring(objOffsetVersion+7);
+    }else if ((objOffsetVersion=objAgent.indexOf("MSIE"))!=-1) { 
+        objbrowserName = "Microsoft Internet Explorer(It is reccomended that you use Chrome)"; 
+        objfullVersion = objAgent.substring(objOffsetVersion+5); 
+    }else if ((objOffsetVersion=objAgent.indexOf("Firefox"))!=-1) { 
+        objbrowserName = "Firefox(It is reccomended that you use Chrome)"; 
+    }else if ((objOffsetVersion=objAgent.indexOf("Safari"))!=-1) { 
+        objbrowserName = "Safari(It is reccomended that you use Chrome)"; 
+        objfullVersion = objAgent.substring(objOffsetVersion+7); 
+        if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
+    }
+
+    deviceDetection();
+    desktopbody.innerText+="\n" + objbrowserName + " ----- " + objfullVersion;
+    console.log(objbrowserName + " ----- " + objfullVersion);
+    desktopbody.innerText+="\n Script OS Version 3.4";
+    console.log("Script OS Version 3.4");
+    desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020";
+    desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo";
+    desktopbody.innerText+="\n Resdistribution is allowed under certain conditions";
+    desktopbody.innerText+="\n See LICENSE file for details.";
+
+    setTimeout(startUp, 5000);
+}
+
 function startUp(){
+    desktopbody.innerHTML = "";
     document.body.style.backgroundImage = '';
     document.body.style.backgroundColor = 'black';
     desktopbody.appendChild(startupscreen);
@@ -191,9 +227,24 @@ exitbutt.src = 'images/exit button.png';
 exitbutt.className = 'appicon';
 exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
 
+function deviceDetection() {
+    if (navigator.userAgent.match(/mobile/i)) {
+        console.log('MOBILE DEVICE = NOT SUPPORTED');
+        desktopbody.innerHTML = "MOBILE DEVICE = NOT SUPPORTED";
+    } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
+        console.log('TABLET = NOT SUPPORTED');
+        desktopbody.innerText += "\n TABLET = NOT SUPPORTED";
+    } else {
+        desktopbody.innerText += "\n DESKTOP DEVICE = SUPPORTED";
+        console.log('DESKTOP DEVICE = SUPPORTED');
+        //location.replace('index.html', 15000);
+    }
+}
+
 //Desktop Loading Sequence
 function loadDesktop(){
     desktopbody.removeChild(startupscreen);
+
     if(savedbackground){
         document.body.style.backgroundImage = localStorage.getItem('background');
     } else{
@@ -346,13 +397,8 @@ function loadDesktop(){
     var shutdownbutt = document.createElement('button');
     shutdownbutt.innerHTML = 'Shutdown';
     actionarea.appendChild(shutdownbutt);
-
-    desktopbody.onkeydown = function() {
-        if (event.keyCode == 12) {
-            alert('Esc key pressed.');
-        }
-    };
-
+    
+    desktopbody.appendChild(conmenu1);
 }
 
 //Sign In
@@ -361,7 +407,6 @@ function signIn(){
     desktopbody.removeChild(timetxt);
     desktopbody.removeChild(loginbar);
     desktopbody.appendChild(navbar);
-    desktopbody.appendChild(conmenu1);
 }
 
 var headertext = document.createElement('h2');
