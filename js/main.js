@@ -196,8 +196,12 @@ function boot(){
     desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo";
     desktopbody.innerText+="\n Resdistribution is allowed under certain conditions";
     desktopbody.innerText+="\n See LICENSE file for details.";
-
-    setTimeout(startUp, 5000);
+    
+    if(devicesupported = true){
+        setTimeout(startUp, 5000);
+    } else if(devicesupported = false){
+        
+    }
 }
 
 function startUp(){
@@ -227,17 +231,21 @@ exitbutt.src = 'images/exit button.png';
 exitbutt.className = 'appicon';
 exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
 
+var devicesupported = true;
+
 function deviceDetection() {
     if (navigator.userAgent.match(/mobile/i)) {
         console.log('MOBILE DEVICE = NOT SUPPORTED');
         desktopbody.innerHTML = "MOBILE DEVICE = NOT SUPPORTED";
+        devicesupported = false;
     } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
         console.log('TABLET = NOT SUPPORTED');
         desktopbody.innerText += "\n TABLET = NOT SUPPORTED";
+        devicesupported = false
     } else {
         desktopbody.innerText += "\n DESKTOP DEVICE = SUPPORTED";
         console.log('DESKTOP DEVICE = SUPPORTED');
-        //location.replace('index.html', 15000);
+        devicesupported = true;
     }
 }
 
