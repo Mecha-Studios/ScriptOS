@@ -197,9 +197,9 @@ function boot(){
     desktopbody.innerText+="\n Resdistribution is allowed under certain conditions";
     desktopbody.innerText+="\n See LICENSE file for details.";
     
-    if(devicesupported = true){
+    if(devicesupported == true){
         setTimeout(startUp, 5000);
-    } else if(devicesupported = false){
+    } else if(devicesupported == false){
         
     }
 }
