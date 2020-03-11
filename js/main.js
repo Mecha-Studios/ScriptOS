@@ -4,18 +4,22 @@
     See LICENSE file for details.
 */
 
-setInterval(navigator.getBattery()
+navigator.getBattery()
   .then(function(battery) {
+    var batterylevel = Math.floor(battery.level * 100) / 100;
     console.log(battery.level);
     if(battery.level >= .5){
-        topnav.style.color = "green";
+        topnav.style.color = "limegreen";
+        topnav.style.boxShadow = "0px 5px 2.5px limegreen";
     } else if(battery.level <= .5){
         topnav.style.color = "yellow";
+        topnav.style.boxShadow = "0px 5px 2.5px yellow";
     } else if(battery.level <= .3){
         topnav.style.color = "red";
+        topnav.style.boxShadow = "0px 5px 2.5px red";
     }
-    topnav.innerHTML +="Battery:" + battery.level*100 + "%";
-}), 1000);
+    topnav.innerHTML +="Battery:" + batterylevel*100 + "%";
+})
 
 //Time(Clock stuff)
 function startTime() {
@@ -36,7 +40,10 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
-#Script OS 3.3.3
+#Script OS 3.4.1
+-New animations added
+-
+#Script OS 3.4
 -Device verification on boot added
 -Boot sequence revamped
 -Battery level added
@@ -202,16 +209,30 @@ function boot(){
         if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
     }
 
-    setTimeout(function(){deviceDetection}, 750);
-    setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 1500);
+    setTimeout(function(){deviceDetection()}, 500);
+    setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 1000);
     console.log(objbrowserName + objfullVersion);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.4"}, 2250);
-    console.log("Script OS Version 3.4");
-    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"}, 3000);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"}, 3750);
-    setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"}, 4500);
-    setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details."}, 5250);
-    setTimeout(startUp, 7000);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.4.1"}, 1500);
+    console.log("Script OS Version 3.4.1");
+    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 2000);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("Script OS Copyright (C) 2018-2020 Tyler Ruotolo")}, 2500);
+    setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 3000);
+    setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details"; console.log("See LICENSE file for details")}, 3500);
+    setTimeout(function(){desktopbody.innerText+="\n System dependencies loaded successfully"; console.log("System dependencies loaded successfully")}, 4000);
+    setTimeout(function(){desktopbody.innerText+="\n TR Kernel loaded successfully"; console.log("TR Kernel loaded successfully")}, 4500);
+    setTimeout(function(){desktopbody.innerText+="\n Loading JavaScript APIs"; console.log("Loading JavaScript APIs")}, 5000);
+    setTimeout(function(){desktopbody.innerText+="\n Loading programs"; console.log("Loading programs")}, 5500);
+    setTimeout(function(){desktopbody.innerText+="\n APIs loaded successfully"; console.log("APIs loaded successfully")}, 6000);
+    setTimeout(function(){desktopbody.innerText+="\n Programs loaded successfully"; console.log("Programs loaded successfully")}, 6500);
+    setTimeout(function(){desktopbody.innerText+="\n Loading ScriptAI and Chromium web engine"; console.log("Loading ScriptAI and Chromium web engine")}, 7000);
+    setTimeout(function(){desktopbody.innerText+="\n ScriptAI successfully loaded"; console.log("ScriptAI successfully loaded")}, 8500);
+    setTimeout(function(){desktopbody.innerText+="\n Chromium successfully loaded"; console.log("Chromium successfully laoded")}, 9000);
+    setTimeout(function(){desktopbody.innerText+="\n Loading app icons"; console.log("Loading app icons")}, 9500);
+    setTimeout(function(){desktopbody.innerText+="\n Loading background images"; console.log("Loading background images")}, 10000);
+    setTimeout(function(){desktopbody.innerText+="\n App icons successfully loaded"; console.log("App icons successfully loaded")}, 10500);
+    setTimeout(function(){desktopbody.innerText+="\n Background images loaded successfully"}, 11000);
+
+    setTimeout(startUp, 15000);
 }
 
 function startUp(){
@@ -251,7 +272,7 @@ function deviceDetection() {
     } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
         console.log('TABLET = NOT SUPPORTED');
         desktopbody.innerText += "\n TABLET = NOT SUPPORTED";
-        devicesupported = false
+        devicesupported = false;
     } else {
         desktopbody.innerText += "\n DESKTOP DEVICE = SUPPORTED";
         console.log('DESKTOP DEVICE = SUPPORTED');
@@ -832,7 +853,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.4";
+        scriptosversion.innerHTML = "Script OS 3.4.1";
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         app.appendChild(scriptosversion);
         app.appendChild(copyright);

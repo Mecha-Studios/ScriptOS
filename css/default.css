@@ -112,7 +112,6 @@ button {
     bottom: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.5);
-    box-shadow: 5px 5px 2.5px black;
     display: inline-block;
 }
 
@@ -123,11 +122,13 @@ button {
 
 @keyframes slidetop {
     0% {
-        opacity: 0px;
+        opacity: 5%;
+        background-color: red;
         top: 0px;
     }
     100%{
-        opacity: 100px;
+        opacity: 100%;
+        background-color: green;
         top: 100px;
     }
 }
@@ -144,31 +145,37 @@ button {
 @keyframes rgb {
     0% {
         color: red;
+        background-color: blue;
         opacity: 0;
     }
 
     15% {
         color: orange;
+        background-color: green;
         opacity: 15;
     }
 
     30% {
         color: yellow;
+        background-color: indigo;
         opacity: 30;
     }
 
     45%{
         color: green;
+        background-color: orange;
         opacity: 45;
     }
 
     60% {
         color: blue;
+        background-color: red;
         opacity: 60;
     }
 
     75% {
         color: indigo;
+        background-color: yellow;
         opacity: 75;
     }
 
@@ -262,6 +269,8 @@ button {
     color: #fff;
     background: rgba(255, 255, 255, 0.75);
     height: 20px;
+    animation: rgb;
+    animation-duration: 5s;
 }
 .appheader:hover{
     cursor: grab;

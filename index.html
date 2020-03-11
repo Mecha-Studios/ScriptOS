@@ -1,35 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Script OS</title>
-    <meta name="author" content="Creator: Tyler Ruotolo"/>
-    <meta name="description" content="Script OS is a simple Web Operating sytem that runs in a browser." />
-    <link id="css" href="css/default.css" rel="stylesheet" />
-    <link rel="shortcut icon" type="image" href="images/Script OS Logo 3.png" />
-</head>
-<body onload="startTime(); boot();" scroll="no" style="overflow: hidden;" content="width=device-width, height=device-height, initial-scale=1.0" >
-    <div class="topnav" id="topnav" style="width: 100%; display: none; font-family:'Segoe UI Emoji'">
-        <ui onclick="desktopbody.appendChild(apphistory)">Script OS</ui>
-        <ui>|</ui>
-        <ui>DarkMode</ui>
-        <label title="DarkMode" class="switch">
-            <input type="checkbox" id="darkmodetoggle" onchange="darkToggle();">
-            <span class="slider round"></span>
-        </label>
-        <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
-    </div>
-    <div id="desktopbody">
-        
-    </div>
-    <style>
-        body {
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-        }
-    </style>
-    <script src="js/main.js"></script>
-    <script src="js/contextmenus.js"></script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Script OS</title>
+        <meta name="author" content="Creator: Tyler Ruotolo"/>
+        <meta name="description" content="Script OS is a simple Web Operating sytem that runs in a browser." />
+        <link id="css" href="css/default.css" rel="stylesheet" />
+        <link rel="shortcut icon" type="image" href="images/Script OS Logo 3.png" />
+    </head>
+    <body onload="startTime(); boot();" scroll="no" style="overflow: hidden;" content="width=device-width, height=device-height, initial-scale=1.0" >
+        <div class="topnav" id="topnav" style="width: 100%; display: none; font-family:'Segoe UI Emoji'">
+            <ui>Script OS</ui>
+            <ui>|</ui>
+            <ui>DarkMode</ui>
+            <label title="DarkMode" class="switch">
+                <input type="checkbox" id="darkmodetoggle" onchange="darkToggle();">
+                <span class="slider round"></span>
+            </label>
+            <ui style="height:100%; position:absolute; right: 0;" draggable="false" id="datetime"></ui>
+        </div>
+        <div id="desktopbody">
+            
+        </div>
+        <style>
+            body {
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+            }
+        </style>
+        <script src="js/main.js"></script>
+        <script src="js/contextmenus.js"></script>
+    </body>
 </html>
