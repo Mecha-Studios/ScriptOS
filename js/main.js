@@ -3,23 +3,25 @@
     Resdistribution is allowed under certain conditions,
     See LICENSE file for details.
 */
-
-navigator.getBattery()
-  .then(function(battery) {
-    var batterylevel = Math.floor(battery.level * 100) / 100;
-    console.log(battery.level);
-    if(battery.level >= .5){
-        topnav.style.color = "limegreen";
-        topnav.style.boxShadow = "0px 5px 2.5px limegreen";
-    } else if(battery.level <= .5){
-        topnav.style.color = "yellow";
-        topnav.style.boxShadow = "0px 5px 2.5px yellow";
-    } else if(battery.level <= .3){
-        topnav.style.color = "red";
-        topnav.style.boxShadow = "0px 5px 2.5px red";
-    }
-    topnav.innerHTML +="Battery:" + batterylevel*100 + "%";
-})
+function battLevel(){
+    navigator.getBattery()
+    .then(function(battery) {
+        var batterylevel = Math.floor(battery.level * 100) / 100;
+        console.log(battery.level);
+        if(battery.level >= .5){
+            topnav.style.color = "limegreen";
+            topnav.style.boxShadow = "0px 5px 2.5px limegreen";
+        } else if(battery.level <= .5){
+            topnav.style.color = "yellow";
+            topnav.style.boxShadow = "0px 5px 2.5px yellow";
+        } else if(battery.level <= .3){
+            topnav.style.color = "red";
+            topnav.style.boxShadow = "0px 5px 2.5px red";
+        }
+        document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
+    })
+    setTimeout(battLevel, 500);
+}
 
 //Time(Clock stuff)
 function startTime() {
@@ -40,9 +42,14 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.4.3
+-BlazeToUSD added
+-StoryFire added
+-Battery level bug fixes
+#Script OS 3.4.2
+-Browser settings added
 #Script OS 3.4.1
 -New animations added
--
 #Script OS 3.4
 -Device verification on boot added
 -Boot sequence revamped
@@ -209,30 +216,30 @@ function boot(){
         if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
     }
 
-    setTimeout(function(){deviceDetection()}, 500);
-    setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 1000);
+    setTimeout(function(){deviceDetection()}, 250);
+    setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 500);
     console.log(objbrowserName + objfullVersion);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.4.1"}, 1500);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.4.1"}, 750);
     console.log("Script OS Version 3.4.1");
-    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 2000);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("Script OS Copyright (C) 2018-2020 Tyler Ruotolo")}, 2500);
-    setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 3000);
-    setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details"; console.log("See LICENSE file for details")}, 3500);
-    setTimeout(function(){desktopbody.innerText+="\n System dependencies loaded successfully"; console.log("System dependencies loaded successfully")}, 4000);
-    setTimeout(function(){desktopbody.innerText+="\n TR Kernel loaded successfully"; console.log("TR Kernel loaded successfully")}, 4500);
-    setTimeout(function(){desktopbody.innerText+="\n Loading JavaScript APIs"; console.log("Loading JavaScript APIs")}, 5000);
-    setTimeout(function(){desktopbody.innerText+="\n Loading programs"; console.log("Loading programs")}, 5500);
-    setTimeout(function(){desktopbody.innerText+="\n APIs loaded successfully"; console.log("APIs loaded successfully")}, 6000);
-    setTimeout(function(){desktopbody.innerText+="\n Programs loaded successfully"; console.log("Programs loaded successfully")}, 6500);
+    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 1000);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("Script OS Copyright (C) 2018-2020 Tyler Ruotolo")}, 1250);
+    setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 1500);
+    setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details"; console.log("See LICENSE file for details")}, 1750);
+    setTimeout(function(){desktopbody.innerText+="\n System dependencies loaded successfully"; console.log("System dependencies loaded successfully")}, 2000);
+    setTimeout(function(){desktopbody.innerText+="\n TR Kernel loaded successfully"; console.log("TR Kernel loaded successfully")}, 2250);
+    setTimeout(function(){desktopbody.innerText+="\n Loading JavaScript APIs"; console.log("Loading JavaScript APIs")}, 2500);
+    setTimeout(function(){desktopbody.innerText+="\n Loading programs"; console.log("Loading programs")}, 2750);
+    setTimeout(function(){desktopbody.innerText+="\n APIs loaded successfully"; console.log("APIs loaded successfully")}, 3000);
+    setTimeout(function(){desktopbody.innerText+="\n Programs loaded successfully"; console.log("Programs loaded successfully")}, 3250);
     setTimeout(function(){desktopbody.innerText+="\n Loading ScriptAI and Chromium web engine"; console.log("Loading ScriptAI and Chromium web engine")}, 7000);
-    setTimeout(function(){desktopbody.innerText+="\n ScriptAI successfully loaded"; console.log("ScriptAI successfully loaded")}, 8500);
-    setTimeout(function(){desktopbody.innerText+="\n Chromium successfully loaded"; console.log("Chromium successfully laoded")}, 9000);
-    setTimeout(function(){desktopbody.innerText+="\n Loading app icons"; console.log("Loading app icons")}, 9500);
-    setTimeout(function(){desktopbody.innerText+="\n Loading background images"; console.log("Loading background images")}, 10000);
-    setTimeout(function(){desktopbody.innerText+="\n App icons successfully loaded"; console.log("App icons successfully loaded")}, 10500);
-    setTimeout(function(){desktopbody.innerText+="\n Background images loaded successfully"}, 11000);
+    setTimeout(function(){desktopbody.innerText+="\n ScriptAI successfully loaded"; console.log("ScriptAI successfully loaded")}, 3500);
+    setTimeout(function(){desktopbody.innerText+="\n Chromium successfully loaded"; console.log("Chromium successfully laoded")}, 4000);
+    setTimeout(function(){desktopbody.innerText+="\n Loading app icons"; console.log("Loading app icons")}, 4250);
+    setTimeout(function(){desktopbody.innerText+="\n Loading background images"; console.log("Loading background images")}, 4500);
+    setTimeout(function(){desktopbody.innerText+="\n App icons successfully loaded"; console.log("App icons successfully loaded")}, 4750);
+    setTimeout(function(){desktopbody.innerText+="\n Background images loaded successfully"}, 5000);
 
-    setTimeout(startUp, 15000);
+    setTimeout(startUp, 7000);
 }
 
 function startUp(){
@@ -406,6 +413,14 @@ function loadDesktop(){
     app8.className = 'appchoice';
     appcenter.appendChild(app8);
 
+    var app9 = document.createElement('input');
+    app9.type = 'image';
+    app9.src = 'https://dg8ynglluh5ez.cloudfront.net/special/blaze/ico_blaze_big.png';
+    app9.title = 'BlazeToUSD';
+    app9.setAttribute("onclick", "scriptApp('BlazeToUSD')");
+    app9.className = 'appchoice';
+    appcenter.appendChild(app9);
+
     var app10 = document.createElement('input');
     app10.type = 'image';
     app10.src = "images/ScriptAI.png";
@@ -413,6 +428,14 @@ function loadDesktop(){
     app10.setAttribute("onclick", "scriptApp('ScriptAI')");
     app10.className = 'appchoice';
     appcenter.appendChild(app10);
+
+    var app11 = document.createElement('input');
+    app11.type = 'image';
+    app11.src = "https://i.pinimg.com/originals/f9/4e/7d/f94e7d0f0a887f2c178234608595ce1d.png";
+    app11.title = 'StoryFire';
+    app11.setAttribute("onclick","scriptApp('StoryFire')");
+    app11.className = 'appchoice';
+    appcenter.appendChild(app11);
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
@@ -592,34 +615,62 @@ function scriptApp(appsname){
         inputbar.placeholder = 'Website';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
-        inputbar.onchange = function () { browserview.src = "https://" + inputbar.value; };
+        inputbar.onchange = function () { 
+            var inputvalue = inputbar.value;
+            browserview.src = "https://" + inputvalue;
+        };
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
-        browserview.src = 'newtab.html';
-        browserview.title = 'whitmanCTF[welcome_to_script_os_717]';
+        browserview.src = defaultengine;
         app.appendChild(browserview);
+    } else if(appsname === "BlazeToUSD"){
+        var btuview = document.createElement('iframe');
+        btuview.src = "https://blazetousd.tk";
+        btuview.style = 'width: 100%; height: 99%;';
+        app.appendChild(btuview);
+    } else if(appsname === "StoryFire"){
+        var sfview = document.createElement('iframe');
+        sfview.src = "https://www.storyfire.com";
+        sfview.style = 'width: 100%; height: 99%';
+        app.appendChild(sfview);
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
         var about = document.createElement('input');
         var shortcuts = document.createElement('input');
+        var browsersett = document.createElement('input');
+        browsersett.type = 'image';
         shortcuts.type = 'image';
         backgroundsettings.type = 'image';
         about.type = 'image';
+        browsersett.src = 'images/Browser.png';
         shortcuts.src = 'images/Shortcuts.png';
         backgroundsettings.src = 'images/background icon.png';
         about.src = 'images/Script OS logo 3.png';
+        browsersett.style.width = '10%';
         shortcuts.style.width = '10%';
         about.style.width = '10%';
         backgroundsettings.style.width = '10%';
+        browsersett.title = 'Browser Settings';
         about.title = 'About';
         shortcuts.title = 'Shortcuts';
         backgroundsettings.title = 'Personalization';
+        browsersett.onclick = function () { scriptApp("BrowserSettings"); };
         about.onclick = function () { scriptApp("About"); };
         shortcuts.onclick = function () { scriptApp("Shortcuts"); };
         backgroundsettings.onclick = function () {scriptApp("Personalization"); };
+        app.appendChild(browsersett);
         app.appendChild(shortcuts);
         app.appendChild(backgroundsettings);
-        app.appendChild(about);ß
+        app.appendChild(about);
+    } else if(appsname === "BrowserSettings"){
+        var defaultbrowser = document.createElement("input");
+        var savesett = document.createElement('button');
+        defaultbrowser.type = "text";
+        defaultbrowser.placeholder = "Default Search Engine";
+        savesett.innerHTML = "Save Settings";
+        savesett.onclick = function(){defaultengine = defaultbrowser.value;};
+        app.appendChild(defaultbrowser);
+        app.appendChild(savesett);
     } else if(appsname === "TopNav"){
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "TopNav Background";
@@ -1181,3 +1232,5 @@ function lightMode(){
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
 }
+
+var defaultengine = "https://www.google.com/search?q=";
