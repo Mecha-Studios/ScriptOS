@@ -3,6 +3,7 @@
     Resdistribution is allowed under certain conditions,
     See LICENSE file for details.
 */
+
 function battLevel(){
     navigator.getBattery()
     .then(function(battery) {
@@ -34,7 +35,10 @@ function startTime() {
     var t = setTimeout(startTime, 500);
 }
 
+
+
 var savednav = localStorage.getItem("savednav");
+var savedesk = localStorage.getItem("savedesk");
 
 function checkTime(i) {
     if (i < 10) { i = "0" + i; }
@@ -42,6 +46,9 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.5
+-Files app removed
+-Desktop Shortcuts added
 #Script OS 3.4.3
 -BlazeToUSD added
 -StoryFire added
@@ -137,12 +144,7 @@ if(savedtopnav){
 }
 
 var codearea = document.createElement('textarea');
-var filecontainer = document.createElement('div');
-var filesapp = localStorage.getItem("Files");
 
-if(filesapp){
-    filecontainer.innerHTML = localStorage.getItem("Files");
-}
 
 function openFile(filesname){
     scriptApp('VisualCode');
@@ -219,8 +221,8 @@ function boot(){
     setTimeout(function(){deviceDetection()}, 250);
     setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 500);
     console.log(objbrowserName + objfullVersion);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.4.1"}, 750);
-    console.log("Script OS Version 3.4.1");
+    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.5"}, 750);
+    console.log("Script OS Version 3.5");
     setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 1000);
     setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("Script OS Copyright (C) 2018-2020 Tyler Ruotolo")}, 1250);
     setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 1500);
@@ -238,6 +240,7 @@ function boot(){
     setTimeout(function(){desktopbody.innerText+="\n Loading background images"; console.log("Loading background images")}, 4500);
     setTimeout(function(){desktopbody.innerText+="\n App icons successfully loaded"; console.log("App icons successfully loaded")}, 4750);
     setTimeout(function(){desktopbody.innerText+="\n Background images loaded successfully"}, 5000);
+    setTimeout(function(){desktopbody.innerText+="\n Starting up Script OS..."; console.log("Starting up Script OS...")}, 5250);
 
     setTimeout(startUp, 7000);
 }
@@ -336,15 +339,20 @@ function loadDesktop(){
 
     var appicon3 = document.createElement('input');
     appicon3.type = 'image';
-    appicon3.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png';
+    appicon3.src = 'images/Shortcuts.png';
     appicon3.className = 'appicon';
-    appicon3.title = 'Files';
-    appicon3.setAttribute("onclick", "scriptApp('Files')");
+    appicon3.title = 'Shortcuts';
+    appicon3.setAttribute("onclick", "scriptApp('Shortcuts')");
     navbar.appendChild(appicon3);
     
     if(savednav){
         navbar.innerHTML = '';
         navbar.innerHTML = localStorage.getItem("savednav");
+    }
+
+    if(savedesk){
+        desktopbody.innerHTML = '';
+        desktopbody.innerHTML = localStorage.getItem("savedesk");
     }
 
     actioncenter.className = 'app';
@@ -393,7 +401,7 @@ function loadDesktop(){
     app6.type = 'image';
     app6.src = "images/VisualCode.png";
     app6.title = 'VisualCode';
-    app6.setAttribute("onclick", function () {scriptApp('VisualCode')});
+    app6.setAttribute("onclick", "scriptApp('VisualCode')");
     app6.className = 'appchoice';
     appcenter.appendChild(app6);
 
@@ -963,11 +971,9 @@ function scriptApp(appsname){
         var codeviewer = document.createElement("iframe");
         var savebutton = document.createElement("button");
         var openvbutton = document.createElement("input");
-        savebutton.innerHTML = "Save in Docs";
+        savebutton.innerHTML = "Save to Script OS";
         savebutton.onclick = function () {
-            codearea.select();
-            document.execCommand('copy');
-            window.open("https://docs.google.com/document/u/0");
+            
         };
         openvbutton.type = 'file';
         const defaultText = `
@@ -1020,14 +1026,10 @@ function scriptApp(appsname){
         app.appendChild(openvbutton);
         app.appendChild(codearea);
         app.appendChild(codeviewer);
-    } else if(appsname === "Files"){
-        var filecontainer = document.createElement("iframe");
-        filecontainer.style = 'width: 99%; height:99%;';
-        filecontainer.src = "https://google.com/drive"
-        app.appendChild(filecontainer);
     } else if(appsname === "Shortcuts"){
         var appnameshort = document.createElement('input');
-        var shortadd = document.createElement('button');
+        var shortaddnav = document.createElement('button');
+        var shortadddesk = document.createElement('button');
         var newshortcut = document.createElement('input');
         var navbar = document.getElementById("navbar");
         var noticetxt = document.createElement("h3");
@@ -1037,16 +1039,18 @@ function scriptApp(appsname){
         newshortcut.style.height = '50px';
         newshortcut.style.textAlign = 'center';
         appnameshort.type = 'text';
-        shortadd.innerHTML = 'Add';
+        shortaddnav.innerHTML = 'Add to NavBar';
+        shortadddesk.innerHTML = 'Add to Desktop';
         noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
         resetsc.innerHTML = "Reset Shortcuts";
         resetsc.title = "This will remove all added shortcuts";
-        resetsc.onclick = function () {localStorage.removeItem("savednav"); window.location.reload();};
+        resetsc.onclick = function () {localStorage.removeItem("savednav"); localStorage.removeItem("savedesk"); window.location.reload();};
         app.appendChild(appnameshort);
-        app.appendChild(shortadd);
+        app.appendChild(shortaddnav);
+        app.appendChild(shortadddesk);
         app.appendChild(resetsc);
         app.appendChild(noticetxt);
-        shortadd.onclick = function () {
+        shortaddnav.onclick = function () {
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
             newshortcut.src = "images/" + appnameshort.value + ".png";
@@ -1055,6 +1059,18 @@ function scriptApp(appsname){
             navbar.appendChild(newshortcut);
             desktopbody.removeChild(app);
             localStorage.setItem("savednav", navbar.innerHTML)
+        };
+        shortadddesk.onclick = function () {
+            newshortcut.title = appnameshort.value;
+            newshortcut.innerHTML = appnameshort.value;
+            newshortcut.src = "images/" + appnameshort.value + ".png";
+            newshortcut.className = 'desktopicon';
+            newshortcut.id = appnameshort.value + "short";
+            newshortcut.style = 'width: 75px; height: 75px';
+            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
+            desktopbody.appendChild(newshortcut);
+            desktopbody.removeChild(app);
+            localStorage.setItem("savedesk", desktopbody.innerHTML);
         };
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
@@ -1232,5 +1248,23 @@ function lightMode(){
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
 }
+
+function saveToScriptOS(){
+    var filecontent = textarea.value;
+    txtfiles[filename + '.txt'] = filecontent;
+    txtfiles[filename + '.' + typeselect.value, textarea.value];
+}
+
+function openSFile(storage,filename){
+    var innercontents = storage[filename];
+    if(innercontents = txtfiles[filename]){
+        scriptApp("VisualCode");
+        codearea.value = innercontents;
+    } else if(innercontents = htmlfiles[filename]){
+        scriptApp("VisualCode");
+        codearea.value = innercontents;
+    }
+}
+
 
 var defaultengine = "https://www.google.com/search?q=";

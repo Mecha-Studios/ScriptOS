@@ -49,6 +49,16 @@ button {
     height: 50px;
 }
 
+.desktopicon{
+    width: 75px;
+    height : 75px;
+    border-radius: 15px;
+}
+.desktopicon:hover{
+    background-color: red;
+}
+
+
 #menu {
     width: 150px;
     z-index: 20;
@@ -60,6 +70,8 @@ button {
     border-radius: 15px;
     text-align: left;
     cursor: context-menu;
+    animation: fadein;
+    animation-duration: 2s;
 }
 #menu:active{
     cursor: pointer;
@@ -89,8 +101,6 @@ button {
     height: 25px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
-    animation: fadeIn;
-    animation-duration: 5s;
 }
 
 .appicon {
