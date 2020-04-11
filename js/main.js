@@ -4,6 +4,10 @@
     See LICENSE file for details.
 */
 
+var scriptosversion = "3.6";
+var defaultengine;
+var saveddefault = localStorage.getItem("DefaultEngine");
+
 function battLevel(){
     navigator.getBattery()
     .then(function(battery) {
@@ -46,6 +50,13 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.6
+-Search bug fixes
+-Browser bug fixes
+-About page bug fixes
+-Commands added to ScriptAI
+-Responses added to ScriptAI
+-ScriptAI can now search the web
 #Script OS 3.5
 -Files app removed
 -Desktop Shortcuts added
@@ -134,6 +145,7 @@ var changelog = `Script OS Changelog:
 var topnav = document.getElementById('topnav');
 var savedbackground = localStorage.getItem('background');
 var savedtopnav = localStorage.getItem('topnav');
+var saveddefault = localStorage.getItem('DefaultEngine');
 
 if(savedbackground){
     document.body.style.backgroundImage = localStorage.getItem('background');
@@ -141,6 +153,12 @@ if(savedbackground){
 
 if(savedtopnav){
     topnav.style.backgroundImage = localStorage.getItem('topnav');
+}
+
+if(saveddefault){
+    defaultengine = localStorage.getItem("DefaultEngine");
+} else{
+    defaultengine = "https://www.google.com";
 }
 
 var codearea = document.createElement('textarea');
@@ -221,7 +239,7 @@ function boot(){
     setTimeout(function(){deviceDetection()}, 250);
     setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 500);
     console.log(objbrowserName + objfullVersion);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS Version 3.5"}, 750);
+    setTimeout(function(){desktopbody.innerText+="\n Script OS Version " + scriptosversion}, 750);
     console.log("Script OS Version 3.5");
     setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 1000);
     setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("Script OS Copyright (C) 2018-2020 Tyler Ruotolo")}, 1250);
@@ -260,8 +278,8 @@ var exitbutt = document.createElement('input');
 websearch.style = 'border-radius: 25px; width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; background: rgba(255,255,255,0.5); color: black;';
 websearch.type = 'text';
 websearch.placeholder = 'Search the web';
-websearch.onchange = function() { scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = "https://www.bing.com/search?q=" + websearch.value; }
-searchbutt.onclick = function () {scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = "https://www.bing.com/search?q=" + websearch.value;};
+websearch.onchange = function() { scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = defaultengine + "/search?q=" + websearch.value; }
+searchbutt.onclick = function () {scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = defaultengine + "/search?q=" + websearch.value;};
 searchbutt.type = 'image';
 searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
 searchbutt.className = 'appicon';
@@ -373,13 +391,13 @@ function loadDesktop(){
     app2.className = 'appchoice';
     appcenter.appendChild(app2);
 
-    var app3 = document.createElement('input');
+    /*var app3 = document.createElement('input');
     app3.type = 'image';
     app3.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png";
     app3.title = 'Files';
     app3.setAttribute("onclick", "scriptApp('Files')");
     app3.className = 'appchoice';
-    appcenter.appendChild(app3);
+    appcenter.appendChild(app3);*/
 
     var app4 = document.createElement("input");
     app4.type = 'image';
@@ -417,13 +435,13 @@ function loadDesktop(){
     app8.type = 'image';
     app8.src = "images/vmOS.png";
     app8.title = 'vmOS';
-    app8.setAttribute("onclick", "scriptApp('vmOS')");
+    app8.setAttribute("onclick", "scriptApp('vmOS'); desktopbody.removeChild(actioncenter);");
     app8.className = 'appchoice';
     appcenter.appendChild(app8);
 
     var app9 = document.createElement('input');
     app9.type = 'image';
-    app9.src = 'https://dg8ynglluh5ez.cloudfront.net/special/blaze/ico_blaze_big.png';
+    app9.src = 'images/BlazeToUSD.png';
     app9.title = 'BlazeToUSD';
     app9.setAttribute("onclick", "scriptApp('BlazeToUSD')");
     app9.className = 'appchoice';
@@ -439,7 +457,7 @@ function loadDesktop(){
 
     var app11 = document.createElement('input');
     app11.type = 'image';
-    app11.src = "https://i.pinimg.com/originals/f9/4e/7d/f94e7d0f0a887f2c178234608595ce1d.png";
+    app11.src = "images/StoryFire.png";
     app11.title = 'StoryFire';
     app11.setAttribute("onclick","scriptApp('StoryFire')");
     app11.className = 'appchoice';
@@ -536,9 +554,9 @@ conmenu1butt3.innerHTML = 'About';
 conmenu1butt3.onclick = function () { scriptApp('About'); };
 conmenu1butt4.innerHTML = 'Add Shortcut';
 conmenu1butt4.onclick = function () { scriptApp('Shortcuts'); };
-desktopbody.appendChild(conmenu1);
 conmenu1butt5.innerHTML = 'Customize TopNav';
 conmenu1butt5.onclick = function () { scriptApp('TopNav'); };
+desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
@@ -673,12 +691,16 @@ function scriptApp(appsname){
     } else if(appsname === "BrowserSettings"){
         var defaultbrowser = document.createElement("input");
         var savesett = document.createElement('button');
+        var resetbutt = document.createElement('button');
         defaultbrowser.type = "text";
         defaultbrowser.placeholder = "Default Search Engine";
         savesett.innerHTML = "Save Settings";
-        savesett.onclick = function(){defaultengine = defaultbrowser.value;};
+        savesett.onclick = function(){defaultengine = defaultbrowser.value; logcalStorage.setItem("DefaultEngine", defaultbrowser.value)};
+        resetbutt.innerHTML = "Reset Default";
+        resetbutt.onclick = function(){localStorage.removeItem("DefaultEngine"); location.reload();};
         app.appendChild(defaultbrowser);
         app.appendChild(savesett);
+        app.appendChild(resetbutt);
     } else if(appsname === "TopNav"){
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "TopNav Background";
@@ -819,6 +841,17 @@ function scriptApp(appsname){
         };
         app.appendChild(choice8);
 
+        var choice9 = document.createElement('input');
+        choice9.type = 'image';
+        choice9.src = 'images/tr-software.png';
+        choice9.className = 'backgroundoption';
+        choice9.onclick = function () {
+            document.body.style.backgroundImage = 'url(images/tr-software.png';
+            localStorage.setItem('background','url(images/tr-software.png)');
+        };
+        app.appendChild(choice9);
+
+
         var backgroundinput = document.createElement('input');
         var backgroundaddbutt = document.createElement('button');
         backgroundaddbutt.innerHTML = 'Add';
@@ -904,17 +937,21 @@ function scriptApp(appsname){
         disframe.src = 'https://discordapp.com/';
         app.appendChild(disframe);
     } else if(appsname === "About"){
-        var scriptosversion = document.createElement('h1');
+        var scriptostxt = document.createElement('h1');
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
+        var logoimg = document.createElement('img');
         var changelogbutt = document.createElement('button');
         changelogbutt.innerHTML = 'Changelog';
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptosversion.innerHTML = "Script OS 3.5";
+        scriptostxt.innerHTML = "Script OS " + scriptosversion;
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
-        app.appendChild(scriptosversion);
+        logoimg.src = 'images/tr-logo.png';
+        logoimg.style = 'width: 150px; height: 150px';
+        app.appendChild(scriptostxt);
+        app.appendChild(logoimg);
         app.appendChild(copyright);
         app.appendChild(browserversion);
         app.appendChild(changelogbutt);
@@ -971,7 +1008,7 @@ function scriptApp(appsname){
         var codeviewer = document.createElement("iframe");
         var savebutton = document.createElement("button");
         var openvbutton = document.createElement("input");
-        savebutton.innerHTML = "Save to Script OS";
+        savebutton.innerHTML = "Save to Device";
         savebutton.onclick = function () {
             
         };
@@ -1058,14 +1095,14 @@ function scriptApp(appsname){
             newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
             navbar.appendChild(newshortcut);
             desktopbody.removeChild(app);
-            localStorage.setItem("savednav", navbar.innerHTML)
+            localStorage.setItem("savednav", navbar.innerHTML);
         };
         shortadddesk.onclick = function () {
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
             newshortcut.src = "images/" + appnameshort.value + ".png";
             newshortcut.className = 'desktopicon';
-            newshortcut.id = appnameshort.value + "short";
+            newshortcut.id = appnameshort.value + "Short";
             newshortcut.style = 'width: 75px; height: 75px';
             newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
             desktopbody.appendChild(newshortcut);
@@ -1084,8 +1121,8 @@ function scriptApp(appsname){
         oschoice1.onclick = function () {osview.src = 'https://tenzeinc.github.io/Script-OS-Dev/';};
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
-        oschoice3.innerHTML = 'Script OS 3.2.1';
-        oschoice3.onclick = function () {osview.src = 'https://scriptos.cf/';};
+        oschoice3.innerHTML = 'Script OS';
+        oschoice3.onclick = function () {osview.src = 'https://scriptos.ml/';};
         oschoice4.innerHTML = 'eyeOS';
         oschoice4.onclick = function () {osview.src = 'https://s2.demo.opensourcecms.com/eyeOS/';};
         app.appendChild(oschoice1);
@@ -1094,117 +1131,197 @@ function scriptApp(appsname){
         app.appendChild(oschoice4);
         app.appendChild(osview);
     } else if(appsname === "ScriptAI"){
-        var commandinput = document.createElement('input');
-        var commandoutput = document.createElement('textarea');
+        commandinput = document.createElement('input');
+        commandoutput = document.createElement('textarea');
         var micbutton = document.createElement('input');
-        var recognizer = new webkitSpeechRecognition();
-        recognizer.lang = "en";
-        recognizer.onresult = function(event) {
-            if (event.results.length > 0) {
-                var result = event.results[event.results.length-1];
-                if(result.isFinal) {
-                    commandinput.value = result[0].transcript;
-                }
-            }  
-        };
+        var sendbutt = document.createElement("button");
         commandinput.placeholder = 'Type a message';
-        commandinput.style = 'height:15%; width:75%; font-size: 75px; border-radius: 30px';
+        commandinput.style = 'height:15%; width:75%; font-size: 75px; background: rgba(0,0,0,0.7); color: white; outline: none;border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: groove;';
+        commandinput.type = "text";
         commandoutput.style = 'height:75%; width:100%; font-size: 65px; color:white; background-color: black';
         commandoutput.readOnly = true;
         micbutton.type = 'image';
-        micbutton.disabled = true;
         micbutton.style.backgroundColor = 'white';
         micbutton.src = 'https://png.pngtree.com/svg/20151101/76e68d5d8b.svg';
-        commandinput.onchange = function () {
-            if(commandinput.value == "hey"){
-                commandoutput.value = "Hi there!";
-            }else if(commandinput.value == "hi"){
-                commandoutput.value = "Hey!";
-            } else if(commandinput.value == "whats up"){
-                commandoutput.value = "What's up my diggity dogs?";
-            } else if(commandinput.value == "what's up"){
-                commandoutput.value = "What's up my diggity dogs?";
-            } else if(commandinput.value == "how are you"){
-                commandoutput.value = "I'm doing pretty good.";
-            } else if(commandinput.value == "fuck you"){
-                commandoutput.value = "That isn't very nice!";
-            } else if(commandinput.value == "open youtube"){
-                commandoutput.value = "Okay, opening youtube.com";
-                scriptApp('Browser');
-                browserview.src = 'https://youtube.com';
-            } else if(commandinput.value == "what is the best meme account on instagram"){
-                commandoutput.value = "The best meme account is @manystolenmemes";
-            } else if(commandinput.value == "what is your favorite condiment"){
-                commandoutput.value = "Ketchup!";
-            } else if(commandinput.value == "who is the best rapper"){
-                commandoutput.value = "Either Eminem or Logic, tough choice.";
-            } else if(commandinput.value == "does minecraft or fortnite have more monthly players"){
-                commandoutput.value = "Fortnite(sadly)";
-            } else if(commandinput.value == "whats your favorite minecraft block"){
-                commandoutput.value = "Anvils because you can drop them on things.";
-            } else if(commandinput.value == "why does dr pepper come in a bottle"){
-                commandoutput.value = "His wife is dead";
-            } else if(commandinput.value == "what is the difference between a lamborghini and a trash can of dead babies"){
-                commandoutput.value = "I don't have a lamborghini in my garage.";
-            } else if(commandinput.value == "show me something funny"){
-                commandoutput.value = "Look in a mirror!";
-            } else if(commandinput.value == "do you work on macs"){
-                commandoutput.value = "Yes, as long as you don't use Safari.";
-            } else if(commandinput.value == "donate"){
-                commandoutput.value = "...";
-                scriptApp("Browser");
-                browserview.src = "https://paypal.me/tylerruotolo"
-            } else if(commandinput.value == ""){
-                commandoutput.value = "";
-            } else if(commandinput.value == "yes"){
-                commandoutput.value = "Yes recieved!";
-            } else if(commandinput.value == "no"){
-                commandoutput.value = "Okay.";
-            } else if(commandinput.value == "lock my computer"){
-                commandoutput.value = "Locking your computer.";
-                signOut();
-            } else if(commandinput.value == "what is your name"){
-                commandoutput.value = "My name is Script AI, I'm here to help!";
-            } else if(commandinput.value == "what is the weather"){
-                commandoutput.value = "Loading weather...";
-                scriptApp("Browser");
-                browserview.src = "https://www.google.com/search?q=weather";
-            } else{
-                commandoutput.value = "Sorry, I didn't get that.";
+        sendbutt.innerHTML = "Send";
+        sendbutt.className = "appchoice";
+        micbutton.onclick = function () {
+            micbutton.src = 'https://i.pinimg.com/originals/f6/65/6a/f6656aa6fdb6b8f905dea0bcc2d71dd8.gif';
+            startDictation();
+        };
+        commandinput.onkeydown = function (e){
+            if(e.keyCode == 13){
+                scriptAI();
+                micbutton.src = 'https://png.pngtree.com/svg/20151101/76e68d5d8b.svg';
             }
-            var available_voices = window.speechSynthesis.getVoices();
-            
-            var english_voice = '';
-
-            for(var i=0; i<available_voices.length; i++) {
-                if(available_voices[i].lang === 'en-US') {
-                    english_voice = available_voices[i];
-                    break;
-                }
-            }
-            if(english_voice === '')
-                english_voice = available_voices[0];
-
-            var utter = new SpeechSynthesisUtterance();
-            utter.rate = 1;
-            utter.pitch = 0.5;
-            utter.text = commandoutput.value;
-            utter.voice = english_voice;
-
-            window.speechSynthesis.speak(utter);
         };
         micbutton.className = 'appchoice';
-        micbutton.onclick = function () {
-            recognizer.start();
-        };
+        //micbutton.onclick = function () {
+            //recognizer.start();
+        //};
         app.appendChild(commandoutput);
         app.appendChild(commandinput);
         app.appendChild(micbutton);
+        //app.appendChild(sendbutt);
     } else {
         var unavailableapp = document.createElement('h1');
         unavailableapp.innerHTML = "Currently Unavailable";
         app.appendChild(unavailableapp);
     }
+}
+
+function startDictation() {
+
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+        var recognition = new webkitSpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = function (e) {
+            commandinput.value
+                = e.results[0][0].transcript;
+            recognition.stop();
+        };
+
+        recognition.onerror = function (e) {
+            recognition.stop();
+        }
+
+    }
+}
+
+function scriptAI(){
+    var jokes = [
+        "What's the difference between a Lamborghini and a garbage can of dead babies? I don't have a Lamborghini in my garage",
+        "Nancy Pelosi",
+        "Hillary Clinton being president",
+        "Liberals using facts",
+        "If video games make kids more violent, why are they so easy to beat the shit out of?",
+        "How many dead babies does it take to paint a wall? It depends how hard you throw them",
+        ""
+    ];
+    
+    var greetings = [
+        "Hi",
+        "Hello",
+        "What's up",
+        "Hi there",
+        "Hello, friend"
+    ];
+
+    var swearreplies = [
+        "Fuck you",
+        "Fuck off",
+        "Shut the fuck up",
+        "Don't say that to me",
+        "I'm telling your mother",
+        "That isn't very nice",
+        "Shut up",
+        "Okay",
+        "...",
+        "I thought we were friends",
+        "What the fuck",
+        "You're a bitch",
+        "You cunt",
+        "Motherfucker",
+        "No",
+        "You're a cunt"
+    ];
+
+    repliestoyes = [
+        "Okay",
+        "Yes received",
+        "Yes",
+        "Alright",
+        "No"
+    ];
+
+    if(commandinput.value == "hey"){
+        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+    }else if(commandinput.value == "hi"){
+        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+    } else if(commandinput.value == "whats up"){
+        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+    } else if(commandinput.value == "what's up"){
+        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+    } else if(commandinput.value == "how are you"){
+        commandoutput.value = "I'm doing pretty good.";
+    } else if(commandinput.value == "fuck you"){
+        commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
+    } else if(commandinput.value == "you're stupid"){
+        commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
+    } else if(commandinput.value == "fuck"){
+        commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
+    } else if(commandinput.value == "tell me a joke"){
+        commandoutput.value = jokes[Math.floor(Math.random() * jokes.length)];
+    } else if (commandinput.value == "say something funny"){
+        commandoutput.value = jokes[Math.floor(Math.random() * jokes.length)];
+    } else if(commandinput.value == "do you work on macs"){
+        commandoutput.value = "Yes, as long as you don't use Safari.";
+    } else if(commandinput.value == "donate"){
+        commandoutput.value = "...";
+        scriptApp("Browser");
+        browserview.src = "https://paypal.me/tylerruotolo";
+    } else if(commandinput.value == ""){
+        commandoutput.value = "";
+    } else if(commandinput.value == "yes"){
+        commandoutput.value = repliestoyes[Math.floor(Math.random() * repliestoyes.length)];
+    } else if(commandinput.value == "no"){
+        commandoutput.value = "Okay.";
+    } else if(commandinput.value == "lock my computer"){
+        commandoutput.value = "Locking your computer.";
+        signOut();
+    } else if(commandinput.value == "what is your name"){
+        commandoutput.value = "My name is Script AI, I'm here to help!";
+    } else if(commandinput.value == "whats the weather"){
+        commandoutput.value = "Loading weather...";
+        scriptApp("Browser");
+        browserview.src = "https://www.google.com/search?q=weather";
+    } else if(commandinput.value == "what's the weather"){
+        commandoutput.value = "Loading weather...";
+        scriptApp("Browser");
+        browserview.src = "https://www.google.com/search?q=weather";
+    } else if(commandinput.value.includes("what is")){
+        commandoutput.value = "Searching the web for '" + commandinput.value + "'";
+        scriptApp("Browser");
+        browserview.src = "https://www.google.com/search?q=" + commandinput.value;
+    } else if(commandinput.value.includes("who is")){
+        commandoutput.value = "Searching the web for '" + commandinput.value + "'";
+        scriptApp("Browser");
+        browserview.src = "https://www.google.com/search?q=" + commandinput.value;
+    } else if(commandinput.value.includes("search")){
+        commandoutput.value = "Searching " + commandinput.value.split("search");
+        scriptApp("Browser");
+        browserview.src = "https://www.google.com/search?q=" + commandinput.value;
+    } else{
+        commandoutput.value = "Sorry, I didn't get that.";
+    }
+
+    var available_voices = window.speechSynthesis.getVoices();
+    
+    var english_voice = '';
+
+    for(var i=0; i<available_voices.length; i++) {
+        if(available_voices[i].lang === 'en-US') {
+            english_voice = available_voices[i];
+            break;
+        }
+    }
+    if(english_voice === ''){
+        english_voice = available_voices[0];
+    }
+    var utter = new SpeechSynthesisUtterance();
+    utter.rate = 1;
+    utter.pitch = 0.5;
+    utter.text = commandoutput.value;
+    utter.voice = english_voice;
+
+    window.speechSynthesis.speak(utter);
 }
 
 //Browser Version
@@ -1265,6 +1382,3 @@ function openSFile(storage,filename){
         codearea.value = innercontents;
     }
 }
-
-
-var defaultengine = "https://www.google.com/search?q=";
