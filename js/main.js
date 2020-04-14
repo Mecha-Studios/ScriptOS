@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "3.6";
+var scriptosversion = "3.7";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 
@@ -50,6 +50,11 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.7
+-More jokes added to ScriptAI
+-ScriptAI improvements
+-Window's can be brought to front on click
+-Launch ScriptAI by pressing TAB
 #Script OS 3.6
 -Search bug fixes
 -Browser bug fixes
@@ -621,6 +626,8 @@ function scriptApp(appsname){
     app.id = appsname + appnumber;
     apphead.id = app.id + "header";
     dragWindow(document.getElementById(appsname + appnumber));
+    app.onload = bringToFront(app.id);
+    app.onclick = function () {bringToFront(app.id)};
     close.onclick = function () { desktopbody.removeChild(app); };
     fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0px'; };
     smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; };
@@ -1195,6 +1202,24 @@ function startDictation() {
     }
 }
 
+document.onkeyup = function (e){
+    document.onkeyup=function(e){
+        var e = e || window.event;
+        if(e.which == 9) {
+                scriptApp("ScriptAI");
+        }
+      }
+    //if(e.keyCode == 83 && e.keyCode == 32){
+    //      scriptApp("ScriptAI");
+    //}
+}
+
+var top_z = 10;
+
+function bringToFront(appname){
+    document.getElementById(appname).style.zIndex = ++top_z
+}
+
 function scriptAI(){
     var jokes = [
         "What's the difference between a Lamborghini and a garbage can of dead babies? I don't have a Lamborghini in my garage",
@@ -1203,7 +1228,8 @@ function scriptAI(){
         "Liberals using facts",
         "If video games make kids more violent, why are they so easy to beat the shit out of?",
         "How many dead babies does it take to paint a wall? It depends how hard you throw them",
-        ""
+        "Gun free zones being effective",
+        "Trump losing in 2020"
     ];
     
     var greetings = [
@@ -1286,18 +1312,22 @@ function scriptAI(){
         commandoutput.value = "Loading weather...";
         scriptApp("Browser");
         browserview.src = "https://www.google.com/search?q=weather";
-    } else if(commandinput.value.includes("what is")){
+    } else if(commandinput.value.includes("how")){
         commandoutput.value = "Searching the web for '" + commandinput.value + "'";
         scriptApp("Browser");
-        browserview.src = "https://www.google.com/search?q=" + commandinput.value;
-    } else if(commandinput.value.includes("who is")){
+        browserview.src = defaultengine + "/search?q=" + commandinput.value;
+    } else if(commandinput.value.includes("what")){
         commandoutput.value = "Searching the web for '" + commandinput.value + "'";
         scriptApp("Browser");
-        browserview.src = "https://www.google.com/search?q=" + commandinput.value;
+        browserview.src = defaultengine + "/search?q=" + commandinput.value;
+    } else if(commandinput.value.includes("who")){
+        commandoutput.value = "Searching the web for '" + commandinput.value + "'";
+        scriptApp("Browser");
+        browserview.src = defaultengine + "/search?q=" + commandinput.value;
     } else if(commandinput.value.includes("search")){
         commandoutput.value = "Searching " + commandinput.value.split("search");
         scriptApp("Browser");
-        browserview.src = "https://www.google.com/search?q=" + commandinput.value;
+        browserview.src = defaultengine + "/search?q=" + commandinput.value;
     } else{
         commandoutput.value = "Sorry, I didn't get that.";
     }
