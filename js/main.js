@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "3.7";
+var scriptosversion = "3.8";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 
@@ -50,6 +50,13 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
+#Script OS 3.8
+-Happy Birthday Script OS
+-New commands and jokes added to ScriptAI
+-New backgrounds added
+-VisualCode removed
+#Script OS 3.7.1
+-App UI Improvements
 #Script OS 3.7
 -More jokes added to ScriptAI
 -ScriptAI improvements
@@ -165,16 +172,6 @@ if(saveddefault){
 } else{
     defaultengine = "https://www.google.com";
 }
-
-var codearea = document.createElement('textarea');
-
-
-function openFile(filesname){
-    scriptApp('VisualCode');
-    var filecontent = localStorage.getItem(filesname);
-    codearea.value = filecontent; 
-}
-
 
 function dragWindow(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -321,7 +318,7 @@ function loadDesktop(){
     if(savedbackground){
         document.body.style.backgroundImage = localStorage.getItem('background');
     } else{
-        document.body.style.backgroundImage = 'url("images/Script OS 3.0 .png")';
+        document.body.style.backgroundImage = 'url("images/2nd_birthday_script_os.png")';
     }
 
     navbar.className = 'navbar';
@@ -419,14 +416,6 @@ function loadDesktop(){
     app5.setAttribute("onclick", "scriptApp('Discord')");
     app5.className = 'appchoice';
     appcenter.appendChild(app5);
-
-    var app6 = document.createElement('input');
-    app6.type = 'image';
-    app6.src = "images/VisualCode.png";
-    app6.title = 'VisualCode';
-    app6.setAttribute("onclick", "scriptApp('VisualCode')");
-    app6.className = 'appchoice';
-    appcenter.appendChild(app6);
 
     var app7 = document.createElement('input');
     app7.type = 'image';
@@ -853,10 +842,40 @@ function scriptApp(appsname){
         choice9.src = 'images/tr-software.png';
         choice9.className = 'backgroundoption';
         choice9.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/tr-software.png';
+            document.body.style.backgroundImage = 'url(images/tr-software.png)';
             localStorage.setItem('background','url(images/tr-software.png)');
         };
         app.appendChild(choice9);
+
+        var choice10 = document.createElement('input');
+        choice10.type = 'image';
+        choice10.src = 'images/2nd_birthday_script_os.png';
+        choice10.className = 'backgroundoption';
+        choice10.onclick = function () {
+            document.body.style.backgroundImage = 'url(images/2nd_birthday_script_os.png)';
+            localStorage.setItem('background','url(images/2nd_birthday_script_os.png)');
+        };
+        app.appendChild(choice10);
+
+        var choice11 = document.createElement('input');
+        choice11.type = 'image';
+        choice11.src = 'images/bridge_background.jpg';
+        choice11.className = 'backgroundoption';
+        choice11.onclick = function () {
+            document.body.style.backgroundImage = 'url(images/bridge_background.jpg)';
+            localStorage.setItem('background','url(images/bridge_background.jpg)');
+        };
+        app.appendChild(choice11);
+
+        var choice12 = document.createElement('input');
+        choice12.type = 'image';
+        choice12.src = 'images/city_bridge_background.jpg';
+        choice12.className = 'backgroundoption';
+        choice12.onclick = function () {
+            document.body.style.backgroundImage = 'url(images/city_bridge_background.jpg';
+            localStorage.setItem('background','url(images/city_bridge_background.jpg)');
+        };
+        app.appendChild(choice12);
 
 
         var backgroundinput = document.createElement('input');
@@ -1011,65 +1030,6 @@ function scriptApp(appsname){
         app.appendChild(timeset);
         app.appendChild(setbutton);
         
-    } else if(appsname === "VisualCode"){
-        var codeviewer = document.createElement("iframe");
-        var savebutton = document.createElement("button");
-        var openvbutton = document.createElement("input");
-        savebutton.innerHTML = "Save to Device";
-        savebutton.onclick = function () {
-            
-        };
-        openvbutton.type = 'file';
-        const defaultText = `
-        <!DOCTYPE html> 
-            <html lang="en"> 
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                    <title>Document</title>
-                </head>
-                <body>
-                    <h1>Hello, World</h1>
-                </body>
-            </html>`;
-        codearea.value = defaultText;
-        openvbutton.addEventListener("change", function () {
-            if (this.files && this.files[0]) {
-                var myFile = this.files[0];
-                var reader = new FileReader();
-                reader.addEventListener('load', function (e) {
-                    codearea.value = e.target.result;
-                });
-
-                reader.readAsBinaryString(myFile);
-            }
-        });
-        codearea.addEventListener('input', () => {
-            codeviewer.srcdoc = codearea.value;
-        });
-        codeviewer.srcdoc = codearea.value;
-        codearea.onkeydown = function () {
-            if(event.keyCode === 9){
-                var v = this.value, s = this.selectionStart,e = this.selectionEnd;
-                this.value = v.substring(0, s) + '\t' + v.substring(e);
-                this.selectionStart = this.selectionEnd = s + 1;
-                return false;
-            }
-        };
-        codearea.style.resize = 'none';
-        codeviewer.style.resize = 'none';
-        codeviewer.style.backgroundColor = 'white';
-        codearea.style.height = '48%';
-        codearea.style.width = '100%';
-        codearea.style.display = 'block';
-        codeviewer.style.height = '48%';
-        codeviewer.style.width = '100%';
-        codeviewer.style.display = 'block';
-        app.appendChild(savebutton);
-        app.appendChild(openvbutton);
-        app.appendChild(codearea);
-        app.appendChild(codeviewer);
     } else if(appsname === "Shortcuts"){
         var appnameshort = document.createElement('input');
         var shortaddnav = document.createElement('button');
@@ -1394,21 +1354,4 @@ function lightMode(){
     websearch.style.color = 'black';
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
-}
-
-function saveToScriptOS(){
-    var filecontent = textarea.value;
-    txtfiles[filename + '.txt'] = filecontent;
-    txtfiles[filename + '.' + typeselect.value, textarea.value];
-}
-
-function openSFile(storage,filename){
-    var innercontents = storage[filename];
-    if(innercontents = txtfiles[filename]){
-        scriptApp("VisualCode");
-        codearea.value = innercontents;
-    } else if(innercontents = htmlfiles[filename]){
-        scriptApp("VisualCode");
-        codearea.value = innercontents;
-    }
 }
