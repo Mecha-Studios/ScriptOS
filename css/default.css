@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     image-rendering: optimizeQuality;
     -webkit-user-select: none;
     -moz-user-select: -moz-none;
@@ -7,7 +8,24 @@
     width: auto;
     height: auto;
     margin: 0;
-    font-family: 'Bauhaus 93';
+    font-family: 'Arial';
+    background: url('') no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+#close:hover{
+    cursor: pointer;
+}
+
+#fullscreen:hover{
+    cursor: pointer;
+}
+
+#smallscreen:hover{
+    cursor: pointer;
 }
 
 .appopt{
@@ -31,15 +49,32 @@ button {
     height: 50px;
 }
 
-.menu {
-    width: 250px;
+.desktopicon{
+    width: 75px;
+    height : 75px;
+    border-radius: 15px;
+}
+.desktopicon:hover{
+    background-color: red;
+}
+
+
+#menu {
+    width: 150px;
     z-index: 20;
     position: fixed;
     box-shadow: 5px;
     display: none;
-    background: rgba(0, 0, 0, 0.5);
+    color: black;
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
     text-align: left;
+    cursor: context-menu;
+    animation: fadein;
+    animation-duration: 2s;
+}
+#menu:active{
+    cursor: pointer;
 }
 
 .navbar {
@@ -56,6 +91,18 @@ button {
     animation-duration: 5s;
 }
 
+.logbar {
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
+
 .appicon {
     width: 50px;
     height: 50px;
@@ -64,7 +111,7 @@ button {
 
 .appicon:hover{
     background-color: red;
-    transform: scale(1.5);
+    transform: scale(1.3);
 }
 
 .topnav {
@@ -75,7 +122,6 @@ button {
     bottom: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.5);
-    box-shadow: 5px 5px 2.5px black;
     display: inline-block;
 }
 
@@ -86,43 +132,60 @@ button {
 
 @keyframes slidetop {
     0% {
-        opacity: 0px;
+        opacity: 5%;
+        background-color: red;
         top: 0px;
     }
     100%{
-        opacity: 100px;
+        opacity: 100%;
+        background-color: green;
         top: 100px;
+    }
+}
+
+@keyframes swipeup{
+    0% {
+        bottom:0px;
+    }
+    100% {
+        top:0px;
     }
 }
 
 @keyframes rgb {
     0% {
         color: red;
+        background-color: blue;
         opacity: 0;
     }
 
     15% {
         color: orange;
+        background-color: green;
         opacity: 15;
     }
 
     30% {
         color: yellow;
+        background-color: indigo;
         opacity: 30;
     }
 
     45%{
         color: green;
+        background-color: orange;
         opacity: 45;
     }
 
     60% {
         color: blue;
+        background-color: red;
         opacity: 60;
     }
 
     75% {
         color: indigo;
+        background-color: yellow;
         opacity: 75;
     }
 
@@ -161,7 +224,7 @@ button {
     position: absolute;
     animation: fadeIn; 
     animation-duration: 2s;
-    z-index: 9;
+    z-index: 10;
     border: 1px solid #d3d3d3;
     border-radius: 15px;
     text-align: center;
@@ -172,7 +235,6 @@ button {
     animation-duration: 6s;
     box-shadow: 5px 5px 2.5px black;
 }
-
 #actionarea {
     width: 100%;
     height: 20%;
@@ -186,7 +248,7 @@ button {
 }
 .appchoice:hover{
     background-color: red;
-    transform: scale(1.5);
+    transform: translateY(20px);
 }
 
 #ActionMenu {
@@ -217,6 +279,14 @@ button {
     color: #fff;
     background: rgba(255, 255, 255, 0.75);
     height: 20px;
+    animation: rgb;
+    animation-duration: 5s;
+}
+.appheader:hover{
+    cursor: grab;
+}
+.appheader:active{
+    cursor: grabbing;
 }
 
 iframe{

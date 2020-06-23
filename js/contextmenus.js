@@ -1,4 +1,4 @@
-const menu = document.querySelector(".menu");
+const menu = document.querySelector("#menu");
 let menuVisible = false;
 
 const toggleMenu = command => {
