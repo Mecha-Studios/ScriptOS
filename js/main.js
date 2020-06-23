@@ -52,7 +52,10 @@ function checkTime(i) {
 var changelog = `Script OS Changelog:
 #ScriptOS 4.0
 -Browser:
-    -
+    -Search from inputbar(thing you type a URL into)
+    -Tabs
+-ScriptAI improvements
+
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -642,7 +645,11 @@ function scriptApp(appsname){
         inputbar.style.borderRadius = '15px';
         inputbar.onchange = function () { 
             var inputvalue = inputbar.value;
-            browserview.src = "https://" + inputvalue;
+            if(inputvalue.includes('.')){
+                browserview.src = "https://" + inputvalue;
+            } else {
+                browserview.src = defaultengine + "/search?q=" + inputvalue;
+            }
         };
         app.appendChild(inputbar);
         browserview.id = "browserview" + appnumber;
