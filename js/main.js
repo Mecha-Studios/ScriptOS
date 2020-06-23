@@ -50,11 +50,15 @@ function checkTime(i) {
 }
 
 var changelog = `Script OS Changelog:
-#ScriptOS 4.0
+#ScriptOS 4.0[BETA]
 -Browser:
     -Search from inputbar(thing you type a URL into)
-    -Tabs
--ScriptAI improvements
+-ScriptAI:
+    -More jokes
+    -Hands free activation
+-ControlPanel added:
+    -DarkMode
+    -Brightness
 
 #Script OS 3.8
 -Happy Birthday Script OS
@@ -399,14 +403,6 @@ function loadDesktop(){
     app2.className = 'appchoice';
     appcenter.appendChild(app2);
 
-    /*var app3 = document.createElement('input');
-    app3.type = 'image';
-    app3.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/600px-Google_Drive_logo.png";
-    app3.title = 'Files';
-    app3.setAttribute("onclick", "scriptApp('Files')");
-    app3.className = 'appchoice';
-    appcenter.appendChild(app3);*/
-
     var app4 = document.createElement("input");
     app4.type = 'image';
     app4.src = 'images/Timer.png';
@@ -564,8 +560,8 @@ conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
 
 //DarkMode Toggle
-function darkToggle(){
-    var darkmodeon = document.getElementById("darkmodetoggle").checked;
+function darkToggle2(){
+    var darkmodeon = document.getElementById("darkmodetoggle2").checked;
     if(darkmodeon == true){
         darkMode();
     }else if(darkmodeon == false){
@@ -573,6 +569,7 @@ function darkToggle(){
     }
     console.log(darkmodeon);
 }
+
 
 //Stock apps in Script OS
 function scriptApp(appsname){
@@ -655,6 +652,24 @@ function scriptApp(appsname){
         browserview.id = "browserview" + appnumber;
         browserview.src = defaultengine;
         app.appendChild(browserview);
+    } else if(appsname === "ControlPanel"){
+        var darkmodel = document.createElement('label');
+        var darkmodein = document.createElement('input');
+        var darkmodeswitch = document.createElement('span');
+        var darkmodetxt = document.createElement('h2');
+        darkmodel.title = "DarkMode";
+        darkmodel.className = "switch";
+        darkmodein.type = "checkbox";
+        darkmodein.id = "darkmodetoggle2";
+        darkmodein.onchange = function(){darkToggle2();};
+        darkmodeswitch.className = "slider round";
+        darkmodetxt.innerHTML = "DarkMode";
+        darkmodel.appendChild(darkmodein);
+        darkmodel.appendChild(darkmodeswitch);
+        app.appendChild(darkmodetxt);
+        app.appendChild(darkmodel);
+        headbuttdiv.removeChild(smallscreen);
+        headbuttdiv.removeChild(fullscreen);
     } else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
         btuview.src = "https://blazetousd.tk";
@@ -1177,6 +1192,9 @@ document.onkeyup = function (e){
         var e = e || window.event;
         if(e.which == 9) {
                 scriptApp("ScriptAI");
+        }
+        if(e.which = 27){
+            scriptApp("ControlPanel");
         }
       }
     //if(e.keyCode == 83 && e.keyCode == 32){

@@ -9,7 +9,7 @@ body {
     height: auto;
     margin: 0;
     font-family: 'Arial';
-    background: url('') no-repeat center center fixed;
+    background: url('') no-repeat center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
