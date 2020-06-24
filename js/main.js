@@ -337,7 +337,7 @@ function loadDesktop(){
 
     var actionmenuicon = document.createElement('input');
     actionmenuicon.type = 'image';
-    actionmenuicon.src = 'images/Script OS logo 3.png';
+    actionmenuicon.src = 'images/ScriptOS.png';
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actionmenuicon.title = 'ActionMenu';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; position:absolute; left:0;" ;
@@ -657,6 +657,10 @@ function scriptApp(appsname){
         var darkmodein = document.createElement('input');
         var darkmodeswitch = document.createElement('span');
         var darkmodetxt = document.createElement('h2');
+        var lowpowerl = document.createElement('label');
+        var lowpowerin = document.createElement('input');
+        var lowpowerswitch = document.createElement('span');
+        var lowpowertxt = document.createElement('h2');
         darkmodel.title = "DarkMode";
         darkmodel.className = "switch";
         darkmodein.type = "checkbox";
@@ -664,12 +668,24 @@ function scriptApp(appsname){
         darkmodein.onchange = function(){darkToggle2();};
         darkmodeswitch.className = "slider round";
         darkmodetxt.innerHTML = "DarkMode";
+        lowpowerl.title = "LowPower";
+        lowpowerl.className = "switch";
+        lowpowerin.type = "checkbox";
+        lowpowerin.id = "lowpowertoggle";
+        lowpowerswitch.className = "slider round";
+        lowpowertxt.innerHTML = "LowPower"; 
         darkmodel.appendChild(darkmodein);
         darkmodel.appendChild(darkmodeswitch);
+        lowpowerl.appendChild(lowpowerin);
+        lowpowerl.appendChild(lowpowerswitch);
         app.appendChild(darkmodetxt);
         app.appendChild(darkmodel);
+        app.appendChild(lowpowertxt);
+        app.appendChild(lowpowerl);
         headbuttdiv.removeChild(smallscreen);
         headbuttdiv.removeChild(fullscreen);
+        app.style.width = "15%";
+        app.style.height = "50%";
     } else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
         btuview.src = "https://blazetousd.tk";
@@ -1193,7 +1209,7 @@ document.onkeyup = function (e){
         if(e.which == 9) {
                 scriptApp("ScriptAI");
         }
-        if(e.which = 27){
+        if(e.which == 27){
             scriptApp("ControlPanel");
         }
       }
