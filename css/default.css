@@ -138,12 +138,10 @@ button {
 @keyframes slidetop {
     0% {
         opacity: 5%;
-        background-color: red;
         top: 0px;
     }
     100%{
         opacity: 100%;
-        background-color: green;
         top: 100px;
     }
 }
@@ -287,8 +285,6 @@ button {
     color: #fff;
     background: rgba(255, 255, 255, 0.75);
     height: 20px;
-    animation: rgb;
-    animation-duration: 5s;
 }
 .appheader:hover{
     cursor: grab;

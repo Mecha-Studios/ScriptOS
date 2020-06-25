@@ -303,10 +303,10 @@ searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/sear
 searchbutt.className = 'appicon';
 searchbutt.style = 'width:50px; height:50px; animation:slidetop; z-index:10; animation-duration: 4s; position:absolute; right:0; top: 100px;';
 exitbutt.onclick = function () {websearch.value = ''; desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt);};
-exitbutt.type = 'image';
-exitbutt.src = 'images/exit button.png';
+exitbutt.type = 'button';
+exitbutt.value = "X"
 exitbutt.className = 'appicon';
-exitbutt.style = 'width:50px; height:50px; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
+exitbutt.style = 'width:50px; height:50px; border-style: none; font-size: 40px; color: white; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
 
 var devicesupported = true;
 
@@ -1183,14 +1183,14 @@ function scriptApp(appsname){
         commandoutput = document.createElement('textarea');
         var micbutton = document.createElement('input');
         var sendbutt = document.createElement("button");
-        app.style = "background:rgba(0,0,0,0); border-style: none;";
+        apphead.style.background = "rgba(0,0,0,0)";
         commandinput.placeholder = 'Type a message';
-        commandinput.style = 'height:15%; width:75%; font-size: 75px; border-radius: 15px; background: rgba(0,0,0,0.7); color: white; outline: none;border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: groove;';
+        commandinput.style = 'height:15%; border-style: none; box-shadow: rgba(0,0,0,.5) 5px 5px 5px; width:75%; font-size: 75px; border-radius: 15px; background: rgba(0,0,0,0.7); color: white; outline: none;border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: groove;';
         commandinput.type = "text";
         commandoutput.style = 'height:75%; text-shadow: 2.5px 2.5px 2.5px black; width:100%; font-size: 65px; border-style: none; resize: none; color:white; background: rgba(0,0,0,0)';
         commandoutput.readOnly = true;
         micbutton.type = 'image';
-        micbutton.style.backgroundColor = 'white';
+        micbutton.style.background = "rgba(0,0,0,.5)";
         micbutton.src = 'https://png.pngtree.com/svg/20151101/76e68d5d8b.svg';
         sendbutt.innerHTML = "Send";
         sendbutt.className = "appchoice";
