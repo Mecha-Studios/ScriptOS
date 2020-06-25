@@ -293,7 +293,7 @@ function startUp(){
 var websearch = document.createElement('input');
 var searchbutt = document.createElement('input');
 var exitbutt = document.createElement('input');
-websearch.style = 'border-radius: 25px; width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; background: rgba(255,255,255,0.5); color: black;';
+websearch.style = 'border-radius: 25px; border-style: none; box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; background: rgba(0,0,0, .25); width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; color: white;';
 websearch.type = 'text';
 websearch.placeholder = 'Search the web';
 websearch.onchange = function() { scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = defaultengine + "/search?q=" + websearch.value; }
@@ -490,6 +490,8 @@ function loadDesktop(){
     actionarea.appendChild(shutdownbutt);
     
     desktopbody.appendChild(conmenu1);
+    
+    lightMode();
 }
 
 //Sign In
@@ -652,9 +654,11 @@ function scriptApp(appsname){
         app.appendChild(backbutton);
         app.appendChild(forwardbutton);
         inputbar.type = 'text';
-        inputbar.placeholder = 'Website';
+        inputbar.placeholder = 'type something...';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
+        inputbar.style.borderStyle = 'none';
+        inputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;';
         inputbar.onchange = function () { 
             var inputvalue = inputbar.value;
             if(inputvalue.includes('.')){
@@ -1450,8 +1454,6 @@ var menucon = document.getElementById("menu");
 function darkMode(){
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
-    websearch.style.background = 'rgba(0,0,0,0.5)';
-    websearch.style.color = 'white';
     menucon.style.color = 'white';
     menucon.style.background = 'rgba(0,0,0,0.5)';
 }
@@ -1459,8 +1461,6 @@ function darkMode(){
 function lightMode(){
     document.getElementById('navbar').style.background = 'rgba(255,255,255,0.5)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
-    websearch.style.background = 'rgba(255,255,255,0.5)';
-    websearch.style.color = 'black';
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
 }
