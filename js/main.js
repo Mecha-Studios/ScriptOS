@@ -55,11 +55,16 @@ var changelog = `Script OS Changelog:
     -Search from inputbar(thing you type a URL into)
 -ScriptAI:
     -More jokes
-    -Hands free activation
--ControlPanel added:
+    -Redesign
+    -Launch apps from ScriptAI(app names are case sensitive)
+-ControlPanel added(Press ESC):
     -DarkMode
+    -LowPower
     -Brightness
-
+-App UI:
+    -App header buttons redesigned
+    -App borders removed
+    -App shadows removed
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -226,7 +231,7 @@ startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
 startupscreen.src = 'images/Script-OS.gif';
 var actioncenter = document.createElement('div');
-actioncenter.style = 'position: absolute; width: 100%; top: 100px; animation: slidetop; animation-duration: 2s; height: 25%;';
+actioncenter.style = 'position: absolute; z-index: 100; width: 100%; top: 100px; animation: slidetop; animation-duration: 2s; height: 25%;';
 var appcenter = document.createElement('div');
 
 function boot(){
@@ -251,10 +256,10 @@ function boot(){
     setTimeout(function(){deviceDetection()}, 250);
     setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 500);
     console.log(objbrowserName + objfullVersion);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS Version " + scriptosversion}, 750);
-    console.log("Script OS Version 3.5");
+    setTimeout(function(){desktopbody.innerText+="\n ScriptOS Version " + scriptosversion}, 750);
+    console.log("ScriptOS Version 4.0");
     setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 1000);
-    setTimeout(function(){desktopbody.innerText+="\n Script OS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("Script OS Copyright (C) 2018-2020 Tyler Ruotolo")}, 1250);
+    setTimeout(function(){desktopbody.innerText+="\n ScriptOS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("ScriptOS Copyright (C) 2018-2020 Tyler Ruotolo")}, 1250);
     setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 1500);
     setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details"; console.log("See LICENSE file for details")}, 1750);
     setTimeout(function(){desktopbody.innerText+="\n System dependencies loaded successfully"; console.log("System dependencies loaded successfully")}, 2000);
@@ -270,7 +275,8 @@ function boot(){
     setTimeout(function(){desktopbody.innerText+="\n Loading background images"; console.log("Loading background images")}, 4500);
     setTimeout(function(){desktopbody.innerText+="\n App icons successfully loaded"; console.log("App icons successfully loaded")}, 4750);
     setTimeout(function(){desktopbody.innerText+="\n Background images loaded successfully"}, 5000);
-    setTimeout(function(){desktopbody.innerText+="\n Starting up Script OS..."; console.log("Starting up Script OS...")}, 5250);
+    setTimeout(function(){desktopbody.innerText+="\n See the changelog in the About section of Settings"}, 5250);
+    setTimeout(function(){desktopbody.innerText+="\n Starting up ScriptOS..."; console.log("Starting up ScriptOS...")}, 5500);
 
     setTimeout(startUp, 7000);
 }
@@ -501,17 +507,15 @@ var loginbar = document.createElement('div');
 //Sign Out
 function signOut(){
     var soimage = document.createElement('div');
-    headertext.innerHTML = 'Script OS';
+    headertext.innerHTML = 'ScriptOS 4';
+    headertext.style.boxShadow = "text-shadow: 2.5px 2.5px 2.5px black;";
+    headertext.style.fontFamily = "Segoe UI";
     headertext.style.fontSize = '100px';
     timetxt.style.fontSize = '85px';
     loginbar.className = 'logbar';
-    headertext.style.animation = 'rgb';
-    headertext.style.animationDuration = '6s';
-    timetxt.style.animation = 'rgb';
-    timetxt.style.animationDuration = '6s';
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
-    loginbar.onclick = function () { signIn(); };
+    loginbar.onclick = function () { signIn();};
     soimage.className = "bg-image";
     desktopbody.innerHTML = '';
     desktopbody.appendChild(soimage);
@@ -570,6 +574,16 @@ function darkToggle2(){
     console.log(darkmodeon);
 }
 
+//GridMode Toggle
+function gridToggle(){
+    var gridmodeon = document.getElementById("gridmodetoggle").checked;
+    if(gridmodeon == true){
+        GridMode();
+    }else if(gridmodeon == false){
+        DesktopMode();
+    }
+    console.log(gridmodeon);
+}
 
 //Stock apps in Script OS
 function scriptApp(appsname){
@@ -594,19 +608,20 @@ function scriptApp(appsname){
     close.type = 'image';
     close.id = "close"
     close.title = 'Close';
-    close.innerHTML = "[X]";
-    close.className = "appchoice";
+    close.innerHTML = " X ";
+    close.style.fontFamily = "Arial";
+    close.className = "appheadbutt";
     fullscreen.title = 'Fullscreen';
     fullscreen.id = "fullscreen";
     fullscreen.type = 'image';
-    fullscreen.innerHTML = "[▓]"
+    fullscreen.innerHTML = " ▇ ";
     fullscreen.style.textAlign = 'right';
-    fullscreen.className = "appchoice";
+    fullscreen.className = "appheadbutt";
     smallscreen.type = 'image';
     smallscreen.title = 'Small';
     smallscreen.id = "smallscreen";
-    smallscreen.className = "appchoice";
-    smallscreen.innerHTML = "[_]"
+    smallscreen.className = "appheadbutt";
+    smallscreen.innerHTML = " ▃ "
     headtextdiv.append(appheadtext);
     apphead.append(headtextdiv);
     apphead.append(headbuttdiv);
@@ -661,6 +676,8 @@ function scriptApp(appsname){
         var lowpowerin = document.createElement('input');
         var lowpowerswitch = document.createElement('span');
         var lowpowertxt = document.createElement('h2');
+        var brightness = document.createElement('input');
+
         darkmodel.title = "DarkMode";
         darkmodel.className = "switch";
         darkmodein.type = "checkbox";
@@ -668,24 +685,42 @@ function scriptApp(appsname){
         darkmodein.onchange = function(){darkToggle2();};
         darkmodeswitch.className = "slider round";
         darkmodetxt.innerHTML = "DarkMode";
+
         lowpowerl.title = "LowPower";
         lowpowerl.className = "switch";
         lowpowerin.type = "checkbox";
         lowpowerin.id = "lowpowertoggle";
         lowpowerswitch.className = "slider round";
         lowpowertxt.innerHTML = "LowPower"; 
+
+        brightness.title = "Brightness";
+        brightness.type = "range";
+        brightness.min = "1";
+        brightness.max = "100";
+        brightness.onchange = function(){
+            desktopbody.style.opacity = brightness.value;
+            app.style.opacity = brightness.value;
+        }
+
         darkmodel.appendChild(darkmodein);
         darkmodel.appendChild(darkmodeswitch);
         lowpowerl.appendChild(lowpowerin);
         lowpowerl.appendChild(lowpowerswitch);
+
         app.appendChild(darkmodetxt);
         app.appendChild(darkmodel);
         app.appendChild(lowpowertxt);
         app.appendChild(lowpowerl);
+        app.appendChild(brightness);
         headbuttdiv.removeChild(smallscreen);
         headbuttdiv.removeChild(fullscreen);
+        app.appendChild(headbuttdiv);
+        app.removeChild(apphead);
+        headbuttdiv.style = "position: absolute; top: 20px; left: 200px;";
+        app.style.resize = "none";
         app.style.width = "15%";
         app.style.height = "50%";
+        app.style.position = "fixed";
     } else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
         btuview.src = "https://blazetousd.tk";
@@ -1102,8 +1137,8 @@ function scriptApp(appsname){
             newshortcut.className = 'appicon'
             newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
             navbar.appendChild(newshortcut);
-            desktopbody.removeChild(app);
             localStorage.setItem("savednav", navbar.innerHTML);
+            desktopbody.removeChild(app);
         };
         shortadddesk.onclick = function () {
             newshortcut.title = appnameshort.value;
@@ -1116,6 +1151,7 @@ function scriptApp(appsname){
             desktopbody.appendChild(newshortcut);
             desktopbody.removeChild(app);
             localStorage.setItem("savedesk", desktopbody.innerHTML);
+            
         };
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
@@ -1143,10 +1179,11 @@ function scriptApp(appsname){
         commandoutput = document.createElement('textarea');
         var micbutton = document.createElement('input');
         var sendbutt = document.createElement("button");
+        app.style = "background:rgba(0,0,0,0); border-style: none;";
         commandinput.placeholder = 'Type a message';
-        commandinput.style = 'height:15%; width:75%; font-size: 75px; background: rgba(0,0,0,0.7); color: white; outline: none;border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: groove;';
+        commandinput.style = 'height:15%; width:75%; font-size: 75px; border-radius: 15px; background: rgba(0,0,0,0.7); color: white; outline: none;border-top-style: hidden; border-right-style: hidden; border-left-style: hidden; border-bottom-style: groove;';
         commandinput.type = "text";
-        commandoutput.style = 'height:75%; width:100%; font-size: 65px; color:white; background-color: black';
+        commandoutput.style = 'height:75%; text-shadow: 2.5px 2.5px 2.5px black; width:100%; font-size: 65px; border-style: none; resize: none; color:white; background: rgba(0,0,0,0)';
         commandoutput.readOnly = true;
         micbutton.type = 'image';
         micbutton.style.backgroundColor = 'white';
@@ -1233,15 +1270,32 @@ function scriptAI(){
         "If video games make kids more violent, why are they so easy to beat the shit out of?",
         "How many dead babies does it take to paint a wall? It depends how hard you throw them",
         "Gun free zones being effective",
-        "Trump losing in 2020"
+        "Trump losing in 2020",
+        "69, nice",
+        "Biden forming a coherent sentence",
+        "Obama is the best president ever",
+        "Biden would be a good president",
+        "Liberal logic making sense"
     ];
     
-    var greetings = [
+    var greetingreplies = [
         "Hi",
         "Hello",
         "What's up",
         "Hi there",
-        "Hello, friend"
+        "Hello, friend",
+        "Whats up my diggity dogs?"
+    ];
+
+    var hrureplies = [
+        "I'm doing pretty good",
+        "I'm great",
+        "Amazing",
+        "Fantastic",
+        "Not too bad",
+        "I'm alright",
+        "I'm doing alright",
+        "Not great, but I'm okay"
     ];
 
     var swearreplies = [
@@ -1272,20 +1326,26 @@ function scriptAI(){
     ];
 
     if(commandinput.value == "hey"){
-        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+        commandoutput.value = greetingreplies[Math.floor(Math.random() * greetingreplies.length)];
     }else if(commandinput.value == "hi"){
-        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+        commandoutput.value = greetingreplies[Math.floor(Math.random() * greetingreplies.length)];
     } else if(commandinput.value == "whats up"){
-        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+        commandoutput.value = greetingreplies[Math.floor(Math.random() * greetingreplies.length)];
     } else if(commandinput.value == "what's up"){
-        commandoutput.value = greetings[Math.floor(Math.random() * greetings.length)];
+        commandoutput.value = greetingreplies[Math.floor(Math.random() * greetingreplies.length)];
     } else if(commandinput.value == "how are you"){
-        commandoutput.value = "I'm doing pretty good.";
+        commandoutput.value = hrureplies[Math.floor(Math.random() * hrureplies.length)];
     } else if(commandinput.value == "fuck you"){
         commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
     } else if(commandinput.value == "you're stupid"){
         commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
     } else if(commandinput.value == "fuck"){
+        commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
+    } else if(commandinput.value == "bitch"){
+        commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
+    } else if(commandinput.value == "you're a bitch"){
+        commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
+    } else if(commandinput.value == "you cunt"){
         commandoutput.value = swearreplies[Math.floor(Math.random() * swearreplies.length)];
     } else if(commandinput.value == "tell me a joke"){
         commandoutput.value = jokes[Math.floor(Math.random() * jokes.length)];
@@ -1320,6 +1380,9 @@ function scriptAI(){
         commandoutput.value = "Searching the web for '" + commandinput.value + "'";
         scriptApp("Browser");
         browserview.src = defaultengine + "/search?q=" + commandinput.value;
+    } else if(commandinput.value.includes("launch")){
+        commandoutput.value = "Launching " + commandinput.value.split("launch ").join("");
+        scriptApp(commandinput.value.split("launch ").join(""));
     } else if(commandinput.value.includes("what")){
         commandoutput.value = "Searching the web for '" + commandinput.value + "'";
         scriptApp("Browser");
@@ -1358,6 +1421,8 @@ function scriptAI(){
     window.speechSynthesis.speak(utter);
 }
 
+var apps = document.getElementsByClassName("app");
+
 //Browser Version
 var objappVersion = navigator.appVersion;
 var objAgent = navigator.userAgent; 
@@ -1383,7 +1448,7 @@ var menucon = document.getElementById("menu");
 
 //Dark and Light Mode
 function darkMode(){
-    navbar.style.background = 'rgba(0,0,0,0.5)';
+    document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
     websearch.style.background = 'rgba(0,0,0,0.5)';
     websearch.style.color = 'white';
@@ -1392,7 +1457,7 @@ function darkMode(){
 }
 
 function lightMode(){
-    navbar.style.background = 'rgba(255,255,255,0.5)';
+    document.getElementById('navbar').style.background = 'rgba(255,255,255,0.5)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
     websearch.style.background = 'rgba(255,255,255,0.5)';
     websearch.style.color = 'black';

@@ -53,6 +53,8 @@ button {
     width: 75px;
     height : 75px;
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background: rgba(0, 0, 0, .25);
 }
 .desktopicon:hover{
     background-color: red;
@@ -86,6 +88,7 @@ button {
     width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.5);
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     animation: fadeIn;
     animation-duration: 5s;
@@ -107,6 +110,8 @@ button {
     width: 50px;
     height: 50px;
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background: rgba(0, 0, 0, .25);
 }
 
 .appicon:hover{
@@ -227,13 +232,14 @@ button {
     z-index: 10;
     border: 1px solid #d3d3d3;
     border-radius: 15px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
+    background-color: rgba(0, 0, 0, .25);
     text-align: center;
     color: white;
     overflow: hidden;
     font-family: 'Bauhaus 93';
-    background: rgba(0, 0, 0, 0.75);
     animation-duration: 6s;
-    box-shadow: 5px 5px 2.5px black;
 }
 #actionarea {
     width: 100%;
@@ -245,6 +251,8 @@ button {
     width: 75px;
     height : 75px;
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background: rgba(0, 0, 0, .25);
 }
 .appchoice:hover{
     background-color: red;
@@ -291,7 +299,8 @@ button {
 
 iframe{
     width: 100%;
-    height: 92.5%;
+    height: 90%;
+    border-style: none;
 }
 
 #desktopbody{
@@ -364,6 +373,22 @@ iframe{
   }
   .slider.round:hover {
     background-color: red;
+}
+
+.appheadbutt{
+    color: white;
+}
+
+#close:hover{
+    color: red;
+}
+
+#fullscreen:hover{
+    color: blue;
+}
+
+#smallscreen:hover{
+    color: yellow;
 }
 
 #apphistory{
