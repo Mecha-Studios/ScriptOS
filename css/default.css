@@ -57,7 +57,7 @@ button {
     background: rgba(0, 0, 0, .25);
 }
 .desktopicon:hover{
-    background-color: red;
+    background: rgba(255, 0, 0, 0.25);
 }
 
 
@@ -68,7 +68,8 @@ button {
     box-shadow: 5px;
     display: none;
     color: black;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
     border-radius: 15px;
     text-align: left;
     cursor: context-menu;
@@ -87,8 +88,8 @@ button {
     z-index: 10;
     width: 100%;
     height: 50px;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     animation: fadeIn;
     animation-duration: 5s;
@@ -115,7 +116,7 @@ button {
 }
 
 .appicon:hover{
-    background-color: red;
+    background: rgba(255, 0, 0, 0.25);
     transform: scale(1.3);
 }
 
@@ -126,7 +127,8 @@ button {
     overflow: hidden;
     bottom: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
     display: inline-block;
 }
 
@@ -253,7 +255,7 @@ button {
     background: rgba(0, 0, 0, .25);
 }
 .appchoice:hover{
-    background-color: red;
+    background: rgba(255, 0, 0, 0.25);
     transform: translateY(20px);
 }
 
@@ -283,8 +285,9 @@ button {
     padding: 10px;
     z-index: 10;
     color: #fff;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(0, 0, 0, 0.5);
     height: 20px;
+    text-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
 }
 .appheader:hover{
     cursor: grab;

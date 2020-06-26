@@ -7,23 +7,22 @@
 var scriptosversion = "4.0";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
+var batterybar = document.getElementById("batteryprogress");
 
 function battLevel(){
     navigator.getBattery()
     .then(function(battery) {
         var batterylevel = Math.floor(battery.level * 100) / 100;
         console.log(battery.level);
-        if(battery.level >= .5){
-            topnav.style.color = "limegreen";
-            topnav.style.boxShadow = "0px 5px 2.5px limegreen";
-        } else if(battery.level <= .5){
-            topnav.style.color = "yellow";
-            topnav.style.boxShadow = "0px 5px 2.5px yellow";
-        } else if(battery.level <= .3){
-            topnav.style.color = "red";
-            topnav.style.boxShadow = "0px 5px 2.5px red";
+        if(batterylevel >= .5){
+            batterybar.style.backgroundColor = "limegreen";
+        } else if(batterylevel <= .5){
+            batterybar.style.backgroundColor = "yellow";
+        } else if(batterylevel <= .3){
+            batterybar.style.backgroundColor = "red";
         }
         document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
+        batterybar.value = batterylevel*100;
     })
     setTimeout(battLevel, 500);
 }
@@ -500,6 +499,7 @@ function signIn(){
     desktopbody.removeChild(timetxt);
     desktopbody.removeChild(loginbar);
     desktopbody.appendChild(navbar);
+    desktopbody.appendChild(conmenu1);
 }
 
 var headertext = document.createElement('h2');
@@ -509,11 +509,16 @@ var loginbar = document.createElement('div');
 //Sign Out
 function signOut(){
     var soimage = document.createElement('div');
-    headertext.innerHTML = 'ScriptOS 4';
-    headertext.style.boxShadow = "text-shadow: 2.5px 2.5px 2.5px black;";
-    headertext.style.fontFamily = "Segoe UI";
+    headertext.innerHTML = 'ScriptOS';
+    headertext.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
+    headertext.style.fontFamily = "Arial";
     headertext.style.fontSize = '100px';
+    headertext.style.opacity = '50%';
     timetxt.style.fontSize = '85px';
+    timetxt.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
+    timetxt.style.fontFamily = "Arial";
+    timetxt.style.fontSize = '100px';
+    timetxt.style.opacity = '50%';
     loginbar.className = 'logbar';
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
@@ -547,8 +552,9 @@ var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
 var conmenu1butt4 = document.createElement('li');
 var conmenu1butt5 = document.createElement('li');
+var conmenu1butt6 = document.createElement('li');
 conmenu1.id = 'menu';
-conmenu1butt1.innerHTML = 'Customize';
+conmenu1butt1.innerHTML = 'Personalization';
 conmenu1butt1.onclick = function () { scriptApp('Personalization'); };
 conmenu1butt2.innerHTML = 'Settings';
 conmenu1butt2.onclick = function () { scriptApp('Settings'); };
@@ -556,14 +562,17 @@ conmenu1butt3.innerHTML = 'About';
 conmenu1butt3.onclick = function () { scriptApp('About'); };
 conmenu1butt4.innerHTML = 'Add Shortcut';
 conmenu1butt4.onclick = function () { scriptApp('Shortcuts'); };
-conmenu1butt5.innerHTML = 'Customize TopNav';
+conmenu1butt5.innerHTML = 'TopNav';
 conmenu1butt5.onclick = function () { scriptApp('TopNav'); };
+conmenu1butt6.innerHTML = 'ControlPanel';
+conmenu1butt6.onclick = function () { scriptApp('ControlPanel'); };
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
+conmenu1.appendChild(conmenu1butt6);
 
 //DarkMode Toggle
 function darkToggle2(){
@@ -574,17 +583,6 @@ function darkToggle2(){
         lightMode();
     }
     console.log(darkmodeon);
-}
-
-//GridMode Toggle
-function gridToggle(){
-    var gridmodeon = document.getElementById("gridmodetoggle").checked;
-    if(gridmodeon == true){
-        GridMode();
-    }else if(gridmodeon == false){
-        DesktopMode();
-    }
-    console.log(gridmodeon);
 }
 
 //Stock apps in Script OS
@@ -658,7 +656,9 @@ function scriptApp(appsname){
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
         inputbar.style.borderStyle = 'none';
-        inputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;';
+        inputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)6px 6px 6px;';
+        inputbar.style.background = 'rgba(0,0,0, .5)';
+        inputbar.style.color = "white";
         inputbar.onchange = function () { 
             var inputvalue = inputbar.value;
             if(inputvalue.includes('.')){
@@ -680,7 +680,7 @@ function scriptApp(appsname){
         var lowpowerin = document.createElement('input');
         var lowpowerswitch = document.createElement('span');
         var lowpowertxt = document.createElement('h2');
-        var brightness = document.createElement('input');
+
 
         darkmodel.title = "DarkMode";
         darkmodel.className = "switch";
@@ -697,15 +697,6 @@ function scriptApp(appsname){
         lowpowerswitch.className = "slider round";
         lowpowertxt.innerHTML = "LowPower"; 
 
-        brightness.title = "Brightness";
-        brightness.type = "range";
-        brightness.min = "1";
-        brightness.max = "100";
-        brightness.onchange = function(){
-            desktopbody.style.opacity = brightness.value;
-            app.style.opacity = brightness.value;
-        }
-
         darkmodel.appendChild(darkmodein);
         darkmodel.appendChild(darkmodeswitch);
         lowpowerl.appendChild(lowpowerin);
@@ -715,7 +706,6 @@ function scriptApp(appsname){
         app.appendChild(darkmodel);
         app.appendChild(lowpowertxt);
         app.appendChild(lowpowerl);
-        app.appendChild(brightness);
         headbuttdiv.removeChild(smallscreen);
         headbuttdiv.removeChild(fullscreen);
         app.appendChild(headbuttdiv);
@@ -733,7 +723,7 @@ function scriptApp(appsname){
     } else if(appsname === "StoryFire"){
         var sfview = document.createElement('iframe');
         sfview.src = "https://www.storyfire.com";
-        sfview.style = 'width: 100%; height: 99%';
+        sfview.style = 'width: 100%; height: 90%';
         app.appendChild(sfview);
     } else if (appsname === "Settings") {
         var backgroundsettings = document.createElement('input');
@@ -1052,7 +1042,7 @@ function scriptApp(appsname){
         changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
-        scriptostxt.innerHTML = "Script OS " + scriptosversion;
+        scriptostxt.innerHTML = "ScriptOS " + scriptosversion;
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         logoimg.src = 'images/tr-logo.png';
         logoimg.style = 'width: 150px; height: 150px';
@@ -1452,15 +1442,15 @@ var menucon = document.getElementById("menu");
 
 //Dark and Light Mode
 function darkMode(){
-    document.getElementById('navbar').style.background = 'rgba(0,0,0,0.5)';
-    document.getElementById('topnav').style.background = 'rgba(0,0,0,0.5)';
+    document.getElementById('navbar').style.background = 'rgba(0,0,0,0.25)';
+    document.getElementById('topnav').style.background = 'rgba(0,0,0,0.25)';
     menucon.style.color = 'white';
     menucon.style.background = 'rgba(0,0,0,0.5)';
 }
 
 function lightMode(){
-    document.getElementById('navbar').style.background = 'rgba(255,255,255,0.5)';
-    document.getElementById('topnav').style.background = 'rgba(255,255,255,0.5)';
+    document.getElementById('navbar').style.background = 'rgba(255,255,255,0.25)';
+    document.getElementById('topnav').style.background = 'rgba(255,255,255,0.25)';
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
 }
