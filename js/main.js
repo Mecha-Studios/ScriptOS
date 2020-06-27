@@ -333,7 +333,7 @@ function loadDesktop(){
     if(savedbackground){
         document.body.style.backgroundImage = localStorage.getItem('background');
     } else{
-        document.body.style.backgroundImage = 'url("images/2nd_birthday_script_os.png")';
+        document.body.style.backgroundImage = 'url("images/ScriptOSBackground.png")';
     }
 
     navbar.className = 'navbar';
@@ -345,11 +345,13 @@ function loadDesktop(){
     actionmenuicon.src = 'images/ScriptOS.png';
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actionmenuicon.title = 'ActionMenu';
-    actionmenuicon.style = "width:50px; height:50px; z-index: 100; position:absolute; left:0;" ;
+    actionmenuicon.className = 'appicon';
+    actionmenuicon.style = "width:50px; height:50px; z-index: 100; border-radius: 15px; box-shadow: rgba(0,0,0,.5) 5px 5px 5px; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
 
     var searchweb = document.createElement('input');
     searchweb.type = 'image';
+    searchweb.className = 'appicon';
     searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
     searchweb.setAttribute("onclick", "desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);");
     searchweb.title = 'Search the Web';
@@ -500,6 +502,15 @@ function signIn(){
     desktopbody.removeChild(loginbar);
     desktopbody.appendChild(navbar);
     desktopbody.appendChild(conmenu1);
+    if(savednav){
+        navbar.innerHTML = '';
+        navbar.innerHTML = localStorage.getItem("savednav");
+    }
+
+    if(savedesk){
+        desktopbody.innerHTML = '';
+        desktopbody.innerHTML = localStorage.getItem("savedesk");
+    }
 }
 
 var headertext = document.createElement('h2');
@@ -681,7 +692,6 @@ function scriptApp(appsname){
         var lowpowerswitch = document.createElement('span');
         var lowpowertxt = document.createElement('h2');
 
-
         darkmodel.title = "DarkMode";
         darkmodel.className = "switch";
         darkmodein.type = "checkbox";
@@ -737,7 +747,7 @@ function scriptApp(appsname){
         browsersett.src = 'images/Browser.png';
         shortcuts.src = 'images/Shortcuts.png';
         backgroundsettings.src = 'images/background icon.png';
-        about.src = 'images/Script OS logo 3.png';
+        about.src = 'images/ScriptOS.png';
         browsersett.style.width = '10%';
         shortcuts.style.width = '10%';
         about.style.width = '10%';
@@ -841,6 +851,14 @@ function scriptApp(appsname){
         backgroundtxt.innerHTML = "Background";
         app.appendChild(backgroundtxt);
         
+        var choice0 = document.createElement('input');
+        choice0.type = 'image';
+        choice0.src = 'images/ScriptOSBackground.png';
+        choice0.className = 'backgroundoption';
+        choice0.onclick = function () { document.body.style.backgroundImage = 'url(images/ScriptOSBackground.png)'; 
+        localStorage.setItem('background','url(images/ScriptOSBackground.png)'); };
+        app.appendChild(choice0);
+
         var choice1 = document.createElement('input');
         choice1.type = 'image';
         choice1.src = 'images/landscape.jpg';
@@ -1044,7 +1062,7 @@ function scriptApp(appsname){
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
         scriptostxt.innerHTML = "ScriptOS " + scriptosversion;
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
-        logoimg.src = 'images/tr-logo.png';
+        logoimg.src = 'images/ScriptOS.png';
         logoimg.style = 'width: 150px; height: 150px';
         app.appendChild(scriptostxt);
         app.appendChild(logoimg);
@@ -1179,13 +1197,12 @@ function scriptApp(appsname){
         commandinput.type = "text";
         commandoutput.style = 'height:75%; text-shadow: 2.5px 2.5px 2.5px black; width:100%; font-size: 65px; border-style: none; resize: none; color:white; background: rgba(0,0,0,0)';
         commandoutput.readOnly = true;
-        micbutton.type = 'image';
+        micbutton.type = 'button';
         micbutton.style.background = "rgba(0,0,0,.5)";
-        micbutton.src = 'https://png.pngtree.com/svg/20151101/76e68d5d8b.svg';
         sendbutt.innerHTML = "Send";
         sendbutt.className = "appchoice";
+        micbutton.value = "🎤"
         micbutton.onclick = function () {
-            micbutton.src = 'https://i.pinimg.com/originals/f6/65/6a/f6656aa6fdb6b8f905dea0bcc2d71dd8.gif';
             startDictation();
         };
         commandinput.onkeydown = function (e){
