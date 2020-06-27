@@ -52,6 +52,7 @@ var changelog = `Script OS Changelog:
 #ScriptOS 4.0[BETA]
 -Browser:
     -Search from inputbar(thing you type a URL into)
+    -Tabs(currently only two per window)
 -ScriptAI:
     -More jokes
     -Redesign
@@ -64,6 +65,13 @@ var changelog = `Script OS Changelog:
     -App header buttons redesigned
     -App borders removed
     -App shadows removed
+-Context Menus:
+    -Redesigned
+    -New buttons
+-Settings:
+    -Redesigned
+    -Rewritten
+    -Tabs
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -345,13 +353,13 @@ function loadDesktop(){
     actionmenuicon.src = 'images/ScriptOS.png';
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actionmenuicon.title = 'ActionMenu';
-    actionmenuicon.className = 'appicon ';
+    actionmenuicon.className = 'appicon button';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; border-radius: 15px; box-shadow: rgba(0,0,0,.5) 5px 5px 5px; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
 
     var searchweb = document.createElement('input');
     searchweb.type = 'image';
-    searchweb.className = 'appicon';
+    searchweb.className = 'appicon button';
     searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
     searchweb.setAttribute("onclick", "desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);");
     searchweb.title = 'Search the Web';
@@ -361,7 +369,7 @@ function loadDesktop(){
     var appicon1 = document.createElement('input');
     appicon1.type = 'image';
     appicon1.src = 'images/Settings.png';
-    appicon1.className = 'appicon';
+    appicon1.className = 'appicon button';
     appicon1.title = 'Settings';
     appicon1.setAttribute("onclick", "scriptApp('Settings')");
     navbar.appendChild(appicon1);
@@ -369,7 +377,7 @@ function loadDesktop(){
     var appicon2 = document.createElement('input');
     appicon2.type = 'image';
     appicon2.src = 'images/Browser.png';
-    appicon2.className = 'appicon';
+    appicon2.className = 'appicon button';
     appicon2.title = 'S Browser';
     appicon2.setAttribute("onclick", "scriptApp('Browser')");
     navbar.appendChild(appicon2);
@@ -377,9 +385,9 @@ function loadDesktop(){
     var appicon3 = document.createElement('input');
     appicon3.type = 'image';
     appicon3.src = 'images/Shortcuts.png';
-    appicon3.className = 'appicon';
+    appicon3.className = 'appicon button';
     appicon3.title = 'Shortcuts';
-    appicon3.setAttribute("onclick", "scriptApp('Shortcuts')");
+    appicon3.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
     navbar.appendChild(appicon3);
     
     if(savednav){
@@ -430,7 +438,7 @@ function loadDesktop(){
     app7.type = 'image';
     app7.src = "images/Shortcuts.png";
     app7.title = 'Shortcuts';
-    app7.setAttribute("onclick", "scriptApp('Shortcuts')");
+    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts')");
     app7.className = 'appchoice';
     appcenter.appendChild(app7);
 
@@ -438,7 +446,7 @@ function loadDesktop(){
     app8.type = 'image';
     app8.src = "images/vmOS.png";
     app8.title = 'vmOS';
-    app8.setAttribute("onclick", "scriptApp('vmOS'); desktopbody.removeChild(actioncenter);");
+    app8.setAttribute("onclick", "scriptApp('vmOS');");
     app8.className = 'appchoice';
     appcenter.appendChild(app8);
 
@@ -563,27 +571,29 @@ var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
 var conmenu1butt4 = document.createElement('li');
 var conmenu1butt5 = document.createElement('li');
-var conmenu1butt6 = document.createElement('li');
+conmenu1.className = 'menu';
 conmenu1.id = 'menu';
 conmenu1butt1.innerHTML = 'Personalization';
-conmenu1butt1.onclick = function () { scriptApp('Personalization'); };
+conmenu1butt1.onclick = function () { scriptApp('Settings'); openSett(event, 'Personalization'); };
+conmenu1butt1.className = "menubutton";
 conmenu1butt2.innerHTML = 'Settings';
 conmenu1butt2.onclick = function () { scriptApp('Settings'); };
+conmenu1butt2.className = "menubutton";
 conmenu1butt3.innerHTML = 'About';
-conmenu1butt3.onclick = function () { scriptApp('About'); };
+conmenu1butt3.onclick = function () { scriptApp('About'); openSett(event, 'About');};
+conmenu1butt3.className = "menubutton";
 conmenu1butt4.innerHTML = 'Add Shortcut';
-conmenu1butt4.onclick = function () { scriptApp('Shortcuts'); };
-conmenu1butt5.innerHTML = 'TopNav';
-conmenu1butt5.onclick = function () { scriptApp('TopNav'); };
-conmenu1butt6.innerHTML = 'ControlPanel';
-conmenu1butt6.onclick = function () { scriptApp('ControlPanel'); };
+conmenu1butt4.onclick = function () { scriptApp('Settings'); openSett(event, 'Shortcuts'); };
+conmenu1butt4.className = "menubutton";
+conmenu1butt5.innerHTML = 'ControlPanel';
+conmenu1butt5.onclick = function () { scriptApp('ControlPanel'); };
+conmenu1butt5.className = "menubutton";
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
-conmenu1.appendChild(conmenu1butt6);
 
 //DarkMode Toggle
 function darkToggle2(){
@@ -650,18 +660,81 @@ function scriptApp(appsname){
     fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0px'; };
     smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; };
     if (appsname === "Browser") {
+        var tabrow = document.createElement('div');
+        var tab = document.createElement('div');
+        var tabbutt = document.createElement('button');
         var inputbar = document.createElement("input");
         browserview = document.createElement('iframe');
         var backbutton = document.createElement('button');
         var forwardbutton = document.createElement('button');
+        var addtabbutt = document.createElement('button');
+        addtabbutt.innerHTML = "+";
+        addtabbutt.onclick = function(){
+            var newtabbutt = document.createElement('button');
+            var newtab = document.createElement('div');
+            var newinputbar = document.createElement("input");
+            var newbrowserview = document.createElement('iframe');
+            var newbackbutton = document.createElement('button');
+            var newforwardbutton = document.createElement('button');
+            var newxbutt = document.createElement('button');
+            newxbutt.innerHTML = "X";
+            newxbutt.onclick = function(){app.removeChild(newtab); tabrow.removeChild(newtabbutt);};
+            newbrowserview.src = defaultengine;
+            var newtabnum = 1;
+            newtab.id = "newtab" + newtabnum++;
+            newtab.className = "tabcontent";
+            newtabbutt.innerHTML = "New Tab";
+            newtabbutt.className = "tablinks";
+            newtabbutt.onclick = function(){openSett(event, newtab.id);};
+            newtabbutt.id = "tabbutt" + newtabnum++;
+            newbackbutton.innerHTML = '<';
+            newbackbutton.style.borderRadius = '15px';
+            newbackbutton.onclick = function () { window.history.back(); newtabbutt.innerHTML = newbrowserview.src; };
+            newforwardbutton.innerHTML = '>';
+            newforwardbutton.style.borderRadius = '15px';
+            newforwardbutton.onclick = function () { window.history.forward(); newtabbutt.innerHTML = newbrowserview.src; };
+            newtab.appendChild(newbackbutton);
+            newtab.appendChild(newforwardbutton);
+            tabrow.appendChild(newtabbutt);
+            newinputbar.type = 'text';
+            newinputbar.id = "inputbar" + newtabnum;
+            newinputbar.placeholder = 'type something...';
+            newinputbar.style.width = '75%';
+            newinputbar.style.borderRadius = '15px';
+            newinputbar.style.borderStyle = 'none';
+            newinputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)6px 6px 6px;';
+            newinputbar.style.background = 'rgba(0,0,0, .5)';
+            newinputbar.style.color = "white";
+            newinputbar.onchange = function () { 
+                var inputvalue = newinputbar.value;
+                if(inputvalue.includes('.')){
+                    newbrowserview.src = "https://" + inputvalue;
+                } else {
+                    newbrowserview.src = defaultengine + "/search?q=" + inputvalue;
+                }
+                newtabbutt.innerHTML = newbrowserview.src;
+            };
+            newtab.appendChild(newinputbar);
+            newtab.appendChild(newxbutt);
+            newtab.appendChild(newbrowserview);
+            app.appendChild(newtab);
+        };
+        addtabbutt.title = "New Tab";
+        tabrow.className = 'tab';
+        tabbutt.innerHTML = "New Tab";
+        tabbutt.onclick = function(){openSett(event, tab.id);};
+        tab.id = "tab";
+        tab.className = "tabcontent";
+        tabbutt.className = "tablinks";
         backbutton.innerHTML = '<';
         backbutton.style.borderRadius = '15px';
-        backbutton.onclick = function () { window.history.back(); };
+        backbutton.onclick = function () { window.history.back(); tabbutt.innerHTML = browserview.src; };
         forwardbutton.innerHTML = '>';
         forwardbutton.style.borderRadius = '15px';
-        forwardbutton.onclick = function () { window.history.forward(); };
-        app.appendChild(backbutton);
-        app.appendChild(forwardbutton);
+        forwardbutton.onclick = function () { window.history.forward(); tabbutt.innerHTML = browserview.src; };
+        tabrow.appendChild(tabbutt);
+        tab.appendChild(backbutton);
+        tab.appendChild(forwardbutton);
         inputbar.type = 'text';
         inputbar.placeholder = 'type something...';
         inputbar.style.width = '75%';
@@ -677,11 +750,15 @@ function scriptApp(appsname){
             } else {
                 browserview.src = defaultengine + "/search?q=" + inputvalue;
             }
+            tabbutt.innerHTML = browserview.src;
         };
-        app.appendChild(inputbar);
+        tab.appendChild(inputbar);
+        tab.appendChild(addtabbutt);
         browserview.id = "browserview" + appnumber;
         browserview.src = defaultengine;
-        app.appendChild(browserview);
+        tab.appendChild(browserview);
+        app.appendChild(tabrow);
+        app.appendChild(tab);
     } else if(appsname === "ControlPanel"){
         var darkmodel = document.createElement('label');
         var darkmodein = document.createElement('input');
@@ -736,120 +813,47 @@ function scriptApp(appsname){
         sfview.style = 'width: 100%; height: 90%';
         app.appendChild(sfview);
     } else if (appsname === "Settings") {
-        var backgroundsettings = document.createElement('input');
-        var about = document.createElement('input');
-        var shortcuts = document.createElement('input');
-        var browsersett = document.createElement('input');
-        browsersett.type = 'image';
-        shortcuts.type = 'image';
-        backgroundsettings.type = 'image';
-        about.type = 'image';
-        browsersett.src = 'images/Browser.png';
-        shortcuts.src = 'images/Shortcuts.png';
-        backgroundsettings.src = 'images/background icon.png';
-        about.src = 'images/ScriptOS.png';
-        browsersett.style.width = '10%';
-        shortcuts.style.width = '10%';
-        about.style.width = '10%';
-        backgroundsettings.style.width = '10%';
-        browsersett.title = 'Browser Settings';
-        about.title = 'About';
-        shortcuts.title = 'Shortcuts';
-        backgroundsettings.title = 'Personalization';
-        browsersett.onclick = function () { scriptApp("BrowserSettings"); };
-        about.onclick = function () { scriptApp("About"); };
-        shortcuts.onclick = function () { scriptApp("Shortcuts"); };
-        backgroundsettings.onclick = function () {scriptApp("Personalization"); };
-        app.appendChild(browsersett);
-        app.appendChild(shortcuts);
+        var tab = document.createElement('div');
+        var backgroundsettings = document.createElement('div');
+        var bgsbutt = document.createElement('button');
+        var about = document.createElement('div');
+        var aboutbutt = document.createElement('button');
+        var shortcuts = document.createElement('div');
+        var scbutt = document.createElement('button');
+        var browsersett = document.createElement('div');
+        var bbutt = document.createElement('button');
+        var changelogsett = document.createElement('div');
+        var clbutt = document.createElement('button');
+        tab.className = 'tab';
+        bgsbutt.className = 'tablinks';
+        bgsbutt.onclick = function(){openSett(event, 'Personalization');};
+        bgsbutt.innerHTML = "Personalization";
+        aboutbutt.className = 'tablinks';
+        aboutbutt.onclick = function(){openSett(event, 'About');};
+        aboutbutt.innerHTML = "About"
+        scbutt.className = 'tablinks';
+        scbutt.onclick = function(){openSett(event, 'Shortcuts');};
+        scbutt.innerHTML = "Shortcuts";
+        bbutt.className = 'tablinks';
+        bbutt.onclick = function(){openSett(event, 'Browser');};
+        bbutt.innerHTML = "Browser";
+        backgroundsettings.className = 'tabcontent';
+        clbutt.className = "tablinks";
+        clbutt.onclick = function(){openSett(event, "Changelog");};
+        clbutt.innerHTML = "Changelog";
+        app.appendChild(tab);
+        tab.appendChild(bgsbutt);
+        tab.appendChild(aboutbutt);
+        tab.appendChild(scbutt);
+        tab.appendChild(bbutt);
+        tab.appendChild(clbutt)
+
         app.appendChild(backgroundsettings);
-        app.appendChild(about);
-    } else if(appsname === "BrowserSettings"){
-        var defaultbrowser = document.createElement("input");
-        var savesett = document.createElement('button');
-        var resetbutt = document.createElement('button');
-        defaultbrowser.type = "text";
-        defaultbrowser.placeholder = "Default Search Engine";
-        savesett.innerHTML = "Save Settings";
-        savesett.onclick = function(){defaultengine = defaultbrowser.value; logcalStorage.setItem("DefaultEngine", defaultbrowser.value)};
-        resetbutt.innerHTML = "Reset Default";
-        resetbutt.onclick = function(){localStorage.removeItem("DefaultEngine"); location.reload();};
-        app.appendChild(defaultbrowser);
-        app.appendChild(savesett);
-        app.appendChild(resetbutt);
-    } else if(appsname === "TopNav"){
-        var backgroundtxt = document.createElement("h1");
-        backgroundtxt.innerHTML = "TopNav Background";
-        app.appendChild(backgroundtxt);
-        
-        var tchoice1 = document.createElement('input');
-        tchoice1.type = 'image';
-        tchoice1.src = 'images/landscape.jpg';
-        tchoice1.className = 'backgroundoption';
-        tchoice1.onclick = function () { topnav.style.backgroundImage = 'url(images/landscape.jpg)'; 
-        localStorage.setItem('topnav','url(images/landscape.jpg)'); };
-        app.appendChild(tchoice1);
-        
-        var tchoice2 = document.createElement('input');
-        tchoice2.type = 'image';
-        tchoice2.src = 'images/imac-pro-wallpaper.jpg';
-        tchoice2.className = 'backgroundoption';
-        tchoice2.onclick = function () { topnav.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
-        localStorage.setItem('topnav','url(images/imac-pro-wallpaper.jpg)'); };
-        app.appendChild(tchoice2);
-        
-        var choice3 = document.createElement('input');
-        choice3.type = 'image';
-        choice3.src = 'images/lamborghini ting.png';
-        choice3.className = 'backgroundoption';
-        choice3.onclick = function () { topnav.style.backgroundImage = 'url("images/lamborghini ting.png")';
-        localStorage.setItem('topnav','url("images/lamborghini ting.png")'); };
-        app.appendChild(choice3);
-        
-        var choice4 = document.createElement('input');
-        choice4.type = 'image';
-        choice4.src = 'images/Script-OS-3.png';
-        choice4.className = 'backgroundoption';
-        choice4.onclick = function () { topnav.style.backgroundImage = 'url(images/Script-OS-3.png)';
-        localStorage.setItem('topnav','url(Script-OS-3.png)');};
-        app.appendChild(choice4);
-        
-        var choice5 = document.createElement('input');
-        choice5.type = 'image';
-        choice5.src = 'images/pewds-pattern.jpg';
-        choice5.className = 'backgroundoption';
-        choice5.onclick = function () { topnav.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
-        localStorage.setItem('topnav','url(images/pewds-pattern.jpg)');};
-        app.appendChild(choice5);
-        
-        var choice6 = document.createElement('input');
-        choice6.type = 'image';
-        choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
-        choice6.className = 'backgroundoption';
-        choice6.onclick = function () { topnav.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
-        localStorage.setItem('topnav','url(images/animals_hero_giraffe_1_0.jpg)');};
-        app.appendChild(choice6);
-        
-        var choice7 = document.createElement('input');
-        choice7.type = 'image';
-        choice7.src = 'images/hbd-script-os.png';
-        choice7.className = 'backgroundoption';
-        choice7.onclick = function () { topnav.style.backgroundImage = 'url(images/hbd-script-os.png)';
-        localStorage.setItem('topnav','url(images/hbd-script-os.png)');};
-        app.appendChild(choice7);
+        backgroundsettings.id = 'Personalization';
 
-        var choice8 = document.createElement('input');
-        choice8.type = 'image';
-        choice8.src = 'images/Iron-Trump.png';
-        choice8.className = 'backgroundoption';
-        choice8.onclick = function () {topnav.style.backgroundImage = 'url(images/Iron-Trump.png)';
-        localStorage.setItem('topnav','url(images/Iron-Trump.png)');};
-        app.appendChild(choice8);
-
-    } else if (appsname === "Personalization"){
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "Background";
-        app.appendChild(backgroundtxt);
+        backgroundsettings.appendChild(backgroundtxt);
         
         var choice0 = document.createElement('input');
         choice0.type = 'image';
@@ -857,7 +861,7 @@ function scriptApp(appsname){
         choice0.className = 'backgroundoption';
         choice0.onclick = function () { document.body.style.backgroundImage = 'url(images/ScriptOSBackground.png)'; 
         localStorage.setItem('background','url(images/ScriptOSBackground.png)'); };
-        app.appendChild(choice0);
+        backgroundsettings.appendChild(choice0);
 
         var choice1 = document.createElement('input');
         choice1.type = 'image';
@@ -865,7 +869,7 @@ function scriptApp(appsname){
         choice1.className = 'backgroundoption';
         choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; 
         localStorage.setItem('background','url(images/landscape.jpg)'); };
-        app.appendChild(choice1);
+        backgroundsettings.appendChild(choice1);
         
         var choice2 = document.createElement('input');
         choice2.type = 'image';
@@ -873,7 +877,7 @@ function scriptApp(appsname){
         choice2.className = 'backgroundoption';
         choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
         localStorage.setItem('background','url(images/imac-pro-wallpaper.jpg)'); };
-        app.appendChild(choice2);
+        backgroundsettings.appendChild(choice2);
         
         var choice3 = document.createElement('input');
         choice3.type = 'image';
@@ -881,7 +885,7 @@ function scriptApp(appsname){
         choice3.className = 'backgroundoption';
         choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")';
         localStorage.setItem('background','url("images/lamborghini ting.png")'); };
-        app.appendChild(choice3);
+        backgroundsettings.appendChild(choice3);
         
         var choice4 = document.createElement('input');
         choice4.type = 'image';
@@ -889,7 +893,7 @@ function scriptApp(appsname){
         choice4.className = 'backgroundoption';
         choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/Script-OS-3.png)';
         localStorage.setItem('background','url(Script-OS-3.png)');};
-        app.appendChild(choice4);
+        backgroundsettings.appendChild(choice4);
         
         var choice5 = document.createElement('input');
         choice5.type = 'image';
@@ -897,7 +901,7 @@ function scriptApp(appsname){
         choice5.className = 'backgroundoption';
         choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
         localStorage.setItem('background','url(images/pewds-pattern.jpg)');};
-        app.appendChild(choice5);
+        backgroundsettings.appendChild(choice5);
         
         var choice6 = document.createElement('input');
         choice6.type = 'image';
@@ -905,7 +909,7 @@ function scriptApp(appsname){
         choice6.className = 'backgroundoption';
         choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
         localStorage.setItem('background','url(images/animals_hero_giraffe_1_0.jpg)');};
-        app.appendChild(choice6);
+        backgroundsettings.appendChild(choice6);
         
         var choice7 = document.createElement('input');
         choice7.type = 'image';
@@ -913,7 +917,7 @@ function scriptApp(appsname){
         choice7.className = 'backgroundoption';
         choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
         localStorage.setItem('background','url(images/hbd-script-os.png)');};
-        app.appendChild(choice7);
+        backgroundsettings.appendChild(choice7);
 
         var choice8 = document.createElement('input');
         choice8.type = 'image';
@@ -923,7 +927,7 @@ function scriptApp(appsname){
             document.body.style.backgroundImage = 'url(images/Iron-Trump.png)';
             localStorage.setItem('background','url(images/Iron-Trump.png)');
         };
-        app.appendChild(choice8);
+       backgroundsettings.appendChild(choice8);
 
         var choice9 = document.createElement('input');
         choice9.type = 'image';
@@ -933,7 +937,7 @@ function scriptApp(appsname){
             document.body.style.backgroundImage = 'url(images/tr-software.png)';
             localStorage.setItem('background','url(images/tr-software.png)');
         };
-        app.appendChild(choice9);
+        backgroundsettings.appendChild(choice9);
 
         var choice10 = document.createElement('input');
         choice10.type = 'image';
@@ -943,7 +947,7 @@ function scriptApp(appsname){
             document.body.style.backgroundImage = 'url(images/2nd_birthday_script_os.png)';
             localStorage.setItem('background','url(images/2nd_birthday_script_os.png)');
         };
-        app.appendChild(choice10);
+        backgroundsettings.appendChild(choice10);
 
         var choice11 = document.createElement('input');
         choice11.type = 'image';
@@ -953,7 +957,7 @@ function scriptApp(appsname){
             document.body.style.backgroundImage = 'url(images/bridge_background.jpg)';
             localStorage.setItem('background','url(images/bridge_background.jpg)');
         };
-        app.appendChild(choice11);
+        backgroundsettings.appendChild(choice11);
 
         var choice12 = document.createElement('input');
         choice12.type = 'image';
@@ -963,7 +967,7 @@ function scriptApp(appsname){
             document.body.style.backgroundImage = 'url(images/city_bridge_background.jpg';
             localStorage.setItem('background','url(images/city_bridge_background.jpg)');
         };
-        app.appendChild(choice12);
+        backgroundsettings.appendChild(choice12);
 
 
         var backgroundinput = document.createElement('input');
@@ -980,103 +984,112 @@ function scriptApp(appsname){
             localStorage.setItem('background',"url('" +  backgroundinput.value + "')");};
             app.appendChild(custombackground);
         };
-        app.appendChild(backgroundinput);
-        app.appendChild(backgroundaddbutt);
-        
-        var apptranstext = document.createElement("h1");
-        apptranstext.innerHTML = "App Transparency";
-        
-        var transtogglelabel = document.createElement("label");
-        var transtoggle = document.createElement("input");
-        var transtogglespan = document.createElement("span");
-        transtogglelabel.className = "switch";
-        transtoggle.type = "checkbox";
-        transtoggle.checked = true;
-        transtoggle.onchange = function (){
-            var ttoggle = transtoggle.checked;
-            var appclass = document.getElementsByClassName("app");
-            if(ttoggle == true){
-                for(var i = 0; i< appclass.length; i++){
-                    appclass[i].style.background = 'rgba(0,0,0,0.75)';
-                }
-            } else if(ttoggle == false){
-                for(var i = 0; i< appclass.length; i++){
-                    appclass[i].style.background = 'rgba(0,0,0,1)';
-                }
-            }
-        }
-        transtogglespan.className = "slider round";
-        app.appendChild(apptranstext);
-        app.appendChild(transtogglelabel);
-        transtogglelabel.appendChild(transtoggle);
-        transtogglelabel.appendChild(transtogglespan);
+        backgroundsettings.appendChild(backgroundinput);
+        backgroundsettings.appendChild(backgroundaddbutt);
 
-        var themetxt = document.createElement("h1");
-        var theme1 = document.createElement("button");
-        var theme2 = document.createElement("button");
-        var theme3 = document.createElement("button");
-        var theme4 = document.createElement("button");
-        var theme5 = document.createElement("button");
-        var theme6 = document.createElement("button");
+        app.appendChild(about);
+        about.className = 'tabcontent';
+        about.id = "About";
 
-        themetxt.innerHTML = "Themes";
-        
-        theme1.innerHTML = "Red";
-        theme1.style.backgroundColor = "red";
-        theme1.onclick = function () {
-            document.getElementById('navbar').style.background = 'rgba(255,0,0,0.9)'; 
-            document.getElementById('topnav').style.background = 'rgba(255,0,0,0.9)'; 
-        };
-        
-        theme2.innerHTML = "Orange";
-        theme2.style.backgroundColor = 'orange';
-        theme2.onclick = function () {
-            document.getElementById('navbar').style.background = 'rgba(255,165,0,0.9)'; 
-            document.getElementById('topnav').style.background = 'rgba(255,165,0,0.9)'; 
-        };
-        
-        theme3.innerHTML = "Yellow";
-        theme3.style.backgroundColor = 'yellow';
-        theme3.onclick = function () {
-            document.getElementById('navbar').style.background = 'rgba(255,255,0,0.9)'; 
-            document.getElementById('topnav').style.background = 'rgba(255,255,0,0.9)';
-        };
-        app.style.overflow = "scroll";
-        app.appendChild(themetxt);
-        app.appendChild(theme1);
-        app.appendChild(theme2);
-        app.appendChild(theme3);
-    } else if(appsname === "Discord"){
-        var disframe = document.createElement('iframe');
-        disframe.src = 'https://discordapp.com/';
-        app.appendChild(disframe);
-    } else if(appsname === "About"){
         var scriptostxt = document.createElement('h1');
         var browserversion = document.createElement('h1');
         var copyright = document.createElement('h1');
         var logoimg = document.createElement('img');
-        var changelogbutt = document.createElement('button');
-        changelogbutt.innerHTML = 'Changelog';
-        changelogbutt.onclick = function() {scriptApp("Changelog");};
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
         scriptostxt.innerHTML = "ScriptOS " + scriptosversion;
         copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
         logoimg.src = 'images/ScriptOS.png';
         logoimg.style = 'width: 150px; height: 150px';
-        app.appendChild(scriptostxt);
-        app.appendChild(logoimg);
-        app.appendChild(copyright);
-        app.appendChild(browserversion);
-        app.appendChild(changelogbutt);
-    }else if(appsname === "Changelog"){
+        about.appendChild(scriptostxt);
+        about.appendChild(logoimg);
+        about.appendChild(copyright);
+        about.appendChild(browserversion);
+        
+        app.appendChild(shortcuts);
+        shortcuts.id = "Shortcuts";
+        shortcuts.className = "tabcontent"
+
+        var appnameshort = document.createElement('input');
+        var shortaddnav = document.createElement('button');
+        var shortadddesk = document.createElement('button');
+        var newshortcut = document.createElement('input');
+        var navbar = document.getElementById("navbar");
+        var noticetxt = document.createElement("h3");
+        var resetsc = document.createElement("button");
+        newshortcut.type = 'image';
+        newshortcut.style.width = '50px';
+        newshortcut.style.height = '50px';
+        newshortcut.style.textAlign = 'center';
+        appnameshort.type = 'text';
+        shortaddnav.innerHTML = 'Add to NavBar';
+        shortadddesk.innerHTML = 'Add to Desktop';
+        noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
+        resetsc.innerHTML = "Reset Shortcuts";
+        resetsc.title = "This will remove all added shortcuts";
+        resetsc.onclick = function () {localStorage.removeItem("savednav"); localStorage.removeItem("savedesk"); window.location.reload();};
+        shortcuts.appendChild(appnameshort);
+        shortcuts.appendChild(shortaddnav);
+        shortcuts.appendChild(shortadddesk);
+        shortcuts.appendChild(resetsc);
+        shortcuts.appendChild(noticetxt);
+        shortaddnav.onclick = function () {
+            newshortcut.title = appnameshort.value;
+            newshortcut.innerHTML = appnameshort.value;
+            newshortcut.src = "images/" + appnameshort.value + ".png";
+            newshortcut.className = 'appicon'
+            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
+            navbar.appendChild(newshortcut);
+            localStorage.setItem("savednav", navbar.innerHTML);
+            desktopbody.removeChild(app);
+        };
+        shortadddesk.onclick = function () {
+            newshortcut.title = appnameshort.value;
+            newshortcut.innerHTML = appnameshort.value;
+            newshortcut.src = "images/" + appnameshort.value + ".png";
+            newshortcut.className = 'desktopicon';
+            newshortcut.id = appnameshort.value + "Short";
+            newshortcut.style = 'width: 75px; height: 75px';
+            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
+            desktopbody.appendChild(newshortcut);
+            desktopbody.removeChild(app);
+            localStorage.setItem("savedesk", desktopbody.innerHTML);
+            
+        };
+
+        app.appendChild(browsersett);
+        browsersett.id = "Browser";
+        browsersett.className = "tabcontent";
+
+        var defaultbrowser = document.createElement("input");
+        var savesett = document.createElement('button');
+        var resetbutt = document.createElement('button');
+        defaultbrowser.type = "text";
+        defaultbrowser.placeholder = "Default Search Engine";
+        savesett.innerHTML = "Save Settings";
+        savesett.onclick = function(){defaultengine = defaultbrowser.value; logcalStorage.setItem("DefaultEngine", defaultbrowser.value)};
+        resetbutt.innerHTML = "Reset Default";
+        resetbutt.onclick = function(){localStorage.removeItem("DefaultEngine"); location.reload();};
+        browsersett.appendChild(defaultbrowser);
+        browsersett.appendChild(savesett);
+        browsersett.appendChild(resetbutt);
+
+        app.appendChild(changelogsett);
+        changelogsett.id = "Changelog";
+        changelogsett.className = "tabcontent";
+
         var changelogtext = document.createElement('textarea');
         changelogtext.value = changelog;
         changelogtext.style.width = '100%';
-        changelogtext.style.height = '92.5%';
+        changelogtext.style.height = '90%';
         changelogtext.readOnly = true;
         changelogtext.style.resize = 'none';
-        app.appendChild(changelogtext);
+        changelogsett.appendChild(changelogtext);
+
+    } else if(appsname === "Discord"){
+        var disframe = document.createElement('iframe');
+        disframe.src = 'https://discordapp.com/';
+        app.appendChild(disframe);
     }else if(appsname === "Timer"){
         var timeleft = document.createElement('h1');
         var timeset = document.createElement('input');
@@ -1118,53 +1131,6 @@ function scriptApp(appsname){
         app.appendChild(timeset);
         app.appendChild(setbutton);
         
-    } else if(appsname === "Shortcuts"){
-        var appnameshort = document.createElement('input');
-        var shortaddnav = document.createElement('button');
-        var shortadddesk = document.createElement('button');
-        var newshortcut = document.createElement('input');
-        var navbar = document.getElementById("navbar");
-        var noticetxt = document.createElement("h3");
-        var resetsc = document.createElement("button");
-        newshortcut.type = 'image';
-        newshortcut.style.width = '50px';
-        newshortcut.style.height = '50px';
-        newshortcut.style.textAlign = 'center';
-        appnameshort.type = 'text';
-        shortaddnav.innerHTML = 'Add to NavBar';
-        shortadddesk.innerHTML = 'Add to Desktop';
-        noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
-        resetsc.innerHTML = "Reset Shortcuts";
-        resetsc.title = "This will remove all added shortcuts";
-        resetsc.onclick = function () {localStorage.removeItem("savednav"); localStorage.removeItem("savedesk"); window.location.reload();};
-        app.appendChild(appnameshort);
-        app.appendChild(shortaddnav);
-        app.appendChild(shortadddesk);
-        app.appendChild(resetsc);
-        app.appendChild(noticetxt);
-        shortaddnav.onclick = function () {
-            newshortcut.title = appnameshort.value;
-            newshortcut.innerHTML = appnameshort.value;
-            newshortcut.src = "images/" + appnameshort.value + ".png";
-            newshortcut.className = 'appicon'
-            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
-            navbar.appendChild(newshortcut);
-            localStorage.setItem("savednav", navbar.innerHTML);
-            desktopbody.removeChild(app);
-        };
-        shortadddesk.onclick = function () {
-            newshortcut.title = appnameshort.value;
-            newshortcut.innerHTML = appnameshort.value;
-            newshortcut.src = "images/" + appnameshort.value + ".png";
-            newshortcut.className = 'desktopicon';
-            newshortcut.id = appnameshort.value + "Short";
-            newshortcut.style = 'width: 75px; height: 75px';
-            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
-            desktopbody.appendChild(newshortcut);
-            desktopbody.removeChild(app);
-            localStorage.setItem("savedesk", desktopbody.innerHTML);
-            
-        };
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
         var oschoice1 = document.createElement('button');
@@ -1265,6 +1231,20 @@ document.onkeyup = function (e){
     //      scriptApp("ScriptAI");
     //}
 }
+
+function openSett(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
 var top_z = 10;
 

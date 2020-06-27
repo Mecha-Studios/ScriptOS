@@ -61,7 +61,7 @@ button {
 }
 
 
-#menu {
+.menu {
     width: 150px;
     z-index: 20;
     position: fixed;
@@ -70,14 +70,24 @@ button {
     color: black;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
-    border-radius: 15px;
+    border-radius: 10px;
     text-align: left;
     cursor: context-menu;
     animation: fadein;
     animation-duration: 2s;
 }
-#menu:active{
+.menu:active{
     cursor: pointer;
+}
+
+.menubutton {
+    width: 150px;
+    height: 20px;
+}
+.menubutton:hover{
+    background: rgba(255, 0, 0, 0.25);
+    box-shadow: rgba(0, 0, 0, .25) 5px 5px 5px;
+    border-radius: 20px;
 }
 
 .navbar {
@@ -256,7 +266,7 @@ button {
 }
 .appchoice:hover{
     background: rgba(255, 0, 0, 0.25);
-    transform: translateY(20px);
+    transform: scale(1.25);
 }
 
 #ActionMenu {
@@ -280,6 +290,46 @@ button {
     color: #fff;
     background: rgba(255, 255, 255, 0.75);
 }
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    border: none;
+  }
+  
+  .tab button {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+  }
+  
+  .tab button:hover {
+    background: rgba(255, 0, 0, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
+    transform: scale(1.25);
+    border-radius: 15px;
+  }
+  
+  .tab button.active {
+    background: rgba(50, 50, 50, 0.5);
+  }
+  
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-style: none;
+    overflow: scroll;
+    height: 90%;
+  }
 
 .appheader {
     padding: 10px;
