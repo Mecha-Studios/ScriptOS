@@ -680,13 +680,14 @@ function scriptApp(appsname){
             newxbutt.innerHTML = "X";
             newxbutt.onclick = function(){app.removeChild(newtab); tabrow.removeChild(newtabbutt);};
             newbrowserview.src = defaultengine;
-            var newtabnum = 1;
-            newtab.id = "newtab" + newtabnum++;
-            newtab.className = "tabcontent";
+            newtab.id = "newtab" + appnumber;
+            newtabbutt.id = "tabbutt" + appnumber;
+            newinputbar.id = "inputbar" + appnumber;
+            newbrowserview.id = "browserview" + appnumber;
+            newtab.className = "btabcontent";
             newtabbutt.innerHTML = "New Tab";
-            newtabbutt.className = "tablinks";
-            newtabbutt.onclick = function(){openSett(event, newtab.id);};
-            newtabbutt.id = "tabbutt" + newtabnum++;
+            newtabbutt.className = "btablinks";
+            newtabbutt.onclick = function(){openBTab(event, newtab.id);};
             newbackbutton.innerHTML = '<';
             newbackbutton.style.borderRadius = '15px';
             newbackbutton.onclick = function () { window.history.back(); newtabbutt.innerHTML = newbrowserview.src; };
@@ -697,7 +698,6 @@ function scriptApp(appsname){
             newtab.appendChild(newforwardbutton);
             tabrow.appendChild(newtabbutt);
             newinputbar.type = 'text';
-            newinputbar.id = "inputbar" + newtabnum;
             newinputbar.placeholder = 'type something...';
             newinputbar.style.width = '75%';
             newinputbar.style.borderRadius = '15px';
@@ -720,22 +720,26 @@ function scriptApp(appsname){
             app.appendChild(newtab);
         };
         addtabbutt.title = "New Tab";
-        tabrow.className = 'tab';
+        tabrow.className = 'btab';
         tabbutt.innerHTML = "New Tab";
-        tabbutt.onclick = function(){openSett(event, tab.id);};
-        tab.id = "tab";
-        tab.className = "tabcontent";
-        tabbutt.className = "tablinks";
+        tabbutt.onclick = function(){openBTab(event, tab.id);};
+        tab.id = "tab" + appnumber;
+        tab.className = "btabcontent";
+        tabbutt.className = "btablinks";
+        tabbutt.id = "tabbutt" + appnumber;
         backbutton.innerHTML = '<';
+        backbutton.id = 'backbutt' + appnumber;
         backbutton.style.borderRadius = '15px';
         backbutton.onclick = function () { window.history.back(); tabbutt.innerHTML = browserview.src; };
         forwardbutton.innerHTML = '>';
         forwardbutton.style.borderRadius = '15px';
+        forwardbutton.id = 'forwardbutt' + appnumber;
         forwardbutton.onclick = function () { window.history.forward(); tabbutt.innerHTML = browserview.src; };
         tabrow.appendChild(tabbutt);
         tab.appendChild(backbutton);
         tab.appendChild(forwardbutton);
         inputbar.type = 'text';
+        inputbar.id = 'inputbar' + appnumber;
         inputbar.placeholder = 'type something...';
         inputbar.style.width = '75%';
         inputbar.style.borderRadius = '15px';
@@ -826,20 +830,20 @@ function scriptApp(appsname){
         var clbutt = document.createElement('button');
         tab.className = 'tab';
         bgsbutt.className = 'tablinks';
-        bgsbutt.onclick = function(){openSett(event, 'Personalization');};
+        bgsbutt.onclick = function(){openSett(event, backgroundsettings.id);};
         bgsbutt.innerHTML = "Personalization";
         aboutbutt.className = 'tablinks';
-        aboutbutt.onclick = function(){openSett(event, 'About');};
+        aboutbutt.onclick = function(){openSett(event, about.id);};
         aboutbutt.innerHTML = "About"
         scbutt.className = 'tablinks';
-        scbutt.onclick = function(){openSett(event, 'Shortcuts');};
+        scbutt.onclick = function(){openSett(event, shortcuts.id);};
         scbutt.innerHTML = "Shortcuts";
         bbutt.className = 'tablinks';
-        bbutt.onclick = function(){openSett(event, 'Browser');};
+        bbutt.onclick = function(){openSett(event, browsersett.id);};
         bbutt.innerHTML = "Browser";
         backgroundsettings.className = 'tabcontent';
         clbutt.className = "tablinks";
-        clbutt.onclick = function(){openSett(event, "Changelog");};
+        clbutt.onclick = function(){openSett(event, changelogsett.id);};
         clbutt.innerHTML = "Changelog";
         app.appendChild(tab);
         tab.appendChild(bgsbutt);
@@ -849,7 +853,7 @@ function scriptApp(appsname){
         tab.appendChild(clbutt)
 
         app.appendChild(backgroundsettings);
-        backgroundsettings.id = 'Personalization';
+        backgroundsettings.id = 'Personalization' + appnumber;
 
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "Background";
@@ -989,7 +993,7 @@ function scriptApp(appsname){
 
         app.appendChild(about);
         about.className = 'tabcontent';
-        about.id = "About";
+        about.id = "About" + appnumber;
 
         var scriptostxt = document.createElement('h1');
         var browserversion = document.createElement('h1');
@@ -1007,7 +1011,7 @@ function scriptApp(appsname){
         about.appendChild(browserversion);
         
         app.appendChild(shortcuts);
-        shortcuts.id = "Shortcuts";
+        shortcuts.id = "Shortcuts" + appnumber;
         shortcuts.className = "tabcontent"
 
         var appnameshort = document.createElement('input');
@@ -1058,7 +1062,7 @@ function scriptApp(appsname){
         };
 
         app.appendChild(browsersett);
-        browsersett.id = "Browser";
+        browsersett.id = "Browser" + appnumber;
         browsersett.className = "tabcontent";
 
         var defaultbrowser = document.createElement("input");
@@ -1075,7 +1079,7 @@ function scriptApp(appsname){
         browsersett.appendChild(resetbutt);
 
         app.appendChild(changelogsett);
-        changelogsett.id = "Changelog";
+        changelogsett.id = "Changelog" + appnumber;
         changelogsett.className = "tabcontent";
 
         var changelogtext = document.createElement('textarea');
@@ -1244,7 +1248,21 @@ function openSett(evt, cityName) {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
-  }
+}
+
+function openBTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("btabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("btablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 
 var top_z = 10;
 

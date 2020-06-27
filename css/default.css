@@ -324,12 +324,51 @@ button {
   
   .tabcontent {
     display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
     border-style: none;
     overflow: scroll;
     height: 90%;
+    width: 100%;
   }
+
+  .btab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    border: none;
+  }
+  
+  .btab button {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+  }
+  
+  .btab button:hover {
+    background: rgba(255, 0, 0, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
+    transform: scale(1.25);
+    border-radius: 15px;
+  }
+  
+  .btab button.active {
+    background: rgba(50, 50, 50, 0.5);
+  }
+  
+  .btabcontent {
+    display: none;
+    border-style: none;
+    overflow: scroll;
+    height: 90%;
+    width: 100%;
+  }
+
 
 .appheader {
     padding: 10px;
