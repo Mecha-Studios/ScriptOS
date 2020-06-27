@@ -345,7 +345,7 @@ function loadDesktop(){
     actionmenuicon.src = 'images/ScriptOS.png';
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actionmenuicon.title = 'ActionMenu';
-    actionmenuicon.className = 'appicon';
+    actionmenuicon.className = 'appicon ';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; border-radius: 15px; box-shadow: rgba(0,0,0,.5) 5px 5px 5px; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
 
