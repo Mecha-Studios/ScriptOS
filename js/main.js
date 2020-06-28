@@ -387,7 +387,7 @@ function loadDesktop(){
     appicon3.src = 'images/Shortcuts.png';
     appicon3.className = 'appicon button';
     appicon3.title = 'Shortcuts';
-    appicon3.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
+    appicon3.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts');");
     navbar.appendChild(appicon3);
     
     if(savednav){
@@ -438,7 +438,7 @@ function loadDesktop(){
     app7.type = 'image';
     app7.src = "images/Shortcuts.png";
     app7.title = 'Shortcuts';
-    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts')");
+    app7.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts')");
     app7.className = 'appchoice';
     appcenter.appendChild(app7);
 
@@ -580,7 +580,7 @@ conmenu1butt2.innerHTML = 'Settings';
 conmenu1butt2.onclick = function () { scriptApp('Settings'); };
 conmenu1butt2.className = "menubutton";
 conmenu1butt3.innerHTML = 'About';
-conmenu1butt3.onclick = function () { scriptApp('About'); openSett(event, 'About');};
+conmenu1butt3.onclick = function () { scriptApp('Settings'); openSett(event, 'About');};
 conmenu1butt3.className = "menubutton";
 conmenu1butt4.innerHTML = 'Add Shortcut';
 conmenu1butt4.onclick = function () { scriptApp('Settings'); openSett(event, 'Shortcuts'); };
@@ -853,7 +853,7 @@ function scriptApp(appsname){
         tab.appendChild(clbutt)
 
         app.appendChild(backgroundsettings);
-        backgroundsettings.id = 'Personalization' + appnumber;
+        backgroundsettings.id = 'Personalization';
 
         var backgroundtxt = document.createElement("h1");
         backgroundtxt.innerHTML = "Background";
@@ -993,7 +993,7 @@ function scriptApp(appsname){
 
         app.appendChild(about);
         about.className = 'tabcontent';
-        about.id = "About" + appnumber;
+        about.id = "About" ;
 
         var scriptostxt = document.createElement('h1');
         var browserversion = document.createElement('h1');
@@ -1011,7 +1011,7 @@ function scriptApp(appsname){
         about.appendChild(browserversion);
         
         app.appendChild(shortcuts);
-        shortcuts.id = "Shortcuts" + appnumber;
+        shortcuts.id = "Shortcuts";
         shortcuts.className = "tabcontent"
 
         var appnameshort = document.createElement('input');
@@ -1062,7 +1062,7 @@ function scriptApp(appsname){
         };
 
         app.appendChild(browsersett);
-        browsersett.id = "Browser" + appnumber;
+        browsersett.id = "Browser";
         browsersett.className = "tabcontent";
 
         var defaultbrowser = document.createElement("input");
@@ -1079,7 +1079,7 @@ function scriptApp(appsname){
         browsersett.appendChild(resetbutt);
 
         app.appendChild(changelogsett);
-        changelogsett.id = "Changelog" + appnumber;
+        changelogsett.id = "Changelog";
         changelogsett.className = "tabcontent";
 
         var changelogtext = document.createElement('textarea');

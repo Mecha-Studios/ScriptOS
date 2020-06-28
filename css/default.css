@@ -60,7 +60,6 @@ button {
     background: rgba(255, 0, 0, 0.25);
 }
 
-
 .menu {
     width: 150px;
     z-index: 20;
@@ -88,6 +87,7 @@ button {
     background: rgba(255, 0, 0, 0.25);
     box-shadow: rgba(0, 0, 0, .25) 5px 5px 5px;
     border-radius: 20px;
+    transform: scale(1.15);
 }
 
 .navbar {
@@ -325,8 +325,8 @@ button {
   .tabcontent {
     display: none;
     border-style: none;
-    overflow: scroll;
-    height: 90%;
+    overflow: hidden;
+    height: 92.5%;
     width: 100%;
   }
 
@@ -364,8 +364,8 @@ button {
   .btabcontent {
     display: none;
     border-style: none;
-    overflow: scroll;
-    height: 90%;
+    overflow: hidden;
+    height: 92.5%;
     width: 100%;
   }
 
@@ -468,14 +468,17 @@ iframe{
 }
 
 #close:hover{
+    text-shadow: red 5px 5px 5px;
     color: red;
 }
 
 #fullscreen:hover{
+    text-shadow: blue 5px 5px 5px;
     color: blue;
 }
 
 #smallscreen:hover{
+    text-shadow: yellow 5px 5px 5px;
     color: yellow;
 }
 
