@@ -72,6 +72,7 @@ var changelog = `Script OS Changelog:
     -Redesigned
     -Rewritten
     -Tabs
+    -General tab added
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -828,6 +829,7 @@ function scriptApp(appsname){
         var bbutt = document.createElement('button');
         var changelogsett = document.createElement('div');
         var clbutt = document.createElement('button');
+
         tab.className = 'tab';
         bgsbutt.className = 'tablinks';
         bgsbutt.onclick = function(){openSett(event, backgroundsettings.id);};
@@ -1138,9 +1140,13 @@ function scriptApp(appsname){
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
         var oschoice1 = document.createElement('button');
+        oschoice1.className = 'tablinks';
         var oschoice2 = document.createElement('button');
+        oschoice2.className = 'tablinks';
         var oschoice3 = document.createElement('button');
+        oschoice3.className = 'tablinks';
         var oschoice4 = document.createElement('button');
+        oschoice4.className = 'tablinks';
         osview.style.width = '98%';
         osview.style.height = '92.5%';
         oschoice1.innerHTML = 'Script OS[LEGACY]';
@@ -1459,6 +1465,8 @@ var menucon = document.getElementById("menu");
 function darkMode(){
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.25)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.25)';
+    document.getElementById('scriptosdropdown'). style.background = 'rgba(0,0,0,0.25)';
+    document.getElementById('scriptosdropdown'). style.color = 'white';
     menucon.style.color = 'white';
     menucon.style.background = 'rgba(0,0,0,0.5)';
 }
@@ -1466,6 +1474,8 @@ function darkMode(){
 function lightMode(){
     document.getElementById('navbar').style.background = 'rgba(255,255,255,0.25)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.25)';
+    document.getElementById('scriptosdropdown'). style.background = 'rgba(255,255,255,0.25)';
+    document.getElementById('scriptosdropdown'). style.color = 'black';
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
 }
