@@ -147,7 +147,18 @@ button {
     border-radius: 15px;
 }
 
-@keyframes slidetop {
+@keyframes slidetopam {
+    0% {
+        opacity: 5%;
+        top: 0%;
+    }
+    100%{
+        opacity: 100%;
+        top: 30%;
+    }
+}
+
+@keyframes slidetop100 {
     0% {
         opacity: 5%;
         top: 0px;
@@ -157,6 +168,7 @@ button {
         top: 100px;
     }
 }
+
 
 @keyframes swipeup{
     0% {
@@ -251,22 +263,52 @@ button {
     font-family: 'Bauhaus 93';
     animation-duration: 6s;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 #actionarea {
-    width: 100%;
-    height: 20%;
-    
+    width: 60%;
+    height: 100%;
 }
 
 .appchoice{
+    transform: translateX(-140%);
     width: 75px;
     height : 75px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
     background: rgba(0, 0, 0, .25);
 }
-.appchoice:hover{
+
+.appbutt{
+    width: 275px;
+    height : 75px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background: rgba(0, 0, 0, .25);
+}
+
+.appbutt:hover{
     background: rgba(255, 0, 0, 0.25);
-    transform: scale(1.25);
+    cursor: pointer;
+}
+
+.appbutttxt{
+    transform: translateY(-275%);
 }
 
 #ActionMenu {
@@ -278,7 +320,6 @@ button {
     background-color: #f1f1f1;
     border: 1px solid #d3d3d3;
     border-radius: 15px;
-    text-align: center;
     overflow: hidden;
     font-family: 'Bauhaus 93';
     background: rgba(0, 0, 0, 0.75);
@@ -387,7 +428,7 @@ button {
 
 iframe{
     width: 100%;
-    height: 90%;
+    height: 95%;
     border-style: none;
 }
 

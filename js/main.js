@@ -10,7 +10,7 @@ var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
 
 function battLevel(){
-    navigator.getBattery()
+    navigator.getBattery() 
     .then(function(battery) {
         var batterylevel = Math.floor(battery.level * 100) / 100;
         console.log(battery.level);
@@ -64,7 +64,6 @@ var changelog = `Script OS Changelog:
 -App UI:
     -App header buttons redesigned
     -App borders removed
-    -App shadows removed
 -Context Menus:
     -Redesigned
     -New buttons
@@ -72,7 +71,8 @@ var changelog = `Script OS Changelog:
     -Redesigned
     -Rewritten
     -Tabs
-    -General tab added
+-AppCenter:
+    -Redesigned
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -239,7 +239,7 @@ startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
 startupscreen.src = 'images/Script-OS.gif';
 var actioncenter = document.createElement('div');
-actioncenter.style = 'position: absolute; z-index: 100; width: 100%; top: 100px; animation: slidetop; animation-duration: 2s; height: 25%;';
+actioncenter.style = 'position: absolute; z-index: 100; width: 20%; height: 60%; top: 30%; overflow-y: scroll; resize: none; animation: slidetopam; animation-duration: 2s;';
 var appcenter = document.createElement('div');
 
 function boot(){
@@ -301,7 +301,7 @@ function startUp(){
 var websearch = document.createElement('input');
 var searchbutt = document.createElement('input');
 var exitbutt = document.createElement('input');
-websearch.style = 'border-radius: 25px; border-style: none; box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; background: rgba(0,0,0, .25); width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop; animation-duration: 2s; position:absolute; color: white;';
+websearch.style = 'border-radius: 25px; border-style: none; box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; background: rgba(0,0,0, .25); width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop100; animation-duration: 2s; position:absolute; color: white;';
 websearch.type = 'text';
 websearch.placeholder = 'Search the web';
 websearch.onchange = function() { scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = defaultengine + "/search?q=" + websearch.value; }
@@ -309,12 +309,12 @@ searchbutt.onclick = function () {scriptApp("Browser"); desktopbody.removeChild(
 searchbutt.type = 'image';
 searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
 searchbutt.className = 'appicon';
-searchbutt.style = 'width:50px; height:50px; animation:slidetop; z-index:10; animation-duration: 4s; position:absolute; right:0; top: 100px;';
+searchbutt.style = 'width:50px; height:50px; animation:slidetop100; z-index:10; animation-duration: 4s; position:absolute; right:0; top: 100px;';
 exitbutt.onclick = function () {websearch.value = ''; desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt);};
 exitbutt.type = 'button';
 exitbutt.value = "X"
 exitbutt.className = 'appicon';
-exitbutt.style = 'width:50px; height:50px; border-style: none; font-size: 40px; color: white; position:absolute; z-index:10; animation:slidetop; animation-duration: 3s; right:55px; top: 100px;';
+exitbutt.style = 'width:50px; height:50px; border-style: none; font-size: 40px; color: white; position:absolute; z-index:10; animation:slidetop100; animation-duration: 3s; right:55px; top: 100px;';
 
 var devicesupported = true;
 
@@ -402,78 +402,153 @@ function loadDesktop(){
     }
 
     actioncenter.className = 'app';
+    
+    actioncenter.addEventListener('click', () => desktopbody.removeChild(actioncenter));
+
 
     var app1 = document.createElement('input');
+    var app1butt = document.createElement('div');
+    var app1txt = document.createElement('h3');
     app1.type = 'image';
     app1.src = "images/Settings.png";
+    app1txt.innerHTML = "Settings";
     app1.title = 'Settings';
     app1.setAttribute("onclick", "scriptApp('Settings')");
+    app1butt.setAttribute("onclick", "scriptApp('Settings')");
     app1.className = 'appchoice';
-    appcenter.appendChild(app1);
+    app1txt.className = 'appbutttxt';
+    app1butt.className = 'appbutt';
+    app1butt.appendChild(app1);
+    app1butt.appendChild(app1txt);
+    appcenter.appendChild(app1butt);
 
     var app2 = document.createElement('input');
+    var app2butt = document.createElement('div');
+    var app2txt = document.createElement('h3');
     app2.type = 'image';
     app2.src = "images/Browser.png";
+    app2txt.innerHTML = 'Browser';
     app2.title = 'S Browser';
     app2.setAttribute("onclick", "scriptApp('Browser')");
+    app2butt.setAttribute("onclick", "scriptApp('Browser')");
     app2.className = 'appchoice';
-    appcenter.appendChild(app2);
+    app2txt.className = 'appbutttxt';
+    app2butt.className = 'appbutt';
+    app2butt.appendChild(app2);
+    app2butt.appendChild(app2txt);
+    appcenter.appendChild(app2butt);
 
     var app4 = document.createElement("input");
+    var app4butt = document.createElement('div');
+    var app4txt = document.createElement('h3');
     app4.type = 'image';
     app4.src = 'images/Timer.png';
+    app4txt.innerHTML = 'Timer';
     app4.title = "Timer";
     app4.setAttribute("onclick", "scriptApp('Timer')");
+    app4butt.setAttribute('onclick', 'scriptApp("Timer")');
     app4.className = 'appchoice';
-    appcenter.appendChild(app4);
+    app4txt.className = 'appbutttxt';
+    app4butt.className = 'appbutt';
+    app4butt.appendChild(app4);
+    app4butt.appendChild(app4txt);
+    appcenter.appendChild(app4butt);
 
     var app5 = document.createElement('input');
+    var app5butt = document.createElement('div');
+    var app5txt = document.createElement('h3');
     app5.type = 'image';
     app5.src = "images/Discord.png";
+    app5txt.innerHTML = 'Discord';
     app5.title = 'Discord';
+    app5butt.setAttribute("onclick", "scriptApp('Discord')");
     app5.setAttribute("onclick", "scriptApp('Discord')");
     app5.className = 'appchoice';
-    appcenter.appendChild(app5);
+    app5txt.className = 'appbutttxt';
+    app5butt.className = 'appbutt';
+    app5butt.appendChild(app5);
+    app5butt.appendChild(app5txt);
+    appcenter.appendChild(app5butt);
 
     var app7 = document.createElement('input');
+    var app7butt = document.createElement('div');
+    var app7txt = document.createElement('h3');
     app7.type = 'image';
     app7.src = "images/Shortcuts.png";
+    app7txt.innerHTML = 'Shortcuts';
     app7.title = 'Shortcuts';
+    app7butt.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts')");
     app7.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts')");
     app7.className = 'appchoice';
-    appcenter.appendChild(app7);
+    app7txt.className = 'appbutttxt';
+    app7butt.className = 'appbutt';
+    app7butt.appendChild(app7);
+    app7butt.appendChild(app7txt);
+    appcenter.appendChild(app7butt);
 
     var app8 = document.createElement('input');
+    var app8butt = document.createElement('div');
+    var app8txt = document.createElement('h3');
     app8.type = 'image';
     app8.src = "images/vmOS.png";
+    app8txt.innerHTML = 'vmOS'
     app8.title = 'vmOS';
-    app8.setAttribute("onclick", "scriptApp('vmOS');");
+    app8butt.setAttribute("onclick", "scriptApp('vmOS')");
+    app8.setAttribute("onclick", "scriptApp('vmOS')");
     app8.className = 'appchoice';
-    appcenter.appendChild(app8);
+    app8txt.className = 'appbutttxt';
+    app8butt.className = 'appbutt';
+    app8butt.appendChild(app8);
+    app8butt.appendChild(app8txt);
+    appcenter.appendChild(app8butt);
 
     var app9 = document.createElement('input');
+    var app9butt = document.createElement('div');
+    var app9txt = document.createElement('h3');
     app9.type = 'image';
     app9.src = 'images/BlazeToUSD.png';
+    app9txt.innerHTML = 'BlazeToUSD';
     app9.title = 'BlazeToUSD';
+    app9butt.setAttribute("onclick", "scriptApp('BlazeToUSD')");
     app9.setAttribute("onclick", "scriptApp('BlazeToUSD')");
     app9.className = 'appchoice';
-    appcenter.appendChild(app9);
+    app9txt.className = 'appbutttxt';
+    app9butt.className = 'appbutt';
+    app9butt.appendChild(app9);
+    app9butt.appendChild(app9txt);
+    appcenter.appendChild(app9butt);
 
     var app10 = document.createElement('input');
+    var app10butt = document.createElement('div');
+    var app10txt = document.createElement('h3');
     app10.type = 'image';
     app10.src = "images/ScriptAI.png";
+    app10txt.innerHTML = 'ScriptAI';
     app10.title = 'ScriptAI';
+    app10butt.setAttribute("onclick", "scriptApp('ScriptAI')");
     app10.setAttribute("onclick", "scriptApp('ScriptAI')");
     app10.className = 'appchoice';
-    appcenter.appendChild(app10);
+    app10txt.className = 'appbutttxt';
+    app10butt.className = 'appbutt';
+    app10butt.appendChild(app10);
+    app10butt.appendChild(app10txt);
+    appcenter.appendChild(app10butt);
 
     var app11 = document.createElement('input');
+    var app11butt = document.createElement('div');
+    var app11txt = document.createElement('h3');
     app11.type = 'image';
     app11.src = "images/StoryFire.png";
+    app11txt.innerHTML = 'StoryFire';
     app11.title = 'StoryFire';
-    app11.setAttribute("onclick","scriptApp('StoryFire')");
+    app11butt.setAttribute("onclick", "scriptApp('StoryFire')");
+    app11.setAttribute("onclick", "scriptApp('StoryFire')");
     app11.className = 'appchoice';
-    appcenter.appendChild(app11);
+    app11txt.className = 'appbutttxt';
+    app11butt.className = 'appbutt';
+    app11butt.appendChild(app11);
+    app11butt.appendChild(app11txt);
+    appcenter.appendChild(app11butt);
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
@@ -764,6 +839,7 @@ function scriptApp(appsname){
         tab.appendChild(browserview);
         app.appendChild(tabrow);
         app.appendChild(tab);
+        tab.style.display = 'inline';
     } else if(appsname === "ControlPanel"){
         var darkmodel = document.createElement('label');
         var darkmodein = document.createElement('input');
@@ -855,6 +931,7 @@ function scriptApp(appsname){
         tab.appendChild(clbutt)
 
         app.appendChild(backgroundsettings);
+        backgroundsettings.style.display = 'inline';
         backgroundsettings.id = 'Personalization';
 
         var backgroundtxt = document.createElement("h1");
@@ -1139,6 +1216,8 @@ function scriptApp(appsname){
         
     } else if(appsname === "vmOS"){
         var osview = document.createElement('iframe');
+        var tabdiv = document.createElement('div');
+        tabdiv.className = 'tab'
         var oschoice1 = document.createElement('button');
         oschoice1.className = 'tablinks';
         var oschoice2 = document.createElement('button');
@@ -1149,18 +1228,19 @@ function scriptApp(appsname){
         oschoice4.className = 'tablinks';
         osview.style.width = '98%';
         osview.style.height = '92.5%';
-        oschoice1.innerHTML = 'Script OS[LEGACY]';
+        oschoice1.innerHTML = 'Script OS 2.0[LEGACY]';
         oschoice1.onclick = function () {osview.src = 'https://tenzeinc.github.io/Script-OS-Dev/';};
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
-        oschoice3.innerHTML = 'Script OS';
+        oschoice3.innerHTML = 'Script OS 3.0';
         oschoice3.onclick = function () {osview.src = 'https://scriptos.ml/';};
         oschoice4.innerHTML = 'eyeOS';
         oschoice4.onclick = function () {osview.src = 'https://s2.demo.opensourcecms.com/eyeOS/';};
-        app.appendChild(oschoice1);
-        app.appendChild(oschoice2);
-        app.appendChild(oschoice3);
-        app.appendChild(oschoice4);
+        tabdiv.appendChild(oschoice1);
+        tabdiv.appendChild(oschoice2);
+        tabdiv.appendChild(oschoice3);
+        tabdiv.appendChild(oschoice4);
+        app.appendChild(tabdiv);
         app.appendChild(osview);
     } else if(appsname === "ScriptAI"){
         commandinput = document.createElement('input');
