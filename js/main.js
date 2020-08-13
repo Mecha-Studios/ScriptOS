@@ -73,6 +73,9 @@ var changelog = `Script OS Changelog:
     -Tabs
 -AppCenter:
     -Redesigned
+    -Search Added
+-Boot:
+    -New startup screen
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -237,7 +240,7 @@ var desktopbody = document.getElementById('desktopbody');
 var startupscreen = document.createElement('img');
 startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
-startupscreen.src = 'images/Script-OS.gif';
+startupscreen.src = 'images/scriptos4startup.gif';
 var actioncenter = document.createElement('div');
 actioncenter.style = 'position: absolute; z-index: 100; width: 20%; height: 60%; top: 30%; overflow-y: scroll; resize: none; animation: slidetopam; animation-duration: 2s;';
 var appcenter = document.createElement('div');
@@ -294,7 +297,7 @@ function startUp(){
     document.body.style.backgroundImage = '';
     document.body.style.backgroundColor = 'black';
     desktopbody.appendChild(startupscreen);
-    setTimeout(loadDesktop, 2500);
+    setTimeout(loadDesktop, 5000);
 }
 
 //Search UI and Functionality
@@ -402,9 +405,6 @@ function loadDesktop(){
     }
 
     actioncenter.className = 'app';
-    
-    actioncenter.addEventListener('click', () => desktopbody.removeChild(actioncenter));
-
 
     var app1 = document.createElement('input');
     var app1butt = document.createElement('div');
