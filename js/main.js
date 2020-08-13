@@ -48,6 +48,10 @@ function checkTime(i) {
     return i;
 }
 
+
+
+
+
 var changelog = `Script OS Changelog:
 #ScriptOS 4.0[BETA]
 -Browser:
@@ -64,6 +68,7 @@ var changelog = `Script OS Changelog:
 -App UI:
     -App header buttons redesigned
     -App borders removed
+    -Buttons redesigned
 -Context Menus:
     -Redesigned
     -New buttons
@@ -74,8 +79,12 @@ var changelog = `Script OS Changelog:
 -AppCenter:
     -Redesigned
     -Search Added
+    -New animations
 -Boot:
     -New startup screen
+-Functionality:
+    -New animations
+    -Speed and stability improvements
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
@@ -242,7 +251,7 @@ startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
 startupscreen.src = 'images/scriptos4startup.gif';
 var actioncenter = document.createElement('div');
-actioncenter.style = 'position: absolute; z-index: 100; width: 20%; height: 60%; top: 30%; overflow-y: scroll; resize: none; animation: slidetopam; animation-duration: 2s;';
+actioncenter.style = 'position: absolute; z-index: 100; width: 20%; height: 60%; top: 35%; overflow-y: scroll; resize: none; animation: slidetopam; animation-duration: 2s;';
 var appcenter = document.createElement('div');
 
 function boot(){
@@ -304,7 +313,7 @@ function startUp(){
 var websearch = document.createElement('input');
 var searchbutt = document.createElement('input');
 var exitbutt = document.createElement('input');
-websearch.style = 'border-radius: 25px; border-style: none; box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; background: rgba(0,0,0, .25); width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:slidetop100; animation-duration: 2s; position:absolute; color: white;';
+websearch.style = 'border-radius: 25px; border-style: none; box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; background: rgba(0,0,0, .25); width: 75%; height: 100px; font-size: 75px; z-index:10; left:0; top:100px; animation:zoomfade; animation-duration: 2s; position:absolute; color: white;';
 websearch.type = 'text';
 websearch.placeholder = 'Search the web';
 websearch.onchange = function() { scriptApp("Browser"); desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt); browserview.src = defaultengine + "/search?q=" + websearch.value; }
@@ -312,12 +321,12 @@ searchbutt.onclick = function () {scriptApp("Browser"); desktopbody.removeChild(
 searchbutt.type = 'image';
 searchbutt.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
 searchbutt.className = 'appicon';
-searchbutt.style = 'width:50px; height:50px; animation:slidetop100; z-index:10; animation-duration: 4s; position:absolute; right:0; top: 100px;';
+searchbutt.style = 'width:50px; height:50px; animation:zoomfade; z-index:10; animation-duration: 4s; position:absolute; right:0; top: 100px;';
 exitbutt.onclick = function () {websearch.value = ''; desktopbody.removeChild(websearch); desktopbody.removeChild(searchbutt); desktopbody.removeChild(exitbutt);};
 exitbutt.type = 'button';
 exitbutt.value = "X"
 exitbutt.className = 'appicon';
-exitbutt.style = 'width:50px; height:50px; border-style: none; font-size: 40px; color: white; position:absolute; z-index:10; animation:slidetop100; animation-duration: 3s; right:55px; top: 100px;';
+exitbutt.style = 'width:50px; height:50px; border-style: none; font-size: 40px; color: white; position:absolute; z-index:10; animation:zoomfade; animation-duration: 3s; right:55px; top: 100px;';
 
 var devicesupported = true;
 
@@ -391,7 +400,7 @@ function loadDesktop(){
     appicon3.src = 'images/Shortcuts.png';
     appicon3.className = 'appicon button';
     appicon3.title = 'Shortcuts';
-    appicon3.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts');");
+    appicon3.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
     navbar.appendChild(appicon3);
     
     if(savednav){
@@ -404,7 +413,7 @@ function loadDesktop(){
         desktopbody.innerHTML = localStorage.getItem("savedesk");
     }
 
-    actioncenter.className = 'app';
+    actioncenter.className = 'popuplist';
 
     var app1 = document.createElement('input');
     var app1butt = document.createElement('div');
@@ -477,8 +486,8 @@ function loadDesktop(){
     app7.src = "images/Shortcuts.png";
     app7txt.innerHTML = 'Shortcuts';
     app7.title = 'Shortcuts';
-    app7butt.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts')");
-    app7.setAttribute("onclick", "scriptApp('Settings'); openBTab(event, 'Shortcuts')");
+    app7butt.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
+    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
     app7.className = 'appchoice';
     app7txt.className = 'appbutttxt';
     app7butt.className = 'appbutt';
@@ -584,6 +593,7 @@ function signIn(){
     desktopbody.removeChild(headertext);
     desktopbody.removeChild(timetxt);
     desktopbody.removeChild(loginbar);
+    document.getElementById('topnav').style.display = 'block';
     desktopbody.appendChild(navbar);
     desktopbody.appendChild(conmenu1);
     if(savednav){
@@ -620,6 +630,7 @@ function signOut(){
     loginbar.onclick = function () { signIn();};
     soimage.className = "bg-image";
     desktopbody.innerHTML = '';
+    document.getElementById('topnav').style.display = 'none';
     desktopbody.appendChild(soimage);
     desktopbody.appendChild(headertext);
     desktopbody.appendChild(timetxt);
@@ -733,8 +744,8 @@ function scriptApp(appsname){
     app.onload = bringToFront(app.id);
     app.onclick = function () {bringToFront(app.id)};
     close.onclick = function () { desktopbody.removeChild(app); };
-    fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0px'; };
-    smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; };
+    fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0%'; };
+    smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; app.style.top = '25%'; app.style.left = '25%'; };
     if (appsname === "Browser") {
         var tabrow = document.createElement('div');
         var tab = document.createElement('div');
@@ -849,7 +860,7 @@ function scriptApp(appsname){
         var lowpowerin = document.createElement('input');
         var lowpowerswitch = document.createElement('span');
         var lowpowertxt = document.createElement('h2');
-
+        app.className = 'popuplist';
         darkmodel.title = "DarkMode";
         darkmodel.className = "switch";
         darkmodein.type = "checkbox";
@@ -886,13 +897,34 @@ function scriptApp(appsname){
     } else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
         btuview.src = "https://blazetousd.tk";
-        btuview.style = 'width: 100%; height: 99%;';
         app.appendChild(btuview);
     } else if(appsname === "StoryFire"){
         var sfview = document.createElement('iframe');
-        sfview.src = "https://www.storyfire.com";
-        sfview.style = 'width: 100%; height: 90%';
+        var tabdiv = document.createElement('div');
+        tabdiv.className = 'tab'
+        var sft1 = document.createElement('button');
+        sft1.className = 'tablinks';
+        var sft2 = document.createElement('button');
+        sft2.className = 'tablinks';
+        var sft3 = document.createElement('button');
+        sft3.className = 'tablinks';
+        var sft4 = document.createElement('button');
+        sft4.className = 'tablinks';
+        sft1.innerHTML = 'Home';
+        sft1.onclick = function () {sfview.src = 'https://storyfire.com';};
+        sft2.innerHTML = 'Social';
+        sft2.onclick = function () {sfview.src = 'https://storyfire.com/social';};
+        sft3.innerHTML = 'Leaders';
+        sft3.onclick = function () {sfview.src = 'https://storyfire.com/leaderboard';};
+        sft4.innerHTML = 'Blaze';
+        sft4.onclick = function () {sfview.src = 'https://storyfire.com/blaze';};
+        tabdiv.appendChild(sft1);
+        tabdiv.appendChild(sft2);
+        tabdiv.appendChild(sft3);
+        tabdiv.appendChild(sft4);
+        app.appendChild(tabdiv);
         app.appendChild(sfview);
+        sfview.src = "https://www.storyfire.com";
     } else if (appsname === "Settings") {
         var tab = document.createElement('div');
         var backgroundsettings = document.createElement('div');
