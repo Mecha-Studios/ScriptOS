@@ -87,6 +87,8 @@ var changelog = `Script OS Changelog:
 -Functionality:
     -New animations
     -Speed and stability improvements
+-Nasdaq:
+    -App added
 #Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
