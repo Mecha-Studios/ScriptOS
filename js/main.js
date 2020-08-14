@@ -62,13 +62,14 @@ var changelog = `Script OS Changelog:
     -Redesign
     -Launch apps from ScriptAI(app names are case sensitive)
 -ControlPanel added(Press ESC):
+    -Restart
+    -Lock/Sign Out
     -DarkMode
-    -LowPower
-    -Brightness
 -App UI:
     -App header buttons redesigned
     -App borders removed
     -Buttons redesigned
+    -iFrame sizing issues fixed
 -Context Menus:
     -Redesigned
     -New buttons
@@ -80,6 +81,7 @@ var changelog = `Script OS Changelog:
     -Redesigned
     -Search Added
     -New animations
+    -Combined with ControlPanel
 -Boot:
     -New startup screen
 -Functionality:
@@ -251,8 +253,9 @@ startupscreen.style.width = '100%';
 startupscreen.style.height = '100%';
 startupscreen.src = 'images/scriptos4startup.gif';
 var actioncenter = document.createElement('div');
-actioncenter.style = 'position: absolute; z-index: 100; width: 20%; height: 60%; top: 35%; overflow-y: scroll; resize: none; animation: slidetopam; animation-duration: 2s;';
+actioncenter.style = 'position: absolute; z-index: 100; display: flex; width: 35%; height: 60%; top: 35%; resize: none; animation: slidetopam; animation-duration: 2s;';
 var appcenter = document.createElement('div');
+appcenter.className = 'appcenter';
 
 function boot(){
     document.body.style.backgroundImage = '';
@@ -414,6 +417,44 @@ function loadDesktop(){
     }
 
     actioncenter.className = 'popuplist';
+    
+    var darkmodel = document.createElement('label');
+    var darkmodein = document.createElement('input');
+    var darkmodeswitch = document.createElement('span');
+    var darkmodetxt = document.createElement('h2');
+    var ltxt = document.createElement('h2');
+    var signoutbutt = document.createElement('input');
+    var restartbutt = document.createElement('input');
+    var controlcenter = document.createElement('div');
+
+    darkmodel.title = "DarkMode";
+    darkmodel.className = "switch";
+    darkmodein.type = "checkbox";
+    darkmodein.id = "darkmodetoggle2";
+    darkmodein.onchange = function(){darkToggle2();};
+    darkmodeswitch.className = "slider round";
+    darkmodetxt.innerHTML = "DarkMode";
+
+    ltxt.innerHTML = "System"; 
+
+    signoutbutt.type = 'image';
+    signoutbutt.src = 'images/lock.png';
+    signoutbutt.title = 'Sign Out';
+    signoutbutt.onclick = function(){signOut();};
+    signoutbutt.className = 'appicon';
+
+    restartbutt.type = 'image';
+    restartbutt.src = 'images/restart.png';
+    restartbutt.title = 'Restart';
+    restartbutt.onclick = function(){location.reload();};
+    restartbutt.className = 'appicon';
+
+    controlcenter.className = 'controlcenter';
+
+    darkmodel.appendChild(darkmodein);
+    darkmodel.appendChild(darkmodeswitch);
+
+    
 
     var app1 = document.createElement('input');
     var app1butt = document.createElement('div');
@@ -446,6 +487,22 @@ function loadDesktop(){
     app2butt.appendChild(app2);
     app2butt.appendChild(app2txt);
     appcenter.appendChild(app2butt);
+
+    var app3 = document.createElement('input');
+    var app3butt = document.createElement('div');
+    var app3txt = document.createElement('h3');
+    app3.type = 'image';
+    app3.src = "images/Nasdaq.png";
+    app3txt.innerHTML = 'Nasdaq';
+    app3.title = 'Nasdaq';
+    app3.setAttribute("onclick", "scriptApp('Nasdaq')");
+    app3butt.setAttribute("onclick", "scriptApp('Nasdaq')");
+    app3.className = 'appchoice';
+    app3txt.className = 'appbutttxt';
+    app3butt.className = 'appbutt';
+    app3butt.appendChild(app3);
+    app3butt.appendChild(app3txt);
+    appcenter.appendChild(app3butt);
 
     var app4 = document.createElement("input");
     var app4butt = document.createElement('div');
@@ -561,27 +618,21 @@ function loadDesktop(){
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
-    actionarea.appendChild(appcenter);
-    actioncenter.appendChild(actionarea);
+    actioncenter.appendChild(appcenter);
+    actioncenter.appendChild(controlcenter);
 
     var closebutt = document.createElement('button');
-    closebutt.innerHTML = 'Close';
+    closebutt.innerHTML = 'X';
+    closebutt.style = 'font-size: 45px; float: right';
+    closebutt.className = 'appicon';
     closebutt.onclick = function () { desktopbody.removeChild(actioncenter); };
-    actionarea.appendChild(closebutt);
+    controlcenter.appendChild(closebutt);
 
-    var reloadbutt = document.createElement('button');
-    reloadbutt.innerHTML = 'Restart';
-    reloadbutt.onclick = function () { location.reload(); };
-    actionarea.appendChild(reloadbutt);
-
-    var signoutbutt = document.createElement('button');
-    signoutbutt.innerHTML = 'Sign Out';
-    signoutbutt.onclick = function () { signOut(); };
-    actionarea.appendChild(signoutbutt);
-
-    var shutdownbutt = document.createElement('button');
-    shutdownbutt.innerHTML = 'Shutdown';
-    actionarea.appendChild(shutdownbutt);
+    controlcenter.appendChild(darkmodetxt);
+    controlcenter.appendChild(darkmodel);
+    controlcenter.appendChild(ltxt);
+    controlcenter.appendChild(signoutbutt);
+    controlcenter.appendChild(restartbutt);
     
     desktopbody.appendChild(conmenu1);
     
@@ -594,8 +645,7 @@ function signIn(){
     desktopbody.removeChild(timetxt);
     desktopbody.removeChild(loginbar);
     document.getElementById('topnav').style.display = 'block';
-    desktopbody.appendChild(navbar);
-    desktopbody.appendChild(conmenu1);
+   
     if(savednav){
         navbar.innerHTML = '';
         navbar.innerHTML = localStorage.getItem("savednav");
@@ -604,7 +654,11 @@ function signIn(){
     if(savedesk){
         desktopbody.innerHTML = '';
         desktopbody.innerHTML = localStorage.getItem("savedesk");
+        desktopbody.style.display = 'block';    
     }
+    
+    desktopbody.appendChild(navbar);
+    desktopbody.appendChild(conmenu1);
 }
 
 var headertext = document.createElement('h2');
@@ -673,7 +727,7 @@ conmenu1butt4.innerHTML = 'Add Shortcut';
 conmenu1butt4.onclick = function () { scriptApp('Settings'); openSett(event, 'Shortcuts'); };
 conmenu1butt4.className = "menubutton";
 conmenu1butt5.innerHTML = 'ControlPanel';
-conmenu1butt5.onclick = function () { scriptApp('ControlPanel'); };
+conmenu1butt5.onclick = function () {desktopbody.appendChild(actioncenter);};
 conmenu1butt5.className = "menubutton";
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
@@ -692,6 +746,9 @@ function darkToggle2(){
     }
     console.log(darkmodeon);
 }
+
+var tn = document.querySelector('#topnav');
+var nb = document.querySelector('#navbar');
 
 //Stock apps in Script OS
 function scriptApp(appsname){
@@ -744,7 +801,7 @@ function scriptApp(appsname){
     app.onload = bringToFront(app.id);
     app.onclick = function () {bringToFront(app.id)};
     close.onclick = function () { desktopbody.removeChild(app); };
-    fullscreen.onclick = function () { app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0%'; };
+    fullscreen.onclick = function () {app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0%'; };
     smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; app.style.top = '25%'; app.style.left = '25%'; };
     if (appsname === "Browser") {
         var tabrow = document.createElement('div');
@@ -851,53 +908,14 @@ function scriptApp(appsname){
         app.appendChild(tabrow);
         app.appendChild(tab);
         tab.style.display = 'inline';
-    } else if(appsname === "ControlPanel"){
-        var darkmodel = document.createElement('label');
-        var darkmodein = document.createElement('input');
-        var darkmodeswitch = document.createElement('span');
-        var darkmodetxt = document.createElement('h2');
-        var lowpowerl = document.createElement('label');
-        var lowpowerin = document.createElement('input');
-        var lowpowerswitch = document.createElement('span');
-        var lowpowertxt = document.createElement('h2');
-        app.className = 'popuplist';
-        darkmodel.title = "DarkMode";
-        darkmodel.className = "switch";
-        darkmodein.type = "checkbox";
-        darkmodein.id = "darkmodetoggle2";
-        darkmodein.onchange = function(){darkToggle2();};
-        darkmodeswitch.className = "slider round";
-        darkmodetxt.innerHTML = "DarkMode";
-
-        lowpowerl.title = "LowPower";
-        lowpowerl.className = "switch";
-        lowpowerin.type = "checkbox";
-        lowpowerin.id = "lowpowertoggle";
-        lowpowerswitch.className = "slider round";
-        lowpowertxt.innerHTML = "LowPower"; 
-
-        darkmodel.appendChild(darkmodein);
-        darkmodel.appendChild(darkmodeswitch);
-        lowpowerl.appendChild(lowpowerin);
-        lowpowerl.appendChild(lowpowerswitch);
-
-        app.appendChild(darkmodetxt);
-        app.appendChild(darkmodel);
-        app.appendChild(lowpowertxt);
-        app.appendChild(lowpowerl);
-        headbuttdiv.removeChild(smallscreen);
-        headbuttdiv.removeChild(fullscreen);
-        app.appendChild(headbuttdiv);
-        app.removeChild(apphead);
-        headbuttdiv.style = "position: absolute; top: 20px; left: 200px;";
-        app.style.resize = "none";
-        app.style.width = "15%";
-        app.style.height = "50%";
-        app.style.position = "fixed";
-    } else if(appsname === "BlazeToUSD"){
+    }else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
         btuview.src = "https://blazetousd.tk";
         app.appendChild(btuview);
+    }else if(appsname === "Nasdaq"){
+        var nview = document.createElement('iframe');
+        nview.src = 'https://www.nasdaq.com';
+        app.appendChild(nview);
     } else if(appsname === "StoryFire"){
         var sfview = document.createElement('iframe');
         var tabdiv = document.createElement('div');
@@ -918,6 +936,7 @@ function scriptApp(appsname){
         sft3.onclick = function () {sfview.src = 'https://storyfire.com/leaderboard';};
         sft4.innerHTML = 'Blaze';
         sft4.onclick = function () {sfview.src = 'https://storyfire.com/blaze';};
+        sfview.style.height = tabdiv.getBoundingClientRect + apphead.getBoundingClientRect() - app.getBoundingClientRect();
         tabdiv.appendChild(sft1);
         tabdiv.appendChild(sft2);
         tabdiv.appendChild(sft3);
@@ -1258,20 +1277,30 @@ function scriptApp(appsname){
         oschoice3.className = 'tablinks';
         var oschoice4 = document.createElement('button');
         oschoice4.className = 'tablinks';
+        var oschoice5 = document.createElement('button');
+        oschoice5.className = 'tablinks';
+        var oschoice6 = document.createElement('button');
+        oschoice6.className = 'tablinks';
         osview.style.width = '98%';
         osview.style.height = '92.5%';
         oschoice1.innerHTML = 'Script OS 2.0[LEGACY]';
         oschoice1.onclick = function () {osview.src = 'https://tenzeinc.github.io/Script-OS-Dev/';};
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
-        oschoice3.innerHTML = 'Script OS 3.0';
+        oschoice3.innerHTML = 'Script OS 3.0[LEGACY]';
         oschoice3.onclick = function () {osview.src = 'https://scriptos.ml/';};
         oschoice4.innerHTML = 'eyeOS';
-        oschoice4.onclick = function () {osview.src = 'https://s2.demo.opensourcecms.com/eyeOS/';};
+        oschoice4.onclick = function () {osview.src = 'https://tenzeinc.github.io/SO3/';};
+        oschoice5.innerHTML = 'OS.js';
+        oschoice5.onclick = function () {osview.src = 'https://demo.os-js.org/';};
+        oschoice6.innerHTML = 'ScriptOS 4';
+        oschoice6.onclick = function () {osview.src = 'https://beta.scriptos.ml';};
         tabdiv.appendChild(oschoice1);
         tabdiv.appendChild(oschoice2);
         tabdiv.appendChild(oschoice3);
         tabdiv.appendChild(oschoice4);
+        tabdiv.appendChild(oschoice5);
+        tabdiv.appendChild(oschoice6);
         app.appendChild(tabdiv);
         app.appendChild(osview);
     } else if(appsname === "ScriptAI"){
@@ -1309,7 +1338,8 @@ function scriptApp(appsname){
         //app.appendChild(sendbutt);
     } else {
         var unavailableapp = document.createElement('h1');
-        unavailableapp.innerHTML = "Currently Unavailable";
+        unavailableapp.innerHTML = "Error: Program unavailable or nonexistent";
+        appheadtext.nodeValue = "Error"
         app.appendChild(unavailableapp);
     }
 }
@@ -1346,7 +1376,7 @@ document.onkeyup = function (e){
                 scriptApp("ScriptAI");
         }
         if(e.which == 27){
-            scriptApp("ControlPanel");
+            desktopbody.appendChild(actioncenter);
         }
       }
     //if(e.keyCode == 83 && e.keyCode == 32){

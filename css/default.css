@@ -212,6 +212,17 @@ button {
     }
 }
 
+@keyframes scriptosslideup{
+    0% {
+        opacity: 100%;
+        top: 2%;
+    }
+    100%{
+        opacity: 5%;
+        top: -10%;
+    }
+}
+
 @keyframes slidetop100 {
     0% {
         opacity: 5%;
@@ -222,7 +233,6 @@ button {
         top: 100px;
     }
 }
-
 
 @keyframes swipeup{
     0% {
@@ -331,13 +341,37 @@ button {
     top: 25%;
     border-radius: 15px;
     border-style: none;
+    display: flex;
+    flex-direction: column;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
     background-color: rgba(0, 0, 0, .25);
     text-align: center;
     color: white;
     overflow: hidden;
     font-family: 'Bauhaus 93';
-    animation-duration: 2s;
+}
+
+.controlcenter{
+    width: 50%;
+    height: 100%;
+    resize: none;
+    overflow: hidden;
+    float: right;
+    vertical-align: top;
+    box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
+    background-color: rgba(0, 0, 0, .25);
+    align-self: flex-start;
+}
+
+.appcenter{
+    width: 55%;
+    height: 100%;
+    resize: none;
+    overflow-y:scroll;
+    position: relative;
+    float: left;
+    box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
+    background-color: rgba(0, 0, 0, .25);
 }
 
 .popuplist {
@@ -376,8 +410,16 @@ button {
   }
 
 #actionarea {
-    width: 60%;
+    width: 50%;
     height: 100%;
+}
+
+.bslider{
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background: rgba(0, 0, 0, .25);
+    width: 100px;
+    height: 15px;
 }
 
 .appchoice{
@@ -533,7 +575,7 @@ button{
 
 iframe{
     width: 100%;
-    height: 95%;
+    height: 97.5%;
     border-style: none;
 }
 
@@ -561,7 +603,8 @@ iframe{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background: rgba(255, 255, 255, .25);
+    box-shadow: rgba(0, 0, 0, .5) 2px 2px;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -573,14 +616,15 @@ iframe{
     width: 16px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background: rgba(255, 255, 255, .5);
+    box-shadow: rgba(0, 0, 0, .5) 2px 2px;
     -webkit-transition: .4s;
     transition: .4s;
-    box-shadow: 2.5px 2.5px 2.5px black;
   }
   
   input:checked + .slider {
-    background-color: black;
+    background: rgba(255, 255, 255, .5);
+    box-shadow: rgba(0, 0, 0, .5) 2px 2px;
   }
 
   input:checked + .slider::before {
@@ -605,9 +649,6 @@ iframe{
   .slider.round:before {
     border-radius: 50%;
   }
-  .slider.round:hover {
-    background-color: red;
-}
 
 .appheadbutt{
     color: white;
@@ -616,25 +657,15 @@ iframe{
 #close:hover{
     text-shadow: red 5px 5px 5px;
     color: red;
-    animation: zoom;
-    animation-duration: .5s;
-    transform: scale(1.25);
 }
 
 #fullscreen:hover{
     text-shadow: blue 5px 5px 5px;
     color: blue;
-    animation: zoom;
-    animation-duration: .5s;
-    transform: scale(1.25);
 }
-
 #smallscreen:hover{
     text-shadow: yellow 5px 5px 5px;
     color: yellow;
-    animation: zoom;
-    animation-duration: .5s;
-    transform: scale(1.25);
 }
 
 #apphistory{
