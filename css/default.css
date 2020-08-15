@@ -16,6 +16,28 @@ body {
     -o-background-size: cover;
 }
 
+.sloadbar{
+    width: 50%;
+    height: 30px;
+    background: linear-gradient(red, black);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5) 5px 5px;
+    animation: sloadbar;
+    animation-duration: 7s;
+    position: absolute;
+    left: 25%;
+    bottom: 5%;
+}
+
+.so4icon{
+    width: 50%;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    animation: zoomfade;
+    animation-duration: 3s;
+}
+
 #close:hover{
     cursor: pointer;
 }
@@ -60,6 +82,22 @@ button {
     background: rgba(255, 0, 0, 0.25);
 }
 
+.docktopnavpos {
+    width: 150px;
+    z-index: 20;
+    position: fixed;
+    box-shadow: 5px;
+    display: none;
+    color: black;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    border-radius: 10px;
+    text-align: left;
+    cursor: context-menu;
+    animation: zoomfade;
+    animation-duration: .5s;
+}
+
 .menu {
     width: 150px;
     z-index: 20;
@@ -75,6 +113,7 @@ button {
     animation: zoomfade;
     animation-duration: .5s;
 }
+
 .menu:active{
     cursor: pointer;
 }
@@ -165,6 +204,15 @@ button {
     100%{
         opacity: 100%;
         top: 35%;
+    }
+}
+
+@keyframes sloadbar{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 50%;
     }
 }
 

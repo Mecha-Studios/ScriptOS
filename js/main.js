@@ -8,9 +8,12 @@ var scriptosversion = "4.0";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
+var errorsound = new Audio("so4error.mp3");
+var chargesound = new Audio("so4chargesound.mp3");
+let battery1 = navigator.getBattery();
 
 function battLevel(){
-    navigator.getBattery() 
+    navigator.getBattery()
     .then(function(battery) {
         var batterylevel = Math.floor(battery.level * 100) / 100;
         console.log(battery.level);
@@ -24,6 +27,11 @@ function battLevel(){
         document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
         batterybar.value = batterylevel*100;
     })
+
+    if(battery1.charging){
+        chargesound.play();
+    }
+
     setTimeout(battLevel, 500);
 }
 
@@ -65,6 +73,10 @@ var changelog = `Script OS Changelog:
     -Restart
     -Lock/Sign Out
     -DarkMode
+    -Redesigned
+    -New animations
+    -Combined with AppCenter
+    -Change dock and topnav position
 -App UI:
     -App header buttons redesigned
     -App borders removed
@@ -77,11 +89,6 @@ var changelog = `Script OS Changelog:
     -Redesigned
     -Rewritten
     -Tabs
--AppCenter:
-    -Redesigned
-    -Search Added
-    -New animations
-    -Combined with ControlPanel
 -Boot:
     -New startup screen
 -Functionality:
@@ -306,12 +313,27 @@ function boot(){
     setTimeout(startUp, 7000);
 }
 
+
+var so4icon = document.createElement('img');
+var startupbar = document.createElement('div');
+
 function startUp(){
     desktopbody.innerHTML = "";
     document.body.style.backgroundImage = '';
     document.body.style.backgroundColor = 'black';
-    desktopbody.appendChild(startupscreen);
-    setTimeout(loadDesktop, 5000);
+    startupbar.className = 'sloadbar';
+    so4icon.src = 'images/ScriptOS.png';
+    so4icon.className = 'so4icon';
+    var startsound = new Audio('startsound.mp3');
+    startsound.autoplay = true;
+    desktopbody.appendChild(startsound);
+    desktopbody.appendChild(so4icon);
+    setTimeout(function(){desktopbody.appendChild(startupbar);},3000);
+    setTimeout(function(){
+        loadDesktop();
+        desktopbody.removeChild(so4icon);
+        desktopbody.removeChild(startupbar);
+    }, 10000);
 }
 
 //Search UI and Functionality
@@ -353,7 +375,6 @@ function deviceDetection() {
 
 //Desktop Loading Sequence
 function loadDesktop(){
-    desktopbody.removeChild(startupscreen);
     document.getElementById("topnav").style.display = "block";
 
     if(savedbackground){
@@ -370,7 +391,7 @@ function loadDesktop(){
     actionmenuicon.type = 'image';
     actionmenuicon.src = 'images/ScriptOS.png';
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
-    actionmenuicon.title = 'ActionMenu';
+    actionmenuicon.title = 'ControlPanel';
     actionmenuicon.className = 'appicon button';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; border-radius: 15px; box-shadow: rgba(0,0,0,.5) 5px 5px 5px; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
@@ -456,8 +477,6 @@ function loadDesktop(){
     darkmodel.appendChild(darkmodein);
     darkmodel.appendChild(darkmodeswitch);
 
-    
-
     var app1 = document.createElement('input');
     var app1butt = document.createElement('div');
     var app1txt = document.createElement('h3');
@@ -465,8 +484,8 @@ function loadDesktop(){
     app1.src = "images/Settings.png";
     app1txt.innerHTML = "Settings";
     app1.title = 'Settings';
-    app1.setAttribute("onclick", "scriptApp('Settings')");
-    app1butt.setAttribute("onclick", "scriptApp('Settings')");
+    app1.setAttribute("onclick", "scriptApp('Settings'); desktopbody.removeChild(actioncenter);");
+    app1butt.setAttribute("onclick", "scriptApp('Settings'); desktopbody.removeChild(actioncenter);");
     app1.className = 'appchoice';
     app1txt.className = 'appbutttxt';
     app1butt.className = 'appbutt';
@@ -481,8 +500,8 @@ function loadDesktop(){
     app2.src = "images/Browser.png";
     app2txt.innerHTML = 'Browser';
     app2.title = 'S Browser';
-    app2.setAttribute("onclick", "scriptApp('Browser')");
-    app2butt.setAttribute("onclick", "scriptApp('Browser')");
+    app2.setAttribute("onclick", "scriptApp('Browser'); desktopbody.removeChild(actioncenter);");
+    app2butt.setAttribute("onclick", "scriptApp('Browser'); desktopbody.removeChild(actioncenter);");
     app2.className = 'appchoice';
     app2txt.className = 'appbutttxt';
     app2butt.className = 'appbutt';
@@ -497,8 +516,8 @@ function loadDesktop(){
     app3.src = "images/Nasdaq.png";
     app3txt.innerHTML = 'Nasdaq';
     app3.title = 'Nasdaq';
-    app3.setAttribute("onclick", "scriptApp('Nasdaq')");
-    app3butt.setAttribute("onclick", "scriptApp('Nasdaq')");
+    app3.setAttribute("onclick", "scriptApp('Nasdaq'); desktopbody.removeChild(actioncenter);");
+    app3butt.setAttribute("onclick", "scriptApp('Nasdaq'); desktopbody.removeChild(actioncenter);");
     app3.className = 'appchoice';
     app3txt.className = 'appbutttxt';
     app3butt.className = 'appbutt';
@@ -513,8 +532,8 @@ function loadDesktop(){
     app4.src = 'images/Timer.png';
     app4txt.innerHTML = 'Timer';
     app4.title = "Timer";
-    app4.setAttribute("onclick", "scriptApp('Timer')");
-    app4butt.setAttribute('onclick', 'scriptApp("Timer")');
+    app4.setAttribute("onclick", "scriptApp('Timer'); desktopbody.removeChild(actioncenter);");
+    app4butt.setAttribute('onclick', 'scriptApp("Timer"); desktopbody.removeChild(actioncenter);');
     app4.className = 'appchoice';
     app4txt.className = 'appbutttxt';
     app4butt.className = 'appbutt';
@@ -529,8 +548,8 @@ function loadDesktop(){
     app5.src = "images/Discord.png";
     app5txt.innerHTML = 'Discord';
     app5.title = 'Discord';
-    app5butt.setAttribute("onclick", "scriptApp('Discord')");
-    app5.setAttribute("onclick", "scriptApp('Discord')");
+    app5butt.setAttribute("onclick", "scriptApp('Discord'); desktopbody.removeChild(actioncenter);");
+    app5.setAttribute("onclick", "scriptApp('Discord'); desktopbody.removeChild(actioncenter);");
     app5.className = 'appchoice';
     app5txt.className = 'appbutttxt';
     app5butt.className = 'appbutt';
@@ -545,8 +564,8 @@ function loadDesktop(){
     app7.src = "images/Shortcuts.png";
     app7txt.innerHTML = 'Shortcuts';
     app7.title = 'Shortcuts';
-    app7butt.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
-    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
+    app7butt.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts; desktopbody.removeChild(actioncenter);");
+    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts; desktopbody.removeChild(actioncenter);");
     app7.className = 'appchoice';
     app7txt.className = 'appbutttxt';
     app7butt.className = 'appbutt';
@@ -561,8 +580,8 @@ function loadDesktop(){
     app8.src = "images/vmOS.png";
     app8txt.innerHTML = 'vmOS'
     app8.title = 'vmOS';
-    app8butt.setAttribute("onclick", "scriptApp('vmOS')");
-    app8.setAttribute("onclick", "scriptApp('vmOS')");
+    app8butt.setAttribute("onclick", "scriptApp('vmOS'); desktopbody.removeChild(actioncenter);");
+    app8.setAttribute("onclick", "scriptApp('vmOS'); desktopbody.removeChild(actioncenter);");
     app8.className = 'appchoice';
     app8txt.className = 'appbutttxt';
     app8butt.className = 'appbutt';
@@ -577,8 +596,8 @@ function loadDesktop(){
     app9.src = 'images/BlazeToUSD.png';
     app9txt.innerHTML = 'BlazeToUSD';
     app9.title = 'BlazeToUSD';
-    app9butt.setAttribute("onclick", "scriptApp('BlazeToUSD')");
-    app9.setAttribute("onclick", "scriptApp('BlazeToUSD')");
+    app9butt.setAttribute("onclick", "scriptApp('BlazeToUSD'); desktopbody.removeChild(actioncenter);");
+    app9.setAttribute("onclick", "scriptApp('BlazeToUSD'); desktopbody.removeChild(actioncenter);");
     app9.className = 'appchoice';
     app9txt.className = 'appbutttxt';
     app9butt.className = 'appbutt';
@@ -593,8 +612,8 @@ function loadDesktop(){
     app10.src = "images/ScriptAI.png";
     app10txt.innerHTML = 'ScriptAI';
     app10.title = 'ScriptAI';
-    app10butt.setAttribute("onclick", "scriptApp('ScriptAI')");
-    app10.setAttribute("onclick", "scriptApp('ScriptAI')");
+    app10butt.setAttribute("onclick", "scriptApp('ScriptAI'); desktopbody.removeChild(actioncenter);");
+    app10.setAttribute("onclick", "scriptApp('ScriptAI'); desktopbody.removeChild(actioncenter);");
     app10.className = 'appchoice';
     app10txt.className = 'appbutttxt';
     app10butt.className = 'appbutt';
@@ -609,8 +628,8 @@ function loadDesktop(){
     app11.src = "images/StoryFire.png";
     app11txt.innerHTML = 'StoryFire';
     app11.title = 'StoryFire';
-    app11butt.setAttribute("onclick", "scriptApp('StoryFire')");
-    app11.setAttribute("onclick", "scriptApp('StoryFire')");
+    app11butt.setAttribute("onclick", "scriptApp('StoryFire'); desktopbody.removeChild(actioncenter);");
+    app11.setAttribute("onclick", "scriptApp('StoryFire'); desktopbody.removeChild(actioncenter);");
     app11.className = 'appchoice';
     app11txt.className = 'appbutttxt';
     app11butt.className = 'appbutt';
@@ -706,6 +725,38 @@ function signOut(){
         return i;
     }
 }
+
+//SleepMode
+function sleepMode(){
+    timetxt.style.fontSize = '85px';
+    timetxt.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
+    timetxt.style.fontFamily = "Arial";
+    timetxt.style.fontSize = '100px';
+    timetxt.style.opacity = '50%';
+    desktopbody.style.color = 'white';
+    desktopbody.style.textAlign = 'center';
+    desktopbody.onkeypress = function(){
+        signIn();
+    };
+    desktopbody.innerHTML = '';
+    document.getElementById('topnav').style.display = 'none';
+    desktopbody.appendChild(timetxt);
+    startLockTime();
+    function startLockTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        m = checkLockTime(m);
+        timetxt.innerHTML = h + ":" + m;
+        var t = setTimeout(startLockTime, 500);
+    }
+
+    function checkLockTime(i) {
+        if (i < 10) { i = "0" + i; }
+        return i;
+    }
+}
+
 
 //Context Menu
 var conmenu1 = document.createElement('div');
@@ -921,6 +972,9 @@ function scriptApp(appsname){
     } else if(appsname === "StoryFire"){
         var sfview = document.createElement('iframe');
         var tabdiv = document.createElement('div');
+        sfview.onerror = function(){
+            errorsound.play();
+        };
         tabdiv.className = 'tab'
         var sft1 = document.createElement('button');
         sft1.className = 'tablinks';
@@ -1306,6 +1360,7 @@ function scriptApp(appsname){
         app.appendChild(tabdiv);
         app.appendChild(osview);
     } else if(appsname === "ScriptAI"){
+        app.style.display = 'inline';
         commandinput = document.createElement('input');
         commandoutput = document.createElement('textarea');
         var micbutton = document.createElement('input');
@@ -1340,6 +1395,7 @@ function scriptApp(appsname){
         //app.appendChild(sendbutt);
     } else {
         var unavailableapp = document.createElement('h1');
+        errorsound.play();
         unavailableapp.innerHTML = "Error: Program unavailable or nonexistent";
         appheadtext.nodeValue = "Error"
         app.appendChild(unavailableapp);
@@ -1613,6 +1669,7 @@ function darkMode(){
     document.getElementById('scriptosdropdown'). style.color = 'white';
     menucon.style.color = 'white';
     menucon.style.background = 'rgba(0,0,0,0.5)';
+    actioncenter.style.background = 'rgba(0,0,0,0.25)';
 }
 
 function lightMode(){
@@ -1622,4 +1679,5 @@ function lightMode(){
     document.getElementById('scriptosdropdown'). style.color = 'black';
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
+    actioncenter.style.background = 'rgba(255,255,255,0.25)';
 }
