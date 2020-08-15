@@ -23,6 +23,7 @@ function battLevel(){
             batterybar.style.backgroundColor = "yellow";
         } else if(batterylevel <= .3){
             batterybar.style.backgroundColor = "red";
+            pushNotification("System","Low battery power");
         }
         document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
         batterybar.value = batterylevel*100;
@@ -62,6 +63,10 @@ function checkTime(i) {
 
 var changelog = `Script OS Changelog:
 #ScriptOS 4.0[BETA]
+-System:
+    -Notifications Added
+    -New animations
+    -Speed and stability improvements
 -Browser:
     -Search from inputbar(thing you type a URL into)
     -Tabs(currently only two per window)
@@ -91,9 +96,6 @@ var changelog = `Script OS Changelog:
     -Tabs
 -Boot:
     -New startup screen
--Functionality:
-    -New animations
-    -Speed and stability improvements
 -Nasdaq:
     -App added
 #Script OS 3.8
@@ -314,6 +316,41 @@ function boot(){
 }
 
 
+
+function pushNotification(appname, message){
+    var notifbody = document.createElement('div');
+    var notifname = document.createElement('h1');
+    var notifmessage = document.createElement('p');
+    var deletebutt = document.createElement('button');
+    var openbutt = document.createElement('button');
+    var clearbutt = document.createElement('button');
+    
+    notifbody.className = 'notifbody';
+    notifbody.style.zIndex = top_z+10;
+    notifname.innerHTML = appname;
+    notifmessage.innerHTML = message;
+    deletebutt.innerHTML = "X";
+    deletebutt.className = 'appicon';
+    deletebutt.onclick = function(){
+        desktopbody.removeChild(notifbody);
+    };
+    openbutt.innerHTML = "Open";
+    openbutt.className = 'appicon';
+    openbutt.onclick = function(){
+        scriptApp(appname);
+        desktopbody.removeChild(notifbody);
+    };
+
+    chargesound.play();
+
+    notifbody.appendChild(notifname);
+    notifbody.appendChild(notifmessage);
+    notifbody.appendChild(openbutt);
+    notifbody.appendChild(deletebutt);
+    desktopbody.appendChild(notifbody);
+    
+}
+
 var so4icon = document.createElement('img');
 var startupbar = document.createElement('div');
 
@@ -449,6 +486,7 @@ function loadDesktop(){
     var signoutbutt = document.createElement('input');
     var restartbutt = document.createElement('input');
     var controlcenter = document.createElement('div');
+    var testnotif = document.createElement('button');
 
     darkmodel.title = "DarkMode";
     darkmodel.className = "switch";
@@ -471,6 +509,12 @@ function loadDesktop(){
     restartbutt.title = 'Restart';
     restartbutt.onclick = function(){location.reload();};
     restartbutt.className = 'appicon';
+
+    testnotif.type = 'image';
+    testnotif.title = 'Test Notif';
+    testnotif.innerHTML = 'Test';
+    testnotif.onclick = function(){pushNotification("testing", "TESTING TESTING 294184")};
+    testnotif.className = 'appicon';
 
     controlcenter.className = 'controlcenter';
 
@@ -654,6 +698,7 @@ function loadDesktop(){
     controlcenter.appendChild(ltxt);
     controlcenter.appendChild(signoutbutt);
     controlcenter.appendChild(restartbutt);
+    controlcenter.appendChild(testnotif);
     
     desktopbody.appendChild(conmenu1);
     
@@ -992,7 +1037,6 @@ function scriptApp(appsname){
         sft3.onclick = function () {sfview.src = 'https://storyfire.com/leaderboard';};
         sft4.innerHTML = 'Blaze';
         sft4.onclick = function () {sfview.src = 'https://storyfire.com/blaze';};
-        sfview.style.height = tabdiv.getBoundingClientRect + apphead.getBoundingClientRect() - app.getBoundingClientRect();
         tabdiv.appendChild(sft1);
         tabdiv.appendChild(sft2);
         tabdiv.appendChild(sft3);
@@ -1012,6 +1056,8 @@ function scriptApp(appsname){
         var bbutt = document.createElement('button');
         var changelogsett = document.createElement('div');
         var clbutt = document.createElement('button');
+        var sovsett = document.createElement('div');
+        var sovbutt = document.createElement('button');
 
         tab.className = 'tab';
         bgsbutt.className = 'tablinks';
@@ -1030,12 +1076,36 @@ function scriptApp(appsname){
         clbutt.className = "tablinks";
         clbutt.onclick = function(){openSett(event, changelogsett.id);};
         clbutt.innerHTML = "Changelog";
+        sovbutt.className = "tablinks";
+        sovbutt.onclick = function(){openSett(event, sovsett.id);};
+        sovbutt.innerHTML = "ScriptOS Version";
         app.appendChild(tab);
         tab.appendChild(bgsbutt);
         tab.appendChild(aboutbutt);
         tab.appendChild(scbutt);
         tab.appendChild(bbutt);
-        tab.appendChild(clbutt)
+        tab.appendChild(clbutt);
+        tab.appendChild(sovbutt);
+
+        app.appendChild(sovsett);
+        sovsett.id = 'ScriptOSVersion';
+        sovsett.className = 'tabcontent';
+
+        var sovtxt = document.createElement("h1");
+        var vtxt = document.createElement("h2");
+        var butt2 = document.createElement("button");
+        var butt3 = document.createElement("button");
+        sovtxt.innerHTML = "ScriptOS Version";
+        sovsett.appendChild(sovtxt);
+        vtxt.innerHTML = "Current Version: ScriptOS " + scriptosversion;
+        sovsett.appendChild(vtxt);
+        butt2.innerHTML = "Downgrade to Script OS 2.0";
+        butt2.onclick = function(){location.href = 'https://tenzeinc.github.io/Script-OS-Dev/';};
+        sovsett.appendChild(butt2);
+        butt3.innerHTML = "Downgrade to Script OS 3.0";
+        butt3.onclick = function(){location.href = 'https://tenzeinc.github.io/SO3/';};
+        sovsett.appendChild(butt3);
+
 
         app.appendChild(backgroundsettings);
         backgroundsettings.style.display = 'inline';
@@ -1302,20 +1372,27 @@ function scriptApp(appsname){
                     app.style.backgroundColor = "red";
                     app.appendChild(timesuptext);
                     alarm.play();
+                    pushNotification("Timer","Time's up!!!");
                 }
             }, 1000);
+            resetbutton.innerHTML = "Reset";
             resetbutton.onclick = function(){
                 timeleft.innerHTML = "";
                 clearInterval(timerint);
                 alarm.pause();
+                app.style.backgroundColor = "rgba(0, 0, 0, .25)";
+                app.removeChild(timesuptext);
+                app.removeChild(resetbutton);
+                app.removeChild(stopbutton);
             };
             stopbutton.innerHTML = "Stop";
             stopbutton.onclick = function(){
                 clearInterval(timerint);
                 alarm.pause();
+                app.style.backgroundColor = "rgba(0, 0, 0, .25)";
             };
             app.appendChild(stopbutton);
-            app.appendChild(resetbutton)
+            app.appendChild(resetbutton);
         };
         app.appendChild(timeleft);
         app.appendChild(timeset);
@@ -1344,9 +1421,7 @@ function scriptApp(appsname){
         oschoice2.innerHTML = 'Windows 93';
         oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
         oschoice3.innerHTML = 'Script OS 3.0[LEGACY]';
-        oschoice3.onclick = function () {osview.src = 'https://scriptos.ml/';};
-        oschoice4.innerHTML = 'eyeOS';
-        oschoice4.onclick = function () {osview.src = 'https://tenzeinc.github.io/SO3/';};
+        oschoice3.onclick = function () {osview.src = 'https://tenzeinc.github.io/SO3/';};
         oschoice5.innerHTML = 'OS.js';
         oschoice5.onclick = function () {osview.src = 'https://demo.os-js.org/';};
         oschoice6.innerHTML = 'ScriptOS 4';
@@ -1354,7 +1429,6 @@ function scriptApp(appsname){
         tabdiv.appendChild(oschoice1);
         tabdiv.appendChild(oschoice2);
         tabdiv.appendChild(oschoice3);
-        tabdiv.appendChild(oschoice4);
         tabdiv.appendChild(oschoice5);
         tabdiv.appendChild(oschoice6);
         app.appendChild(tabdiv);
@@ -1660,9 +1734,12 @@ if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) {
 }
 
 var menucon = document.getElementById("menu");
+var darkmodesound = new Audio("dark mode sound.mp3");
+var lightmodesound = new Audio("light mode sound.mp3");
 
 //Dark and Light Mode
 function darkMode(){
+    darkmodesound.play();
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.25)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.25)';
     document.getElementById('scriptosdropdown'). style.background = 'rgba(0,0,0,0.25)';
@@ -1673,6 +1750,7 @@ function darkMode(){
 }
 
 function lightMode(){
+    lightmodesound.play();
     document.getElementById('navbar').style.background = 'rgba(255,255,255,0.25)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.25)';
     document.getElementById('scriptosdropdown'). style.background = 'rgba(255,255,255,0.25)';
