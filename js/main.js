@@ -10,6 +10,7 @@ var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
 var errorsound = new Audio("so4error.mp3");
 var chargesound = new Audio("so4chargesound.mp3");
+var rsod = false;
 let battery1 = navigator.getBattery();
 
 function battLevel(){
@@ -33,7 +34,13 @@ function battLevel(){
         chargesound.play();
     }
 
-    setTimeout(battLevel, 500);
+    setTimeout(function(){
+        if(rsod = false){
+            battLevel();
+        } else if(rsod = true){
+            return;
+        }
+    }, 500);
 }
 
 //Time(Clock stuff)
@@ -44,7 +51,13 @@ function startTime() {
     m = checkTime(m);
     document.getElementById('datetime').innerHTML = h + ":" + m + " | " + 
     (("0"+(today.getMonth()+1)).slice(-2)) +"/"+ (("0"+today.getDate()).slice(-2)) +"/"+ (today.getFullYear());
-    var t = setTimeout(startTime, 500);
+    var t = setTimeout(function(){
+        if(rsod = false){
+            startTime();
+        } else if(rsod = true){
+            return;
+        }
+    }, 500);
 }
 
 
@@ -62,11 +75,12 @@ function checkTime(i) {
 
 
 var changelog = `Script OS Changelog:
-#ScriptOS 4.0[BETA]
+.ScriptOS 4.0[BETA]
 -System:
     -Notifications Added
     -New animations
     -Speed and stability improvements
+    -EditMode added to remove individual icons from the dock and desktop
 -Browser:
     -Search from inputbar(thing you type a URL into)
     -Tabs(currently only two per window)
@@ -98,69 +112,69 @@ var changelog = `Script OS Changelog:
     -New startup screen
 -Nasdaq:
     -App added
-#Script OS 3.8
+.Script OS 3.8
 -Happy Birthday Script OS
 -New commands and jokes added to ScriptAI
 -New backgrounds added
 -VisualCode removed
-#Script OS 3.7.1
+.Script OS 3.7.1
 -App UI Improvements
-#Script OS 3.7
+.Script OS 3.7
 -More jokes added to ScriptAI
 -ScriptAI improvements
 -Window's can be brought to front on click
 -Launch ScriptAI by pressing TAB
-#Script OS 3.6
+.Script OS 3.6
 -Search bug fixes
 -Browser bug fixes
 -About page bug fixes
 -Commands added to ScriptAI
 -Responses added to ScriptAI
 -ScriptAI can now search the web
-#Script OS 3.5
+.Script OS 3.5
 -Files app removed
 -Desktop Shortcuts added
-#Script OS 3.4.3
+.Script OS 3.4.3
 -BlazeToUSD added
 -StoryFire added
 -Battery level bug fixes
-#Script OS 3.4.2
+.Script OS 3.4.2
 -Browser settings added
-#Script OS 3.4.1
+.Script OS 3.4.1
 -New animations added
-#Script OS 3.4
+.Script OS 3.4
 -Device verification on boot added
 -Boot sequence revamped
 -Battery level added
 -Battery level color indicator added
-#Script OS 3.3.2
+.Script OS 3.3.2
 -Notifications system being tested
-#Script OS 3.3.1
+.Script OS 3.3.1
 -New animations
 -Bug fixes
-#Script OS 3.3
+.Script OS 3.3
 -TopNav Customization
 -Background Image scaling fixed
 -App header buttons redesigned
 -Themes added to Personalization settings
 -OS font changed
-#Script OS 3.2.1
+.Script OS 3.2.1
 -Bug fixes
-#Script OS 3.2
+.Script OS 3.2
 -Shortcuts improvements
 -Shortcuts save after closing Script OS
 -Timer icon changed
 -Zoom feature added to appheader buttons
-#Script OS 3.1.1
+.Script OS 3.1.1
 -Timer app added
-#Script OS 3.1
+.Script OS 3.1
 -Bugs fixed
 -New commands added to Script AI
-#Script OS 3.0.1
+.Script OS 3.0.1
 -Bugs fixed
 -Donate Button Removed
 -Terminal Removed
-#Script OS 3.0
+.Script OS 3.0
 -DockZoom added
 -IconZoom added
 -Filesystem remade
@@ -174,28 +188,28 @@ var changelog = `Script OS Changelog:
 -Donate button added
 -Script AI[ALPHA] added
 -Browser issues fixed(websites like google.com and youtube.com now work if you install the iFrame Allow chrome extension)
-#Script OS 2.9.6
+.Script OS 2.9.6
 -Startup screen added
-#Script OS 2.9.5
+.Script OS 2.9.5
 -Files app redesigned
 -Fixed file saving issues
 -Lock screen added
-#Script OS 2.9.4 
+.Script OS 2.9.4 
 -Shortcuts added 
 -Bug Fixes 
 -HTML Support added 
-#Script OS 2.9.3 
+.Script OS 2.9.3 
 -Files app working in demo mode 
 -Happy 1 Year of Script OS 
-#Script OS 2.9.2
+.Script OS 2.9.2
 -HTML Editor added
 -Themes color opacity increased 
 -Mothers Day 
-#Script OS 2.9.1
+.Script OS 2.9.1
 -Themes added
 -Subscribe to PewDiePie button removed
 -App center redesigned 
-#Script OS 2.9
+.Script OS 2.9
 -DarkMode added
 -Script OS Redesigned
 -App system improved
@@ -302,8 +316,8 @@ function boot(){
     setTimeout(function(){desktopbody.innerText+="\n Loading programs"; console.log("Loading programs")}, 2750);
     setTimeout(function(){desktopbody.innerText+="\n APIs loaded successfully"; console.log("APIs loaded successfully")}, 3000);
     setTimeout(function(){desktopbody.innerText+="\n Programs loaded successfully"; console.log("Programs loaded successfully")}, 3250);
-    setTimeout(function(){desktopbody.innerText+="\n Loading ScriptAI and Chromium web engine"; console.log("Loading ScriptAI and Chromium web engine")}, 7000);
-    setTimeout(function(){desktopbody.innerText+="\n ScriptAI successfully loaded"; console.log("ScriptAI successfully loaded")}, 3500);
+    setTimeout(function(){desktopbody.innerText+="\n Loading ScriptAI and Chromium web engine"; console.log("Loading ScriptAI and Chromium web engine")}, 3500);
+    setTimeout(function(){desktopbody.innerText+="\n ScriptAI successfully loaded"; console.log("ScriptAI successfully loaded")}, 3750);
     setTimeout(function(){desktopbody.innerText+="\n Chromium successfully loaded"; console.log("Chromium successfully laoded")}, 4000);
     setTimeout(function(){desktopbody.innerText+="\n Loading app icons"; console.log("Loading app icons")}, 4250);
     setTimeout(function(){desktopbody.innerText+="\n Loading background images"; console.log("Loading background images")}, 4500);
@@ -323,7 +337,6 @@ function pushNotification(appname, message){
     var notifmessage = document.createElement('p');
     var deletebutt = document.createElement('button');
     var openbutt = document.createElement('button');
-    var clearbutt = document.createElement('button');
     
     notifbody.className = 'notifbody';
     notifbody.style.zIndex = top_z+10;
@@ -486,7 +499,9 @@ function loadDesktop(){
     var signoutbutt = document.createElement('input');
     var restartbutt = document.createElement('input');
     var controlcenter = document.createElement('div');
-    var testnotif = document.createElement('button');
+    var testnotif = document.createElement('input');
+    var testerror = document.createElement('input');
+    var testrsod = document.createElement('input');
 
     darkmodel.title = "DarkMode";
     darkmodel.className = "switch";
@@ -512,9 +527,21 @@ function loadDesktop(){
 
     testnotif.type = 'image';
     testnotif.title = 'Test Notif';
-    testnotif.innerHTML = 'Test';
+    testnotif.src = 'images/notiftest.png';
     testnotif.onclick = function(){pushNotification("testing", "TESTING TESTING 294184")};
     testnotif.className = 'appicon';
+    
+    testerror.type = 'image';
+    testerror.title = 'Test Error';
+    testerror.src = 'images/errortest.png';
+    testerror.onclick = function(){scriptApp("Error");};
+    testerror.className = 'appicon';
+
+    testrsod.type = 'image';
+    testrsod.title = 'Test RSOD';
+    testrsod.src = 'images/rosd.png';
+    testrsod.onclick = function(){RSOD("hiss hiss fucko");};
+    testrsod.className = 'appicon';
 
     controlcenter.className = 'controlcenter';
 
@@ -608,8 +635,8 @@ function loadDesktop(){
     app7.src = "images/Shortcuts.png";
     app7txt.innerHTML = 'Shortcuts';
     app7.title = 'Shortcuts';
-    app7butt.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts; desktopbody.removeChild(actioncenter);");
-    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts; desktopbody.removeChild(actioncenter);");
+    app7butt.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts'); desktopbody.removeChild(actioncenter);");
+    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts'); desktopbody.removeChild(actioncenter);");
     app7.className = 'appchoice';
     app7txt.className = 'appbutttxt';
     app7butt.className = 'appbutt';
@@ -699,10 +726,24 @@ function loadDesktop(){
     controlcenter.appendChild(signoutbutt);
     controlcenter.appendChild(restartbutt);
     controlcenter.appendChild(testnotif);
+    controlcenter.appendChild(testerror);
+    controlcenter.appendChild(testrsod);
     
     desktopbody.appendChild(conmenu1);
     
     lightMode();
+}
+
+function RSOD(message){
+    rsod = true;
+
+    document.body.innerHTML = '';
+    document.body.style.backgroundImage = '';
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color = 'red';
+    document.body.innerText+="\n " + message;
+    document.body.innerText+='\n Press CTRL + R or F5 for a system refresh';
+
 }
 
 //Sign In
@@ -810,6 +851,8 @@ var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
 var conmenu1butt4 = document.createElement('li');
 var conmenu1butt5 = document.createElement('li');
+var conmenu1butt6 = document.createElement('li');
+var conmenu1butt7 = document.createElement('li');
 conmenu1.className = 'menu';
 conmenu1.id = 'menu';
 conmenu1butt1.innerHTML = 'Personalization';
@@ -827,12 +870,25 @@ conmenu1butt4.className = "menubutton";
 conmenu1butt5.innerHTML = 'ControlPanel';
 conmenu1butt5.onclick = function () {desktopbody.appendChild(actioncenter);};
 conmenu1butt5.className = "menubutton";
+conmenu1butt6.innerHTML = 'EditMode';
+conmenu1butt6.onclick = function () {
+    editMode();
+    this.remove();
+    conmenu1.appendChild(conmenu1butt7);
+};
+conmenu1butt6.className = "menubutton";
+conmenu1butt7.innerHTML = 'Exit EditMode';
+conmenu1butt7.onclick = function () {
+    normMode();
+};
+conmenu1butt7.className = "menubutton";
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
+conmenu1.appendChild(conmenu1butt6);
 
 //DarkMode Toggle
 function darkToggle2(){
@@ -845,8 +901,22 @@ function darkToggle2(){
     console.log(darkmodeon);
 }
 
-var tn = document.querySelector('#topnav');
-var nb = document.querySelector('#navbar');
+var tn = document.querySelector('.topnav');
+var nb = document.querySelector('.navbar');
+
+function editMode(){
+    var iconedit = document.getElementsByClassName('appicon');
+    for(var i = 0; i < iconedit.length; i++){
+        iconedit[i].onclick = function(){
+            this.remove();
+        };
+    }
+}
+
+function normMode(){
+    location.reload();
+    localStorage.setItem("savednav", navbar.innerHTML);
+}
 
 //Stock apps in Script OS
 function scriptApp(appsname){
@@ -859,6 +929,7 @@ function scriptApp(appsname){
     var headbuttdiv = document.createElement('div');
     var headtextdiv = document.createElement('div');
     var appnumber = Math.random();
+    app.onerror = function(){errorsound.play();};
     headtextdiv.style.textAlign = 'left';
     headtextdiv.style.width = '50%';
     headtextdiv.style.cssFloat = 'left';
@@ -1297,8 +1368,12 @@ function scriptApp(appsname){
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
             newshortcut.src = "images/" + appnameshort.value + ".png";
-            newshortcut.className = 'appicon'
-            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
+            newshortcut.className = 'appicon';
+            if(appnameshort.value != "Shortcuts"){
+                newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "')");
+            } else if(appnameshort.value = "Shortcuts"){
+                newshortcut.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
+            }
             navbar.appendChild(newshortcut);
             localStorage.setItem("savednav", navbar.innerHTML);
             desktopbody.removeChild(app);
@@ -1310,6 +1385,7 @@ function scriptApp(appsname){
             newshortcut.className = 'desktopicon';
             newshortcut.id = appnameshort.value + "Short";
             newshortcut.style = 'width: 75px; height: 75px';
+            newshortcut.className = 'appicon';
             newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
             desktopbody.appendChild(newshortcut);
             desktopbody.removeChild(app);
@@ -1414,8 +1490,8 @@ function scriptApp(appsname){
         oschoice5.className = 'tablinks';
         var oschoice6 = document.createElement('button');
         oschoice6.className = 'tablinks';
-        osview.style.width = '98%';
-        osview.style.height = '92.5%';
+        osview.style.width = '100%';
+        osview.style.height = '97.5%';
         oschoice1.innerHTML = 'Script OS 2.0[LEGACY]';
         oschoice1.onclick = function () {osview.src = 'https://tenzeinc.github.io/Script-OS-Dev/';};
         oschoice2.innerHTML = 'Windows 93';
