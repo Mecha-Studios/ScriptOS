@@ -60,8 +60,6 @@ function startTime() {
     }, 500);
 }
 
-
-
 var savednav = localStorage.getItem("savednav");
 var savedesk = localStorage.getItem("savedesk");
 
@@ -69,8 +67,6 @@ function checkTime(i) {
     if (i < 10) { i = "0" + i; }
     return i;
 }
-
-
 
 
 
@@ -88,6 +84,8 @@ var changelog = `Script OS Changelog:
     -More jokes
     -Redesign
     -Launch apps from ScriptAI(app names are case sensitive)
+    -Random number command added
+        -Say "random number" followed by the maximum number you'd like to set
 -ControlPanel added(Press ESC):
     -Restart
     -Lock/Sign Out
@@ -293,12 +291,18 @@ function boot(){
     }else if ((objOffsetVersion=objAgent.indexOf("MSIE"))!=-1) { 
         objbrowserName = "Microsoft Internet Explorer(It is reccomended that you use Chrome)"; 
         objfullVersion = objAgent.substring(objOffsetVersion+5); 
+        console.error(e344);
+        RSOD(e344);
     }else if ((objOffsetVersion=objAgent.indexOf("Firefox"))!=-1) { 
         objbrowserName = "Firefox(It is reccomended that you use Chrome)"; 
+        console.error(e344);
+        RSOD(e344);
     }else if ((objOffsetVersion=objAgent.indexOf("Safari"))!=-1) { 
         objbrowserName = "Safari(It is reccomended that you use Chrome)"; 
         objfullVersion = objAgent.substring(objOffsetVersion+7); 
         if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
+        console.error(e344);
+        RSOD(e344);
     }
 
     setTimeout(function(){deviceDetection()}, 250);
@@ -433,6 +437,8 @@ function loadDesktop(){
         document.body.style.backgroundImage = 'url("images/ScriptOSBackground.png")';
     }
 
+    battLevel();
+
     navbar.className = 'navbar';
     navbar.id = 'navbar';
     desktopbody.appendChild(navbar);
@@ -443,6 +449,7 @@ function loadDesktop(){
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actionmenuicon.title = 'ControlPanel';
     actionmenuicon.className = 'appicon button';
+    actionmenuicon.id = 'controlpanelicon';
     actionmenuicon.style = "width:50px; height:50px; z-index: 100; border-radius: 15px; box-shadow: rgba(0,0,0,.5) 5px 5px 5px; position:absolute; left:0;" ;
     navbar.appendChild(actionmenuicon);
 
@@ -452,6 +459,7 @@ function loadDesktop(){
     searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
     searchweb.setAttribute("onclick", "desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);");
     searchweb.title = 'Search the Web';
+    searchweb.id = 'searchweb';
     searchweb.style = "width:50px; height:50px; z-index: 100; position:absolute; right:0;";
     navbar.appendChild(searchweb);
 
@@ -732,11 +740,13 @@ function loadDesktop(){
     desktopbody.appendChild(conmenu1);
     
     lightMode();
+
+    pushNotification("Settings", "Check changelog for updates and changes");
 }
 
 function RSOD(message){
     rsod = true;
-
+    errorsound.play();
     document.body.innerHTML = '';
     document.body.style.backgroundImage = '';
     document.body.style.backgroundColor = 'black';
@@ -906,6 +916,7 @@ var nb = document.querySelector('.navbar');
 
 function editMode(){
     var iconedit = document.getElementsByClassName('appicon');
+    pushNotification("EditMode", "Any icon you click on the desktop or doc will be deleted. Open the context menu and click 'Exit EditMode' when you're done.")
     for(var i = 0; i < iconedit.length; i++){
         iconedit[i].onclick = function(){
             this.remove();
@@ -1544,13 +1555,22 @@ function scriptApp(appsname){
         app.appendChild(micbutton);
         //app.appendChild(sendbutt);
     } else {
-        var unavailableapp = document.createElement('h1');
-        errorsound.play();
-        unavailableapp.innerHTML = "Error: Program unavailable or nonexistent";
-        appheadtext.nodeValue = "Error"
-        app.appendChild(unavailableapp);
+        RSOD(e343);
+        console.error(e343);
     }
 }
+
+var errorcodes = `
+ScriptOS Error Codes:
+-E343: Program nonexistent/not found
+-E344: Browser not supported
+-E345: Device not supported
+-E346: Loading failure`;
+
+var e343 = new Error("E343: Program nonexistent/not found");
+var e344 = new Error("E344: Browser not supported");
+var e345 = new Error("E345: Device not supported");
+var e346 = new Error("E346: Loading failure");
 
 function startDictation() {
 
@@ -1623,7 +1643,10 @@ function openBTab(evt, tabName) {
 var top_z = 10;
 
 function bringToFront(appname){
-    document.getElementById(appname).style.zIndex = ++top_z
+    var appelm = document.getElementById(appname);
+    if(typeof(appelm) != 'undefined' && appelm != null){
+        document.getElementById(appname).style.zIndex = ++top_z;
+    }
 }
 
 function scriptAI(){
@@ -1760,6 +1783,8 @@ function scriptAI(){
         commandoutput.value = "Searching " + commandinput.value.split("search");
         scriptApp("Browser");
         browserview.src = defaultengine + "/search?q=" + commandinput.value;
+    } else if(commandinput.value.includes("random number")){
+        commandoutput.value = Math.floor(Math.random() * Math.floor(commandinput.value.match(/\d+/)));
     } else{
         commandoutput.value = "Sorry, I didn't get that.";
     }
