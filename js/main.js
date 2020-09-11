@@ -11,7 +11,6 @@ var batterybar = document.getElementById("batteryprogress");
 var errorsound = new Audio("so4error.mp3");
 var chargesound = new Audio("so4chargesound.mp3");
 var rsod = false;
-let battery1 = navigator.getBattery();
 
 function battLevel(){
     navigator.getBattery()
