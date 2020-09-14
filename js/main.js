@@ -287,6 +287,7 @@ function boot(){
     if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) { 
         objbrowserName = "Chrome"; 
         objfullVersion = objAgent.substring(objOffsetVersion+7);
+        battLevel();
     }else if ((objOffsetVersion=objAgent.indexOf("MSIE"))!=-1) { 
         objbrowserName = "Microsoft Internet Explorer(It is reccomended that you use Chrome)"; 
         objfullVersion = objAgent.substring(objOffsetVersion+5); 
@@ -435,8 +436,6 @@ function loadDesktop(){
     } else{
         document.body.style.backgroundImage = 'url("images/ScriptOSBackground.png")';
     }
-
-    battLevel();
 
     navbar.className = 'navbar';
     navbar.id = 'navbar';
