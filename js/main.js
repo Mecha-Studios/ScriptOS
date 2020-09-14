@@ -291,18 +291,18 @@ function boot(){
     }else if ((objOffsetVersion=objAgent.indexOf("MSIE"))!=-1) { 
         objbrowserName = "Microsoft Internet Explorer(It is reccomended that you use Chrome)"; 
         objfullVersion = objAgent.substring(objOffsetVersion+5); 
-        console.error(e344);
-        RSOD(e344);
+        //console.error(e344);
+        //RSOD(e344);
     }else if ((objOffsetVersion=objAgent.indexOf("Firefox"))!=-1) { 
         objbrowserName = "Firefox(It is reccomended that you use Chrome)"; 
-        console.error(e344);
-        RSOD(e344);
+        //console.error(e344);
+        //RSOD(e344);
     }else if ((objOffsetVersion=objAgent.indexOf("Safari"))!=-1) { 
         objbrowserName = "Safari(It is reccomended that you use Chrome)"; 
         objfullVersion = objAgent.substring(objOffsetVersion+7); 
         if ((objOffsetVersion=objAgent.indexOf("Version"))!=-1) objfullVersion = objAgent.substring(objOffsetVersion+8); 
-        console.error(e344);
-        RSOD(e344);
+        //console.error(e344);
+        //RSOD(e344);
     }
 
     setTimeout(function(){deviceDetection()}, 250);
