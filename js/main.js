@@ -29,10 +29,6 @@ function battLevel(){
         batterybar.value = batterylevel*100;
     })
 
-    if(battery1.charging){
-        chargesound.play();
-    }
-
     setTimeout(function(){
         if(rsod = false){
             battLevel();
