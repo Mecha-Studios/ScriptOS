@@ -9,6 +9,7 @@ var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
 var errorsound = new Audio("so4error.mp3");
+var chargesound = new Audio("so4chargesound.mp3");
 var rsod = false;
 
 function battLevel(){
