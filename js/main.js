@@ -27,6 +27,9 @@ function battLevel(){
         }
         document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
         batterybar.value = batterylevel*100;
+        if(battery.charging){
+            chargesound.play();
+        }
     })
 
     setTimeout(function(){
@@ -67,6 +70,9 @@ function checkTime(i) {
 
 var changelog = `Script OS Changelog:
 .ScriptOS 4.0[BETA]
+-Features currently being worked on:
+    -User account system(local)
+    -Custom Cursors
 -System:
     -Notifications Added
     -New animations
@@ -503,7 +509,6 @@ function loadDesktop(){
     var controlcenter = document.createElement('div');
     var testnotif = document.createElement('input');
     var testerror = document.createElement('input');
-    var testrsod = document.createElement('input');
 
     darkmodel.title = "DarkMode";
     darkmodel.className = "switch";
@@ -538,12 +543,6 @@ function loadDesktop(){
     testerror.src = 'images/errortest.png';
     testerror.onclick = function(){scriptApp("Error");};
     testerror.className = 'appicon';
-
-    testrsod.type = 'image';
-    testrsod.title = 'Test RSOD';
-    testrsod.src = 'images/rosd.png';
-    testrsod.onclick = function(){RSOD("hiss hiss fucko");};
-    testrsod.className = 'appicon';
 
     controlcenter.className = 'controlcenter';
 
@@ -729,13 +728,12 @@ function loadDesktop(){
     controlcenter.appendChild(restartbutt);
     controlcenter.appendChild(testnotif);
     controlcenter.appendChild(testerror);
-    controlcenter.appendChild(testrsod);
     
     desktopbody.appendChild(conmenu1);
     
     lightMode();
 
-    pushNotification("Settings", "Check changelog for updates and changes");
+    //pushNotification("Settings", "Check changelog for updates and changes");
 }
 
 function RSOD(message){
