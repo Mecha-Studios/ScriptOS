@@ -11,7 +11,6 @@ var batterybar = document.getElementById("batteryprogress");
 var errorsound = new Audio("so4error.mp3");
 var chargesound = new Audio("so4chargesound.mp3");
 var rsod = false;
-
 function battLevel(){
     navigator.getBattery()
     .then(function(battery) {
@@ -27,9 +26,6 @@ function battLevel(){
         }
         document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
         batterybar.value = batterylevel*100;
-        if(battery.charging){
-            chargesound.play();
-        }
     })
 
     setTimeout(function(){
@@ -66,6 +62,8 @@ function checkTime(i) {
     return i;
 }
 
+var usernames = ["Admin"];
+var passwords = ["password"];
 
 
 var changelog = `Script OS Changelog:
@@ -730,7 +728,7 @@ function loadDesktop(){
     
     lightMode();
 
-    //pushNotification("Settings", "Check changelog for updates and changes");
+    pushNotification("Settings", "Check changelog for updates and changes");
 }
 
 function RSOD(message){
