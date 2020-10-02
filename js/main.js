@@ -70,9 +70,6 @@ function checkTime(i) {
 
 var changelog = `Script OS Changelog:
 .ScriptOS 4.0[BETA]
--Features currently being worked on:
-    -User account system(local)
-    -Custom Cursors
 -System:
     -Notifications Added
     -New animations
