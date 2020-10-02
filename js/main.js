@@ -62,10 +62,6 @@ function checkTime(i) {
     return i;
 }
 
-var usernames = ["Admin"];
-var passwords = ["password"];
-
-
 var changelog = `Script OS Changelog:
 .ScriptOS 4.0[BETA]
 -System:
@@ -745,7 +741,6 @@ function RSOD(message){
 
 //Sign In
 function signIn(){
-    desktopbody.removeChild(headertext);
     desktopbody.removeChild(timetxt);
     desktopbody.removeChild(loginbar);
     document.getElementById('topnav').style.display = 'block';
@@ -765,18 +760,16 @@ function signIn(){
     desktopbody.appendChild(conmenu1);
 }
 
-var headertext = document.createElement('h2');
+var userdiv = document.createElement("div");
+var usernamein = document.createElement('input');
+var passin = document.createElement('input');
 var timetxt = document.createElement('h1');
 var loginbar = document.createElement('div');
 
 //Sign Out
 function signOut(){
     var soimage = document.createElement('div');
-    headertext.innerHTML = 'ScriptOS';
-    headertext.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
-    headertext.style.fontFamily = "Arial";
-    headertext.style.fontSize = '100px';
-    headertext.style.opacity = '50%';
+    userdiv.className = 'soalert';
     timetxt.style.fontSize = '85px';
     timetxt.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
     timetxt.style.fontFamily = "Arial";
@@ -790,7 +783,7 @@ function signOut(){
     desktopbody.innerHTML = '';
     document.getElementById('topnav').style.display = 'none';
     desktopbody.appendChild(soimage);
-    desktopbody.appendChild(headertext);
+    desktopbody.appendChild(userdiv);
     desktopbody.appendChild(timetxt);
     desktopbody.appendChild(loginbar);
     startLockTime();

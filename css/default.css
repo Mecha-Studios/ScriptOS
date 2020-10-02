@@ -16,6 +16,29 @@ body {
     -o-background-size: cover;
 }
 
+.soalert{
+    width: 50%;
+    height: 50%;
+    resize: none;
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    animation: zoomfade; 
+    animation-duration: .5s;
+    z-index: 10;
+    border: 1px solid #d3d3d3;
+    border-radius: 15px;
+    border-style: none;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
+    background-color: rgba(255, 255, 255, .25);
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    font-family: 'Bauhaus 93';
+}
+
 .sloadbar{
     width: 50%;
     height: 30px;
