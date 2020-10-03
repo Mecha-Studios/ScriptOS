@@ -17,22 +17,22 @@ body {
 }
 
 .soalert{
-    width: 50%;
+    margin: 1;
+    width: 20%;
     height: 50%;
     resize: none;
     position: absolute;
     top: 25%;
-    right: 25%;
+    right: 40%;
     animation: zoomfade; 
     animation-duration: .5s;
-    z-index: 10;
+    z-index: 100;
     border: 1px solid #d3d3d3;
     border-radius: 15px;
     border-style: none;
-    display: flex;
-    flex-direction: column;
+    display: block;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
-    background-color: rgba(255, 255, 255, .25);
+    background-color: rgba(0, 0, 0, .25);
     text-align: center;
     color: white;
     overflow: hidden;
@@ -189,10 +189,48 @@ button {
     animation-duration: 2s;
 }
 
-.logbar:active{
-    animation: slideuplogbar;
+.logininput{
+    border-radius: 25px; 
+    border-style: none; 
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; 
+    background: rgba(0,0,0, .25); 
+    width: 75%; 
+    height: 70px; 
+    font-size: 50px; 
+    z-index:10; 
+    animation:zoomfade; 
     animation-duration: 2s;
+    color: white;
+    position: relative;
 }
+.logininput:hover{
+    box-shadow: rgba(0, 0, 0, .5)10px 10px 10px;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+.logininput input:active{
+    box-shadow: rgba(0, 0, 0, .5)10px 10px 10px;
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.loginbutt{
+    border-radius: 25px; 
+    border-style: none; 
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; 
+    background: rgba(0,0,0, .25); 
+    width: 50%; 
+    height: 70px; 
+    font-size: 40px; 
+    z-index:10; 
+    animation:zoomfade; 
+    animation-duration: 2s;
+    color: white;
+    position: relative;
+}
+.loginbutt:hover{
+    box-shadow: rgba(0, 0, 0, .5)10px 10px 10px;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
 .appicon {
     width: 50px;
     height: 50px;
@@ -207,6 +245,16 @@ button {
     background: rgba(255, 0, 0, 0.25);
     transform: scale(1.25);
     box-shadow: rgba(0, 0, 0, .5)10px 10px 10px;
+}
+
+.uesricon {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background: rgba(0, 0, 0, .25);
+    animation: zoomfade;
+    animation-duration: 2s;
 }
 
 .topnav {
@@ -531,6 +579,7 @@ button {
 
 .appbutt:hover{
     background: rgba(255, 0, 0, 0.25);
+    box-shadow: rgba(255, 0, 0, .5)10px 10px 10px;
     cursor: pointer;
 }
 

@@ -724,7 +724,14 @@ function loadDesktop(){
     
     lightMode();
 
-    pushNotification("Settings", "Check changelog for updates and changes");
+    //pushNotification("Settings", "Check changelog for updates and changes");
+    if(un){
+        if(pw){
+            return;
+        }
+    } else {
+        pushNotification("Settings", "Setup your account credentials before using ScriptOS");
+    }
 }
 
 function RSOD(message){
@@ -742,7 +749,7 @@ function RSOD(message){
 //Sign In
 function signIn(){
     desktopbody.removeChild(timetxt);
-    desktopbody.removeChild(loginbar);
+    //desktopbody.removeChild(loginbar);
     document.getElementById('topnav').style.display = 'block';
    
     if(savednav){
@@ -760,32 +767,73 @@ function signIn(){
     desktopbody.appendChild(conmenu1);
 }
 
+var un = localStorage.getItem("username");
+var pw = localStorage.getItem("password");
+
+var sotxt = document.createElement('h2');
 var userdiv = document.createElement("div");
-var usernamein = document.createElement('input');
-var passin = document.createElement('input');
 var timetxt = document.createElement('h1');
 var loginbar = document.createElement('div');
 
 //Sign Out
 function signOut(){
-    var soimage = document.createElement('div');
+    var usernamein = document.createElement('input');
+    var passinput = document.createElement('input');
+    var loginbutt = document.createElement('button');
+    var vnum = document.createElement('h3');
     userdiv.className = 'soalert';
-    timetxt.style.fontSize = '85px';
+    usernamein.className = 'logininput';
+    usernamein.placeholder = 'Username';
+    passinput.className = 'logininput';
+    passinput.placeholder = 'Password';
+    passinput.type = "password";
+    loginbutt.className = 'loginbutt';
+    loginbutt.innerHTML = "Sign In";
+    loginbutt.onclick = function(){
+        var username = usernamein.value;
+        var password = passinput.value;
+        if(username === un){
+            if(password === pw){
+                signIn();
+                userdiv.removeChild(sotxt);
+                userdiv.removeChild(usernamein);
+                userdiv.removeChild(passinput);
+                userdiv.removeChild(loginbutt);
+                userdiv.removeChild(vnum);
+                desktopbody.removeChild(userdiv);
+            } else {
+                pushNotification("System", "Username or password is incorrect");
+            }
+        } else {
+            pushNotification("System", "Username or password is incorrect");
+        }
+    };
+    vnum.innerHTML = "ScriptOS " + scriptosversion;
+    vnum.style.opacity = '50%';
+    sotxt.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
     timetxt.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
     timetxt.style.fontFamily = "Arial";
     timetxt.style.fontSize = '100px';
     timetxt.style.opacity = '50%';
+    sotxt.innerHTML = 'ScriptOS';
+    sotxt.style.fontSize = '65px';
+    sotxt.style.textShadow = 'rgba(0,0,0,.5) 5px 5px 5px';
+    sotxt.style.fontFamily = "Arial";
+    sotxt.style.opacity = '50%';
     loginbar.className = 'logbar';
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
     loginbar.onclick = function () { signIn();};
-    soimage.className = "bg-image";
     desktopbody.innerHTML = '';
     document.getElementById('topnav').style.display = 'none';
-    desktopbody.appendChild(soimage);
+    userdiv.appendChild(sotxt);
+    userdiv.appendChild(usernamein);
+    userdiv.appendChild(passinput);
+    userdiv.appendChild(loginbutt);
+    userdiv.appendChild(vnum);
     desktopbody.appendChild(userdiv);
     desktopbody.appendChild(timetxt);
-    desktopbody.appendChild(loginbar);
+    //desktopbody.appendChild(loginbar);
     startLockTime();
     function startLockTime() {
         var today = new Date();
@@ -1114,6 +1162,8 @@ function scriptApp(appsname){
         var aboutbutt = document.createElement('button');
         var shortcuts = document.createElement('div');
         var scbutt = document.createElement('button');
+        var usersett = document.createElement('div');
+        var userbutt = document.createElement('button');
         var browsersett = document.createElement('div');
         var bbutt = document.createElement('button');
         var changelogsett = document.createElement('div');
@@ -1131,6 +1181,49 @@ function scriptApp(appsname){
         scbutt.className = 'tablinks';
         scbutt.onclick = function(){openSett(event, shortcuts.id);};
         scbutt.innerHTML = "Shortcuts";
+        userbutt.className = "tablinks";
+        userbutt.onclick = function(){
+            var userdiv = document.createElement("div");
+            var usernamein = document.createElement('input');
+            var passinput = document.createElement('input');
+            var loginbutt = document.createElement('button');
+            userdiv.className = 'soalert';
+            usernamein.className = 'logininput';
+            usernamein.placeholder = 'Username';
+            passinput.className = 'logininput';
+            passinput.placeholder = 'Password';
+            passinput.type = "password";
+            loginbutt.className = 'loginbutt';
+            loginbutt.innerHTML = "Sign In";
+            if(un){
+                if(pw){
+                    userdiv.appendChild(usernamein);
+                    userdiv.appendChild(passinput);
+                    userdiv.appendChild(loginbutt);
+                    desktopbody.appendChild(userdiv);  
+                } 
+            } else {
+                openSett(event, usersett.id);
+            }
+            loginbutt.onclick = function(){
+                var username = usernamein.value;
+                var password = passinput.value;
+                if(username === un){
+                    if(password === pw){
+                        userdiv.removeChild(usernamein);
+                        userdiv.removeChild(passinput);
+                        userdiv.removeChild(loginbutt);
+                        desktopbody.removeChild(userdiv);
+                        openSett(event, usersett.id);
+                    } else {
+                        pushNotification("System", "Username or password is incorrect");
+                    }
+                } else {
+                    pushNotification("System", "Username or password is incorrect");
+                }
+            };
+        };
+        userbutt.innerHTML = "User";
         bbutt.className = 'tablinks';
         bbutt.onclick = function(){openSett(event, browsersett.id);};
         bbutt.innerHTML = "Browser";
@@ -1145,9 +1238,39 @@ function scriptApp(appsname){
         tab.appendChild(bgsbutt);
         tab.appendChild(aboutbutt);
         tab.appendChild(scbutt);
+        tab.appendChild(userbutt);
         tab.appendChild(bbutt);
         tab.appendChild(clbutt);
         tab.appendChild(sovbutt);
+
+        app.appendChild(usersett);
+        usersett.id = 'User';
+        usersett.className = 'tabcontent';
+
+        var usernamein = document.createElement('input');
+        var passinput = document.createElement('input');
+        var loginbutt = document.createElement('button');
+        var warntxt = document.createElement('h3');
+        warntxt.innerHTML = "ScriptOS will restart when you set your new account credentials";
+        userdiv.className = 'soalert';
+        usernamein.className = 'logininput';
+        usernamein.placeholder = 'Username';
+        passinput.className = 'logininput';
+        passinput.placeholder = 'Password';
+        passinput.type = "password";
+        loginbutt.className = 'loginbutt';
+        loginbutt.innerHTML = "Set";
+        loginbutt.onclick = function(){
+            var username = usernamein.value;
+            var password = passinput.value;
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+            location.reload();
+        };
+        usersett.appendChild(warntxt);
+        usersett.appendChild(usernamein);
+        usersett.appendChild(passinput);
+        usersett.appendChild(loginbutt);
 
         app.appendChild(sovsett);
         sovsett.id = 'ScriptOSVersion';
@@ -1291,6 +1414,15 @@ function scriptApp(appsname){
         };
         backgroundsettings.appendChild(choice12);
 
+        var choice13 = document.createElement('input');
+        choice13.type = 'image';
+        choice13.src = 'images/tr_software_background_2020.png';
+        choice13.className = 'backgroundoption';
+        choice13.onclick = function () {
+            document.body.style.backgroundImage = 'url(images/tr_software_background_2020.png)';
+            localStorage.setItem('background','url(images/tr_software_background_2020.png)');
+        };
+        backgroundsettings.appendChild(choice13);
 
         var backgroundinput = document.createElement('input');
         var backgroundaddbutt = document.createElement('button');
