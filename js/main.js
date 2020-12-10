@@ -447,7 +447,7 @@ function loadDesktop(){
     var searchweb = document.createElement('input');
     searchweb.type = 'image';
     searchweb.className = 'appicon button';
-    searchweb.src = 'https://www.tcwreckersales.com/wp-content/uploads/2017/01/search-icon-white.png';
+    searchweb.src = 'images/search.png';
     searchweb.setAttribute("onclick", "desktopbody.appendChild(websearch); desktopbody.appendChild(searchbutt); desktopbody.appendChild(exitbutt);");
     searchweb.title = 'Search the Web';
     searchweb.id = 'searchweb';
@@ -745,6 +745,8 @@ function RSOD(message){
     document.body.innerText+='\n Press CTRL + R or F5 for a system refresh';
 
 }
+
+var classicMode = false
 
 //Sign In
 function signIn(){

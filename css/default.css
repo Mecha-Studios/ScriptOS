@@ -581,6 +581,7 @@ button {
     background: rgba(255, 0, 0, 0.25);
     box-shadow: rgba(255, 0, 0, .5)10px 10px 10px;
     cursor: pointer;
+    transform: translateX(20px) scale(1.15);
 }
 
 .appbutttxt{
