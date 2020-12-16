@@ -274,6 +274,11 @@ button {
 .backgroundoption {
     width: 20%;
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+}
+.backgroundoption:hover{
+    box-shadow: rgba(0, 0, 0, 0.75) 7.5px 7.5px 7.5px;
+    transform: scale(1.25);
 }
 
 @keyframes slidetopam {
@@ -500,6 +505,16 @@ button {
     float: left;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
     background-color: rgba(0, 0, 0, .25);
+}
+
+input[type=text]{
+    border-radius: 15px;
+    width: 75%;
+    height: 30px;
+    box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
+    background-color: rgba(0, 0, 0, .25);
+    color: white;
+    border: none;
 }
 
 .popuplist {

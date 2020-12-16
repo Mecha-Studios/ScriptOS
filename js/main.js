@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.0";
+var scriptosversion = "4.0.1";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -1054,6 +1054,7 @@ function scriptApp(appsname){
             newinputbar.type = 'text';
             newinputbar.placeholder = 'type something...';
             newinputbar.style.width = '75%';
+            newinputbar.style.height = '30px';
             newinputbar.style.borderRadius = '15px';
             newinputbar.style.borderStyle = 'none';
             newinputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)6px 6px 6px;';
@@ -1096,6 +1097,7 @@ function scriptApp(appsname){
         inputbar.id = 'inputbar' + appnumber;
         inputbar.placeholder = 'type something...';
         inputbar.style.width = '75%';
+        inputbar.style.height = '30px';
         inputbar.style.borderRadius = '15px';
         inputbar.style.borderStyle = 'none';
         inputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)6px 6px 6px;';
@@ -1473,22 +1475,26 @@ function scriptApp(appsname){
         var navbar = document.getElementById("navbar");
         var noticetxt = document.createElement("h3");
         var resetsc = document.createElement("button");
+        var iconpreview = document.createElement('img');
         newshortcut.type = 'image';
         newshortcut.style.width = '50px';
         newshortcut.style.height = '50px';
         newshortcut.style.textAlign = 'center';
         appnameshort.type = 'text';
+        appnameshort.placeholder = "App name";
         shortaddnav.innerHTML = 'Add to NavBar';
         shortadddesk.innerHTML = 'Add to Desktop';
         noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
         resetsc.innerHTML = "Reset Shortcuts";
         resetsc.title = "This will remove all added shortcuts";
         resetsc.onclick = function () {localStorage.removeItem("savednav"); localStorage.removeItem("savedesk"); window.location.reload();};
+        setInterval(function(){iconpreview.src = "images/" + appnameshort.value + ".png"}, 500);
         shortcuts.appendChild(appnameshort);
         shortcuts.appendChild(shortaddnav);
         shortcuts.appendChild(shortadddesk);
         shortcuts.appendChild(resetsc);
         shortcuts.appendChild(noticetxt);
+        shortcuts.appendChild(iconpreview);
         shortaddnav.onclick = function () {
             newshortcut.title = appnameshort.value;
             newshortcut.innerHTML = appnameshort.value;
