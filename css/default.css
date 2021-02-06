@@ -282,12 +282,9 @@ button {
 }
 
 .notebody{
-    width: 210px;
-    height: 220px;
-    background:rgba(0, 0, 0, .5);
+    background: rgba(255, 217, 0, 0.5);
     box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
     position: absolute;
-    border-radius: 15px;
     animation: zoomfade;
     animation-duration: 2s;
     resize: both;
@@ -299,22 +296,27 @@ button {
 .noteheader {
     padding: 10px;
     z-index: 10;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    background: rgba(255, 217, 0, 0.5);
     height: 20px;
     text-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
-    border-radius: 15px;
     display: block;
+}.noteheader:hover{
+    cursor: grab;
+}.noteheader:active{
+    cursor:grabbing;
 }
 
+
 .notetxt{
-    width: 97.5%;
-    height: 77.2%;
-    background:rgba(0, 0, 0, .25);
+    width: 210px;
+    height: 220px;
+    background: rgba(255, 217, 0, 0.75);
     box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
-    color: white;
+    color: black;
     font-size: 20px;
     border: none;
+    outline: none;
     resize: none;
 }
 
@@ -573,7 +575,16 @@ input[type=text]{
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
     background-color: rgba(0, 0, 0, .25);
     color: white;
+    outline: none;
     border: none;
+}
+
+input[type=image]{
+    outline: none;
+}
+
+textarea{
+    outline: none;
 }
 
 .popuplist {
@@ -668,6 +679,7 @@ button{
     background: rgba(0, 0, 0, .25);
     color: white;
     border: none;
+    outline: none;
 }
 
 #ActionMenu {

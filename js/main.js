@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.1";
+var scriptosversion = "4.1.1";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -63,6 +63,13 @@ function checkTime(i) {
 }
 
 var changelog = `ScriptOS Changelog:
+.ScriptOS 4.1.1
+-System:
+    -Bug fixes
+    -Cosmetic improvements
+-ScriptAI:
+    -New commands
+        -Create new StickyNotes by saying "new sticky", "new note", or "new sticky note"
 .ScriptOS 4.1
 -ControlPanel:
     -Usercard added
@@ -1248,6 +1255,8 @@ function scriptApp(appsname){
         var tab = document.createElement('div');
         var backgroundsettings = document.createElement('div');
         var bgsbutt = document.createElement('button');
+        var widgets = document.createElement('div');
+        var wdgtsbutt = document.createElement('button');
         var about = document.createElement('div');
         var aboutbutt = document.createElement('button');
         var shortcuts = document.createElement('div');
@@ -1265,6 +1274,9 @@ function scriptApp(appsname){
         bgsbutt.className = 'tablinks';
         bgsbutt.onclick = function(){openSett(event, backgroundsettings.id);};
         bgsbutt.innerHTML = "Personalization";
+        wdgtsbutt.className = 'tablinks';
+        wdgtsbutt.onclick = function(){openSett(event, widgets.id);};
+        wdgtsbutt.innerHTML = "Widgets";
         aboutbutt.className = 'tablinks';
         aboutbutt.onclick = function(){openSett(event, about.id);};
         aboutbutt.innerHTML = "About"
@@ -1326,13 +1338,13 @@ function scriptApp(appsname){
         sovbutt.innerHTML = "ScriptOS Version";
         app.appendChild(tab);
         tab.appendChild(bgsbutt);
+        tab.appendChild(wdgtsbutt);
         tab.appendChild(aboutbutt);
         tab.appendChild(scbutt);
         tab.appendChild(userbutt);
         tab.appendChild(bbutt);
         tab.appendChild(clbutt);
         tab.appendChild(sovbutt);
-
         app.appendChild(usersett);
         usersett.id = 'User';
         usersett.className = 'tabcontent';
@@ -1994,6 +2006,15 @@ function scriptAI(){
         browserview.src = defaultengine + "/search?q=" + commandinput.value;
     } else if(commandinput.value.includes("random number")){
         commandoutput.value = Math.floor(Math.random() * Math.floor(commandinput.value.match(/\d+/)));
+    } else if(commandinput.value == "new sticky note"){
+        commandoutput.value = "Creating new StickyNote";
+        newSticky();
+    } else if(commandinput.value == "new sticky"){
+        commandoutput.value = "Creating new StickyNote";
+        newSticky();
+    }else if(commandinput.value == "new note"){
+        commandoutput.value = "Creating new StickyNote";
+        newSticky();
     } else{
         commandoutput.value = "Sorry, I didn't get that.";
     }
