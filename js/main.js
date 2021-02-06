@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.0.1";
+var scriptosversion = "4.1";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -62,8 +62,13 @@ function checkTime(i) {
     return i;
 }
 
-var changelog = `Script OS Changelog:
-.ScriptOS 4.0[BETA]
+var changelog = `ScriptOS Changelog:
+.ScriptOS 4.1
+-ControlPanel:
+    -Usercard added
+-Utilities:
+    -StickyNotes added
+.ScriptOS 4.0
 -System:
     -Notifications Added
     -New animations
@@ -259,6 +264,40 @@ function dragWindow(elmnt) {
     }
 }
 
+function dragSticky(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id)) {
+        document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
 //Start Up UI and Functionality
 var textarea = document.createElement("textarea");
 var navbar = document.createElement('div');
@@ -302,9 +341,9 @@ function boot(){
     setTimeout(function(){desktopbody.innerText+="\n" + objbrowserName + objfullVersion}, 500);
     console.log(objbrowserName + objfullVersion);
     setTimeout(function(){desktopbody.innerText+="\n ScriptOS Version " + scriptosversion}, 750);
-    console.log("ScriptOS Version 4.0");
-    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2020"; console.log("Copyright Tyler Ruotolo 2018-2020")}, 1000);
-    setTimeout(function(){desktopbody.innerText+="\n ScriptOS  Copyright (C) 2018-2020 Tyler Ruotolo"; console.log("ScriptOS Copyright (C) 2018-2020 Tyler Ruotolo")}, 1250);
+    console.log("ScriptOS Version" + scriptosversion);
+    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2021"; console.log("Copyright Tyler Ruotolo 2018-2021")}, 1000);
+    setTimeout(function(){desktopbody.innerText+="\n ScriptOS  Copyright (C) 2018-2021 Tyler Ruotolo"; console.log("ScriptOS Copyright (C) 2018-2021 Tyler Ruotolo")}, 1250);
     setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 1500);
     setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details"; console.log("See LICENSE file for details")}, 1750);
     setTimeout(function(){desktopbody.innerText+="\n System dependencies loaded successfully"; console.log("System dependencies loaded successfully")}, 2000);
@@ -498,8 +537,19 @@ function loadDesktop(){
     var signoutbutt = document.createElement('input');
     var restartbutt = document.createElement('input');
     var controlcenter = document.createElement('div');
+    var usercard = document.createElement('div');
+    var usertxt = document.createElement('h1');
+    var userpic = document.createElement('img');
     var testnotif = document.createElement('input');
     var testerror = document.createElement('input');
+
+    usercard.className = 'usercard';
+    usertxt.className = 'usernametxt';
+    usertxt.innerHTML = un;
+    userpic.className = 'userpic';
+    userpic.src = 'images/profile-pic.png';
+    usercard.appendChild(userpic);
+    usercard.appendChild(usertxt);
 
     darkmodel.title = "DarkMode";
     darkmodel.className = "switch";
@@ -710,8 +760,9 @@ function loadDesktop(){
     closebutt.style = 'font-size: 45px; float: right';
     closebutt.className = 'appicon';
     closebutt.onclick = function () { desktopbody.removeChild(actioncenter); };
-    controlcenter.appendChild(closebutt);
 
+    controlcenter.appendChild(closebutt);
+    controlcenter.appendChild(usercard);
     controlcenter.appendChild(darkmodetxt);
     controlcenter.appendChild(darkmodel);
     controlcenter.appendChild(ltxt);
@@ -891,6 +942,7 @@ var conmenu1butt2 = document.createElement('li');
 var conmenu1butt3 = document.createElement('li');
 var conmenu1butt4 = document.createElement('li');
 var conmenu1butt5 = document.createElement('li');
+var conmenu1butt8 = document.createElement('li');
 var conmenu1butt6 = document.createElement('li');
 var conmenu1butt7 = document.createElement('li');
 conmenu1.className = 'menu';
@@ -921,6 +973,11 @@ conmenu1butt7.innerHTML = 'Exit EditMode';
 conmenu1butt7.onclick = function () {
     normMode();
 };
+conmenu1butt8.className = "menubutton";
+conmenu1butt8.innerHTML = 'New StickyNote';
+conmenu1butt8.onclick = function () {
+    newSticky();
+};
 conmenu1butt7.className = "menubutton";
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
@@ -928,7 +985,36 @@ conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
+conmenu1.appendChild(conmenu1butt8);
 conmenu1.appendChild(conmenu1butt6);
+
+//StickyNotes
+function newSticky(){
+    var notebodydiv = document.createElement("div");
+    var notehead = document.createElement('div');
+    var notetxt = document.createElement("textarea");
+    var closeb = document.createElement('ui');
+    var notenumber = Math.random();
+    closeb.type = 'image';
+    closeb.id = "close"
+    closeb.title = 'Close';
+    closeb.innerHTML = " X ";
+    closeb.style.fontFamily = "Arial";
+    closeb.className = "appheadbutt";
+    closeb.onclick = function(){desktopbody.removeChild(notebodydiv);};
+    notebodydiv.className = 'notebody';
+    notenumber++;
+    notebodydiv.id = "notebody" + notenumber;
+    notehead.className = "noteheader";
+    notehead.id = notebodydiv.id + "header";
+    notebodydiv.onclick = function(){bringToFront(notebodydiv.id);};
+    notetxt.className = 'notetxt';
+    desktopbody.appendChild(notebodydiv);
+    notebodydiv.appendChild(notehead);
+    notehead.appendChild(closeb);
+    notebodydiv.appendChild(notetxt);
+    dragWindow(document.getElementById("notebody" + notenumber));
+}
 
 //DarkMode Toggle
 function darkToggle2(){
@@ -1489,6 +1575,8 @@ function scriptApp(appsname){
         resetsc.title = "This will remove all added shortcuts";
         resetsc.onclick = function () {localStorage.removeItem("savednav"); localStorage.removeItem("savedesk"); window.location.reload();};
         setInterval(function(){iconpreview.src = "images/" + appnameshort.value + ".png"}, 500);
+        iconpreview.style.width = '20%';
+        iconpreview.style.width = '20%';
         shortcuts.appendChild(appnameshort);
         shortcuts.appendChild(shortaddnav);
         shortcuts.appendChild(shortadddesk);
@@ -1632,7 +1720,7 @@ function scriptApp(appsname){
         oschoice5.innerHTML = 'OS.js';
         oschoice5.onclick = function () {osview.src = 'https://demo.os-js.org/';};
         oschoice6.innerHTML = 'ScriptOS 4';
-        oschoice6.onclick = function () {osview.src = 'https://beta.scriptos.ml';};
+        oschoice6.onclick = function () {osview.src = 'index.html';};
         tabdiv.appendChild(oschoice1);
         tabdiv.appendChild(oschoice2);
         tabdiv.appendChild(oschoice3);
@@ -1640,6 +1728,7 @@ function scriptApp(appsname){
         tabdiv.appendChild(oschoice6);
         app.appendChild(tabdiv);
         app.appendChild(osview);
+        osview.innerHTML = 'Select an OS';
     } else if(appsname === "ScriptAI"){
         app.style.display = 'inline';
         commandinput = document.createElement('input');

@@ -281,6 +281,65 @@ button {
     transform: scale(1.25);
 }
 
+.notebody{
+    width: 210px;
+    height: 220px;
+    background:rgba(0, 0, 0, .5);
+    box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+    position: absolute;
+    border-radius: 15px;
+    animation: zoomfade;
+    animation-duration: 2s;
+    resize: both;
+    border-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.noteheader {
+    padding: 10px;
+    z-index: 10;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    height: 20px;
+    text-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    border-radius: 15px;
+    display: block;
+}
+
+.notetxt{
+    width: 97.5%;
+    height: 77.2%;
+    background:rgba(0, 0, 0, .25);
+    box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+    color: white;
+    font-size: 20px;
+    border: none;
+    resize: none;
+}
+
+.usercard{
+    width: 80%;
+    height: 125px;
+    border-radius: 15px;
+    color: white;
+    background:rgba(0, 0, 0, .5);
+    box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+}
+
+.usernametxt{
+    margin: 0;
+}
+
+.userpic{
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background:rgba(0, 0, 0, .5);
+    box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+
+}
+
 @keyframes slidetopam {
     0% {
         opacity: 5%;
