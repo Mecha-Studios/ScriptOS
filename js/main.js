@@ -63,6 +63,9 @@ function checkTime(i) {
 }
 
 var changelog = `ScriptOS Changelog:
+.ScriptOS 4.1.2
+-vmOS:
+    -Legacy ScriptOS versions removed
 .ScriptOS 4.1.1
 -System:
     -Bug fixes
@@ -1723,21 +1726,15 @@ function scriptApp(appsname){
         oschoice6.className = 'tablinks';
         osview.style.width = '100%';
         osview.style.height = '97.5%';
-        oschoice1.innerHTML = 'Script OS 2.0[LEGACY]';
-        oschoice1.onclick = function () {osview.src = 'https://tenzeinc.github.io/Script-OS-Dev/';};
-        oschoice2.innerHTML = 'Windows 93';
-        oschoice2.onclick = function () {osview.src = 'https://windows93.net';};
-        oschoice3.innerHTML = 'Script OS 3.0[LEGACY]';
-        oschoice3.onclick = function () {osview.src = 'https://tenzeinc.github.io/SO3/';};
-        oschoice5.innerHTML = 'OS.js';
-        oschoice5.onclick = function () {osview.src = 'https://demo.os-js.org/';};
-        oschoice6.innerHTML = 'ScriptOS 4';
-        oschoice6.onclick = function () {osview.src = 'index.html';};
+        oschoice1.innerHTML = 'Windows 93';
+        oschoice1.onclick = function () {osview.src = 'https://windows93.net';};
+        oschoice2.innerHTML = 'OS.js';
+        oschoice2.onclick = function () {osview.src = 'https://demo.os-js.org/';};
+        oschoice3.innerHTML = 'ScriptOS 4';
+        oschoice3.onclick = function () {osview.src = 'index.html';};
         tabdiv.appendChild(oschoice1);
         tabdiv.appendChild(oschoice2);
         tabdiv.appendChild(oschoice3);
-        tabdiv.appendChild(oschoice5);
-        tabdiv.appendChild(oschoice6);
         app.appendChild(tabdiv);
         app.appendChild(osview);
         osview.innerHTML = 'Select an OS';
