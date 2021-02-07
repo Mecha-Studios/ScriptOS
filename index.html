@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Welcome to ScriptOS</title>
+        <meta name="author" content="TR Software"/>
+        <meta name="keywords" content="ScriptOS, Tyler Ruotolo, TR Software, TR, WebOS, Web Operating System, Operating System">
+        <meta name="description" content="ScriptOS is a simple web operating system that runs within a web browser on any modern operating system. It's light weight and easy to use." />
+        <link id="css" href="default.css" rel="stylesheet" />
+        <link rel="shortcut icon" type="image" href="ScriptOS.png" />
+    </head>
+    <body style=" font: Helvetica;" content="width=device-width, height=device-height, initial-scale=1.0" >
+        <div class="tab">
+            <img id="scriptoslogo" src="ScriptOS.png" style="width: 50px; z-index: 100;">
+            <a class="tablinks" href="#">Welcome</a>
+            <a class="tablinks" href="#scriptosinfo">ScriptOS History</a>
+            <a class="tablinks" href="#usescriptos">Use ScriptOS</a>
+            <a class="tablinks" href="#support">Support</a>
+          </div>
+        <div class="elmcontain">
+            <div id="welcome" class="infodiv">
+                <h1>Welcome to ScriptOS</h1>
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/5p2lpKfIISE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3>ScriptOS is a simple web operating system developed by Tyler Ruotolo. It can be run in any modern web browser, is light weight and easy for anyone to use.</h3>
+            </div>
+            <div id="scriptosinfo" class="infodiv">
+                <h1>ScriptOS History</h1>
+                <h3>ScriptOS development was started on May 28th, 2018. The idea for ScriptOS is based on that of OS.js and Windows93. It is a simple operating system that runs in a web browser. There are features we'd like to add, but we simply don't have the means nor the funding to do so.</h3>
+                <h3>There have been 4 major versions of ScriptOS so far. Script OS, Script OS 2.0, Script OS 3.0, and ScriptOS 4.</h3>
+                <img id="scriptoslogo" src="ScriptOS.png">
+            </div>
+            <div id="usescriptos" class="infodiv">
+                <h1>How to use ScriptOS</h1>
+                <h3>ScriptOS is really easy to use, click the button below to get started.</h3>
+                <button class="tablinks" onclick="location.href = 'https://test.scriptos.ml'">Use ScriptOS</button>
+            </div>
+            <div id="support" class="infodiv">
+                <h1>Support</h1>
+                <form name="contact" netlify>
+                    <p>
+                      <label>Name <input type="text" name="name" /></label>
+                    </p>
+                    <p>
+                      <label>Email <input type="email" name="email" /></label>
+                    </p>
+                    <p>
+                        <label>Issue <textarea id="supporttxt"></textarea></label>
+                    </p>
+                    <p>
+                      <button type="submit">Send</button>
+                    </p>
+                  </form>
+            </div>
+        </div>
+        
+        <style>
+            body {
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+            }
+        </style>
+        <script src="js/main.js"></script>
+        <script src="js/contextmenus.js"></script>
+    </body>
+</html>
