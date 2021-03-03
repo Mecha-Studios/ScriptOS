@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.1.1";
+var scriptosversion = "4.1.2";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -66,6 +66,8 @@ var changelog = `ScriptOS Changelog:
 .ScriptOS 4.1.2
 -vmOS:
     -Legacy ScriptOS versions removed
+-System:
+    -Errors made less intrusive(even though they're rare)
 .ScriptOS 4.1.1
 -System:
     -Bug fixes
@@ -1514,18 +1516,18 @@ function scriptApp(appsname){
         choice12.src = 'images/city_bridge_background.jpg';
         choice12.className = 'backgroundoption';
         choice12.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/city_bridge_background.jpg';
+            document.body.style.backgroundImage = 'url(images/city_bridge_background.jpg)';
             localStorage.setItem('background','url(images/city_bridge_background.jpg)');
         };
         backgroundsettings.appendChild(choice12);
 
         var choice13 = document.createElement('input');
         choice13.type = 'image';
-        choice13.src = 'images/tr_software_background_2020.png';
+        choice13.src = 'images/TR_Space_background_2021.png';
         choice13.className = 'backgroundoption';
         choice13.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/tr_software_background_2020.png)';
-            localStorage.setItem('background','url(images/tr_software_background_2020.png)');
+            document.body.style.backgroundImage = 'url(images/TR_Space_background_2021.png)';
+            localStorage.setItem('background','url(images/TR_Space_background_2021.png)');
         };
         backgroundsettings.appendChild(choice13);
 
@@ -1773,8 +1775,14 @@ function scriptApp(appsname){
         app.appendChild(micbutton);
         //app.appendChild(sendbutt);
     } else {
-        RSOD(e343);
+        var ehtxt = document.createElement("h1");
+        var edtxt = document.createElement("h3");
+        ehtxt.innerHTML = "ERROR:";
+        edtxt.innerHTML = e343;
+        app.appendChild(ehtxt);
+        app.appendChild(edtxt);
         console.error(e343);
+        errorsound.play();
     }
 }
 
