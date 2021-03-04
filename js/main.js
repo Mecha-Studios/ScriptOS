@@ -1559,7 +1559,7 @@ function scriptApp(appsname){
         app.style.color = 'white';
         browserversion.innerHTML = objbrowserName + ": " + objfullVersion;
         scriptostxt.innerHTML = "ScriptOS " + scriptosversion;
-        copyright.innerHTML = "© Tyler Ruotolo 2018-2020";
+        copyright.innerHTML = "© TR 2021";
         logoimg.src = 'images/ScriptOS.png';
         logoimg.style = 'width: 150px; height: 150px';
         about.appendChild(scriptostxt);
