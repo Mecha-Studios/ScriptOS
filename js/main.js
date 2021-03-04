@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.1.3";
+var scriptosversion = "4.2";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -63,7 +63,11 @@ function checkTime(i) {
 }
 
 var changelog = `ScriptOS Changelog:
-.ScriptOS 4.1.3
+.ScriptOS 4.2
+-ScriptInjector[BETA]:
+    -Added
+    -Allows users to inject any scripts they or someone else has created
+    -Allows for third party app development(go to the ScriptOS website if you need help with app development)
 -Topnav:
     -Slight design changes
     -Positioning adjustments
@@ -689,6 +693,22 @@ function loadDesktop(){
     app5butt.appendChild(app5);
     app5butt.appendChild(app5txt);
     appcenter.appendChild(app5butt);
+
+    var app6 = document.createElement('input');
+    var app6butt = document.createElement('div');
+    var app6txt = document.createElement('h3');
+    app6.type = 'image';
+    app6.src = "images/ScriptInjector.png";
+    app6txt.innerHTML = 'ScriptInjector';
+    app6.title = 'ScriptInjector';
+    app6butt.setAttribute("onclick", "scriptApp('ScriptInjector'); desktopbody.removeChild(actioncenter);");
+    app6.setAttribute("onclick", "scriptApp('ScriptInjector'); desktopbody.removeChild(actioncenter);");
+    app6.className = 'appchoice';
+    app6txt.className = 'appbutttxt';
+    app6butt.className = 'appbutt';
+    app6butt.appendChild(app6);
+    app6butt.appendChild(app6txt);
+    appcenter.appendChild(app6butt);
 
     var app7 = document.createElement('input');
     var app7butt = document.createElement('div');
@@ -1393,18 +1413,10 @@ function scriptApp(appsname){
 
         var sovtxt = document.createElement("h1");
         var vtxt = document.createElement("h2");
-        var butt2 = document.createElement("button");
-        var butt3 = document.createElement("button");
         sovtxt.innerHTML = "ScriptOS Version";
         sovsett.appendChild(sovtxt);
         vtxt.innerHTML = "Current Version: ScriptOS " + scriptosversion;
         sovsett.appendChild(vtxt);
-        butt2.innerHTML = "Downgrade to Script OS 2.0";
-        butt2.onclick = function(){location.href = 'https://tenzeinc.github.io/Script-OS-Dev/';};
-        sovsett.appendChild(butt2);
-        butt3.innerHTML = "Downgrade to Script OS 3.0";
-        butt3.onclick = function(){location.href = 'https://tenzeinc.github.io/SO3/';};
-        sovsett.appendChild(butt3);
 
 
         app.appendChild(backgroundsettings);
@@ -1782,6 +1794,30 @@ function scriptApp(appsname){
         app.appendChild(commandinput);
         app.appendChild(micbutton);
         //app.appendChild(sendbutt);
+    } else if(appsname === "ScriptInjector"){
+        var srcinput = document.createElement('input');
+        var injectbutt = document.createElement('button');
+        var noticetext = document.createElement('h2');
+        srcinput.type = 'file';
+        srcinput.class = 'srcinput';
+        injectbutt.innerHTML = "Inject";
+        injectbutt.class = 'injectbutt';
+        injectbutt.onclick = function(){
+            var newscript = document.createElement("script");
+            desktopbody.appendChild(newscript);
+            
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                newscript.src = event.target.result;
+            };
+
+            reader.readAsDataURL(srcinput.files[0]);
+        };
+        noticetext.innerHTML = "NOTE: This program is still in beta and could have issues, report any issues you experience on the ScriptOS website.";
+        app.appendChild(srcinput);
+        app.appendChild(injectbutt);
+        app.appendChild(noticetext);
     } else {
         var ehtxt = document.createElement("h1");
         var edtxt = document.createElement("h3");
