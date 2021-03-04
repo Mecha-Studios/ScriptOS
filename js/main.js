@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.1.2";
+var scriptosversion = "4.1.3";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -24,7 +24,7 @@ function battLevel(){
             batterybar.style.backgroundColor = "red";
             pushNotification("System","Low battery power");
         }
-        document.getElementById('battlevelthing').innerHTML = "Battery: " + batterylevel*100 + "%";
+        document.getElementById('battlevelthing').innerHTML = batterylevel*100 + "%";
         batterybar.value = batterylevel*100;
     })
 
@@ -63,6 +63,14 @@ function checkTime(i) {
 }
 
 var changelog = `ScriptOS Changelog:
+.ScriptOS 4.1.3
+-Topnav:
+    -Slight design changes
+    -Positioning adjustments
+-BlazeToUSD:
+    -Updated icon
+-Startup:
+    -Startup icon updated
 .ScriptOS 4.1.2
 -vmOS:
     -Legacy ScriptOS versions removed
@@ -420,7 +428,7 @@ function startUp(){
     document.body.style.backgroundImage = '';
     document.body.style.backgroundColor = 'black';
     startupbar.className = 'sloadbar';
-    so4icon.src = 'images/ScriptOS.png';
+    so4icon.src = 'images/TR Logo 2021.png';
     so4icon.className = 'so4icon';
     var startsound = new Audio('startsound.mp3');
     startsound.autoplay = true;
@@ -1220,7 +1228,7 @@ function scriptApp(appsname){
         tab.style.display = 'inline';
     }else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
-        btuview.src = "https://blazetousd.tk";
+        btuview.src = "https://blazetousd.ml";
         app.appendChild(btuview);
     }else if(appsname === "Nasdaq"){
         var nview = document.createElement('iframe');
