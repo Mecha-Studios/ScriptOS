@@ -1,5 +1,5 @@
-﻿/*  Copyright Tyler Ruotolo 2018-2020
-    Script OS  Copyright (C) 2018-2020 Tyler Ruotolo
+﻿/*  Copyright TR 2021
+    Script OS  Copyright (C) 2021 TR
     Resdistribution is allowed under certain conditions,
     See LICENSE file for details.
 */
@@ -354,8 +354,8 @@ function boot(){
     console.log(objbrowserName + objfullVersion);
     setTimeout(function(){desktopbody.innerText+="\n ScriptOS Version " + scriptosversion}, 750);
     console.log("ScriptOS Version" + scriptosversion);
-    setTimeout(function(){desktopbody.innerText+="\n Copyright Tyler Ruotolo 2018-2021"; console.log("Copyright Tyler Ruotolo 2018-2021")}, 1000);
-    setTimeout(function(){desktopbody.innerText+="\n ScriptOS  Copyright (C) 2018-2021 Tyler Ruotolo"; console.log("ScriptOS Copyright (C) 2018-2021 Tyler Ruotolo")}, 1250);
+    setTimeout(function(){desktopbody.innerText+="\n Copyright TR 2021"; console.log("Copyright TR 2021")}, 1000);
+    setTimeout(function(){desktopbody.innerText+="\n ScriptOS  Copyright (C) 2021 TR"; console.log("ScriptOS Copyright (C) 2021 TR")}, 1250);
     setTimeout(function(){desktopbody.innerText+="\n Resdistribution is allowed under certain conditions"; console.log("Redistribution is allowed under certain conditions")}, 1500);
     setTimeout(function(){desktopbody.innerText+="\n See LICENSE file for details"; console.log("See LICENSE file for details")}, 1750);
     setTimeout(function(){desktopbody.innerText+="\n System dependencies loaded successfully"; console.log("System dependencies loaded successfully")}, 2000);
