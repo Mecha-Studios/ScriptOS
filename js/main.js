@@ -63,6 +63,9 @@ function checkTime(i) {
 }
 
 var changelog = `ScriptOS Changelog:
+.ScriptOS 4.2.1
+-ScriptInjector[BETA]:
+    -Users can now inject scripts from GitHub using a permalink
 .ScriptOS 4.2
 -ScriptInjector[BETA]:
     -Added
@@ -1796,11 +1799,15 @@ function scriptApp(appsname){
         //app.appendChild(sendbutt);
     } else if(appsname === "ScriptInjector"){
         var srcinput = document.createElement('input');
+        var srcinputlink = document.createElement('input');
         var injectbutt = document.createElement('button');
+        var injectbutt2 = document.createElement('button');
         var noticetext = document.createElement('h2');
         srcinput.type = 'file';
         srcinput.class = 'srcinput';
-        injectbutt.innerHTML = "Inject";
+        srcinputlink.type = 'text';
+        srcinputlink.placeholder = 'GitHub Permalink';
+        injectbutt.innerHTML = "Inject(Local)";
         injectbutt.class = 'injectbutt';
         injectbutt.onclick = function(){
             var newscript = document.createElement("script");
@@ -1814,9 +1821,18 @@ function scriptApp(appsname){
 
             reader.readAsDataURL(srcinput.files[0]);
         };
+        injectbutt2.innerHTML = "Inject(GitHub)";
+        injectbutt2.class = 'injectbutt';
+        injectbutt2.onclick = function(){
+            var newscript = document.createElement("script");
+            desktopbody.appendChild(newscript);
+            newscript.src = srcinputlink.value;
+        };
         noticetext.innerHTML = "NOTE: This program is still in beta and could have issues, report any issues you experience on the ScriptOS website.";
         app.appendChild(srcinput);
+        app.appendChild(srcinputlink);
         app.appendChild(injectbutt);
+        app.appendChild(injectbutt2);
         app.appendChild(noticetext);
     } else {
         var ehtxt = document.createElement("h1");
