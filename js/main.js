@@ -1806,7 +1806,7 @@ function scriptApp(appsname){
         srcinput.type = 'file';
         srcinput.class = 'srcinput';
         srcinputlink.type = 'text';
-        srcinputlink.placeholder = 'GitHub Permalink';
+        srcinputlink.placeholder = 'Script URL Path';
         injectbutt.innerHTML = "Inject(Local)";
         injectbutt.class = 'injectbutt';
         injectbutt.onclick = function(){
@@ -1821,7 +1821,7 @@ function scriptApp(appsname){
 
             reader.readAsDataURL(srcinput.files[0]);
         };
-        injectbutt2.innerHTML = "Inject(GitHub)";
+        injectbutt2.innerHTML = "Inject(URL)";
         injectbutt2.class = 'injectbutt';
         injectbutt2.onclick = function(){
             var newscript = document.createElement("script");
