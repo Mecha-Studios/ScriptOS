@@ -1,6 +1,7 @@
 body{
     margin: 0;
-    background: url('TR_Space_background_2020_no_logo.png') no-repeat center center fixed;
+    /*background: url('TR_Space_background_2020_no_logo.png') no-repeat center center fixed;*/
+    background-color: gray;
     font-family: arial;
     align-items: center;
     align-content: center;
