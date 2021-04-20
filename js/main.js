@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "4.2";
+var scriptosversion = "DEMO";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -572,7 +572,7 @@ function loadDesktop(){
 
     usercard.className = 'usercard';
     usertxt.className = 'usernametxt';
-    usertxt.innerHTML = un;
+    usertxt.innerHTML = "DEMO";
     userpic.className = 'userpic';
     userpic.src = 'images/profile-pic.png';
     usercard.appendChild(userpic);
@@ -681,7 +681,7 @@ function loadDesktop(){
     app4butt.appendChild(app4txt);
     appcenter.appendChild(app4butt);
 
-    var app5 = document.createElement('input');
+    /*var app5 = document.createElement('input');
     var app5butt = document.createElement('div');
     var app5txt = document.createElement('h3');
     app5.type = 'image';
@@ -743,7 +743,7 @@ function loadDesktop(){
     app8butt.className = 'appbutt';
     app8butt.appendChild(app8);
     app8butt.appendChild(app8txt);
-    appcenter.appendChild(app8butt);
+    appcenter.appendChild(app8butt);*/
 
     var app9 = document.createElement('input');
     var app9butt = document.createElement('div');
@@ -761,7 +761,7 @@ function loadDesktop(){
     app9butt.appendChild(app9txt);
     appcenter.appendChild(app9butt);
 
-    var app10 = document.createElement('input');
+    /*var app10 = document.createElement('input');
     var app10butt = document.createElement('div');
     var app10txt = document.createElement('h3');
     app10.type = 'image';
@@ -791,7 +791,7 @@ function loadDesktop(){
     app11butt.className = 'appbutt';
     app11butt.appendChild(app11);
     app11butt.appendChild(app11txt);
-    appcenter.appendChild(app11butt);
+    appcenter.appendChild(app11butt);*/
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
@@ -886,7 +886,9 @@ function signOut(){
     loginbutt.className = 'loginbutt';
     loginbutt.innerHTML = "Sign In";
     loginbutt.onclick = function(){
-        var username = usernamein.value;
+        signIn();
+        desktopbody.removeChild(userdiv);
+        /*var username = usernamein.value;
         var password = passinput.value;
         if(username === un){
             if(password === pw){
@@ -902,7 +904,7 @@ function signOut(){
             }
         } else {
             pushNotification("System", "Username or password is incorrect");
-        }
+        }*/
     };
     vnum.innerHTML = "ScriptOS " + scriptosversion;
     vnum.style.opacity = '50%';
@@ -1321,7 +1323,7 @@ function scriptApp(appsname){
         scbutt.innerHTML = "Shortcuts";
         userbutt.className = "tablinks";
         userbutt.onclick = function(){
-            var userdiv = document.createElement("div");
+            /*var userdiv = document.createElement("div");
             var usernamein = document.createElement('input');
             var passinput = document.createElement('input');
             var loginbutt = document.createElement('button');
@@ -1359,9 +1361,9 @@ function scriptApp(appsname){
                 } else {
                     pushNotification("System", "Username or password is incorrect");
                 }
-            };
+            };*/
         };
-        userbutt.innerHTML = "User";
+        userbutt.innerHTML = "User(Unavailable in DEMO)";
         bbutt.className = 'tablinks';
         bbutt.onclick = function(){openSett(event, browsersett.id);};
         bbutt.innerHTML = "Browser";
