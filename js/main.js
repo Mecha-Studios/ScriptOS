@@ -818,14 +818,14 @@ function loadDesktop(){
     
     lightMode();
 
-    //pushNotification("Settings", "Check changelog for updates and changes");
-    if(un){
+    pushNotification("Settings", "This version of ScriptOS is only a demo. Download the full version from www.scriptos.ml");
+    /*if(un){
         if(pw){
             return;
         }
     } else {
         pushNotification("Settings", "Setup your account credentials before using ScriptOS");
-    }
+    }*/
 }
 
 function RSOD(message){
@@ -925,8 +925,8 @@ function signOut(){
     desktopbody.innerHTML = '';
     document.getElementById('topnav').style.display = 'none';
     userdiv.appendChild(sotxt);
-    userdiv.appendChild(usernamein);
-    userdiv.appendChild(passinput);
+    //userdiv.appendChild(usernamein);
+    //userdiv.appendChild(passinput);
     userdiv.appendChild(loginbutt);
     userdiv.appendChild(vnum);
     desktopbody.appendChild(userdiv);
@@ -1018,11 +1018,11 @@ conmenu1butt7.innerHTML = 'Exit EditMode';
 conmenu1butt7.onclick = function () {
     normMode();
 };
-conmenu1butt8.className = "menubutton";
+/*conmenu1butt8.className = "menubutton";
 conmenu1butt8.innerHTML = 'New StickyNote';
 conmenu1butt8.onclick = function () {
     newSticky();
-};
+};*/
 conmenu1butt7.className = "menubutton";
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
@@ -1030,7 +1030,7 @@ conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
 conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
-conmenu1.appendChild(conmenu1butt8);
+/*conmenu1.appendChild(conmenu1butt8);*/
 conmenu1.appendChild(conmenu1butt6);
 
 //StickyNotes
@@ -1375,19 +1375,19 @@ function scriptApp(appsname){
         sovbutt.onclick = function(){openSett(event, sovsett.id);};
         sovbutt.innerHTML = "ScriptOS Version";
         app.appendChild(tab);
-        tab.appendChild(bgsbutt);
-        tab.appendChild(wdgtsbutt);
-        tab.appendChild(aboutbutt);
-        tab.appendChild(scbutt);
-        tab.appendChild(userbutt);
-        tab.appendChild(bbutt);
-        tab.appendChild(clbutt);
+        //tab.appendChild(bgsbutt);
+        //tab.appendChild(wdgtsbutt);
         tab.appendChild(sovbutt);
         app.appendChild(usersett);
+        tab.appendChild(aboutbutt);
+        //tab.appendChild(scbutt);
+        //tab.appendChild(userbutt);
+        //tab.appendChild(bbutt);
+        //tab.appendChild(clbutt);
         usersett.id = 'User';
         usersett.className = 'tabcontent';
 
-        var usernamein = document.createElement('input');
+        /*var usernamein = document.createElement('input');
         var passinput = document.createElement('input');
         var loginbutt = document.createElement('button');
         var warntxt = document.createElement('h3');
@@ -1410,21 +1410,27 @@ function scriptApp(appsname){
         usersett.appendChild(warntxt);
         usersett.appendChild(usernamein);
         usersett.appendChild(passinput);
-        usersett.appendChild(loginbutt);
+        usersett.appendChild(loginbutt);*/
 
         app.appendChild(sovsett);
         sovsett.id = 'ScriptOSVersion';
         sovsett.className = 'tabcontent';
+        sovsett.style.display = 'inline';
 
         var sovtxt = document.createElement("h1");
         var vtxt = document.createElement("h2");
+        var ltxt = document.createElement("button");
         sovtxt.innerHTML = "ScriptOS Version";
         sovsett.appendChild(sovtxt);
         vtxt.innerHTML = "Current Version: ScriptOS " + scriptosversion;
         sovsett.appendChild(vtxt);
+        ltxt.innerHTML = "ScriptOS Full Version";
+        ltxt.onclick = function(){location.href = 'https://www.scriptos.ml/personaluse'};
+        ltxt.className = "tab";
+        sovsett.appendChild(ltxt);
 
 
-        app.appendChild(backgroundsettings);
+        /*app.appendChild(backgroundsettings);
         backgroundsettings.style.display = 'inline';
         backgroundsettings.id = 'Personalization';
 
@@ -1571,7 +1577,7 @@ function scriptApp(appsname){
             app.appendChild(custombackground);
         };
         backgroundsettings.appendChild(backgroundinput);
-        backgroundsettings.appendChild(backgroundaddbutt);
+        backgroundsettings.appendChild(backgroundaddbutt);*/
 
         app.appendChild(about);
         about.className = 'tabcontent';
@@ -1592,7 +1598,7 @@ function scriptApp(appsname){
         about.appendChild(copyright);
         about.appendChild(browserversion);
         
-        app.appendChild(shortcuts);
+        /*app.appendChild(shortcuts);
         shortcuts.id = "Shortcuts";
         shortcuts.className = "tabcontent"
 
@@ -1681,7 +1687,7 @@ function scriptApp(appsname){
         changelogtext.style.height = '90%';
         changelogtext.readOnly = true;
         changelogtext.style.resize = 'none';
-        changelogsett.appendChild(changelogtext);
+        changelogsett.appendChild(changelogtext);*/
 
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
