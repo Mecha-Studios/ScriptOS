@@ -350,8 +350,8 @@ function boot(){
     }else if ((objOffsetVersion=objAgent.indexOf("MSIE"))!=-1) { 
         objbrowserName = "Microsoft Internet Explorer(It is reccomended that you use Chrome)"; 
         objfullVersion = objAgent.substring(objOffsetVersion+5); 
-        //console.error(e344);
-        //RSOD(e344);
+        console.error(e344);
+        RSOD(e344);
     }else if ((objOffsetVersion=objAgent.indexOf("Firefox"))!=-1) { 
         objbrowserName = "Firefox(It is reccomended that you use Chrome)"; 
         //console.error(e344);
@@ -475,10 +475,12 @@ function deviceDetection() {
         console.log('MOBILE DEVICE = NOT SUPPORTED');
         desktopbody.innerHTML = "MOBILE DEVICE = NOT SUPPORTED";
         devicesupported = false;
+        location.href = "https://www.scriptos.ml/personaluse";
     } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
         console.log('TABLET = NOT SUPPORTED');
         desktopbody.innerText += "\n TABLET = NOT SUPPORTED";
         devicesupported = false;
+        location.href = "https://www.scriptos.ml/personaluse";
     } else {
         desktopbody.innerText += "\n DESKTOP DEVICE = SUPPORTED";
         console.log('DESKTOP DEVICE = SUPPORTED');
@@ -536,13 +538,13 @@ function loadDesktop(){
     appicon2.setAttribute("onclick", "scriptApp('Browser')");
     navbar.appendChild(appicon2);
 
-    var appicon3 = document.createElement('input');
+    /*var appicon3 = document.createElement('input');
     appicon3.type = 'image';
     appicon3.src = 'images/Shortcuts.png';
     appicon3.className = 'appicon button';
     appicon3.title = 'Shortcuts';
     appicon3.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
-    navbar.appendChild(appicon3);
+    navbar.appendChild(appicon3);*/
     
     if(savednav){
         navbar.innerHTML = '';
