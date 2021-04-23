@@ -135,108 +135,108 @@ var changelog = `ScriptOS Changelog:
 -Nasdaq:
     -App added
 .Script OS 3.8
--Happy Birthday Script OS
--New commands and jokes added to ScriptAI
--New backgrounds added
--VisualCode removed
+    -Happy Birthday Script OS
+    -New commands and jokes added to ScriptAI
+    -New backgrounds added
+    -VisualCode removed
 .Script OS 3.7.1
--App UI Improvements
+    -App UI Improvements
 .Script OS 3.7
--More jokes added to ScriptAI
--ScriptAI improvements
--Window's can be brought to front on click
--Launch ScriptAI by pressing TAB
+    -More jokes added to ScriptAI
+    -ScriptAI improvements
+    -Window's can be brought to front on click
+    -Launch ScriptAI by pressing TAB
 .Script OS 3.6
--Search bug fixes
--Browser bug fixes
--About page bug fixes
--Commands added to ScriptAI
--Responses added to ScriptAI
--ScriptAI can now search the web
+    -Search bug fixes
+    -Browser bug fixes
+    -About page bug fixes
+    -Commands added to ScriptAI
+    -Responses added to ScriptAI
+    -ScriptAI can now search the web
 .Script OS 3.5
--Files app removed
--Desktop Shortcuts added
+    -Files app removed
+    -Desktop Shortcuts added
 .Script OS 3.4.3
--BlazeToUSD added
--StoryFire added
--Battery level bug fixes
+    -BlazeToUSD added
+    -StoryFire added
+    -Battery level bug fixes
 .Script OS 3.4.2
--Browser settings added
+    -Browser settings added
 .Script OS 3.4.1
--New animations added
+    -New animations added
 .Script OS 3.4
--Device verification on boot added
--Boot sequence revamped
--Battery level added
--Battery level color indicator added
+    -Device verification on boot added
+    -Boot sequence revamped
+    -Battery level added
+    -Battery level color indicator added
 .Script OS 3.3.2
--Notifications system being tested
+    -Notifications system being tested
 .Script OS 3.3.1
--New animations
--Bug fixes
+    -New animations
+    -Bug fixes
 .Script OS 3.3
--TopNav Customization
--Background Image scaling fixed
--App header buttons redesigned
--Themes added to Personalization settings
--OS font changed
+    -TopNav Customization
+    -Background Image scaling fixed
+    -App header buttons redesigned
+    -Themes added to Personalization settings
+    -OS font changed
 .Script OS 3.2.1
--Bug fixes
+    -Bug fixes
 .Script OS 3.2
--Shortcuts improvements
--Shortcuts save after closing Script OS
--Timer icon changed
--Zoom feature added to appheader buttons
+    -Shortcuts improvements
+    -Shortcuts save after closing Script OS
+    -Timer icon changed
+    -Zoom feature added to appheader buttons
 .Script OS 3.1.1
--Timer app added
+    -Timer app added
 .Script OS 3.1
--Bugs fixed
--New commands added to Script AI
+    -Bugs fixed
+    -New commands added to Script AI
 .Script OS 3.0.1
--Bugs fixed
--Donate Button Removed
--Terminal Removed
+    -Bugs fixed
+    -Donate Button Removed
+    -Terminal Removed
 .Script OS 3.0
--DockZoom added
--IconZoom added
--Filesystem remade
--Websearch added
--vmOS added
--About page added to settings
--Background images will now save to localStorage
--Files will now save to localStorage
--Changelog added to About page
--Lockscreen bugs fixed
--Donate button added
--Script AI[ALPHA] added
--Browser issues fixed(websites like google.com and youtube.com now work if you install the iFrame Allow chrome extension)
+    -DockZoom added
+    -IconZoom added
+    -Filesystem remade
+    -Websearch added
+    -vmOS added
+    -About page added to settings
+    -Background images will now save to localStorage
+    -Files will now save to localStorage
+    -Changelog added to About page
+    -Lockscreen bugs fixed
+    -Donate button added
+    -Script AI[ALPHA] added
+    -Browser issues fixed(websites like google.com and youtube.com now work if you install the iFrame Allow or Ignore X-Frame headers chrome extension)
 .Script OS 2.9.6
--Startup screen added
+    -Startup screen added
 .Script OS 2.9.5
--Files app redesigned
--Fixed file saving issues
--Lock screen added
+    -Files app redesigned
+    -Fixed file saving issues
+    -Lock screen added
 .Script OS 2.9.4 
--Shortcuts added 
--Bug Fixes 
--HTML Support added 
+    -Shortcuts added 
+    -Bug Fixes 
+    -HTML Support added 
 .Script OS 2.9.3 
--Files app working in demo mode 
--Happy 1 Year of Script OS 
+    -Files app working in demo mode 
+    -Happy 1 Year of Script OS 
 .Script OS 2.9.2
--HTML Editor added
--Themes color opacity increased 
--Mothers Day 
+    -HTML Editor added
+    -Themes color opacity increased 
+    -Mothers Day 
 .Script OS 2.9.1
--Themes added
--Subscribe to PewDiePie button removed
--App center redesigned 
+    -Themes added
+    -Subscribe to PewDiePie button removed
+    -App center redesigned 
 .Script OS 2.9
--DarkMode added
--Script OS Redesigned
--App system improved
--Multi app window support
--All apps redesigned`;
+    -DarkMode added
+    -Script OS Redesigned
+    -App system improved
+    -Multi app window support
+    -All apps redesigned`;
 
 var topnav = document.getElementById('topnav');
 var savedbackground = localStorage.getItem('background');
@@ -1027,13 +1027,13 @@ conmenu1butt8.onclick = function () {
 };*/
 conmenu1butt7.className = "menubutton";
 desktopbody.appendChild(conmenu1);
-conmenu1.appendChild(conmenu1butt1);
+//conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt2);
 conmenu1.appendChild(conmenu1butt3);
-conmenu1.appendChild(conmenu1butt4);
+//conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt5);
-/*conmenu1.appendChild(conmenu1butt8);*/
-conmenu1.appendChild(conmenu1butt6);
+//conmenu1.appendChild(conmenu1butt8);
+//conmenu1.appendChild(conmenu1butt6);
 
 //StickyNotes
 function newSticky(){
@@ -1385,7 +1385,7 @@ function scriptApp(appsname){
         //tab.appendChild(scbutt);
         //tab.appendChild(userbutt);
         //tab.appendChild(bbutt);
-        //tab.appendChild(clbutt);
+        tab.appendChild(clbutt);
         usersett.id = 'User';
         usersett.className = 'tabcontent';
 
@@ -1677,7 +1677,7 @@ function scriptApp(appsname){
         resetbutt.onclick = function(){localStorage.removeItem("DefaultEngine"); location.reload();};
         browsersett.appendChild(defaultbrowser);
         browsersett.appendChild(savesett);
-        browsersett.appendChild(resetbutt);
+        browsersett.appendChild(resetbutt);*/
 
         app.appendChild(changelogsett);
         changelogsett.id = "Changelog";
@@ -1689,7 +1689,9 @@ function scriptApp(appsname){
         changelogtext.style.height = '90%';
         changelogtext.readOnly = true;
         changelogtext.style.resize = 'none';
-        changelogsett.appendChild(changelogtext);*/
+        changelogtext.style.color = 'white';
+        changelogtext.style.backgroundColor = 'black';
+        changelogsett.appendChild(changelogtext);
 
     } else if(appsname === "Discord"){
         var disframe = document.createElement('iframe');
@@ -2148,8 +2150,6 @@ function darkMode(){
     darkmodesound.play();
     document.getElementById('navbar').style.background = 'rgba(0,0,0,0.25)';
     document.getElementById('topnav').style.background = 'rgba(0,0,0,0.25)';
-    document.getElementById('scriptosdropdown'). style.background = 'rgba(0,0,0,0.25)';
-    document.getElementById('scriptosdropdown'). style.color = 'white';
     menucon.style.color = 'white';
     menucon.style.background = 'rgba(0,0,0,0.5)';
     actioncenter.style.background = 'rgba(0,0,0,0.25)';
@@ -2159,8 +2159,6 @@ function lightMode(){
     lightmodesound.play();
     document.getElementById('navbar').style.background = 'rgba(255,255,255,0.25)';
     document.getElementById('topnav').style.background = 'rgba(255,255,255,0.25)';
-    document.getElementById('scriptosdropdown'). style.background = 'rgba(255,255,255,0.25)';
-    document.getElementById('scriptosdropdown'). style.color = 'black';
     menucon.style.color = 'black';
     menucon.style.background = 'rgba(255,255,255,0.5)';
     actioncenter.style.background = 'rgba(255,255,255,0.25)';
