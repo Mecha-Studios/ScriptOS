@@ -1427,7 +1427,9 @@ function scriptApp(appsname){
         vtxt.innerHTML = "Current Version: ScriptOS " + scriptosversion;
         sovsett.appendChild(vtxt);
         ltxt.innerHTML = "ScriptOS Full Version";
-        ltxt.onclick = function(){location.href = 'https://www.scriptos.ml/personaluse'};
+        ltxt.onclick = function(){
+            scriptApp('Browser');
+            browserview.src = 'https://www.scriptos.ml/personaluse'};
         ltxt.className = "tab";
         sovsett.appendChild(ltxt);
 
@@ -1898,9 +1900,9 @@ function startDictation() {
 document.onkeyup = function (e){
     document.onkeyup=function(e){
         var e = e || window.event;
-        if(e.which == 9) {
+        /*if(e.which == 9) {
                 scriptApp("ScriptAI");
-        }
+        }*/
         if(e.which == 27){
             desktopbody.appendChild(actioncenter);
         }

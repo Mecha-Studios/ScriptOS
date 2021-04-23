@@ -821,6 +821,7 @@ iframe{
     width: 100%;
     height: 97.5%;
     border-style: none;
+    background-color: white;
 }
 
 .injectbutt {
