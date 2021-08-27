@@ -544,22 +544,6 @@ function loadDesktop(){
             }
             batttxt.innerHTML = batterylevel*100 + "%";
         })
-
-    var appicon2 = document.createElement('input');
-    appicon2.type = 'image';
-    appicon2.src = 'images/Browser.png';
-    appicon2.className = 'appicon button';
-    appicon2.title = 'S Browser';
-    appicon2.setAttribute("onclick", "scriptApp('Browser')");
-    navbar.appendChild(appicon2);
-
-    /*var appicon3 = document.createElement('input');
-    appicon3.type = 'image';
-    appicon3.src = 'images/Shortcuts.png';
-    appicon3.className = 'appicon button';
-    appicon3.title = 'Shortcuts';
-    appicon3.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
-    navbar.appendChild(appicon3);*/
         setTimeout(function(){
             battLevel();
         }, 500);
@@ -1039,47 +1023,7 @@ function scriptApp(appsname){
     smallscreen.onclick = function () {app.style = 'width: 50%; height: 50%; top: 25%; left: 25%';};
 
     if (appsname === "Browser") {
-        var inputbar = document.createElement("input");
-        browserview = document.createElement('iframe');
-        var backbutton = document.createElement('button');
-        var forwardbutton = document.createElement('button');
-        var topdiv = document.createElement('div');
-        topdiv.style = 'width: 100%; height: 50px';
-        backbutton.innerHTML = '<';
-        backbutton.style.borderRadius = '15px';
-        backbutton.className = 'appicon';
-        backbutton.onclick = function () { window.history.back(); };
-        forwardbutton.innerHTML = '>';
-        forwardbutton.style.borderRadius = '15px';
-        forwardbutton.className = 'appicon';
-        forwardbutton.onclick = function () { window.history.forward(); };
-        inputbar.type = 'text';
-        inputbar.placeholder = 'Website';
-        inputbar.style.width = '50%';
-        inputbar.style.height = '50px';
-        inputbar.style.borderRadius = '15px';
-        inputbar.onchange = function () { 
-            var inputvalue = inputbar.value;
-            if(inputvalue.includes('.')){
-                if(inputvalue.includes('https://')){
-                    browserview.src = inputvalue;
-                } else {
-                    browserview.src = "https://" + inputvalue;
-                }
-            } else {
-                browserview.src = defaultengine + "/search?q=" + inputvalue;
-            }
-        };
-        setInterval(function(){
-            appheadtext.nodeValue = "Browser - " + browserview.src;
-        }, 500);
-        topdiv.appendChild(backbutton);
-        topdiv.appendChild(forwardbutton);
-        topdiv.appendChild(inputbar);
-        browserview.id = "browserview" + appnumber;
-        browserview.src = defaultengine;
-        app.appendChild(topdiv);
-        app.appendChild(browserview);
+        
     }else if(appsname === "Tasks"){
         var tasknum = document.createElement('h1');
         var closeall = document.createElement('button');
