@@ -577,8 +577,7 @@ function loadDesktop(){
             }
             batttxt.innerHTML = batterylevel*100 + "%";
         })
-    
-<<<<<<< Updated upstream
+
     var appicon2 = document.createElement('input');
     appicon2.type = 'image';
     appicon2.src = 'images/Browser.png';
@@ -594,7 +593,6 @@ function loadDesktop(){
     appicon3.title = 'Shortcuts';
     appicon3.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
     navbar.appendChild(appicon3);*/
-=======
         setTimeout(function(){
             battLevel();
         }, 500);
@@ -627,7 +625,6 @@ function loadDesktop(){
           return k;
         }
     }
->>>>>>> Stashed changes
     
     if(savednav){
         appdiv.innerHTML = '';
@@ -713,93 +710,8 @@ function loadDesktop(){
     //app4butt.appendChild(app4txt);
     appcenter.appendChild(app4butt);
 
-<<<<<<< Updated upstream
-    /*var app5 = document.createElement('input');
-    var app5butt = document.createElement('div');
-    var app5txt = document.createElement('h3');
-    app5.type = 'image';
-    app5.src = "images/Discord.png";
-    app5txt.innerHTML = 'Discord';
-    app5.title = 'Discord';
-    app5butt.setAttribute("onclick", "scriptApp('Discord'); desktopbody.removeChild(actioncenter);");
-    app5.setAttribute("onclick", "scriptApp('Discord'); desktopbody.removeChild(actioncenter);");
-    app5.className = 'appchoice';
-    app5txt.className = 'appbutttxt';
-    app5butt.className = 'appbutt';
-    app5butt.appendChild(app5);
-    app5butt.appendChild(app5txt);
-    appcenter.appendChild(app5butt);
-
-    var app6 = document.createElement('input');
-    var app6butt = document.createElement('div');
-    var app6txt = document.createElement('h3');
-    app6.type = 'image';
-    app6.src = "images/ScriptInjector.png";
-    app6txt.innerHTML = 'ScriptInjector';
-    app6.title = 'ScriptInjector';
-    app6butt.setAttribute("onclick", "scriptApp('ScriptInjector'); desktopbody.removeChild(actioncenter);");
-    app6.setAttribute("onclick", "scriptApp('ScriptInjector'); desktopbody.removeChild(actioncenter);");
-    app6.className = 'appchoice';
-    app6txt.className = 'appbutttxt';
-    app6butt.className = 'appbutt';
-    app6butt.appendChild(app6);
-    app6butt.appendChild(app6txt);
-    appcenter.appendChild(app6butt);
-
-    var app7 = document.createElement('input');
-    var app7butt = document.createElement('div');
-    var app7txt = document.createElement('h3');
-    app7.type = 'image';
-    app7.src = "images/Shortcuts.png";
-    app7txt.innerHTML = 'Shortcuts';
-    app7.title = 'Shortcuts';
-    app7butt.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts'); desktopbody.removeChild(actioncenter);");
-    app7.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts'); desktopbody.removeChild(actioncenter);");
-    app7.className = 'appchoice';
-    app7txt.className = 'appbutttxt';
-    app7butt.className = 'appbutt';
-    app7butt.appendChild(app7);
-    app7butt.appendChild(app7txt);
-    appcenter.appendChild(app7butt);
-
-    var app8 = document.createElement('input');
-    var app8butt = document.createElement('div');
-    var app8txt = document.createElement('h3');
-    app8.type = 'image';
-    app8.src = "images/vmOS.png";
-    app8txt.innerHTML = 'vmOS'
-    app8.title = 'vmOS';
-    app8butt.setAttribute("onclick", "scriptApp('vmOS'); desktopbody.removeChild(actioncenter);");
-    app8.setAttribute("onclick", "scriptApp('vmOS'); desktopbody.removeChild(actioncenter);");
-    app8.className = 'appchoice';
-    app8txt.className = 'appbutttxt';
-    app8butt.className = 'appbutt';
-    app8butt.appendChild(app8);
-    app8butt.appendChild(app8txt);
-    appcenter.appendChild(app8butt);*/
-
-    var app9 = document.createElement('input');
-    var app9butt = document.createElement('div');
-    var app9txt = document.createElement('h3');
-    app9.type = 'image';
-    app9.src = 'images/BlazeToUSD.png';
-    app9txt.innerHTML = 'BlazeToUSD';
-    app9.title = 'BlazeToUSD';
-    app9butt.setAttribute("onclick", "scriptApp('BlazeToUSD'); desktopbody.removeChild(actioncenter);");
-    app9.setAttribute("onclick", "scriptApp('BlazeToUSD'); desktopbody.removeChild(actioncenter);");
-    app9.className = 'appchoice';
-    app9txt.className = 'appbutttxt';
-    app9butt.className = 'appbutt';
-    app9butt.appendChild(app9);
-    app9butt.appendChild(app9txt);
-    appcenter.appendChild(app9butt);
-
-    /*var app10 = document.createElement('input');
-    var app10butt = document.createElement('div');
-=======
     var app10 = document.createElement('img');
     var app10butt = document.createElement('button');
->>>>>>> Stashed changes
     var app10txt = document.createElement('h3');
     app10butt.style = "background-Image: url(images/ScriptAI.png); background-size: 75px 75px;";
     app10butt.innerHTML = 'ScriptAI';
@@ -813,30 +725,12 @@ function loadDesktop(){
     //app10butt.appendChild(app10txt);
     appcenter.appendChild(app10butt);
 
-<<<<<<< Updated upstream
-    var app11 = document.createElement('input');
-    var app11butt = document.createElement('div');
-    var app11txt = document.createElement('h3');
-    app11.type = 'image';
-    app11.src = "images/StoryFire.png";
-    app11txt.innerHTML = 'StoryFire';
-    app11.title = 'StoryFire';
-    app11butt.setAttribute("onclick", "scriptApp('StoryFire'); desktopbody.removeChild(actioncenter);");
-    app11.setAttribute("onclick", "scriptApp('StoryFire'); desktopbody.removeChild(actioncenter);");
-    app11.className = 'appchoice';
-    app11txt.className = 'appbutttxt';
-    app11butt.className = 'appbutt';
-    app11butt.appendChild(app11);
-    app11butt.appendChild(app11txt);
-    appcenter.appendChild(app11butt);*/
-=======
     var app12butt = document.createElement('button');
     app12butt.style = "background-Image: url(images/ScriptEdit.png); background-size: 75px 75px;";
     app12butt.innerHTML = 'ScriptEdit';
     app12butt.setAttribute("onclick", "scriptApp('ScriptEdit'); desktopbody.removeChild(actioncenter);");
     app12butt.className = 'appbutt';
     appcenter.appendChild(app12butt);
->>>>>>> Stashed changes
 
     var actionarea = document.createElement('div');
     actionarea.id = 'actionarea';
@@ -1048,31 +942,16 @@ conmenu1butt7.innerHTML = 'Exit EditMode';
 conmenu1butt7.onclick = function () {
     normMode();
 };
-<<<<<<< Updated upstream
-/*conmenu1butt8.className = "menubutton";
-conmenu1butt8.innerHTML = 'New StickyNote';
-=======
 conmenu1butt8.className = "menubutton";
 conmenu1butt8.innerHTML = 'Create StickyNote';
->>>>>>> Stashed changes
 conmenu1butt8.onclick = function () {
     newSticky();
-};*/
+};
 conmenu1butt7.className = "menubutton";
 desktopbody.appendChild(conmenu1);
-<<<<<<< Updated upstream
-//conmenu1.appendChild(conmenu1butt1);
-conmenu1.appendChild(conmenu1butt2);
-conmenu1.appendChild(conmenu1butt3);
-//conmenu1.appendChild(conmenu1butt4);
-conmenu1.appendChild(conmenu1butt5);
-//conmenu1.appendChild(conmenu1butt8);
-//conmenu1.appendChild(conmenu1butt6);
-=======
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt8);
 conmenu1.appendChild(conmenu1butt6);
->>>>>>> Stashed changes
 
 //StickyNotes
 function newSticky(){
@@ -1294,275 +1173,13 @@ function scriptApp(appsname){
         aboutbutt.className = 'tablinks';
         aboutbutt.onclick = function(){openSett(event, about.id);};
         aboutbutt.innerHTML = "About"
-<<<<<<< Updated upstream
-        scbutt.className = 'tablinks';
-        scbutt.onclick = function(){openSett(event, shortcuts.id);};
-        scbutt.innerHTML = "Shortcuts";
-        userbutt.className = "tablinks";
-        userbutt.onclick = function(){
-            /*var userdiv = document.createElement("div");
-            var usernamein = document.createElement('input');
-            var passinput = document.createElement('input');
-            var loginbutt = document.createElement('button');
-            userdiv.className = 'soalert';
-            usernamein.className = 'logininput';
-            usernamein.placeholder = 'Username';
-            passinput.className = 'logininput';
-            passinput.placeholder = 'Password';
-            passinput.type = "password";
-            loginbutt.className = 'loginbutt';
-            loginbutt.innerHTML = "Sign In";
-            if(un){
-                if(pw){
-                    userdiv.appendChild(usernamein);
-                    userdiv.appendChild(passinput);
-                    userdiv.appendChild(loginbutt);
-                    desktopbody.appendChild(userdiv);  
-                } 
-            } else {
-                openSett(event, usersett.id);
-            }
-            loginbutt.onclick = function(){
-                var username = usernamein.value;
-                var password = passinput.value;
-                if(username === un){
-                    if(password === pw){
-                        userdiv.removeChild(usernamein);
-                        userdiv.removeChild(passinput);
-                        userdiv.removeChild(loginbutt);
-                        desktopbody.removeChild(userdiv);
-                        openSett(event, usersett.id);
-                    } else {
-                        pushNotification("System", "Username or password is incorrect");
-                    }
-                } else {
-                    pushNotification("System", "Username or password is incorrect");
-                }
-            };*/
-        };
-        userbutt.innerHTML = "User(Unavailable in DEMO)";
-        bbutt.className = 'tablinks';
-        bbutt.onclick = function(){openSett(event, browsersett.id);};
-        bbutt.innerHTML = "Browser";
-        backgroundsettings.className = 'tabcontent';
-=======
->>>>>>> Stashed changes
         clbutt.className = "tablinks";
         clbutt.onclick = function(){openSett(event, changelogsett.id);};
         clbutt.innerHTML = "Changelog";
         app.appendChild(tab);
-<<<<<<< Updated upstream
-        //tab.appendChild(bgsbutt);
-        //tab.appendChild(wdgtsbutt);
-        tab.appendChild(sovbutt);
-        app.appendChild(usersett);
-        tab.appendChild(aboutbutt);
-        //tab.appendChild(scbutt);
-        //tab.appendChild(userbutt);
-        //tab.appendChild(bbutt);
-        tab.appendChild(clbutt);
-        usersett.id = 'User';
-        usersett.className = 'tabcontent';
-
-        /*var usernamein = document.createElement('input');
-        var passinput = document.createElement('input');
-        var loginbutt = document.createElement('button');
-        var warntxt = document.createElement('h3');
-        warntxt.innerHTML = "ScriptOS will restart when you set your new account credentials";
-        userdiv.className = 'soalert';
-        usernamein.className = 'logininput';
-        usernamein.placeholder = 'Username';
-        passinput.className = 'logininput';
-        passinput.placeholder = 'Password';
-        passinput.type = "password";
-        loginbutt.className = 'loginbutt';
-        loginbutt.innerHTML = "Set";
-        loginbutt.onclick = function(){
-            var username = usernamein.value;
-            var password = passinput.value;
-            localStorage.setItem("username", username);
-            localStorage.setItem("password", password);
-            location.reload();
-        };
-        usersett.appendChild(warntxt);
-        usersett.appendChild(usernamein);
-        usersett.appendChild(passinput);
-        usersett.appendChild(loginbutt);*/
-
-        app.appendChild(sovsett);
-        sovsett.id = 'ScriptOSVersion';
-        sovsett.className = 'tabcontent';
-        sovsett.style.display = 'inline';
-
-        var sovtxt = document.createElement("h1");
-        var vtxt = document.createElement("h2");
-        var ltxt = document.createElement("button");
-        sovtxt.innerHTML = "ScriptOS Version";
-        sovsett.appendChild(sovtxt);
-        vtxt.innerHTML = "Current Version: ScriptOS " + scriptosversion;
-        sovsett.appendChild(vtxt);
-        ltxt.innerHTML = "ScriptOS Full Version";
-        ltxt.onclick = function(){
-            scriptApp('Browser');
-            browserview.src = 'https://www.scriptos.ml/personaluse'};
-        ltxt.className = "tab";
-        sovsett.appendChild(ltxt);
-
-
-        /*app.appendChild(backgroundsettings);
-        backgroundsettings.style.display = 'inline';
-        backgroundsettings.id = 'Personalization';
-
-        var backgroundtxt = document.createElement("h1");
-        backgroundtxt.innerHTML = "Background";
-        backgroundsettings.appendChild(backgroundtxt);
-        
-        var choice0 = document.createElement('input');
-        choice0.type = 'image';
-        choice0.src = 'images/ScriptOSBackground.png';
-        choice0.className = 'backgroundoption';
-        choice0.onclick = function () { document.body.style.backgroundImage = 'url(images/ScriptOSBackground.png)'; 
-        localStorage.setItem('background','url(images/ScriptOSBackground.png)'); };
-        backgroundsettings.appendChild(choice0);
-
-        var choice1 = document.createElement('input');
-        choice1.type = 'image';
-        choice1.src = 'images/landscape.jpg';
-        choice1.className = 'backgroundoption';
-        choice1.onclick = function () { document.body.style.backgroundImage = 'url(images/landscape.jpg)'; 
-        localStorage.setItem('background','url(images/landscape.jpg)'); };
-        backgroundsettings.appendChild(choice1);
-        
-        var choice2 = document.createElement('input');
-        choice2.type = 'image';
-        choice2.src = 'images/imac-pro-wallpaper.jpg';
-        choice2.className = 'backgroundoption';
-        choice2.onclick = function () { document.body.style.backgroundImage = 'url(images/imac-pro-wallpaper.jpg)';
-        localStorage.setItem('background','url(images/imac-pro-wallpaper.jpg)'); };
-        backgroundsettings.appendChild(choice2);
-        
-        var choice3 = document.createElement('input');
-        choice3.type = 'image';
-        choice3.src = 'images/lamborghini ting.png';
-        choice3.className = 'backgroundoption';
-        choice3.onclick = function () { document.body.style.backgroundImage = 'url("images/lamborghini ting.png")';
-        localStorage.setItem('background','url("images/lamborghini ting.png")'); };
-        backgroundsettings.appendChild(choice3);
-        
-        var choice4 = document.createElement('input');
-        choice4.type = 'image';
-        choice4.src = 'images/Script-OS-3.png';
-        choice4.className = 'backgroundoption';
-        choice4.onclick = function () { document.body.style.backgroundImage = 'url(images/Script-OS-3.png)';
-        localStorage.setItem('background','url(Script-OS-3.png)');};
-        backgroundsettings.appendChild(choice4);
-        
-        var choice5 = document.createElement('input');
-        choice5.type = 'image';
-        choice5.src = 'images/pewds-pattern.jpg';
-        choice5.className = 'backgroundoption';
-        choice5.onclick = function () { document.body.style.backgroundImage = 'url(images/pewds-pattern.jpg)';
-        localStorage.setItem('background','url(images/pewds-pattern.jpg)');};
-        backgroundsettings.appendChild(choice5);
-        
-        var choice6 = document.createElement('input');
-        choice6.type = 'image';
-        choice6.src = 'images/animals_hero_giraffe_1_0.jpg';
-        choice6.className = 'backgroundoption';
-        choice6.onclick = function () { document.body.style.backgroundImage = 'url(images/animals_hero_giraffe_1_0.jpg)';
-        localStorage.setItem('background','url(images/animals_hero_giraffe_1_0.jpg)');};
-        backgroundsettings.appendChild(choice6);
-        
-        var choice7 = document.createElement('input');
-        choice7.type = 'image';
-        choice7.src = 'images/hbd-script-os.png';
-        choice7.className = 'backgroundoption';
-        choice7.onclick = function () { document.body.style.backgroundImage = 'url(images/hbd-script-os.png)';
-        localStorage.setItem('background','url(images/hbd-script-os.png)');};
-        backgroundsettings.appendChild(choice7);
-
-        var choice8 = document.createElement('input');
-        choice8.type = 'image';
-        choice8.src = 'images/Iron-Trump.png';
-        choice8.className = 'backgroundoption';
-        choice8.onclick = function () { 
-            document.body.style.backgroundImage = 'url(images/Iron-Trump.png)';
-            localStorage.setItem('background','url(images/Iron-Trump.png)');
-        };
-       backgroundsettings.appendChild(choice8);
-
-        var choice9 = document.createElement('input');
-        choice9.type = 'image';
-        choice9.src = 'images/tr-software.png';
-        choice9.className = 'backgroundoption';
-        choice9.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/tr-software.png)';
-            localStorage.setItem('background','url(images/tr-software.png)');
-        };
-        backgroundsettings.appendChild(choice9);
-
-        var choice10 = document.createElement('input');
-        choice10.type = 'image';
-        choice10.src = 'images/2nd_birthday_script_os.png';
-        choice10.className = 'backgroundoption';
-        choice10.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/2nd_birthday_script_os.png)';
-            localStorage.setItem('background','url(images/2nd_birthday_script_os.png)');
-        };
-        backgroundsettings.appendChild(choice10);
-
-        var choice11 = document.createElement('input');
-        choice11.type = 'image';
-        choice11.src = 'images/bridge_background.jpg';
-        choice11.className = 'backgroundoption';
-        choice11.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/bridge_background.jpg)';
-            localStorage.setItem('background','url(images/bridge_background.jpg)');
-        };
-        backgroundsettings.appendChild(choice11);
-
-        var choice12 = document.createElement('input');
-        choice12.type = 'image';
-        choice12.src = 'images/city_bridge_background.jpg';
-        choice12.className = 'backgroundoption';
-        choice12.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/city_bridge_background.jpg)';
-            localStorage.setItem('background','url(images/city_bridge_background.jpg)');
-        };
-        backgroundsettings.appendChild(choice12);
-
-        var choice13 = document.createElement('input');
-        choice13.type = 'image';
-        choice13.src = 'images/TR_Space_background_2021.png';
-        choice13.className = 'backgroundoption';
-        choice13.onclick = function () {
-            document.body.style.backgroundImage = 'url(images/TR_Space_background_2021.png)';
-            localStorage.setItem('background','url(images/TR_Space_background_2021.png)');
-        };
-        backgroundsettings.appendChild(choice13);
-
-        var backgroundinput = document.createElement('input');
-        var backgroundaddbutt = document.createElement('button');
-        backgroundaddbutt.innerHTML = 'Add';
-        backgroundinput.placeholder = "Background URL";
-        backgroundaddbutt.onclick = function () {
-            document.body.style.backgroundImage = "url('" +  backgroundinput.value + "')"; 
-            custombackground = document.createElement('input');
-            custombackground.type = 'image';
-            custombackground.src = backgroundinput.value;
-            custombackground.className = 'backgroundoption';
-            custombackground.onclick = function () { document.body.style.backgroundImage = "url('" +  backgroundinput.value + "')";
-            localStorage.setItem('background',"url('" +  backgroundinput.value + "')");};
-            app.appendChild(custombackground);
-        };
-        backgroundsettings.appendChild(backgroundinput);
-        backgroundsettings.appendChild(backgroundaddbutt);*/
-
-=======
         tab.appendChild(aboutbutt);
         tab.appendChild(clbutt);
         
->>>>>>> Stashed changes
         app.appendChild(about);
         about.className = 'tabcontent';
         about.id = "About" ;
@@ -1581,88 +1198,6 @@ function scriptApp(appsname){
         about.appendChild(logoimg);
         about.appendChild(copyright);
         about.appendChild(browserversion);
-<<<<<<< Updated upstream
-        
-        /*app.appendChild(shortcuts);
-        shortcuts.id = "Shortcuts";
-        shortcuts.className = "tabcontent"
-
-        var appnameshort = document.createElement('input');
-        var shortaddnav = document.createElement('button');
-        var shortadddesk = document.createElement('button');
-        var newshortcut = document.createElement('input');
-        var navbar = document.getElementById("navbar");
-        var noticetxt = document.createElement("h3");
-        var resetsc = document.createElement("button");
-        var iconpreview = document.createElement('img');
-        newshortcut.type = 'image';
-        newshortcut.style.width = '50px';
-        newshortcut.style.height = '50px';
-        newshortcut.style.textAlign = 'center';
-        appnameshort.type = 'text';
-        appnameshort.placeholder = "App name";
-        shortaddnav.innerHTML = 'Add to NavBar';
-        shortadddesk.innerHTML = 'Add to Desktop';
-        noticetxt.innerHTML = "***NAMES ARE CASE SENSITIVE***"
-        resetsc.innerHTML = "Reset Shortcuts";
-        resetsc.title = "This will remove all added shortcuts";
-        resetsc.onclick = function () {localStorage.removeItem("savednav"); localStorage.removeItem("savedesk"); window.location.reload();};
-        setInterval(function(){iconpreview.src = "images/" + appnameshort.value + ".png"}, 500);
-        iconpreview.style.width = '20%';
-        iconpreview.style.width = '20%';
-        shortcuts.appendChild(appnameshort);
-        shortcuts.appendChild(shortaddnav);
-        shortcuts.appendChild(shortadddesk);
-        shortcuts.appendChild(resetsc);
-        shortcuts.appendChild(noticetxt);
-        shortcuts.appendChild(iconpreview);
-        shortaddnav.onclick = function () {
-            newshortcut.title = appnameshort.value;
-            newshortcut.innerHTML = appnameshort.value;
-            newshortcut.src = "images/" + appnameshort.value + ".png";
-            newshortcut.className = 'appicon';
-            if(appnameshort.value != "Shortcuts"){
-                newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "')");
-            } else if(appnameshort.value = "Shortcuts"){
-                newshortcut.setAttribute("onclick", "scriptApp('Settings'); openSett(event, 'Shortcuts');");
-            }
-            navbar.appendChild(newshortcut);
-            localStorage.setItem("savednav", navbar.innerHTML);
-            desktopbody.removeChild(app);
-        };
-        shortadddesk.onclick = function () {
-            newshortcut.title = appnameshort.value;
-            newshortcut.innerHTML = appnameshort.value;
-            newshortcut.src = "images/" + appnameshort.value + ".png";
-            newshortcut.className = 'desktopicon';
-            newshortcut.id = appnameshort.value + "Short";
-            newshortcut.style = 'width: 75px; height: 75px';
-            newshortcut.className = 'appicon';
-            newshortcut.setAttribute("onclick", "scriptApp('" + appnameshort.value + "');");
-            desktopbody.appendChild(newshortcut);
-            desktopbody.removeChild(app);
-            localStorage.setItem("savedesk", desktopbody.innerHTML);
-            
-        };
-
-        app.appendChild(browsersett);
-        browsersett.id = "Browser";
-        browsersett.className = "tabcontent";
-
-        var defaultbrowser = document.createElement("input");
-        var savesett = document.createElement('button');
-        var resetbutt = document.createElement('button');
-        defaultbrowser.type = "text";
-        defaultbrowser.placeholder = "Default Search Engine";
-        savesett.innerHTML = "Save Settings";
-        savesett.onclick = function(){defaultengine = defaultbrowser.value; logcalStorage.setItem("DefaultEngine", defaultbrowser.value)};
-        resetbutt.innerHTML = "Reset Default";
-        resetbutt.onclick = function(){localStorage.removeItem("DefaultEngine"); location.reload();};
-        browsersett.appendChild(defaultbrowser);
-        browsersett.appendChild(savesett);
-        browsersett.appendChild(resetbutt);*/
-=======
->>>>>>> Stashed changes
 
         app.appendChild(changelogsett);
         changelogsett.id = "Changelog";
@@ -2208,27 +1743,4 @@ if ((objOffsetVersion=objAgent.indexOf("Chrome"))!=-1) {
 
 var menucon = document.getElementById("menu");
 var darkmodesound = new Audio("dark mode sound.mp3");
-<<<<<<< Updated upstream
 var lightmodesound = new Audio("light mode sound.mp3");
-
-//Dark and Light Mode
-function darkMode(){
-    darkmodesound.play();
-    document.getElementById('navbar').style.background = 'rgba(0,0,0,0.25)';
-    document.getElementById('topnav').style.background = 'rgba(0,0,0,0.25)';
-    menucon.style.color = 'white';
-    menucon.style.background = 'rgba(0,0,0,0.5)';
-    actioncenter.style.background = 'rgba(0,0,0,0.25)';
-}
-
-function lightMode(){
-    lightmodesound.play();
-    document.getElementById('navbar').style.background = 'rgba(255,255,255,0.25)';
-    document.getElementById('topnav').style.background = 'rgba(255,255,255,0.25)';
-    menucon.style.color = 'black';
-    menucon.style.background = 'rgba(255,255,255,0.5)';
-    actioncenter.style.background = 'rgba(255,255,255,0.25)';
-}
-=======
-var lightmodesound = new Audio("light mode sound.mp3");
->>>>>>> Stashed changes
