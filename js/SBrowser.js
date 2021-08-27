@@ -1,0 +1,162 @@
+function scriptApp(appsname){
+    var app = document.createElement('div');
+    var apphead = document.createElement('div');
+    var appheadtext = document.createTextNode(appsname);
+    var close = document.createElement('ui');
+    var fullscreen = document.createElement('ui');
+    var smallscreen = document.createElement('ui');
+    var headbuttdiv = document.createElement('div');
+    var headtextdiv = document.createElement('div');
+    var appnumber = Math.random();
+    app.onerror = function(){errorsound.play();};
+    headtextdiv.style.textAlign = 'left';
+    headtextdiv.style.width = '50%';
+    headtextdiv.style.cssFloat = 'left';
+    headbuttdiv.style.textAlign = 'right';
+    headbuttdiv.style.width = '50%';
+    headbuttdiv.style.cssFloat = 'right';
+    appnumber++;
+    app.className = 'app';
+    apphead.className = 'appheader';
+    close.type = 'image';
+    close.id = "close"
+    close.title = 'Close';
+    close.innerHTML = " X ";
+    close.style.fontFamily = "Arial";
+    close.className = "appheadbutt";
+    fullscreen.title = 'Fullscreen';
+    fullscreen.id = "fullscreen";
+    fullscreen.type = 'image';
+    fullscreen.innerHTML = " ▇ ";
+    fullscreen.style.textAlign = 'right';
+    fullscreen.className = "appheadbutt";
+    smallscreen.type = 'image';
+    smallscreen.title = 'Small';
+    smallscreen.id = "smallscreen";
+    smallscreen.className = "appheadbutt";
+    smallscreen.innerHTML = " ▃ "
+    headtextdiv.append(appheadtext);
+    apphead.append(headtextdiv);
+    apphead.append(headbuttdiv);
+    headbuttdiv.append(close);
+    headbuttdiv.append(fullscreen);
+    headbuttdiv.append(smallscreen);
+    app.appendChild(apphead);
+    desktopbody.appendChild(app);
+    app.id = appsname + appnumber;
+    apphead.id = app.id + "header";
+    dragWindow(document.getElementById(appsname + appnumber));
+    app.onload = bringToFront(app.id);
+    app.onclick = function () {bringToFront(app.id)};
+    close.onclick = function () { desktopbody.removeChild(app); };
+    fullscreen.onclick = function () {app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0%'; };
+    smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; app.style.top = '25%'; app.style.left = '25%'; };
+    if (appsname === "Browser") {
+        var tabrow = document.createElement('div');
+        var tab = document.createElement('div');
+        var tabbutt = document.createElement('button');
+        var inputbar = document.createElement("input");
+        browserview = document.createElement('iframe');
+        var backbutton = document.createElement('button');
+        var forwardbutton = document.createElement('button');
+        var addtabbutt = document.createElement('button');
+        addtabbutt.innerHTML = "+";
+        addtabbutt.onclick = function(){
+            var newtabbutt = document.createElement('button');
+            var newtab = document.createElement('div');
+            var newinputbar = document.createElement("input");
+            var newbrowserview = document.createElement('iframe');
+            var newbackbutton = document.createElement('button');
+            var newforwardbutton = document.createElement('button');
+            var newxbutt = document.createElement('button');
+            newxbutt.innerHTML = "X";
+            newxbutt.onclick = function(){app.removeChild(newtab); tabrow.removeChild(newtabbutt);};
+            newbrowserview.src = defaultengine;
+            newtab.id = "newtab" + appnumber;
+            newtabbutt.id = "tabbutt" + appnumber;
+            newinputbar.id = "inputbar" + appnumber;
+            newbrowserview.id = "browserview" + appnumber;
+            newtab.className = "btabcontent";
+            newtabbutt.innerHTML = "New Tab";
+            newtabbutt.className = "btablinks";
+            newtabbutt.onclick = function(){openBTab(event, newtab.id);};
+            newbackbutton.innerHTML = '<';
+            newbackbutton.style.borderRadius = '15px';
+            newbackbutton.onclick = function () { window.history.back(); newtabbutt.innerHTML = newbrowserview.src; };
+            newforwardbutton.innerHTML = '>';
+            newforwardbutton.style.borderRadius = '15px';
+            newforwardbutton.onclick = function () { window.history.forward(); newtabbutt.innerHTML = newbrowserview.src; };
+            newtab.appendChild(newbackbutton);
+            newtab.appendChild(newforwardbutton);
+            tabrow.appendChild(newtabbutt);
+            newinputbar.type = 'text';
+            newinputbar.placeholder = 'type something...';
+            newinputbar.style.width = '75%';
+            newinputbar.style.height = '30px';
+            newinputbar.style.borderRadius = '15px';
+            newinputbar.style.borderStyle = 'none';
+            newinputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)6px 6px 6px;';
+            newinputbar.style.background = 'rgba(0,0,0, .5)';
+            newinputbar.style.color = "white";
+            newinputbar.onchange = function () { 
+                var inputvalue = newinputbar.value;
+                if(inputvalue.includes('.')){
+                    newbrowserview.src = "https://" + inputvalue;
+                } else {
+                    newbrowserview.src = defaultengine + "/search?q=" + inputvalue;
+                }
+                newtabbutt.innerHTML = newbrowserview.src;
+            };
+            newtab.appendChild(newinputbar);
+            newtab.appendChild(newxbutt);
+            newtab.appendChild(newbrowserview);
+            app.appendChild(newtab);
+        };
+        addtabbutt.title = "New Tab";
+        tabrow.className = 'btab';
+        tabbutt.innerHTML = "New Tab";
+        tabbutt.onclick = function(){openBTab(event, tab.id);};
+        tab.id = "tab" + appnumber;
+        tab.className = "btabcontent";
+        tabbutt.className = "btablinks";
+        tabbutt.id = "tabbutt" + appnumber;
+        backbutton.innerHTML = '<';
+        backbutton.id = 'backbutt' + appnumber;
+        backbutton.style.borderRadius = '15px';
+        backbutton.onclick = function () { window.history.back(); tabbutt.innerHTML = browserview.src; };
+        forwardbutton.innerHTML = '>';
+        forwardbutton.style.borderRadius = '15px';
+        forwardbutton.id = 'forwardbutt' + appnumber;
+        forwardbutton.onclick = function () { window.history.forward(); tabbutt.innerHTML = browserview.src; };
+        tabrow.appendChild(tabbutt);
+        tab.appendChild(backbutton);
+        tab.appendChild(forwardbutton);
+        inputbar.type = 'text';
+        inputbar.id = 'inputbar' + appnumber;
+        inputbar.placeholder = 'type something...';
+        inputbar.style.width = '75%';
+        inputbar.style.height = '30px';
+        inputbar.style.borderRadius = '15px';
+        inputbar.style.borderStyle = 'none';
+        inputbar.style.boxShadow = 'box-shadow: rgba(0, 0, 0, .5)6px 6px 6px;';
+        inputbar.style.background = 'rgba(0,0,0, .5)';
+        inputbar.style.color = "white";
+        inputbar.onchange = function () { 
+            var inputvalue = inputbar.value;
+            if(inputvalue.includes('.')){
+                browserview.src = "https://" + inputvalue;
+            } else {
+                browserview.src = defaultengine + "/search?q=" + inputvalue;
+            }
+            tabbutt.innerHTML = browserview.src;
+        };
+        tab.appendChild(inputbar);
+        tab.appendChild(addtabbutt);
+        browserview.id = "browserview" + appnumber;
+        browserview.src = defaultengine;
+        tab.appendChild(browserview);
+        app.appendChild(tabrow);
+        app.appendChild(tab);
+        tab.style.display = 'inline';
+    }
+}

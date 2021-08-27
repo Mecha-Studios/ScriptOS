@@ -49,13 +49,13 @@ body {
     animation-duration: 7s;
     position: absolute;
     left: 25%;
-    bottom: 5%;
+    bottom: 100px;
 }
 
 .so4icon{
     width: 50%;
     position: absolute;
-    top: 10%;
+    top: 300px;
     left: 25%;
     animation: zoomfade;
     animation-duration: 3s;
@@ -69,7 +69,7 @@ body {
     cursor: pointer;
 }
 
-#smallscreen:hover{
+#minimizebutt:hover{
     cursor: pointer;
 }
 
@@ -83,11 +83,6 @@ body {
     color: white;
 }
 
-button {
-    border-style: solid;
-    font-family: Arial;
-}
-
 #bottom-button {
     border-style: solid;
     font-family: Arial;
@@ -98,6 +93,8 @@ button {
     width: 75px;
     height : 75px;
     border-radius: 15px;
+    background-repeat: no-repeat;
+    position: absolute;
     box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
     background: rgba(0, 0, 0, .25);
 }
@@ -105,9 +102,36 @@ button {
     background: rgba(255, 0, 0, 0.25);
 }
 
+#actiondiv{
+    width: fit-content;
+    height: 50px;
+}
+
+#appdiv{
+    width: fit-content;
+    height: 50px;
+}
+
+#rightdiv{
+    position: absolute;
+    width: fit-content;
+    height: 50px;
+    right: 0px;
+    bottom: 0px;
+    animation: sliderightdiv;
+    animation-duration: 2s;
+}
+
+.rightdiv{
+    position: absolute;
+    width: fit-content;
+    height: 50px;
+    right: 0px;
+    bottom: 0px;
+}
+
 .notifbody {
     width: 500px;
-    height: 300px;
     resize: none;
     position: absolute;
     top: 20px;
@@ -121,7 +145,7 @@ button {
     display: flex;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
-    background-color: rgba(255, 255, 255, .25);
+    background-color: rgba(0,0,0,0.25);
     text-align: center;
     color: white;
     overflow: hidden;
@@ -130,13 +154,13 @@ button {
 }
 
 .menu {
-    width: 150px;
-    z-index: 20;
+    width: 200px;
+    z-index: 100;
     position: fixed;
     box-shadow: 5px;
     display: none;
-    color: black;
-    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    background: rgba(0,0,0,0.25);
     box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
     border-radius: 10px;
     text-align: left;
@@ -150,7 +174,7 @@ button {
 }
 
 .menubutton {
-    width: 150px;
+    width: 200px;
     height: 20px;
 }
 .menubutton:hover{
@@ -161,15 +185,15 @@ button {
 }
 
 .navbar {
-    text-align: center;
     overflow: hidden;
     position: absolute;
+    display: flex;
     bottom: 0;
     z-index: 10;
-    width: 100%;
+    width: fit-content;
     height: 50px;
-    background: rgba(255, 255, 255, 0.25);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0);
     border-radius: 15px;
     animation: slidenavbar;
     animation-duration: 2s;
@@ -234,7 +258,9 @@ button {
 .appicon {
     width: 50px;
     height: 50px;
+    background-repeat: no-repeat;
     border-radius: 15px;
+    z-index: 100;
     box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
     background: rgba(0, 0, 0, .25);
     animation: zoomfade;
@@ -243,6 +269,7 @@ button {
 
 .appicon:hover{
     background: rgba(255, 0, 0, 0.25);
+    z-index: 100;
     transform: scale(1.25);
     box-shadow: rgba(0, 0, 0, .5)10px 10px 10px;
 }
@@ -264,7 +291,7 @@ button {
     overflow: hidden;
     bottom: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0,0,0,0.25);
     box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
     display: inline-block;
     animation: slidetopbar;
@@ -321,8 +348,8 @@ button {
 }
 
 .usercard{
-    width: 80%;
-    height: 125px;
+    width: 275px;
+    height: 75px;
     border-radius: 15px;
     color: white;
     background:rgba(0, 0, 0, .5);
@@ -330,12 +357,13 @@ button {
 }
 
 .usernametxt{
-    margin: 0;
+    font-size: 30px;
 }
 
 .userpic{
     width: 60px;
     height: 60px;
+    float: left;
     border-radius: 15px;
     background:rgba(0, 0, 0, .5);
     box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
@@ -345,11 +373,11 @@ button {
 @keyframes slidetopam {
     0% {
         opacity: 5%;
-        top: 100%;
+        bottom: -700px;
     }
     100%{
         opacity: 100%;
-        top: 35%;
+        bottom: 50px;
     }
 }
 
@@ -363,6 +391,17 @@ button {
 }
 
 @keyframes slidenavbar {
+    0% {
+        opacity: 5%;
+        top: 100%;
+    }
+    100%{
+        opacity: 100%;
+        top: 95%;
+    }
+}
+
+@keyframes sliderightdiv {
     0% {
         opacity: 5%;
         top: 100%;
@@ -525,6 +564,10 @@ button {
 .app {
     width: 50%;
     height: 50%;
+    max-height: calc(100% - 50px);
+    max-width: 100%;
+    min-height: 17.5%;
+    min-width: 17.5%;
     resize: both;
     position: absolute;
     animation: zoomfade; 
@@ -550,20 +593,19 @@ button {
     height: 100%;
     resize: none;
     overflow: hidden;
-    float: right;
     vertical-align: top;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
-    background-color: rgba(0, 0, 0, .25);
-    align-self: flex-start;
+    background-color: rgba(0,0,0,0.25);
+    float: right;
 }
 
 .appcenter{
-    width: 55%;
+    width: 50%;
     height: 100%;
     resize: none;
     overflow-y:scroll;
     position: relative;
-    float: left;
+    text-align: left;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
     background-color: rgba(0, 0, 0, .25);
 }
@@ -604,14 +646,17 @@ textarea{
 }
 
 .popuplist {
-    resize: both;
+    resize: none;
     position: absolute;
-    z-index: 10;
+    z-index: 99;
     animation: slidetopam;
     animation-duration: 2s;
-    top: 35%;
+    bottom: 50px;
     border: 1px solid #d3d3d3;
     border-radius: 15px;
+    width: fit-content;
+    height: 700px;
+    width: 700px;
     border-style: none;
     box-shadow: rgba(0, 0, 0, .5) 5px 5px 5px;
     background-color: rgba(0, 0, 0, .25);
@@ -620,6 +665,7 @@ textarea{
     overflow: hidden;
     font-family: 'Bauhaus 93';
     animation-duration: 2s;
+    display: flex;
 }
 
 ::-webkit-resizer {
@@ -630,7 +676,7 @@ textarea{
   }
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 10px;
   }
   
   ::-webkit-scrollbar-track {
@@ -674,54 +720,53 @@ textarea{
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
     background: rgba(0, 0, 0, .25);
+    text-shadow: rgba(0, 0, 0, .5) 3px 3px 3px;
+    background-repeat: no-repeat;
     animation: zoomfade;
     animation-duration: 2s;
 }
 
 .appbutt:hover{
     background: rgba(255, 0, 0, 0.25);
-    box-shadow: rgba(255, 0, 0, .5)10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
+    background-repeat: no-repeat;
     cursor: pointer;
     transform: translateX(20px) scale(1.15);
 }
 
-.appbutttxt{
-    transform: translateY(-275%);
-}
-
-button{
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, .5)5px 5px 5px;
-    background: rgba(0, 0, 0, .25);
-    color: white;
+tbutton{
     border: none;
     outline: none;
-} button:hover{
-    background: rgba(255, 0, 0, 0.25);
-    box-shadow: rgba(255, 0, 0, .5)10px 10px 10px;
     cursor: pointer;
-}
-
-#ActionMenu {
-    width: 25%;
-    height: 92.5%;
-    resize: none;
-    position: fixed;
-    z-index: 9;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
+    padding: 14px 16px;
+    transition: 0.3s;
     border-radius: 15px;
-    overflow: hidden;
-    font-family: 'Bauhaus 93';
-    background: rgba(0, 0, 0, 0.75);
-}
+    font-size: 17px;
+    background: rgba(0, 0, 0, 0);
+    text-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    color: white;
+  } tbutton:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
+    transform: scale(1.25);
+    border-radius: 15px;
+  }
 
-#ActionMenuheader {
-    padding: 10px;
-    z-index: 10;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.75);
-}
+button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    border-radius: 15px;
+    font-size: 17px;
+    background: rgba(0, 0, 0, 0);
+    text-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    color: white;
+  } button:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
+    transform: scale(1.25);
+    border-radius: 15px;
+  }
 
 .tab {
     overflow: hidden;
@@ -761,46 +806,6 @@ button{
     height: 92.5%;
     width: 100%;
   }
-
-  .btab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
-    border: none;
-  }
-  
-  .btab button {
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-    background: rgba(0, 0, 0, 0);
-    color: white;
-  }
-  
-  .btab button:hover {
-    background: rgba(255, 0, 0, 0.5);
-    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
-    transform: scale(1.25);
-    border-radius: 15px;
-  }
-  
-  .btab button.active {
-    background: rgba(50, 50, 50, 0.5);
-  }
-  
-  .btabcontent {
-    display: none;
-    border-style: none;
-    overflow: hidden;
-    height: 92.5%;
-    width: 100%;
-  }
-
 
 .appheader {
     padding: 10px;
