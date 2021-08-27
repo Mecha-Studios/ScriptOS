@@ -142,11 +142,7 @@ var changelog = `ScriptOS Changelog:
     -New startup screen
 -Nasdaq:
     -App added
-<<<<<<< Updated upstream
-.Script OS 3.8
-=======
     .Script OS 3.8
->>>>>>> Stashed changes
     -Happy Birthday Script OS
     -New commands and jokes added to ScriptAI
     -New backgrounds added
