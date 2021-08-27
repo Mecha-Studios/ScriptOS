@@ -4,11 +4,7 @@
     See LICENSE file for details.
 */
 
-<<<<<<< Updated upstream
-var scriptosversion = "DEMO";
-=======
 var scriptosversion = "5.0[DEMO]";
->>>>>>> Stashed changes
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
