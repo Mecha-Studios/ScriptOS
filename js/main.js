@@ -487,31 +487,6 @@ function loadDesktop(){
     actionmenuicon.setAttribute("onclick", "desktopbody.appendChild(actioncenter);");
     actiondiv.appendChild(actionmenuicon);
 
-    var searchweb = document.createElement('button');
-    var websearch = document.createElement('input');
-    searchweb.type = 'image';
-    searchweb.className = 'appicon';
-    searchweb.style = 'background: url("images/search.png"); background-size: 50px 50px;';
-    searchweb.title = 'Search the Web';
-    searchweb.id = 'searchweb';
-    websearch.style = 'border-radius: 15px; border-style: none; box-shadow: rgba(0, 0, 0, .5)5px 5px 5px; background: rgba(0,0,0, .25); width: 325px; height: 45px; font-size: 45px; z-index:10; animation:zoomfade; animation-duration: 2s; color: white;';
-    websearch.type = 'text';
-    websearch.placeholder = 'Search the web';
-    websearch.onchange = function(e){
-        if(e.keyCode === 13){
-            e.preventDefault();
-            //scriptApp("Browser"); 
-            //browserview.src = defaultengine + "/search?q=" + websearch.value;
-        }
-    };
-    searchweb.onclick = function () {
-        //scriptApp("Browser"); 
-        //browserview.src = defaultengine + "/search?q=" + websearch.value; 
-        //websearch.value = '';
-    };
-    actiondiv.appendChild(websearch);
-    actiondiv.appendChild(searchweb);
-
     var appicon1 = document.createElement('button');
     appicon1.type = 'image';
     appicon1.style = 'background: url("images/Settings.png"); background-size: 50px 50px;';
