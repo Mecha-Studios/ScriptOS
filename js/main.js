@@ -1183,9 +1183,9 @@ function scriptApp(appsname){
     headbuttdiv.append(smallscreen);
     app.appendChild(apphead);
     desktopbody.appendChild(app);
-    app.id = appsname + appnumber;
+    app.id = appsname + "(" + appnumber + ")";
     apphead.id = app.id + "header";
-    dragWindow(document.getElementById(appsname + appnumber));
+    dragWindow(document.getElementById(app.id));
     app.onload = bringToFront(app.id);
     app.onclick = function () {bringToFront(app.id)};
     close.onclick = function () { desktopbody.removeChild(app); tasks--;};
