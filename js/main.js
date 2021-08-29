@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "5.0[DEVELOPMENT]";
+var scriptosversion = "5.0";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -43,6 +43,9 @@ var savednav = localStorage.getItem("savednav");
 var savedesk = localStorage.getItem("savedesk");
 
 var changelog = `ScriptOS Changelog:
+.ScriptOS 5.0.1
+Tasks:
+    -Tasks app now available
 .ScriptOS 5.0
 -System:
     -Battery charging indicator
@@ -1033,6 +1036,7 @@ var conmenu1butt5 = document.createElement('li');
 var conmenu1butt8 = document.createElement('li');
 var conmenu1butt6 = document.createElement('li');
 var conmenu1butt7 = document.createElement('li');
+var conmenu1butt9 = document.createElement('li');
 conmenu1.className = 'menu';
 conmenu1.id = 'menu';
 conmenu1butt1.innerHTML = 'Personalization';
@@ -1057,12 +1061,18 @@ conmenu1butt8.innerHTML = 'Create StickyNote';
 conmenu1butt8.onclick = function () {
     newSticky();
 };
+conmenu1butt9.className = "menubutton";
+conmenu1butt9.innerHTML = 'Tasks';
+conmenu1butt9.onclick = function () {
+    scriptApp("Tasks");
+};
 conmenu1butt7.className = "menubutton";
 desktopbody.appendChild(conmenu1);
 conmenu1.appendChild(conmenu1butt1);
 conmenu1.appendChild(conmenu1butt4);
 conmenu1.appendChild(conmenu1butt8);
 conmenu1.appendChild(conmenu1butt6);
+conmenu1.appendChild(conmenu1butt9);
 
 //StickyNotes
 function newSticky(){
@@ -1227,14 +1237,33 @@ function scriptApp(appsname){
     }else if(appsname === "Tasks"){
         var tasknum = document.createElement('h1');
         var closeall = document.createElement('button');
+        var refreshb = document.createElement('button');
+        var taskh = document.createElement('textarea');
+        taskh.style = "background: rgba(0, 0, 0, 0); width: 100%; height: 90%; resize: none; color: white; border: none; outline: none;";
+        taskh.readOnly = true;
+        refreshb.innerHTML = "Refresh";
+        refreshb.onclick = function(){
+            taskManage();
+        };
         app.appendChild(tasknum);
+        app.appendChild(taskh);
+        app.appendChild(refreshb);
         //app.appendChild(closeall);
         function taskManage(){
             currentTasks = document.getElementsByClassName('app').length;
             tasknum.innerHTML = currentTasks;
+            var task = document.getElementsByClassName('app');
+            var taska = [];
+            for(var i = 0; i < currentTasks; i++){
+                taska.push(task[i].id + '\n');
+                if(taska.length > currentTasks){
+                    if(task[i].id = taska[i]){
+                        taska[i].pop();
+                    }
+                }
+                taskh.value = taska;
+            }
         }
-        setInterval(taskManage, 500);
-
     }else if(appsname === "BlazeToUSD"){
         var btuview = document.createElement('iframe');
         btuview.src = "https://blazetousd.ml";
