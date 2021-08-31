@@ -4,7 +4,7 @@
     See LICENSE file for details.
 */
 
-var scriptosversion = "5.0";
+var scriptosversion = "5.0.2";
 var defaultengine;
 var saveddefault = localStorage.getItem("DefaultEngine");
 var batterybar = document.getElementById("batteryprogress");
@@ -43,8 +43,12 @@ var savednav = localStorage.getItem("savednav");
 var savedesk = localStorage.getItem("savedesk");
 
 var changelog = `ScriptOS Changelog:
+.ScriptOS 5.0.2
+-System:
+    -Minor design improvements
+    -Bug fixes
 .ScriptOS 5.0.1
-Tasks:
+-Tasks:
     -Tasks app now available
 .ScriptOS 5.0
 -System:
@@ -959,7 +963,7 @@ function signOut(){
     loginbar.className = 'logbar';
     desktopbody.style.color = 'white';
     desktopbody.style.textAlign = 'center';
-    loginbar.onclick = function () { signIn();};
+    loginbar.onclick = function () {signIn();};
     desktopbody.innerHTML = '';
     userdiv.appendChild(sotxt);
     userdiv.appendChild(usernamein);
