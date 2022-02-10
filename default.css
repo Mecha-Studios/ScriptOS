@@ -1,7 +1,7 @@
 body{
     margin: 0;
     /*background: url('TR_Space_background_2020_no_logo.png') no-repeat center center fixed;*/
-    background-color: gray;
+    background-color: rgb(44, 44, 44);
     font-family: arial;
     align-items: center;
     align-content: center;
@@ -32,6 +32,20 @@ body{
   transform: translateY(-20px);
 }
 
+.rainbowtext{
+  animation: rainbow 4s ease infinite;
+  background-size: 1800% 1800%;
+  background-image: linear-gradient(124deg, #ff0101, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1000% 1000%;
+  animation-play-state: running;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+a{
+  cursor: help;
+}
+
 .infodiv{
     width: 100%;
     margin: 10px;
@@ -42,6 +56,7 @@ body{
     box-shadow: rgba(0,0,0,0.5) 5px 5px 5px;
     text-align: center;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .elmcontain{
@@ -118,47 +133,58 @@ body{
     width: 100%;
   }
 
-  form{
-      font-size: 50px;
-  }
+form{
+  font-size: 50px;
+}
 
-  input{
-    background: rgba(46, 46, 46, 0.5);
-    box-shadow: rgba(0,0,0,0.75)5px 5px 5px;
-    border: none;
-    outline: none;
-    font-size: 50px;
-    color: white;
-    border-radius: 15px;
-  }
+input{
+  background: rgba(46, 46, 46, 0.5);
+  box-shadow: rgba(0,0,0,0.75)5px 5px 5px;
+  border: none;
+  outline: none;
+  font-size: 50px;
+  color: white;
+  border-radius: 15px;
+}
 
-  textarea{
-    background: rgba(46, 46, 46, 0.5);
-    box-shadow: rgba(0,0,0,0.75)5px 5px 5px;
-    border: none;
-    outline: none;
-    font-size: 50px;
-    color: white;
-    border-radius: 15px;
-    resize: none;
-  }
+textarea{
+  background: rgba(46, 46, 46, 0.5);
+  box-shadow: rgba(0,0,0,0.75)5px 5px 5px;
+  border: none;
+  outline: none;
+  font-size: 50px;
+  color: white;
+  border-radius: 15px;
+  resize: none;
+}
 
-  h1{
-      font-size: 55px;
-  }
+h1{
+  font-size: 55px;
+}
 
-  button{
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-    background: rgba(0, 0, 0, 0);
-    color: white;
-  } button:hover {
-    background: linear-gradient(red,black);
-    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
-    transform: scale(1.25);
-    border-radius: 15px;
-  }
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 25px;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  animation: rainbow 4s ease infinite;
+  animation-play-state: paused;
+  background-size: 1800% 1800%;
+} button:hover {
+  background: linear-gradient(124deg, #ff0101, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1000% 1000%;
+  animation-play-state: running;
+  box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
+  transform: scale(1.25);
+  border-radius: 15px;
+}
+
+@keyframes rainbow { 
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
