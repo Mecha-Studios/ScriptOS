@@ -2,113 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>3rd Party Development - ScriptOS</title>
-        <meta name="author" content="TR Software"/>
+        <title>ScriptOS Development</title>
+        <meta name="author" content="Mecha Studios"/>
         <meta name="keywords" content="ScriptOS, Tyler Ruotolo, TR Software, TR, WebOS, Web Operating System, Operating System">
-        <meta name="description" content="ScriptOS is a simple web operating system that runs within a web browser on any modern operating system. It's light weight and easy to use." />
+        <meta name="description" content="The most advanced web operating system that can run on virtually any device."/>
         <link id="css" href="default.css" rel="stylesheet"/>
-        <link rel="shortcut icon" type="image" href="images/ScriptOS 5 Full Logo.png" />
+        <link rel="shortcut icon" type="image" href="images/ScriptOS6logo.png" />
     </head>
     <body style=" font: Helvetica;" content="width=device-width, height=device-height, initial-scale=1.0" >
         <div class="tab">
             <a href="index.html"> 
-                <img id="scriptoslogo" src="images/ScriptOS 5 Full Logo.png" style="height: 25px;">
+                <img src="images/ScriptOS6logo.png" style="height: 25px;">
             </a>
             <a class="tablinks" onclick="location.href = 'personaluse.html'">Personal Use</a>
             <a class="tablinks" onclick="location.href = '3rdpartydev.html'">3rd Party Development</a>
-            <a class="tablinks" onclick="location.href = 'https://www.trtech.site'">TR</a>
+            <a class="tablinks" onclick="location.href = 'https://www.trtech.site'">Mecha Studios</a>
         </div>
-        <div class="elmcontain">
-            <div id="welcome" class="infodiv">
-                <h2>
-                    <img id="scriptoslogo" src="images/ScriptOS Full Logo.png" style="height: 50px; z-index: 100;">
-                </h2>
-                <h1>Template for App Development(Recommended)</h1>
-                <textarea style="font-size: 30px; font-family: 'Lucida Console'; width: 100%; height: 600px;" readonly>
-var navbar = document.getElementById('navbar');
-var desktopbody = document.getElementById('desktopbody');
-addIcon("testing");
-
-function addIcon(app){
-    var icon = document.createElement("input");
-    icon.type = 'image';
-    icon.src = "icon source goes here";
-    icon.onclick = function(){
-        addApp(app);
-    }
-    icon.className = 'appicon';
-    icon.title = app;
-    navbar.appendChild(icon);
-}
-
-function addApp(appsname){
-    var app = document.createElement('div');
-    var apphead = document.createElement('div');
-    var appheadtext = document.createTextNode(appsname);
-    var close = document.createElement('ui');
-    var fullscreen = document.createElement('ui');
-    var smallscreen = document.createElement('ui');
-    var headbuttdiv = document.createElement('div');
-    var headtextdiv = document.createElement('div');
-    var appnumber = Math.random();
-    app.onerror = function(){errorsound.play();};
-    headtextdiv.style.textAlign = 'left';
-    headtextdiv.style.width = '50%';
-    headtextdiv.style.cssFloat = 'left';
-    headbuttdiv.style.textAlign = 'right';
-    headbuttdiv.style.width = '50%';
-    headbuttdiv.style.cssFloat = 'right';
-    appnumber++;
-    app.className = 'app';
-    apphead.className = 'appheader';
-    close.type = 'image';
-    close.id = "close"
-    close.title = 'Close';
-    close.innerHTML = " X ";
-    close.style.fontFamily = "Arial";
-    close.className = "appheadbutt";
-    fullscreen.title = 'Fullscreen';
-    fullscreen.id = "fullscreen";
-    fullscreen.type = 'image';
-    fullscreen.innerHTML = " ▇ ";
-    fullscreen.style.textAlign = 'right';
-    fullscreen.className = "appheadbutt";
-    smallscreen.type = 'image';
-    smallscreen.title = 'Small';
-    smallscreen.id = "smallscreen";
-    smallscreen.className = "appheadbutt";
-    smallscreen.innerHTML = " ▃ "
-    headtextdiv.append(appheadtext);
-    apphead.append(headtextdiv);
-    apphead.append(headbuttdiv);
-    headbuttdiv.append(close);
-    headbuttdiv.append(fullscreen);
-    headbuttdiv.append(smallscreen);
-    app.appendChild(apphead);
-    desktopbody.appendChild(app);
-    app.id = appsname + appnumber;
-    apphead.id = app.id + "header";
-    dragWindow(document.getElementById(appsname + appnumber));
-    app.onload = bringToFront(app.id);
-    app.onclick = function () {bringToFront(app.id)};
-    close.onclick = function () { desktopbody.removeChild(app); };
-    fullscreen.onclick = function () {app.style.width = '100%'; app.style.height = '92.5%'; app.style.top = '20px'; app.style.left = '0%'; };
-    smallscreen.onclick = function () { app.style.width = '50%'; app.style.height = '50%'; app.style.top = '25%'; app.style.left = '25%'; };
-    if(appsname === "testing"){
-        var testxt = document.createElement('h1');
-        testxt.innerHTML = 'Testing';
-        app.appendChild(testxt);
-    }
-}
-                </textarea>
-            </div>
-            <div class="infodiv">
-                <h1>
-                    <img id="trlogo" src="images/TR Full Logo 2021 no gradient.png" style="height: 100px; z-index: 100;">
-                </h1>
-            </div>
+        <div class="innercontents">
+            <img style="width: 50%;" src="images/ScriptOS6.png">
+            <h2 style="color: white;">Development Template</h2>
+            <textarea style="font-size: 20px; width: 100%;" readonly>
+Code template will appear here
+            </textarea>
         </div>
-        <a class="bottomtext" style="left: 0;" onclick="location.href = 'LICENSE'">© Copyright TR 2021</a>
+        <a class="bottomtext" style="left: 0;" onclick="location.href = 'LICENSE'">©Copyright Mecha 2022</a>
         <style>
             body {
                 -webkit-background-size: cover;

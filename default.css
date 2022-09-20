@@ -93,7 +93,7 @@ a{
   }
 
   .tab button:hover {
-    background: linear-gradient(red,black);
+    background-color: darkred;
     box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
     transform: scale(1.25);
     border-radius: 15px;
@@ -115,7 +115,7 @@ a{
   }
   
   .tab a:hover {
-    background: linear-gradient(red,black);
+    background-color: darkred;
     box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px; 
     transform: scale(1.25);
     border-radius: 15px;
@@ -160,6 +160,16 @@ textarea{
 
 h1{
   font-size: 55px;
+}
+
+.innercontents{
+  height: 300px; 
+  z-index: 1;
+  left: 20%;
+  height: 100%;
+  width: 60%;
+  position: fixed;
+  text-align: center;
 }
 
 button{
